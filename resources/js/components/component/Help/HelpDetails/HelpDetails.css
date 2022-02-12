@@ -1,0 +1,13 @@
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #00569e;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #fff;
+}
+.nav-link:focus, .nav-link:hover {
+    color: #fff !important;
+}

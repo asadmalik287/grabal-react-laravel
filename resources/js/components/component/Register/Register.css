@@ -1,0 +1,109 @@
+/*====REGISTERATION PAGE 1====*/
+
+.register-1 h1, .register-2 h1 {
+    font-size: 1.125rem;
+    font-weight: 900;
+    line-height: 24px;
+}
+
+.register-1 label, .register-2 label {
+    color: #65605d;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 24px;
+}
+
+.icon {
+    right: 3%;
+    top: 55%;
+}
+
+.register-1 input {}
+
+.p-small {
+    color: #76716d;
+    font-size: .7rem;
+    line-height: 16px;
+}
+
+#nextBtn {
+    background-color: #d93a3f;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    text-align: center;
+    padding: 0.75rem 24px;
+}
+
+
+.border-line {
+    border-bottom: 1px solid #898989;
+    opacity: .5;
+}
+
+
+/*====REGISTERATION PAGE 2====*/
+
+.after-inp {
+    color: #76716d;
+    font-size: .875rem;
+}
+
+.r2-inp {
+    padding: .5rem 0;
+}
+
+#mnth, #num {
+    padding: .64rem 0;
+}
+
+h4 {
+    font-size: 1rem;
+}
+
+#town {
+    width: 100%;
+    color: #65605d;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 24px;
+    padding: .7rem 0;
+
+}
+
+.s-icon {
+    top: 53%;
+    left: 3%;
+}
+
+.p-small2 {
+    color: #76716d;
+    font-size: .75rem;
+    line-height: 16px;
+}
+
+#searchInp {
+    padding-left: 2.5rem;
+}
+
+.gridCol3 {
+    flex: 0 0 auto;
+    width: 32%;
+}
+
+.go2441762052{
+    display: flex;
+}
+.go2441762052 li{
+    width: 50% !important;
+}
+
+@media screen and (max-width:574px) {
+    .r2-inp, #num {
+        width: 100%;
+    }
+
+}

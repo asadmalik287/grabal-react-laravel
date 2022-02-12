@@ -1,0 +1,34 @@
+/*====COMMUNITY====*/
+.community h1 {
+    font-size: 24px;
+    color: #44413d;
+    font-weight: 900;
+}
+.com-card img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+.com-card h3 {
+    font-size: 16px;
+    color: rgb(76,81,82);
+    font-weight: 800;
+    min-height: 90px;
+}
+@media screen and (max-width:768px) {
+    .com-card h3 {
+        min-height: 30px;
+    }
+}
+.clrP {
+    color: rgb(179,174,171);
+  
+}
+.pfw5 {
+font-weight: 600;
+}
+
+.f-smfw5 {
+    font-size: .8rem;
+    font-weight: 500;
+}

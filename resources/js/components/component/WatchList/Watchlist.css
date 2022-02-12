@@ -1,0 +1,53 @@
+/*====WATCHLIST====*/
+
+.sidebar a {
+    display: block;
+    /*  color: rgb(68,65,61);  */
+    color: black;
+    font-size: 14px;
+    line-height: 24px;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
+.sidebar h2 {
+    font-size: 0.8rem;
+}
+
+.border-left {
+    border-left: 3px solid rgb(249, 175, 44);
+    font-weight: 700;
+}
+
+.clr-light {
+    color: #85807c !important;
+}
+
+
+.anchor-text {
+    color: #007ACA;
+    font-size: 14px;
+}
+
+.btn-secondary11 {
+    color: #007ACA !important;
+    background-color: transparent !important;
+    border-color: #007ACA !important;
+    border-radius: 20px;
+}
+
+.bg-img {
+    /* background-image: url(../img/332796433.jpg); */
+    height: 500px;
+}
+
+.dropdown-menu1 {
+    min-width: 23rem !important;
+}
+
+.tickicon {
+    top: 0;
+    right: 0;
+}

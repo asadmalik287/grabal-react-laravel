@@ -1,0 +1,43 @@
+/*====LOGIN PAGE====*/
+
+.login-form h1 {
+    font-weight: 700;
+    font-size: 28px;
+}
+.login-text {
+    color: #76716d;
+    font-size: 16px; font-weight: 400;
+    line-height: 24px;
+}
+.inp {
+    display: block;
+    width: 100%;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid #d7d5d2;;
+
+}
+label {
+    color: rgb(101,96,93);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+}
+#btn-1 {
+    background-color: #d93a3f;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    min-height: 48px;
+    min-width: 93px;
+    font-weight: 500;
+    line-height: 27px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.5625rem 24px 0.75rem;
+}
+.ftr-text {
+    font-size: 11px;
+    line-height: 20px;
+}

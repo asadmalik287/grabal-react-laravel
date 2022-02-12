@@ -1,0 +1,14 @@
+/*====ACCOUNT DETAILS====*/
+
+.accDetails:hover {
+    text-decoration: underline;
+  }
+  .clrBlue {
+    fill: rgb(47,147,214);
+  }
+  
+  @media screen and (max-width:768px) {
+    .fs14 {
+      font-size: 14px;
+    }
+  }

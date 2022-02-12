@@ -1,0 +1,52 @@
+/*====COMMUNITY DETAILS====*/
+
+.main-fs {
+    font-size: .85rem;
+}
+
+.border-blue {
+    border: 1px solid rgb(0, 110, 189);
+}
+
+.ofc-cmnt {
+    top: 0;
+    right: 0;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    line-height: 14px;
+    font-weight: 300;
+    color: #fff;
+    background-color: #006EBD;
+}
+
+.comdet-card img {
+    height: 44px;
+    border-radius: 50%;
+}
+
+.lucy-span {
+    background-color: #ffcb4f;
+    color: #943800;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 5px;
+}
+
+.user-icon {
+    color: #9f8585;
+}
+
+.comdet-btn {
+    width: 64px !important;
+    color: #65605d;
+}
+
+.iconclr {
+    color: #65605d;
+    ;
+}
+
+.btn-span {
+    color: #65605d;
+    font-weight: 800;
+}

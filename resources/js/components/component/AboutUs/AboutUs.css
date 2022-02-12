@@ -1,0 +1,25 @@
+.card-text{ 
+    font-size: 1rem;
+    line-height: 24px;
+
+}
+.about-card {
+    border: 1px solid rgb(215,213,210);
+    border-radius: 8px;
+}
+.card-text a{ 
+    font-weight: 500;
+    font-size: .875rem;
+    line-height: 20px;
+}
+.span-border{
+    
+    color: #76716d;
+    font-size: .75rem;
+    line-height: 16px;
+}
+h3{
+    font-size: 1.05rem;
+    font-weight: 900;
+    line-height: 1.2;
+}
