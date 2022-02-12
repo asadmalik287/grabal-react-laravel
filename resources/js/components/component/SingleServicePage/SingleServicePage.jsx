@@ -1,17 +1,17 @@
 import React from 'react';
 import ServiceBanner from '../ServiceBanner/ServiceBanner';
 import AboutService from './AboutService/AboutService';
-import Group70 from '../../assets/images/Group-70.png'
+import Group70 from '../../../images/Group-70.png'
 import CustomButton from '../Button/CustomButton/CustomButton';
-import Group68 from '../../assets/images/Group-68.png'
+import Group68 from '../../../images/Group-68.png'
 import SocialServices from './SocialServices/SocialServices';
-import Group26 from '../../assets/images/Group-26.png'
+import Group26 from '../../../images/Group-26.png'
 import ServiceListReviews from './ServiceListReviews/ServiceListReviews';
 import ImageGallery from './ImageGallery/ImageGallery';
-import AddSideBar from '../../assets/images/12029152936087521460.png'
+import AddSideBar from '../../../images/12029152936087521460.png'
 import ReactStars from "react-rating-stars-component";
 import { Link } from 'react-router-dom';
-import modalImage from '../../assets/images/watchlist.jpg'
+import modalImage from '../../../images/watchlist.jpg'
 
 const secondExample = {
     size: 20,

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import NavbarLogo from '../../assets/images/Logo.png'
+import NavbarLogo from '../../../images/Logo.png'
 import { useForm } from "react-hook-form";
 
 export const ForgotPassword = () => {
@@ -22,7 +22,7 @@ export const ForgotPassword = () => {
                                 type="email"
                                 id="email"
                                 placeholder="Enter email"
-                                className={`my-2 px-2 h__46 form-control ${errors.email ? 'is-invalid' : ''}`} {...register("email", { required: true })} 
+                                className={`my-2 px-2 h__46 form-control ${errors.email ? 'is-invalid' : ''}`} {...register("email", { required: true })}
                             />
                             <p className='text-danger mb-0'>  {errors.email && "Email is required"}</p>
                             <span className="position-absolute icon">

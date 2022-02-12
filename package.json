@@ -24,6 +24,12 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
-        "react-router-dom": "^6.2.1"
+        "prop-types": "^15.8.1",
+        "react-gallery-carousel": "^0.2.9",
+        "react-hook-form": "^7.27.0",
+        "react-multi-carousel": "^2.6.5",
+        "react-rating-stars-component": "^2.2.0",
+        "react-router-dom": "^5.2.0",
+        "react-select-search": "^3.0.9"
     }
 }

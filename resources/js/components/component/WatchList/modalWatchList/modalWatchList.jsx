@@ -1,5 +1,5 @@
 import React from 'react';
-import watchlist from "../../../assets/images/watchlist.jpg";
+import watchlist from "../../../../images/watchlist.jpg";
 
 export const ModalWatchList = () => {
     return <React.Fragment>

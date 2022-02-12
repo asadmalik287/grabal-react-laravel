@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import NavbarLogo from '../../assets/images/Logo.png'
+import NavbarLogo from '../../../images/Logo.png'
 import './login.css'
 import { useForm } from "react-hook-form";
 export const Login = () => {

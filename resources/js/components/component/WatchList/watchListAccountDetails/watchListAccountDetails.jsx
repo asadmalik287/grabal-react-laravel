@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import WatchlistSidebar from "../WatchlistSidebar/WatchlistSidebar";
 import ServiceBanner from '../../ServiceBanner/ServiceBanner'
-import watchlistAdd from "../../../assets/images/2099323960490510824.png";
+import watchlistAdd from "../../../../images/2099323960490510824.png";
 import './watchListAccountDetails.css'
 export const WatchListAccountDetails = () => {
   return <React.Fragment>

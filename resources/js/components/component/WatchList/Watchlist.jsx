@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./Watchlist.css";
-import watchlistAdd from "../../assets/images/2099323960490510824.png";
+import watchlistAdd from "../../../images/2099323960490510824.png";
 import WatchlistSidebar from "./WatchlistSidebar/WatchlistSidebar";
 import WatchListCard from "./watchListCard/watchListCard";
 import ModalWatchList from "./modalWatchList/modalWatchList";
@@ -70,11 +70,11 @@ const Watchlist = () => {
                 setMainCheckBox(false)
             }
         }
-        
+
     }
 
 
-    
+
 
     return (
         <React.Fragment>

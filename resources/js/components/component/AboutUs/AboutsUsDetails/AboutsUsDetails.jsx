@@ -1,8 +1,5 @@
 import React from 'react';
-import imageSrc from '../../../assets/images/TRADEME001-Trade-Me-story.jpg'
-import Footer from '../../Footer/Footer'
-import Header from '../../Header/Header'
-import Navbar from '../../Navbar/Navbar'
+import imageSrc from '../../../../images/TRADEME001-Trade-Me-story.jpg'
 import ServiceBanner from '../../ServiceBanner/ServiceBanner';
 const AboutsUsDetails = () => {
     return <React.Fragment>

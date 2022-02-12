@@ -1,10 +1,7 @@
 import React from 'react';
-import Header from '../Header/Header';
-import Navbar from '../Navbar/Navbar';
 import ServiceBanner from '../ServiceBanner/ServiceBanner';
 import AboutsUSCard from './AboutsUSCard/AboutsUSCard';
-import imageSrc from '../../assets/images/TRADEME001-Trade-Me-story.jpg'
-import Footer from '../Footer/Footer';
+import imageSrc from '../../../images/TRADEME001-Trade-Me-story.jpg'
 const AboutUs = () => {
     return <React.Fragment>
         <ServiceBanner title="About Us" />

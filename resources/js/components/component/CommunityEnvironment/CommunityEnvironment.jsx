@@ -1,11 +1,8 @@
 import React from 'react';
-import Header from '../Header/Header';
-import Navbar from '../Navbar/Navbar';
 import './CommunityEnvironment.css'
 import ServiceBanner from '../ServiceBanner/ServiceBanner';
-import CommunityEnvironmentImage from '../../assets/images/profile_image_362725142811_2129876.jpg'
+import CommunityEnvironmentImage from '../../../images/profile_image_362725142811_2129876.jpg'
 import CommunityEnvironmentCard from './CommunityEnvironmentCard/CommunityEnvironmentCard';
-import Footer from '../Footer/Footer';
 
 export const CommunityEnvironment = () => {
     return <React.Fragment>

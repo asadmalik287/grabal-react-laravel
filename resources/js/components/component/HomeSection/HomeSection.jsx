@@ -3,8 +3,8 @@ import HomeTop from './HomeTop/HomeTop';
 import HomeAddsBanner from './HomeAddsBanner/HomeAddsBanner';
 import ServicesCards from '../ServicesCards/ServicesCards';
 import ServiceProvider from './ServiceProvider/ServiceProvider';
-import adds from '../../assets/images/adds.png'
-import adds2 from '../../assets/images/globalbanner.png'
+import adds from '../../../images/adds.png'
+import adds2 from '../../../images/globalbanner.png'
 
 export const HomeSection = () => {
     return <React.Fragment>

@@ -1,6 +1,6 @@
 import React from 'react';
-import watchlist from "../../../assets/images/watchlist.jpg";
-import mShape from '../../../assets/images/m.png'
+import watchlist from "../../../../images/watchlist.jpg";
+import mShape from '../../../../images/m.png'
 
 export const WatchListCard = (props) => {
     return <React.Fragment>
