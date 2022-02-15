@@ -6,6 +6,7 @@
     <title>Laravel</title>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets/font-awesome/fontawesome.css') }}" rel="stylesheet">
 </head>
 <body>
     <!-- React root DOM -->
