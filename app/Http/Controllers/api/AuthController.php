@@ -12,7 +12,8 @@ class AuthController extends Controller
 {
     public function signup(Request $request)
     {
-        dd($request->all());
+        dd('gi');
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
             'phone' => ['required', new PhoneNumberNotExist],
