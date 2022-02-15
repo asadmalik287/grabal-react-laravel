@@ -36,9 +36,12 @@ export const Login = () => {
                                     Remember me
                                 </label>
                                 <div className="buttons pt-4">
-                                    <button type="submit" className="btn w-100 ttu" id="btn-1">
-                                        Log in
-                                    </button>
+                                    <Link to='/'>
+
+                                        <button type="submit" className="btn w-100 ttu" id="btn-1">
+                                            Log in
+                                        </button>
+                                    </Link>
                                 </div>
                             </form>
                         </div>

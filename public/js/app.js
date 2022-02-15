@@ -5344,6 +5344,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _component_WatchList_editdelieveryaddress_editdelieveryaddress__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./component/WatchList/editdelieveryaddress/editdelieveryaddress */ "./resources/js/components/component/WatchList/editdelieveryaddress/editdelieveryaddress.jsx");
 /* harmony import */ var _component_WatchList_editAddressForm_EditAddressForm__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./component/WatchList/editAddressForm/EditAddressForm */ "./resources/js/components/component/WatchList/editAddressForm/EditAddressForm.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -5379,19 +5391,37 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function User() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('/'),
+      _useState2 = _slicedToArray(_useState, 2),
+      newPath = _useState2[0],
+      setNewPath = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('d-block'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      displayVisible = _useState4[0],
+      setDisplayVisible = _useState4[1];
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    newPath && (newPath === '/Login' || newPath === '/Register' || newPath === '/ForgotPassword') ? setDisplayVisible('d-none') : setDisplayVisible('d-block');
+  }, [newPath]);
+
   function _ScrollToTop(props) {
     var _useLocation = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_31__.useLocation)(),
         pathname = _useLocation.pathname;
 
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
       window.scrollTo(0, 0);
+      setNewPath(pathname);
     }, [pathname]);
     return props.children;
   }
 
   var ScrollToTop = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_31__.withRouter)(_ScrollToTop);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_32__.BrowserRouter, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_component_Header_Header__WEBPACK_IMPORTED_MODULE_24__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_component_Navbar_Navbar__WEBPACK_IMPORTED_MODULE_22__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ScrollToTop, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsxs)("div", {
+      className: displayVisible,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_component_Header_Header__WEBPACK_IMPORTED_MODULE_24__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_component_Navbar_Navbar__WEBPACK_IMPORTED_MODULE_22__["default"], {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(ScrollToTop, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Switch, {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_31__.Route, {
           path: "/",
@@ -5465,7 +5495,10 @@ function User() {
           component: _component_WatchList_editAddressForm_EditAddressForm__WEBPACK_IMPORTED_MODULE_29__["default"]
         })]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_component_Footer_Footer__WEBPACK_IMPORTED_MODULE_23__["default"], {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)("div", {
+      className: displayVisible,
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_30__.jsx)(_component_Footer_Footer__WEBPACK_IMPORTED_MODULE_23__["default"], {})
+    })]
   });
 }
 
@@ -7612,11 +7645,14 @@ var Login = function Login() {
                   children: "Remember me"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                   className: "buttons pt-4",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-                    type: "submit",
-                    className: "btn w-100 ttu",
-                    id: "btn-1",
-                    children: "Log in"
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+                    to: "/",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                      type: "submit",
+                      className: "btn w-100 ttu",
+                      id: "btn-1",
+                      children: "Log in"
+                    })
                   })
                 })]
               })]
@@ -7869,12 +7905,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -7917,7 +7947,7 @@ var Register = function Register() {
       step2 = _useState4[0],
       setstep2 = _useState4[1];
 
-  var email = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
+  var emailRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var password = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var confirmPassword = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
   var userName = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)();
@@ -7957,6 +7987,8 @@ var Register = function Register() {
   var nextStep = function nextStep() {
     setstep1('d-none');
     setstep2('d-block');
+
+    if (email.current.value != '' && password.current.value != '' && confirmPassword.current.value != '' && userName.current.value != '' && (country.current.checked != false || country1.current.checked != false)) {}
   };
 
   var previousStep = function previousStep() {
@@ -7988,32 +8020,34 @@ var Register = function Register() {
                 onSubmit: handleSubmit(signUpForm),
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                   className: step1,
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
-                    className: "ttu text-center titleBlue pt-3",
-                    children: "Create a personal account"
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                    className: "d-flex py-3 align-items-center",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                      className: "w-25"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
+                      className: "ttu text-center titleBlue",
+                      children: "Create a personal account"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                      className: "w-25 text-end text-dark-50",
+                      children: "1/2"
+                    })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                    className: "p-3",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                       className: "position-relative",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                         children: "Email"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", _objectSpread({
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                         type: "email",
-                        ref: email,
+                        ref: emailRef,
                         name: "email",
                         placeholder: "Enter email",
-                        className: "inp my-2 px-2  h__46 form-control".concat(errors.email ? 'is-invalid' : '')
-                      }, register("email", {
-                        required: true
-                      }))), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                        className: "inp my-2 px-2  h__46 form-control"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
                         className: "position-absolute icon",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
                           className: "fa fa-envelope-o",
                           "aria-hidden": "true"
                         })
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("p", {
-                        className: "text-danger mb-0",
-                        children: ["  ", errors.email && "Email is required"]
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
@@ -8095,16 +8129,19 @@ var Register = function Register() {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                     className: "register-1",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                      className: "d-flex py-3",
+                      className: "d-flex py-3 align-items-center",
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                         onClick: previousStep,
-                        className: "cp",
+                        className: "cp w-25",
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
                           className: "fa fa-chevron-left"
                         }), " Back"]
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
-                        className: "ttu text-center titleBlue w-75",
+                        className: "ttu text-center titleBlue w-50",
                         children: "Tell us about yourself"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                        className: "w-25 text-end text-dark-50",
+                        children: "2/2"
                       })]
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {

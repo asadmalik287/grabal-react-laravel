@@ -15,7 +15,7 @@ export const Register = () => {
     const [step1, setstep1] = useState('d-block')
     const [step2, setstep2] = useState('d-none')
 
-    let email = useRef();
+    let emailRef = useRef();
     let password = useRef();
     let confirmPassword = useRef();
     let userName = useRef();
@@ -55,6 +55,10 @@ export const Register = () => {
     const nextStep = () =>{
         setstep1('d-none')
         setstep2('d-block')
+        if(email.current.value != '' && password.current.value != '' && confirmPassword.current.value !='' && userName.current.value !='' && (country.current.checked != false || country1.current.checked != false)){
+        }
+
+
     }
 
     const previousStep = () =>{
@@ -77,15 +81,19 @@ export const Register = () => {
 
                                     {/* Step 1 start*/}
                                     <div className={step1}>
-                                        <h1 className="ttu text-center titleBlue pt-3">Create a personal account</h1>
-                                        <div className="p-3">
+                                        <div className="d-flex py-3 align-items-center">
+                                                <div className="w-25"></div>
+                                                <h1 className="ttu text-center titleBlue">Create a personal account</h1>
+                                                <div className="w-25 text-end text-dark-50">1/2</div>
+                                            </div>
+                                        <div>
                                             <div className="position-relative">
                                                 <label>Email</label>
-                                                <input type="email" ref={email} name="email" placeholder="Enter email" className={`inp my-2 px-2  h__46 form-control${errors.email ? 'is-invalid' : ''}`}  {...register("email", { required: true })}  />
+                                                <input type="email" ref={emailRef} name="email" placeholder="Enter email" className='inp my-2 px-2  h__46 form-control' />
                                                 <span className="position-absolute icon">
                                                     <i className="fa fa-envelope-o" aria-hidden="true" />
                                                 </span>
-                                                <p className='text-danger mb-0'>  {errors.email && "Email is required"}</p>
+                                                {/* <p className='text-danger mb-0'>Email is required</p> */}
                                             </div>
                                             <div>
                                                 <label className="pt-3">Password</label>
@@ -127,9 +135,10 @@ export const Register = () => {
                                     {/* Step 2 start*/}
                                     <div className={step2}>
                                         <div className="register-1">
-                                            <div className="d-flex py-3">
-                                                <div onClick={previousStep} className="cp"><i className="fa fa-chevron-left"></i> Back</div>
-                                                <h1 className="ttu text-center titleBlue w-75">Tell us about yourself</h1>
+                                            <div className="d-flex py-3 align-items-center">
+                                                <div onClick={previousStep} className="cp w-25"><i className="fa fa-chevron-left"></i> Back</div>
+                                                <h1 className="ttu text-center titleBlue w-50">Tell us about yourself</h1>
+                                                <div className="w-25 text-end text-dark-50">2/2</div>
                                             </div>
                                         </div>
                                         <div className="">

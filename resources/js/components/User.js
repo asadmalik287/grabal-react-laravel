@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import ReactDOM from 'react-dom';
 import '../app.css'
 import '../index.css'
@@ -34,22 +34,34 @@ import EditAddressForm from './component/WatchList/editAddressForm/EditAddressFo
 
 
 function User() {
+    const [newPath, setNewPath] = useState('/')
+    const [displayVisible, setDisplayVisible] = useState('d-block')
+
+    useEffect(() => {
+        newPath && (newPath ==='/Login' || newPath ==='/Register' || newPath ==='/ForgotPassword') ? setDisplayVisible('d-none') : setDisplayVisible('d-block');
+    }, [newPath]);
 
     function _ScrollToTop(props) {
         const { pathname } = useLocation();
         useEffect(() => {
-          window.scrollTo(0, 0);
+            window.scrollTo(0, 0);
+            setNewPath(pathname)
         }, [pathname]);
+
         return props.children
-      }
-      const ScrollToTop = withRouter(_ScrollToTop)
+    }
+    const ScrollToTop = withRouter(_ScrollToTop)
 
 
 
     return (
         <Router>
-            <Header />
-            <Navbar />
+
+            <div className={displayVisible}>
+                <Header/>
+                <Navbar />
+            </div>
+
             <ScrollToTop>
                 <Switch>
                     <Route path="/" exact component={HomeSection} />
@@ -77,10 +89,17 @@ function User() {
                     <Route path="/EditAddressForm" component={EditAddressForm} />
                 </Switch>
             </ScrollToTop>
-            <Footer/>
+
+            <div className={displayVisible}>
+                <Footer/>
+            </div>
+
         </Router>
     );
 }
+
+
+
 export default User;
 // DOM element
 if (document.getElementById('user')) {

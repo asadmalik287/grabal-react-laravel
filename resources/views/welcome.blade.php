@@ -6,13 +6,14 @@
     <title>Laravel</title>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('/assets/font-awesome/fontawesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/font-awesome/fontawesome.css') }}" rel="stylesheet">
+    <base href="/" />
+
 </head>
 <body>
     <!-- React root DOM -->
-    <div id="user">
-    </div>
+    <div id="user" class="h-100"></div>
     <!-- React JS -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" ></script>
 </body>
 </html>
