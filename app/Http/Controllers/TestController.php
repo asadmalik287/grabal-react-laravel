@@ -24,9 +24,9 @@ class TestController extends Controller
             'email' => 'unique:users',
             'password' => 'required',
             'confirm_password' => 'required|same:password',
-            'dob' => 'required|Date',
-            'username' => 'required',
-            'counrty' => 'required',
+            'dob' => 'required|date',
+            'name' => 'required',
+            'country' => 'required',
             'gender' => 'required',
             'town' => 'required',
         ]);
@@ -41,7 +41,7 @@ class TestController extends Controller
         //     $request['is_verified'] = 0;
         // } else {
 
-        //     $request['is_verified'] = 1;
+        $request['is_verified'] = 1;
         // }
 
         // $request['is_active'] = 1;
@@ -64,17 +64,17 @@ class TestController extends Controller
 
         //     $request['picture'] = $path . '/' . $name;
         // }
-
         $user = User::create($request->except(["confirm_password"]));
         if ($user) {
 
-            $user['token'] = $user->createToken('token')->accessToken;
+            // return   $user['token'] ;
             if ($user->is_verified == 1) {
                 $message = "Registration successful";
             } else {
                 $message = "Your account is under verification!";
             }
             $user = User::find($user->id);
+            $user['token'] = $user->createToken('token')->accessToken;
 
             // if ($user->picture != null) {
 
