@@ -15,7 +15,6 @@ const Watchlist = () => {
     const [watchlistBlock, setwatchlistBlock] = useState('block')
     const [checkboxBlock, setcheckboxBlock] = useState('d-none')
     const [lengthCard, setLengthCard] = useState()
-
     const deleteWatchList = () => {
         setLengthCard(document.querySelectorAll('.watchListCard').length)
         if (editButtonwatchList.current.style.display === 'none') {

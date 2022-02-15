@@ -12,6 +12,7 @@ import AddSideBar from '../../../images/12029152936087521460.png'
 import ReactStars from "react-rating-stars-component";
 import { Link } from 'react-router-dom';
 import modalImage from '../../../images/watchlist.jpg'
+import { useForm } from "react-hook-form";
 
 const secondExample = {
     size: 20,
@@ -28,6 +29,8 @@ const secondExample = {
 };
 
 export const SingleServicePage = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const loginSubmit = handleSubmit(data => console.log(data));
     return <React.Fragment>
         <ServiceBanner title="Service Details" />
         <section className='carpet-cleaning main__padding py-4'>
@@ -139,11 +142,12 @@ export const SingleServicePage = () => {
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
                     </div>
                     <div className="modal-body">
-                        <form action="" >
+                        <form action="" onSubmit={handleSubmit(loginSubmit)}> 
                             <label htmlFor="sellerMessage" className='mb-2 fw-bold'>Message</label>
-                            <textarea name="message" className='form-control' id='sellerMessage' cols="10" rows="3"></textarea>
-                            <div className="modal-footer border-0 justify-content-start">
-                                <button type="submit" className="btn btn-primary px-4" disabled>
+                            <textarea name="message" className={`form-control ${errors.textareaMessage ? 'is-invalid' : ''}`} {...register("textareaMessage", { required: true })} id='sellerMessage' cols="10" rows="3"></textarea>
+                            <p className='text-danger mb-0 pt-2'>  {errors.textareaMessage && "Email is required"}</p>
+                            <div className="modal-footer px-0 border-0 justify-content-start">
+                                <button type="submit" className="btn btn-primary px-4">
                                     Send
                                 </button>
                             </div>
