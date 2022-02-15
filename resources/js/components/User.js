@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import '../app.css'
 import '../index.css'
 import { BrowserRouter as Router, Route, Switch, useLocation, withRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 import HomeSection from './component/HomeSection/HomeSection';
 import servicePageList from './component/servicePageList/servicePageList'
@@ -47,6 +48,7 @@ function User() {
 
 
     return (
+        <BrowserRouter>
         <Router>
             <Header />
             <Navbar />
@@ -79,6 +81,7 @@ function User() {
             </ScrollToTop>
             <Footer/>
         </Router>
+        </BrowserRouter>
     );
 }
 export default User;

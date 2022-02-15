@@ -142,12 +142,12 @@ export const SingleServicePage = () => {
                         <form action="" >
                             <label htmlFor="sellerMessage" className='mb-2 fw-bold'>Message</label>
                             <textarea name="message" className='form-control' id='sellerMessage' cols="10" rows="3"></textarea>
+                            <div className="modal-footer border-0 justify-content-start">
+                                <button type="submit" className="btn btn-primary px-4" disabled>
+                                    Send
+                                </button>
+                            </div>
                         </form>
-                    </div>
-                    <div className="modal-footer border-0 justify-content-start">
-                        <button type="submit" className="btn btn-primary px-4">
-                            Send
-                        </button>
                     </div>
                 </div>
             </div>
