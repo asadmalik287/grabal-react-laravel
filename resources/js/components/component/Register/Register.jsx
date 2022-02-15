@@ -8,9 +8,30 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 
 export const Register = () => {
-
+    const [newData, setNewData] = useState('')
     const {  register, handleSubmit, formState: { errors },} = useForm();
-    const signUpForm = handleSubmit((data) => console.log(data));
+    const signUpForm = handleSubmit(data => setNewData(data));
+
+    let {date,month,year,countryCode,number} = newData;
+    let dob = `${date}-${month}-${year}`;
+
+    let phone_number = `${countryCode} ${number} `;
+    let changeData = newData;
+    changeData = {...changeData,'dob':dob ,'phone_number':phone_number};
+
+    useEffect(() => {
+        sendingData()
+    }, [changeData]);
+
+
+    const sendingData = async () => {
+        try {
+            await axios.post('/api/signup', changeData)
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
 
     const [step1, setstep1] = useState('d-block')
     const [step2, setstep2] = useState('d-none')
@@ -24,9 +45,9 @@ export const Register = () => {
     let fname = useRef();
     let lname = useRef();
     let day = useRef();
-    let month = useRef();
-    let year = useRef();
-    let countryCode = useRef();
+    let monthRef = useRef();
+    let yearRef = useRef();
+    let countryCodeRef = useRef();
     let phoneNumber = useRef();
     let gerderMan = useRef();
     let gerderWoman = useRef();
@@ -55,9 +76,8 @@ export const Register = () => {
     const nextStep = () =>{
         setstep1('d-none')
         setstep2('d-block')
-        if(email.current.value != '' && password.current.value != '' && confirmPassword.current.value !='' && userName.current.value !='' && (country.current.checked != false || country1.current.checked != false)){
-        }
-
+        // if(email.current.value != '' && password.current.value != '' && confirmPassword.current.value !='' && userName.current.value !='' && (country.current.checked != false || country1.current.checked != false)){
+        // }
 
     }
 
@@ -89,7 +109,7 @@ export const Register = () => {
                                         <div>
                                             <div className="position-relative">
                                                 <label>Email</label>
-                                                <input type="email" ref={emailRef} name="email" placeholder="Enter email" className='inp my-2 px-2  h__46 form-control' />
+                                                <input type="email" ref={emailRef} name="email" placeholder="Enter email" {...register("email", { required: true })} className='inp my-2 px-2  h__46 form-control' />
                                                 <span className="position-absolute icon">
                                                     <i className="fa fa-envelope-o" aria-hidden="true" />
                                                 </span>
@@ -97,29 +117,29 @@ export const Register = () => {
                                             </div>
                                             <div>
                                                 <label className="pt-3">Password</label>
-                                                <input placeholder="Enter password" name="password" type="password" ref={password} className="my-2 h__46 form-control" />
+                                                <input placeholder="Enter password" name="password" type="password" ref={password} {...register("password", { required: true })} className="my-2 h__46 form-control" />
                                             </div>
                                             <div>
                                                 <label className="pt-3">Confirm password</label>
-                                                <input placeholder="Enter confirm password" name="confirm_password" type="password" ref={confirmPassword} className="inp my-2 h__46 form-control" />
+                                                <input placeholder="Enter confirm password" name="confirm_password" type="password" ref={confirmPassword} {...register("confirm_password", { required: true })} className="inp my-2 h__46 form-control" />
                                             </div>
                                             <div>
                                                 <label className="pt-3">Username</label>
-                                                <input placeholder="Enter username" name="username" type="text" ref={userName} className="my-2 h__46 form-control" />
+                                                <input placeholder="Enter username" name="name" type="text" ref={userName} {...register("name", { required: true })} className="my-2 h__46 form-control" />
                                             </div>
                                             <p className="p-small pt-4"> Have a think about this one - it's how you'll be known to other members and can't be changed </p>
                                             <div className="">
                                                 <label className="d-block py-2">Country</label>
                                                 <div className="ps-2 py-3">
-                                                    <input type="radio" ref={country} defaultChecked="" name="country" value=" New Zealand " />
-                                                    <label className="ps-2" htmlFor="newZealand">
+                                                    <input type="radio" ref={country} id="country" {...register("country")} defaultChecked="" name="country" value=" New Zealand " />
+                                                    <label className="ps-2" htmlFor="country">
                                                         New Zealand
                                                     </label>
                                                     <br />
                                                 </div>
                                                 <div className="ps-2">
-                                                    <input type="radio" ref={country1} name="country" value=" AUSTRALIA " />
-                                                    <label className="ps-2" htmlFor="aus">
+                                                    <input type="radio" ref={country1} id="country1" {...register("country")} name="country" value=" AUSTRALIA " />
+                                                    <label className="ps-2" htmlFor="country1">
                                                         AUSTRALIA
                                                     </label>
                                                     <br />
@@ -144,47 +164,47 @@ export const Register = () => {
                                         <div className="">
                                             <div className="">
                                                 <label>First Name</label>
-                                                <input type="text" ref={fname} name="f_name" placeholder="" className="inp my-2 px-2" />
+                                                <input type="text" ref={fname} {...register("f_name", { required: true })} name="f_name" placeholder="" className="inp my-2 px-2" />
                                                 <p className="after-inp">50 characters remaining</p>
                                             </div>
                                             <div className="">
                                                 <label>Last Name</label>
-                                                <input type="text" ref={lname} name="l_name" placeholder="" className="inp my-2 px-2" />
+                                                <input type="text" ref={lname} {...register("l_name", { required: true })} name="l_name" placeholder="" className="inp my-2 px-2" />
                                                 <p className="after-inp">50 characters remaining</p>
                                             </div>
                                             <div className="d-flex flex-wrap mx-0 align-items-end justify-content-between">
                                                 <div className="gridCol3">
                                                     <label className="d-block">Date of Birth</label>
-                                                    <input type="text" ref={day} placeholder="Day" name="date" className="r2-inp w-100  ps-2 my-3 my-sm-0" />
+                                                    <input type="text" ref={day} {...register("date", { required: true })} placeholder="Day" name="date" maxLength={2} className="r2-inp w-100  ps-2 my-3 my-sm-0" />
                                                 </div>
                                                 <div className="gridCol3">
-                                                    <select name="month" ref={month} className="r2-inp w-100  my-3 my-sm-0">
-                                                        <option value="" selected>
+                                                    <select name="month" ref={monthRef} {...register("month")} className="r2-inp w-100  my-3 my-sm-0">
+                                                        <option value="" disabled>
                                                             Select month
                                                         </option>
-                                                        <option value="">January</option>
-                                                        <option value="">Febraury</option>
-                                                        <option value="">March</option>
-                                                        <option value="">April</option>
-                                                        <option value="">May</option>
-                                                        <option value="">Jne</option>
-                                                        <option value="">July</option>
-                                                        <option value="">August</option>
-                                                        <option value="">September</option>
-                                                        <option value="">October</option>
-                                                        <option value="">November</option>
-                                                        <option value="">December</option>
+                                                        <option value="01">January</option>
+                                                        <option value="02">Febraury</option>
+                                                        <option value="03">March</option>
+                                                        <option value="04">April</option>
+                                                        <option value="05">May</option>
+                                                        <option value="06">June</option>
+                                                        <option value="07">July</option>
+                                                        <option value="08">August</option>
+                                                        <option value="09">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
                                                     </select>
                                                 </div>
                                                 <div className="gridCol3">
-                                                    <input type="text" ref={year} name="year" placeholder="Year(YYYY)" className="r2-inp w-100 ps-2 my-3 my-sm-0" />
+                                                    <input type="text" ref={yearRef} {...register("year", { required: true })} maxLength={4} name="year" placeholder="Year(YYYY)" className="r2-inp w-100 ps-2 my-3 my-sm-0" />
                                                 </div>
                                             </div>
                                             <div className="py-4">
                                                 <label className="d-block">Phone number</label>
                                                 <div className="row justify-content-between">
                                                     <div className="col-4">
-                                                        <select name="countryCode" ref={countryCode} className="r2-inp w-100 my-3 my-sm-0 ps-2">
+                                                        <select name="countryCode" ref={countryCodeRef} {...register("countryCode")} className="r2-inp w-100 my-3 my-sm-0 ps-2">
                                                             <option value="" selected>
                                                                 Country code
                                                             </option>
@@ -203,7 +223,7 @@ export const Register = () => {
                                                         </select>
                                                     </div>
                                                     <div className="col-8">
-                                                        <input type="text" ref={phoneNumber} name="number" placeholder="1234567" className="r2-inp w-100 ps-2 h-100" />
+                                                        <input type="number" ref={phoneNumber} {...register("number")} name="number" placeholder="1234567" className="r2-inp w-100 ps-2 h-100" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -245,21 +265,21 @@ export const Register = () => {
                                             <div className="">
                                                 <label className="d-block py-2">Gender</label>
                                                 <div className="ps-2 py-2">
-                                                    <input ref={gerderMan} type="radio" name="gender" value="man" />
+                                                    <input ref={gerderMan} id="gerderman" {...register("gender")}  type="radio" name="gender" value="man" />
                                                     <label htmlFor="gerderman" className=" ps-2">
                                                         Man
                                                     </label>
                                                     <br />
                                                 </div>
                                                 <div className="ps-2 py-2">
-                                                    <input ref={gerderWoman} type="radio" name="gender" value="woman" />
+                                                    <input ref={gerderWoman} id="gerderWoman" {...register("gender")} type="radio" name="gender" value="woman" />
                                                     <label htmlFor="gerderWoman" className=" ps-2" id="aus">
                                                         Woman
                                                     </label>
                                                     <br />
                                                 </div>
                                                 <div className="ps-2 py-2">
-                                                    <input type="radio" ref={gerderDiverse} name="gender" value="gender diverse" />
+                                                    <input type="radio" ref={gerderDiverse} id="genderDiverse" {...register("gender")} name="gender" value="gender diverse" />
                                                     <label htmlFor="genderDiverse" className=" ps-2">
                                                         Gender Diverse
                                                     </label>
@@ -269,27 +289,26 @@ export const Register = () => {
                                             <h4 className="pt-3">New Zealand</h4>
                                             <div className="position-relative">
                                                 <label>Address</label>
-                                                <input type="text" ref={address} name="address" placeholder="Start typing your address" className="inp my-2 ps-5" />
+                                                <input type="text" ref={address} {...register("address", { required: true })} name="address" placeholder="Start typing your address" className="inp my-2 ps-5" />
                                                 <span className="position-absolute s-icon">
                                                     <i className="fa fa-search" />
                                                 </span>
                                             </div>
                                             <div className="py-4">
                                                 <label>Closest Town</label>
-                                                <select name="town" ref={town} className="d-block r2-inp w-100  my-3 my-sm-0 ps-2">
-                                                    <option value="" hidden="" />
-                                                    <option value=""> Northland - Dargaville </option>
-                                                    <option value=""> Northland - Kaikohe </option>
-                                                    <option value=""> Northland - Kaikohe </option>
-                                                    <option value=""> Northland - Kawakawa </option>
-                                                    <option value=""> Northland - Kerikeri </option>
-                                                    <option value=""> Northland - Mangawhai </option>
-                                                    <option value=""> Northland - Maungaturoto </option>
-                                                    <option value=""> Northland - Paihia </option>
-                                                    <option value=""> Northland - Whangarei </option>
-                                                    <option value=""> Auckland - Albany </option>
-                                                    <option value=""> Auckland - Auckland City </option>
-                                                    <option value=""> Auckland - Botany Downs </option>
+                                                <select name="town" ref={town} {...register("town")} className="d-block r2-inp w-100  my-3 my-sm-0 ps-2">
+                                                    <option value="Northland - Dargaville"> Northland - Dargaville </option>
+                                                    <option value="Northland - Kaikohe"> Northland - Kaikohe </option>
+                                                    <option value="Northland - Kaikohe"> Northland - Kaikohe </option>
+                                                    <option value="Northland - Kawakawa"> Northland - Kawakawa </option>
+                                                    <option value="Northland - Kerikeri"> Northland - Kerikeri </option>
+                                                    <option value="Northland - Mangawhai"> Northland - Mangawhai </option>
+                                                    <option value="Northland - Maungaturoto"> Northland - Maungaturoto </option>
+                                                    <option value="Northland - Paihia"> Northland - Paihia </option>
+                                                    <option value="Northland - Whangarei"> Northland - Whangarei </option>
+                                                    <option value="Auckland - Albany"> Auckland - Albany </option>
+                                                    <option value="Auckland - Auckland City"> Auckland - Auckland City </option>
+                                                    <option value="Auckland - Botany Downs"> Auckland - Botany Downs </option>
                                                 </select>
                                             </div>
                                             <p className="p-small2">This is the location we'll display to other Grobal members </p>
