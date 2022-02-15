@@ -18,4 +18,4 @@ use App\Http\Controllers;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('test','TestController@test')->name('test');
+Route::get('test','App\Http\Controllers\TestController@test')->name('test');
