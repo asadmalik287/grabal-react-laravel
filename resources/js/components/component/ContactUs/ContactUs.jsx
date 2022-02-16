@@ -11,7 +11,7 @@ export const ContactUs = () => {
         <ServiceBanner title="Contact us" />
         {/*=====CONTACT US====*/}
         <section className="main__padding py-4  ">
-            <form className='col-6' onSubmit={handleSubmit(loginSubmit)}>
+            <form className='col-6 m-auto' onSubmit={handleSubmit(loginSubmit)}>
                 <div className="form-row">
                     <div className="form-group ">
                         <label className="f-font pb-1">
