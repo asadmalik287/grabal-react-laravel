@@ -55,17 +55,7 @@ export const Footer = () => {
                             </Link>
                         </li>
                     </ul>
-                    <ul className="box d-none">
-                        <li className="link_name">Get the App</li>
-                        <li className="mb-2 mb-lg-0 mb-md-0 mb-sm-2">
-                            <Link to="/">
-                                <img src={appStore} alt='' width={100} />
-                            </Link>
-                            <Link to="/">
-                                <img src={playStore} alt='' className="mt-lg-0 mt-md-0 mt-sm-1 mt-1" width={100} />
-                            </Link>
-                        </li>
-                    </ul>
+                 
                 </div>
             </div>
         </footer>

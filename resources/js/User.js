@@ -9,7 +9,7 @@ import HomeSection from './pages/HomeSection';
 import servicePageList from './pages/servicePageList'
 import SingleServicePage from './pages/SingleServicePage';
 import Login from './pages/Login';
-import Register from './component/Register/Register';
+import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import ServiceListDetails from './pages/ServiceListDetails';
 import Careers from './pages/Careers';
@@ -73,8 +73,6 @@ function User() {
                     <Route path="/AboutUs" component={AboutUs} />
                     <Route path="/AboutsUsDetails" component={AboutsUsDetails} />
                     <Route path="/PricvacyPolicy" component={PricvacyPolicy} />
-                    <Route path="/Help" component={Help} />
-                    <Route path="/HelpDetails" component={HelpDetails} />
                     <Route path="/CommunityEnvironment" component={CommunityEnvironment} />
                     <Route path="/CommunityEnvironmentDetails" component={CommunityEnvironmentDetails} />
                     <Route path="/Faqs" component={Faqs} />

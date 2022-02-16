@@ -15,10 +15,8 @@
 
 .icon {
     right: 3%;
-    top: 55%;
+    top: 43px;
 }
-
-.register-1 input {}
 
 .p-small {
     color: #76716d;
@@ -26,7 +24,7 @@
     line-height: 16px;
 }
 
-#nextBtn {
+.stepButton {
     background-color: #d93a3f;
     color: #fff;
     border: none;

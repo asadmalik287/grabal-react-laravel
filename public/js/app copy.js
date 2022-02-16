@@ -5283,7 +5283,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_servicePageList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/servicePageList */ "./resources/js/pages/servicePageList.jsx");
 /* harmony import */ var _pages_SingleServicePage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/SingleServicePage */ "./resources/js/pages/SingleServicePage.jsx");
 /* harmony import */ var _pages_Login__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/Login */ "./resources/js/pages/Login.jsx");
-/* harmony import */ var _pages_Register__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/Register */ "./resources/js/pages/Register.jsx");
+/* harmony import */ var _component_Register_Register__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./component/Register/Register */ "./resources/js/component/Register/Register.jsx");
 /* harmony import */ var _pages_ForgotPassword__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/ForgotPassword */ "./resources/js/pages/ForgotPassword.jsx");
 /* harmony import */ var _pages_ServiceListDetails__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/ServiceListDetails */ "./resources/js/pages/ServiceListDetails.jsx");
 /* harmony import */ var _pages_Careers__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/Careers */ "./resources/js/pages/Careers.jsx");
@@ -5398,7 +5398,7 @@ function User() {
             component: _pages_Login__WEBPACK_IMPORTED_MODULE_7__["default"]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
             path: "/Register",
-            component: _pages_Register__WEBPACK_IMPORTED_MODULE_8__["default"]
+            component: _component_Register_Register__WEBPACK_IMPORTED_MODULE_8__["default"]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
             path: "/ForgotPassword",
             component: _pages_ForgotPassword__WEBPACK_IMPORTED_MODULE_9__["default"]
@@ -5417,6 +5417,12 @@ function User() {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
             path: "/PricvacyPolicy",
             component: _pages_PricvacyPolicy__WEBPACK_IMPORTED_MODULE_14__["default"]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
+            path: "/Help",
+            component: Help
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
+            path: "/HelpDetails",
+            component: HelpDetails
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_28__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_29__.Route, {
             path: "/CommunityEnvironment",
             component: _pages_CommunityEnvironment__WEBPACK_IMPORTED_MODULE_15__["default"]
@@ -5905,6 +5911,916 @@ var ServiceProvider = function ServiceProvider(props) {
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ServiceProvider);
+
+/***/ }),
+
+/***/ "./resources/js/component/Register/Register.jsx":
+/*!******************************************************!*\
+  !*** ./resources/js/component/Register/Register.jsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Register": () => (/* binding */ Register),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Register_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Register.css */ "./resources/js/component/Register/Register.css");
+Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../../images/Logo.png'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+var Register = function Register() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      newData = _useState2[0],
+      setNewData = _useState2[1];
+
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_5__.useForm)(),
+      register = _useForm.register,
+      handleSubmit = _useForm.handleSubmit,
+      errors = _useForm.formState.errors;
+
+  var signUpForm = handleSubmit(function (data) {
+    return setNewData(data);
+  });
+  var date = newData.date,
+      month = newData.month,
+      year = newData.year,
+      countryCode = newData.countryCode,
+      number = newData.number;
+  var dob = "".concat(date, "-").concat(month, "-").concat(year);
+  var phone_number = "".concat(countryCode, " ").concat(number, " ");
+  var changeData = newData;
+  changeData = _objectSpread(_objectSpread({}, changeData), {}, {
+    'dob': dob,
+    'phone_number': phone_number
+  });
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    sendingData();
+  }, [changeData]);
+
+  var sendingData = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/signup', changeData);
+
+            case 3:
+              _context.next = 8;
+              break;
+
+            case 5:
+              _context.prev = 5;
+              _context.t0 = _context["catch"](0);
+              console.log(_context.t0.message);
+
+            case 8:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 5]]);
+    }));
+
+    return function sendingData() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('d-block'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      step1 = _useState4[0],
+      setstep1 = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('d-none'),
+      _useState6 = _slicedToArray(_useState5, 2),
+      step2 = _useState6[0],
+      setstep2 = _useState6[1];
+
+  var emailRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var password = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var confirmPassword = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var userNameRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var country = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var country1 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var fname = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var lname = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var day = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var monthRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var yearRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var countryCodeRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var phoneNumber = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var gerderMan = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var gerderWoman = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var gerderDiverse = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var address = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var town = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var cbox = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var addMorephoneNumberId = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var addNumberRemoveNumText = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+  var plusCloseIcon = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
+
+  var addMorePhoneNumber = function addMorePhoneNumber() {
+    if (addMorephoneNumberId.current.style.display === "none") {
+      addMorephoneNumberId.current.style.display = "block";
+      plusCloseIcon.current.classList.remove("fa-plus");
+      plusCloseIcon.current.classList.add("fa-close");
+      addNumberRemoveNumText.current.innerText = "Remove phone number";
+    } else {
+      addMorephoneNumberId.current.style.display = "none";
+      plusCloseIcon.current.classList.remove("fa-close");
+      plusCloseIcon.current.classList.add("fa-plus");
+      addNumberRemoveNumText.current.innerText = "Add another phone number";
+    }
+  };
+
+  var nextStep = function nextStep() {
+    // All inputs
+    var allInputs = document.querySelectorAll('.inputStep1');
+
+    var _iterator = _createForOfIteratorHelper(allInputs),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var i = _step.value;
+        focusInput(i, false, 'input');
+      } // Radio buttons inputs
+
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    var allRadio = document.querySelectorAll('.radioStep1');
+
+    var _iterator2 = _createForOfIteratorHelper(allRadio),
+        _step2;
+
+    try {
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var _i2 = _step2.value;
+        _i2.checked ? focusInput(_i2, false, 'radio') : document.getElementsByClassName('messageCountry')[0].classList.remove('d-none');
+      }
+    } catch (err) {
+      _iterator2.e(err);
+    } finally {
+      _iterator2.f();
+    }
+
+    var checkRunLoop = document.querySelectorAll('.runLoop');
+
+    if (allInputs.length + allRadio.length === checkRunLoop.length) {
+      setstep1('d-none');
+      setstep2('d-block');
+    } // console.log(emailRef.current.value != '' && passwordRef.current.value != '' && confirmPasswordRef.current.value !='' && userNameRef.current.value !='' && (country.current.checked != false || country1R.current.checked != false))
+    // { }
+
+  };
+
+  var previousStep = function previousStep() {
+    setstep1('d-block');
+    setstep2('d-none');
+  };
+
+  var focusInput = function focusInput(e) {
+    var check = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var type = arguments.length > 2 ? arguments[2] : undefined;
+    var targetElement = check ? e.target : e;
+    var messageTag = targetElement.nextSibling; // Checking Input type and then perform action
+
+    if (type === 'input') {
+      if (targetElement.value === '') {
+        messageTag.classList.remove('d-none');
+        targetElement.classList.add('redBorder');
+        targetElement.classList.remove('runLoop');
+      } else {
+        targetElement.classList.remove('redBorder');
+        messageTag.classList.add('d-none');
+        targetElement.classList.add('runLoop');
+      }
+    }
+
+    if (type === 'radio') {
+      if (targetElement.checked === true) {
+        document.getElementsByClassName('messageCountry')[0].classList.add('d-none');
+        targetElement.classList.add('runLoop');
+      } else {
+        setTimeout(function () {
+          document.getElementsByClassName('messageCountry')[0].classList.remove('d-none');
+        }, 100);
+      }
+    }
+  };
+
+  var radioInput = function radioInput(e) {
+    var check = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var targetElement = check ? e.target : e;
+    var messageTag = targetElement.nextSibling;
+  }; // Days Array
+
+
+  var days = [];
+
+  for (var i = 1; i <= 31; i++) {
+    days.push(i);
+  } // Days Array
+  // Years Array
+
+
+  var years = [];
+  var currentYear = new Date().getFullYear();
+
+  for (var _i3 = 1980; _i3 <= currentYear - 18; _i3++) {
+    years.push(_i3);
+  } // Years Array
+
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("section", {
+      style: {
+        background: "#f6f5f4"
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("section", {
+        className: "register-1",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+          className: "row mx-0 py-3",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            className: "col-sm-7 px-0  col-md-6 col-lg-4 m-auto",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "logo text-center mb-2",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+                className: "w-50 ",
+                src: Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../../images/Logo.png'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
+                alt: ""
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              className: "shadoow login-form bg-white px-4 pb-2",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
+                onSubmit: handleSubmit(signUpForm),
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                  className: step1,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                    className: "d-flex py-3 align-items-center",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                      className: "w-25"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
+                      className: "ttu text-center titleBlue",
+                      children: "Create a personal account"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                      className: "w-25 text-end text-dark-50",
+                      children: "1/2"
+                    })]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      className: "position-relative",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                        children: "Email"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                        type: "email",
+                        ref: emailRef,
+                        onInput: function onInput(e) {
+                          return focusInput(e, true, 'input');
+                        },
+                        name: "email",
+                        placeholder: "Enter email"
+                      }, register("email", {
+                        required: true
+                      })), {}, {
+                        className: "inp my-2 px-2  h__46 form-control inputStep1 runLoop"
+                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                        className: "message d-none text-danger mb-0",
+                        children: "Email is required"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                        className: "position-absolute icon",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
+                          className: "fa fa-envelope-o",
+                          "aria-hidden": "true"
+                        })
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                        className: "pt-3",
+                        children: "Password"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                        placeholder: "Enter password",
+                        onInput: function onInput(e) {
+                          return focusInput(e, true, 'input');
+                        },
+                        name: "password",
+                        type: "password",
+                        ref: password
+                      }, register("password", {
+                        required: true
+                      })), {}, {
+                        className: "my-2 h__46 form-control inputStep1 runLoop"
+                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                        className: "message d-none text-danger mb-0",
+                        children: "Password is required"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                        className: "pt-3",
+                        children: "Confirm password"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                        placeholder: "Enter confirm password",
+                        onInput: function onInput(e) {
+                          return focusInput(e, true, 'input');
+                        },
+                        name: "confirm_password",
+                        type: "password",
+                        ref: confirmPassword
+                      }, register("confirm_password", {
+                        required: true
+                      })), {}, {
+                        className: "inp my-2 h__46 form-control inputStep1 runLoop"
+                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                        className: "message d-none text-danger mb-0",
+                        children: "Confirm password is required"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                        className: "pt-3",
+                        children: "Username"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                        placeholder: "Enter username",
+                        name: "name",
+                        onInput: function onInput(e) {
+                          return focusInput(e, true, 'input');
+                        },
+                        type: "text",
+                        ref: userNameRef
+                      }, register("name", {
+                        required: true
+                      })), {}, {
+                        className: "my-2 h__46 form-control inputStep1 runLoop"
+                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                        className: "message d-none text-danger mb-0",
+                        children: "Username is required"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+                      className: "p-small pt-4",
+                      children: " Have a think about this one - it's how you'll be known to other members and can't be changed "
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      className: "",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                        className: "d-block py-2",
+                        children: "Country"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                        className: "ps-2 py-3",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                          type: "radio",
+                          ref: country,
+                          id: "country",
+                          onClick: function onClick(e) {
+                            return focusInput(e, true, 'radio');
+                          }
+                        }, register("country")), {}, {
+                          defaultChecked: "",
+                          name: "country",
+                          value: " New Zealand ",
+                          className: "radioStep1 runLoop"
+                        })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                          className: "ps-2",
+                          htmlFor: "country",
+                          children: "New Zealand"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {})]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                        className: "ps-2",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                          type: "radio",
+                          ref: country1,
+                          id: "country1",
+                          onClick: function onClick(e) {
+                            return focusInput(e, true, 'radio');
+                          }
+                        }, register("country")), {}, {
+                          name: "country",
+                          value: " AUSTRALIA",
+                          className: "radioStep1 runLoop"
+                        })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                          className: "ps-2",
+                          htmlFor: "country1",
+                          children: "AUSTRALIA"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {})]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                        className: "messageCountry d-none text-danger mb-0",
+                        children: "Country is required"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+                      type: "button",
+                      onClick: nextStep,
+                      className: "w-100 my-4 stepButton",
+                      children: "Next"
+                    })]
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                  className: step2,
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                    className: "register-1",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      className: "d-flex py-3 align-items-center",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                        onClick: previousStep,
+                        className: "cp w-25",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
+                          className: "fa fa-chevron-left"
+                        }), " Back"]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
+                        className: "ttu text-center titleBlue w-50",
+                        children: "Tell us about yourself"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                        className: "w-25 text-end text-dark-50",
+                        children: "2/2"
+                      })]
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                    className: "",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      className: "",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                        children: "First Name"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                        type: "text",
+                        ref: fname
+                      }, register("f_name", {
+                        required: true
+                      })), {}, {
+                        name: "f_name",
+                        placeholder: "",
+                        className: "inp my-2 px-2"
+                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+                        className: "after-inp",
+                        children: "50 characters remaining"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      className: "",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                        children: "Last Name"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                        type: "text",
+                        ref: lname
+                      }, register("l_name", {
+                        required: true
+                      })), {}, {
+                        name: "l_name",
+                        placeholder: "",
+                        className: "inp my-2 px-2"
+                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+                        className: "after-inp",
+                        children: "50 characters remaining"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      className: "d-flex flex-wrap mx-0 align-items-end justify-content-between",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                        className: "gridCol3",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                          className: "d-block",
+                          children: "Date of Birth"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", _objectSpread(_objectSpread({
+                          name: "date",
+                          ref: day
+                        }, register("date")), {}, {
+                          className: "r2-inp w-100  my-3 my-sm-0",
+                          defaultValue: "Choose date",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "",
+                            disabled: true,
+                            children: "Select date"
+                          }), days.map(function (singleCount) {
+                            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: singleCount,
+                              children: singleCount
+                            }, singleCount);
+                          })]
+                        }))]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                        className: "gridCol3",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", _objectSpread(_objectSpread({
+                          name: "month",
+                          ref: monthRef
+                        }, register("month")), {}, {
+                          className: "r2-inp w-100  my-3 my-sm-0",
+                          defaultValue: "Choose month",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "",
+                            disabled: true,
+                            children: "Select month"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "01",
+                            children: "January"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "02",
+                            children: "Febraury"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "03",
+                            children: "March"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "04",
+                            children: "April"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "05",
+                            children: "May"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "06",
+                            children: "June"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "07",
+                            children: "July"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "08",
+                            children: "August"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "09",
+                            children: "September"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "10",
+                            children: "October"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "11",
+                            children: "November"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "12",
+                            children: "December"
+                          })]
+                        }))
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                        className: "gridCol3",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", _objectSpread(_objectSpread({
+                          name: "year",
+                          ref: yearRef
+                        }, register("year")), {}, {
+                          className: "r2-inp w-100  my-3 my-sm-0",
+                          defaultValue: "Choose year",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                            value: "",
+                            disabled: true,
+                            children: "Select year"
+                          }), years.map(function (singleCount) {
+                            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: singleCount,
+                              children: singleCount
+                            }, singleCount);
+                          })]
+                        }))
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      className: "py-4",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                        className: "d-block",
+                        children: "Phone number"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                        className: "row justify-content-between",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                          className: "col-4",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", _objectSpread(_objectSpread({
+                            name: "countryCode",
+                            ref: countryCodeRef
+                          }, register("countryCode")), {}, {
+                            className: "r2-inp w-100 my-3 my-sm-0 ps-2",
+                            defaultValue: "Choose country code",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              selected: true,
+                              children: "Country code"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "03"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "04"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "05"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "06"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "07"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "08"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "20"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "21"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "22"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "27"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "28"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "29"
+                            })]
+                          }))
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                          className: "col-8",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                            type: "number",
+                            ref: phoneNumber
+                          }, register("number")), {}, {
+                            name: "number",
+                            placeholder: "1234567",
+                            className: "r2-inp w-100 ps-2 h-100"
+                          }))
+                        })]
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      className: "py-1",
+                      style: {
+                        display: "none"
+                      },
+                      ref: addMorephoneNumberId,
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                        className: "d-block",
+                        children: "Phone number"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                        className: "row justify-content-between",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                          className: "col-4",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
+                            name: "number",
+                            id: "num",
+                            className: "w-100  my-3 my-sm-0 ps-2",
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              selected: true,
+                              children: "Country code"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "03"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "04"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "05"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "06"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "07"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "08"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "20"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "21"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "22"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "27"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "28"
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                              value: "",
+                              children: "29"
+                            })]
+                          })
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                          className: "col-8",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                            type: "text",
+                            placeholder: "1234567",
+                            className: "r2-inp w-100 ps-2 h-100"
+                          })
+                        })]
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      className: "py-3 cp wfc",
+                      onClick: addMorePhoneNumber,
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
+                          className: "fa fa-plus titleBlue",
+                          ref: plusCloseIcon,
+                          "aria-hidden": "true"
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                        className: "ps-2 titleBlue",
+                        ref: addNumberRemoveNumText,
+                        children: "Add another phone number"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      className: "",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                        className: "d-block py-2",
+                        children: "Gender"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                        className: "ps-2 py-2",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                          ref: gerderMan,
+                          id: "gerderman"
+                        }, register("gender")), {}, {
+                          type: "radio",
+                          name: "gender",
+                          value: "man"
+                        })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                          htmlFor: "gerderman",
+                          className: " ps-2",
+                          children: "Man"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {})]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                        className: "ps-2 py-2",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                          ref: gerderWoman,
+                          id: "gerderWoman"
+                        }, register("gender")), {}, {
+                          type: "radio",
+                          name: "gender",
+                          value: "woman"
+                        })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                          htmlFor: "gerderWoman",
+                          className: " ps-2",
+                          id: "aus",
+                          children: "Woman"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {})]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                        className: "ps-2 py-2",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                          type: "radio",
+                          ref: gerderDiverse,
+                          id: "genderDiverse"
+                        }, register("gender")), {}, {
+                          name: "gender",
+                          value: "gender diverse"
+                        })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                          htmlFor: "genderDiverse",
+                          className: " ps-2",
+                          children: "Gender Diverse"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {})]
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
+                      className: "pt-3",
+                      children: "New Zealand"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      className: "position-relative",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                        children: "Address"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                        type: "text",
+                        ref: address
+                      }, register("address", {
+                        required: true
+                      })), {}, {
+                        name: "address",
+                        placeholder: "Start typing your address",
+                        className: "inp my-2 ps-5"
+                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                        className: "position-absolute s-icon",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
+                          className: "fa fa-search"
+                        })
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      className: "py-4",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+                        children: "Closest Town"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", _objectSpread(_objectSpread({
+                        name: "town",
+                        ref: town
+                      }, register("town")), {}, {
+                        className: "d-block r2-inp w-100  my-3 my-sm-0 ps-2",
+                        defaultValue: "Choose town",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                          value: "Northland - Dargaville",
+                          children: " Northland - Dargaville "
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                          value: "Northland - Kaikohe",
+                          children: " Northland - Kaikohe "
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                          value: "Northland - Kaikohe",
+                          children: " Northland - Kaikohe "
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                          value: "Northland - Kawakawa",
+                          children: " Northland - Kawakawa "
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                          value: "Northland - Kerikeri",
+                          children: " Northland - Kerikeri "
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                          value: "Northland - Mangawhai",
+                          children: " Northland - Mangawhai "
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                          value: "Northland - Maungaturoto",
+                          children: " Northland - Maungaturoto "
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                          value: "Northland - Paihia",
+                          children: " Northland - Paihia "
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                          value: "Northland - Whangarei",
+                          children: " Northland - Whangarei "
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                          value: "Auckland - Albany",
+                          children: " Auckland - Albany "
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                          value: "Auckland - Auckland City",
+                          children: " Auckland - Auckland City "
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
+                          value: "Auckland - Botany Downs",
+                          children: " Auckland - Botany Downs "
+                        })]
+                      }))]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+                      className: "p-small2",
+                      children: "This is the location we'll display to other Grobal members "
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+                        type: "checkbox",
+                        ref: cbox,
+                        className: "box"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
+                        children: ["I am over 18 and have read and accepted Grobal's ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+                          to: "/",
+                          children: " terms & conditions"
+                        }), " and", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+                          to: "/",
+                          children: "privacy policy"
+                        })]
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+                      type: "submit",
+                      className: "w-100 my-4 stepButton",
+                      children: "Register"
+                    })]
+                  })]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                className: "border-line"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
+                className: "pt-2",
+                children: ["Already have an account? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+                  to: "Login",
+                  children: "Log in"
+                })]
+              })]
+            })]
+          })
+        })
+      })
+    })
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Register);
 
 /***/ }),
 
@@ -8061,6 +8977,30 @@ var Footer = function Footer() {
                 children: "Facebook"
               })
             })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
+            className: "box d-none",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
+              className: "link_name",
+              children: "Get the App"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("li", {
+              className: "mb-2 mb-lg-0 mb-md-0 mb-sm-2",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+                to: "/",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                  src: appStore,
+                  alt: "",
+                  width: 100
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_2__.Link, {
+                to: "/",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                  src: playStore,
+                  alt: "",
+                  className: "mt-lg-0 mt-md-0 mt-sm-1 mt-1",
+                  width: 100
+                })
+              })]
+            })]
           })]
         })
       })
@@ -8633,916 +9573,6 @@ var PricvacyPolicy = function PricvacyPolicy() {
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PricvacyPolicy);
-
-/***/ }),
-
-/***/ "./resources/js/pages/Register.jsx":
-/*!*****************************************!*\
-  !*** ./resources/js/pages/Register.jsx ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Register": () => (/* binding */ Register),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
-/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _css_Register_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./css/Register.css */ "./resources/js/pages/css/Register.css");
-/* harmony import */ var _images_Logo_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../images/Logo.png */ "./resources/js/images/Logo.png");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
-
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-
-
-
-
-
-
-
-
-var Register = function Register() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      newData = _useState2[0],
-      setNewData = _useState2[1];
-
-  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_5__.useForm)(),
-      register = _useForm.register,
-      handleSubmit = _useForm.handleSubmit,
-      errors = _useForm.formState.errors;
-
-  var signUpForm = handleSubmit(function (data) {
-    return setNewData(data);
-  });
-  var date = newData.date,
-      month = newData.month,
-      year = newData.year,
-      countryCode = newData.countryCode,
-      number = newData.number;
-  var dob = "".concat(date, "-").concat(month, "-").concat(year);
-  var phone_number = "".concat(countryCode, " ").concat(number, " ");
-  var changeData = newData;
-  changeData = _objectSpread(_objectSpread({}, changeData), {}, {
-    'dob': dob,
-    'phone_number': phone_number
-  });
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    sendingData();
-  }, [changeData]);
-
-  var sendingData = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/signup', changeData);
-
-            case 3:
-              _context.next = 8;
-              break;
-
-            case 5:
-              _context.prev = 5;
-              _context.t0 = _context["catch"](0);
-              console.log(_context.t0.message);
-
-            case 8:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[0, 5]]);
-    }));
-
-    return function sendingData() {
-      return _ref.apply(this, arguments);
-    };
-  }();
-
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('d-block'),
-      _useState4 = _slicedToArray(_useState3, 2),
-      step1 = _useState4[0],
-      setstep1 = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)('d-none'),
-      _useState6 = _slicedToArray(_useState5, 2),
-      step2 = _useState6[0],
-      setstep2 = _useState6[1];
-
-  var emailRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var password = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var confirmPassword = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var userNameRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var country = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var country1 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var fname = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var lname = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var day = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var monthRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var yearRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var countryCodeRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var phoneNumber = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var gerderMan = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var gerderWoman = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var gerderDiverse = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var address = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var town = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var cbox = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var addMorephoneNumberId = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var addNumberRemoveNumText = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-  var plusCloseIcon = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)();
-
-  var addMorePhoneNumber = function addMorePhoneNumber() {
-    if (addMorephoneNumberId.current.style.display === "none") {
-      addMorephoneNumberId.current.style.display = "block";
-      plusCloseIcon.current.classList.remove("fa-plus");
-      plusCloseIcon.current.classList.add("fa-close");
-      addNumberRemoveNumText.current.innerText = "Remove phone number";
-    } else {
-      addMorephoneNumberId.current.style.display = "none";
-      plusCloseIcon.current.classList.remove("fa-close");
-      plusCloseIcon.current.classList.add("fa-plus");
-      addNumberRemoveNumText.current.innerText = "Add another phone number";
-    }
-  };
-
-  var nextStep = function nextStep() {
-    // All inputs
-    var allInputs = document.querySelectorAll('.inputStep1');
-
-    var _iterator = _createForOfIteratorHelper(allInputs),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var i = _step.value;
-        focusInput(i, false, 'input');
-      } // Radio buttons inputs
-
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-
-    var allRadio = document.querySelectorAll('.radioStep1');
-
-    var _iterator2 = _createForOfIteratorHelper(allRadio),
-        _step2;
-
-    try {
-      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-        var _i2 = _step2.value;
-        _i2.checked ? focusInput(_i2, false, 'radio') : document.getElementsByClassName('messageCountry')[0].classList.remove('d-none');
-      }
-    } catch (err) {
-      _iterator2.e(err);
-    } finally {
-      _iterator2.f();
-    }
-
-    var checkRunLoop = document.querySelectorAll('.runLoop');
-
-    if (allInputs.length + allRadio.length === checkRunLoop.length) {
-      setstep1('d-none');
-      setstep2('d-block');
-    } // console.log(emailRef.current.value != '' && passwordRef.current.value != '' && confirmPasswordRef.current.value !='' && userNameRef.current.value !='' && (country.current.checked != false || country1R.current.checked != false))
-    // { }
-
-  };
-
-  var previousStep = function previousStep() {
-    setstep1('d-block');
-    setstep2('d-none');
-  };
-
-  var focusInput = function focusInput(e) {
-    var check = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    var type = arguments.length > 2 ? arguments[2] : undefined;
-    var targetElement = check ? e.target : e;
-    var messageTag = targetElement.nextSibling; // Checking Input type and then perform action
-
-    if (type === 'input') {
-      if (targetElement.value === '') {
-        messageTag.classList.remove('d-none');
-        targetElement.classList.add('redBorder');
-        targetElement.classList.remove('runLoop');
-      } else {
-        targetElement.classList.remove('redBorder');
-        messageTag.classList.add('d-none');
-        targetElement.classList.add('runLoop');
-      }
-    }
-
-    if (type === 'radio') {
-      if (targetElement.checked === true) {
-        document.getElementsByClassName('messageCountry')[0].classList.add('d-none');
-        targetElement.classList.add('runLoop');
-      } else {
-        setTimeout(function () {
-          document.getElementsByClassName('messageCountry')[0].classList.remove('d-none');
-        }, 100);
-      }
-    }
-  };
-
-  var radioInput = function radioInput(e) {
-    var check = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    var targetElement = check ? e.target : e;
-    var messageTag = targetElement.nextSibling;
-  }; // Days Array
-
-
-  var days = [];
-
-  for (var i = 1; i <= 31; i++) {
-    days.push(i);
-  } // Days Array
-  // Years Array
-
-
-  var years = [];
-  var currentYear = new Date().getFullYear();
-
-  for (var _i3 = 1980; _i3 <= currentYear - 18; _i3++) {
-    years.push(_i3);
-  } // Years Array
-
-
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("section", {
-      style: {
-        background: "#f6f5f4"
-      },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("section", {
-        className: "register-1",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-          className: "row mx-0 py-3",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-            className: "col-sm-7 px-0  col-md-6 col-lg-4 m-auto",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-              className: "logo text-center mb-2",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
-                className: "w-50 ",
-                src: _images_Logo_png__WEBPACK_IMPORTED_MODULE_3__["default"],
-                alt: ""
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-              className: "shadoow login-form bg-white px-4 pb-2",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
-                onSubmit: handleSubmit(signUpForm),
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                  className: step1,
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                    className: "d-flex py-3 align-items-center",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                      className: "w-25"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
-                      className: "ttu text-center titleBlue",
-                      children: "Create a personal account"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                      className: "w-25 text-end text-dark-50",
-                      children: "1/2"
-                    })]
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      className: "position-relative",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                        children: "Email"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
-                        type: "email",
-                        ref: emailRef,
-                        onInput: function onInput(e) {
-                          return focusInput(e, true, 'input');
-                        },
-                        name: "email",
-                        placeholder: "Enter email"
-                      }, register("email", {
-                        required: true
-                      })), {}, {
-                        className: "inp my-2 px-2  h__46 form-control inputStep1 runLoop"
-                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
-                        className: "message d-none text-danger mb-0",
-                        children: "Email is required"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                        className: "position-absolute icon",
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
-                          className: "fa fa-envelope-o",
-                          "aria-hidden": "true"
-                        })
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                        className: "pt-3",
-                        children: "Password"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
-                        placeholder: "Enter password",
-                        onInput: function onInput(e) {
-                          return focusInput(e, true, 'input');
-                        },
-                        name: "password",
-                        type: "password",
-                        ref: password
-                      }, register("password", {
-                        required: true
-                      })), {}, {
-                        className: "my-2 h__46 form-control inputStep1 runLoop"
-                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
-                        className: "message d-none text-danger mb-0",
-                        children: "Password is required"
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                        className: "pt-3",
-                        children: "Confirm password"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
-                        placeholder: "Enter confirm password",
-                        onInput: function onInput(e) {
-                          return focusInput(e, true, 'input');
-                        },
-                        name: "confirm_password",
-                        type: "password",
-                        ref: confirmPassword
-                      }, register("confirm_password", {
-                        required: true
-                      })), {}, {
-                        className: "inp my-2 h__46 form-control inputStep1 runLoop"
-                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
-                        className: "message d-none text-danger mb-0",
-                        children: "Confirm password is required"
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                        className: "pt-3",
-                        children: "Username"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
-                        placeholder: "Enter username",
-                        name: "name",
-                        onInput: function onInput(e) {
-                          return focusInput(e, true, 'input');
-                        },
-                        type: "text",
-                        ref: userNameRef
-                      }, register("name", {
-                        required: true
-                      })), {}, {
-                        className: "my-2 h__46 form-control inputStep1 runLoop"
-                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
-                        className: "message d-none text-danger mb-0",
-                        children: "Username is required"
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-                      className: "p-small pt-4",
-                      children: " Have a think about this one - it's how you'll be known to other members and can't be changed "
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      className: "",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                        className: "d-block py-2",
-                        children: "Country"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                        className: "ps-2 py-3",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
-                          type: "radio",
-                          ref: country,
-                          id: "country",
-                          onClick: function onClick(e) {
-                            return focusInput(e, true, 'radio');
-                          }
-                        }, register("country")), {}, {
-                          defaultChecked: "",
-                          name: "country",
-                          value: " New Zealand ",
-                          className: "radioStep1 runLoop"
-                        })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                          className: "ps-2",
-                          htmlFor: "country",
-                          children: "New Zealand"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {})]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                        className: "ps-2",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
-                          type: "radio",
-                          ref: country1,
-                          id: "country1",
-                          onClick: function onClick(e) {
-                            return focusInput(e, true, 'radio');
-                          }
-                        }, register("country")), {}, {
-                          name: "country",
-                          value: " AUSTRALIA",
-                          className: "radioStep1 runLoop"
-                        })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                          className: "ps-2",
-                          htmlFor: "country1",
-                          children: "AUSTRALIA"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {})]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
-                        className: "messageCountry d-none text-danger mb-0",
-                        children: "Country is required"
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
-                      type: "button",
-                      onClick: nextStep,
-                      className: "w-100 my-4 stepButton",
-                      children: "Next"
-                    })]
-                  })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                  className: step2,
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                    className: "register-1",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      className: "d-flex py-3 align-items-center",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                        onClick: previousStep,
-                        className: "cp w-25",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
-                          className: "fa fa-chevron-left"
-                        }), " Back"]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
-                        className: "ttu text-center titleBlue w-50",
-                        children: "Tell us about yourself"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                        className: "w-25 text-end text-dark-50",
-                        children: "2/2"
-                      })]
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                    className: "",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      className: "",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                        children: "First Name"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
-                        type: "text",
-                        ref: fname
-                      }, register("f_name", {
-                        required: true
-                      })), {}, {
-                        name: "f_name",
-                        placeholder: "",
-                        className: "inp my-2 px-2"
-                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-                        className: "after-inp",
-                        children: "50 characters remaining"
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      className: "",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                        children: "Last Name"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
-                        type: "text",
-                        ref: lname
-                      }, register("l_name", {
-                        required: true
-                      })), {}, {
-                        name: "l_name",
-                        placeholder: "",
-                        className: "inp my-2 px-2"
-                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-                        className: "after-inp",
-                        children: "50 characters remaining"
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      className: "d-flex flex-wrap mx-0 align-items-end justify-content-between",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                        className: "gridCol3",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                          className: "d-block",
-                          children: "Date of Birth"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", _objectSpread(_objectSpread({
-                          name: "date",
-                          ref: day
-                        }, register("date")), {}, {
-                          className: "r2-inp w-100  my-3 my-sm-0",
-                          defaultValue: "Choose date",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "",
-                            disabled: true,
-                            children: "Select date"
-                          }), days.map(function (singleCount) {
-                            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: singleCount,
-                              children: singleCount
-                            }, singleCount);
-                          })]
-                        }))]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                        className: "gridCol3",
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", _objectSpread(_objectSpread({
-                          name: "month",
-                          ref: monthRef
-                        }, register("month")), {}, {
-                          className: "r2-inp w-100  my-3 my-sm-0",
-                          defaultValue: "Choose month",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "",
-                            disabled: true,
-                            children: "Select month"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "01",
-                            children: "January"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "02",
-                            children: "Febraury"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "03",
-                            children: "March"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "04",
-                            children: "April"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "05",
-                            children: "May"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "06",
-                            children: "June"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "07",
-                            children: "July"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "08",
-                            children: "August"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "09",
-                            children: "September"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "10",
-                            children: "October"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "11",
-                            children: "November"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "12",
-                            children: "December"
-                          })]
-                        }))
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                        className: "gridCol3",
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", _objectSpread(_objectSpread({
-                          name: "year",
-                          ref: yearRef
-                        }, register("year")), {}, {
-                          className: "r2-inp w-100  my-3 my-sm-0",
-                          defaultValue: "Choose year",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                            value: "",
-                            disabled: true,
-                            children: "Select year"
-                          }), years.map(function (singleCount) {
-                            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: singleCount,
-                              children: singleCount
-                            }, singleCount);
-                          })]
-                        }))
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      className: "py-4",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                        className: "d-block",
-                        children: "Phone number"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                        className: "row justify-content-between",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                          className: "col-4",
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", _objectSpread(_objectSpread({
-                            name: "countryCode",
-                            ref: countryCodeRef
-                          }, register("countryCode")), {}, {
-                            className: "r2-inp w-100 my-3 my-sm-0 ps-2",
-                            defaultValue: "Choose country code",
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              selected: true,
-                              children: "Country code"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "03"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "04"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "05"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "06"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "07"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "08"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "20"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "21"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "22"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "27"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "28"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "29"
-                            })]
-                          }))
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                          className: "col-8",
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
-                            type: "number",
-                            ref: phoneNumber
-                          }, register("number")), {}, {
-                            name: "number",
-                            placeholder: "1234567",
-                            className: "r2-inp w-100 ps-2 h-100"
-                          }))
-                        })]
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      className: "py-1",
-                      style: {
-                        display: "none"
-                      },
-                      ref: addMorephoneNumberId,
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                        className: "d-block",
-                        children: "Phone number"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                        className: "row justify-content-between",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                          className: "col-4",
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
-                            name: "number",
-                            id: "num",
-                            className: "w-100  my-3 my-sm-0 ps-2",
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              selected: true,
-                              children: "Country code"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "03"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "04"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "05"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "06"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "07"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "08"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "20"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "21"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "22"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "27"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "28"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "",
-                              children: "29"
-                            })]
-                          })
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                          className: "col-8",
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
-                            type: "text",
-                            placeholder: "1234567",
-                            className: "r2-inp w-100 ps-2 h-100"
-                          })
-                        })]
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      className: "py-3 cp wfc",
-                      onClick: addMorePhoneNumber,
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
-                          className: "fa fa-plus titleBlue",
-                          ref: plusCloseIcon,
-                          "aria-hidden": "true"
-                        })
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                        className: "ps-2 titleBlue",
-                        ref: addNumberRemoveNumText,
-                        children: "Add another phone number"
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      className: "",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                        className: "d-block py-2",
-                        children: "Gender"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                        className: "ps-2 py-2",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
-                          ref: gerderMan,
-                          id: "gerderman"
-                        }, register("gender")), {}, {
-                          type: "radio",
-                          name: "gender",
-                          value: "man"
-                        })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                          htmlFor: "gerderman",
-                          className: " ps-2",
-                          children: "Man"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {})]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                        className: "ps-2 py-2",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
-                          ref: gerderWoman,
-                          id: "gerderWoman"
-                        }, register("gender")), {}, {
-                          type: "radio",
-                          name: "gender",
-                          value: "woman"
-                        })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                          htmlFor: "gerderWoman",
-                          className: " ps-2",
-                          id: "aus",
-                          children: "Woman"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {})]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                        className: "ps-2 py-2",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
-                          type: "radio",
-                          ref: gerderDiverse,
-                          id: "genderDiverse"
-                        }, register("gender")), {}, {
-                          name: "gender",
-                          value: "gender diverse"
-                        })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                          htmlFor: "genderDiverse",
-                          className: " ps-2",
-                          children: "Gender Diverse"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {})]
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
-                      className: "pt-3",
-                      children: "New Zealand"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      className: "position-relative",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                        children: "Address"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
-                        type: "text",
-                        ref: address
-                      }, register("address", {
-                        required: true
-                      })), {}, {
-                        name: "address",
-                        placeholder: "Start typing your address",
-                        className: "inp my-2 ps-5"
-                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                        className: "position-absolute s-icon",
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
-                          className: "fa fa-search"
-                        })
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      className: "py-4",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-                        children: "Closest Town"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", _objectSpread(_objectSpread({
-                        name: "town",
-                        ref: town
-                      }, register("town")), {}, {
-                        className: "d-block r2-inp w-100  my-3 my-sm-0 ps-2",
-                        defaultValue: "Choose town",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                          value: "Northland - Dargaville",
-                          children: " Northland - Dargaville "
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                          value: "Northland - Kaikohe",
-                          children: " Northland - Kaikohe "
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                          value: "Northland - Kaikohe",
-                          children: " Northland - Kaikohe "
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                          value: "Northland - Kawakawa",
-                          children: " Northland - Kawakawa "
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                          value: "Northland - Kerikeri",
-                          children: " Northland - Kerikeri "
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                          value: "Northland - Mangawhai",
-                          children: " Northland - Mangawhai "
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                          value: "Northland - Maungaturoto",
-                          children: " Northland - Maungaturoto "
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                          value: "Northland - Paihia",
-                          children: " Northland - Paihia "
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                          value: "Northland - Whangarei",
-                          children: " Northland - Whangarei "
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                          value: "Auckland - Albany",
-                          children: " Auckland - Albany "
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                          value: "Auckland - Auckland City",
-                          children: " Auckland - Auckland City "
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                          value: "Auckland - Botany Downs",
-                          children: " Auckland - Botany Downs "
-                        })]
-                      }))]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-                      className: "p-small2",
-                      children: "This is the location we'll display to other Grobal members "
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
-                        type: "checkbox",
-                        ref: cbox,
-                        className: "box"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
-                        children: ["I am over 18 and have read and accepted Grobal's ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
-                          to: "/",
-                          children: " terms & conditions"
-                        }), " and", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
-                          to: "/",
-                          children: "privacy policy"
-                        })]
-                      })]
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
-                      type: "submit",
-                      className: "w-100 my-4 stepButton",
-                      children: "Register"
-                    })]
-                  })]
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                className: "border-line"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
-                className: "pt-2",
-                children: ["Already have an account? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
-                  to: "Login",
-                  children: "Log in"
-                })]
-              })]
-            })]
-          })
-        })
-      })
-    })
-  });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Register);
 
 /***/ }),
 
@@ -16448,6 +16478,30 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".card-text{ \r\n    font-size: 1rem;\r
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/component/Register/Register.css":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/component/Register/Register.css ***!
+  \****************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "/*====REGISTERATION PAGE 1====*/\r\n\r\n.register-1 h1, .register-2 h1 {\r\n    font-size: 1.125rem;\r\n    font-weight: 900;\r\n    line-height: 24px;\r\n}\r\n\r\n.register-1 label, .register-2 label {\r\n    color: #65605d;\r\n    font-size: 1rem;\r\n    font-weight: 800;\r\n    line-height: 24px;\r\n}\r\n\r\n.icon {\r\n    right: 3%;\r\n    top: 43px;\r\n}\r\n\r\n.p-small {\r\n    color: #76716d;\r\n    font-size: .7rem;\r\n    line-height: 16px;\r\n}\r\n\r\n.stepButton {\r\n    background-color: #d93a3f;\r\n    color: #fff;\r\n    border: none;\r\n    cursor: pointer;\r\n    font-size: 1rem;\r\n    font-weight: 500;\r\n    line-height: 1.5rem;\r\n    text-align: center;\r\n    padding: 0.75rem 24px;\r\n}\r\n\r\n\r\n.border-line {\r\n    border-bottom: 1px solid #898989;\r\n    opacity: .5;\r\n}\r\n\r\n\r\n/*====REGISTERATION PAGE 2====*/\r\n\r\n.after-inp {\r\n    color: #76716d;\r\n    font-size: .875rem;\r\n}\r\n\r\n.r2-inp {\r\n    padding: .5rem 0;\r\n}\r\n\r\n#mnth, #num {\r\n    padding: .64rem 0;\r\n}\r\n\r\nh4 {\r\n    font-size: 1rem;\r\n}\r\n\r\n#town {\r\n    width: 100%;\r\n    color: #65605d;\r\n    font-size: 1rem;\r\n    font-weight: 800;\r\n    line-height: 24px;\r\n    padding: .7rem 0;\r\n\r\n}\r\n\r\n.s-icon {\r\n    top: 53%;\r\n    left: 3%;\r\n}\r\n\r\n.p-small2 {\r\n    color: #76716d;\r\n    font-size: .75rem;\r\n    line-height: 16px;\r\n}\r\n\r\n#searchInp {\r\n    padding-left: 2.5rem;\r\n}\r\n\r\n.gridCol3 {\r\n    flex: 0 0 auto;\r\n    width: 32%;\r\n}\r\n\r\n.go2441762052{\r\n    display: flex;\r\n}\r\n.go2441762052 li{\r\n    width: 50% !important;\r\n}\r\n\r\n@media screen and (max-width:574px) {\r\n    .r2-inp, #num {\r\n        width: 100%;\r\n    }\r\n\r\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/component/servicePageList/TrendingCategories/TrendingCategories.css":
 /*!****************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/component/servicePageList/TrendingCategories/TrendingCategories.css ***!
@@ -16538,30 +16592,6 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, ".pp-btn {\r\n    display: inline-block;\r\n    width: 200px;\r\n    padding: 8px 16px 11px 16px;\r\n    border: 1px solid #d7d5d2;\r\n    background-color: #fff;\r\n    color: #44413d;\r\n    font-size: 16px;\r\n    font-weight: 400;\r\n    line-height: 24px;\r\n    text-align: center;\r\n    cursor: default;\r\n}\r\n\r\n.pp-label {\r\n    font-size: 1rem !important;\r\n    color: black !important;\r\n}\r\n#tArea {\r\n    font-size: 16px;\r\n    width: 100%;\r\n    padding: 12px 16px;\r\n    box-shadow: none;\r\n    color: #65605d;\r\n    resize: none;\r\n    border: 1px solid #d7d5d2;\r\n    border-radius: 3px;\r\n}\r\n#subBtn {\r\n    min-width: 2rem;\r\n    border: none;\r\n    border-radius: 3px;\r\n    color: rgb(0,122,205);\r\n    font-weight: 800;\r\n    cursor: pointer;\r\n    font-size: 1rem;\r\n    line-height: 1.5rem;\r\n    text-align: center;\r\n    background-color: rgba(196,192,188,0.25);\r\n    padding: 0.75rem 24px;\r\n}\r\n\r\n@media screen and (min-width:768px){\r\n    .w-md-px {\r\n        width: 200px !important;\r\n    }\r\n}", ""]);
-// Exports
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/pages/css/Register.css":
-/*!*******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/pages/css/Register.css ***!
-  \*******************************************************************************************************************************************************************************************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-// Imports
-
-var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-// Module
-___CSS_LOADER_EXPORT___.push([module.id, "/*====REGISTERATION PAGE 1====*/\r\n\r\n.register-1 h1, .register-2 h1 {\r\n    font-size: 1.125rem;\r\n    font-weight: 900;\r\n    line-height: 24px;\r\n}\r\n\r\n.register-1 label, .register-2 label {\r\n    color: #65605d;\r\n    font-size: 1rem;\r\n    font-weight: 800;\r\n    line-height: 24px;\r\n}\r\n\r\n.icon {\r\n    right: 3%;\r\n    top: 43px;\r\n}\r\n\r\n.p-small {\r\n    color: #76716d;\r\n    font-size: .7rem;\r\n    line-height: 16px;\r\n}\r\n\r\n.stepButton {\r\n    background-color: #d93a3f;\r\n    color: #fff;\r\n    border: none;\r\n    cursor: pointer;\r\n    font-size: 1rem;\r\n    font-weight: 500;\r\n    line-height: 1.5rem;\r\n    text-align: center;\r\n    padding: 0.75rem 24px;\r\n}\r\n\r\n\r\n.border-line {\r\n    border-bottom: 1px solid #898989;\r\n    opacity: .5;\r\n}\r\n\r\n\r\n/*====REGISTERATION PAGE 2====*/\r\n\r\n.after-inp {\r\n    color: #76716d;\r\n    font-size: .875rem;\r\n}\r\n\r\n.r2-inp {\r\n    padding: .5rem 0;\r\n}\r\n\r\n#mnth, #num {\r\n    padding: .64rem 0;\r\n}\r\n\r\nh4 {\r\n    font-size: 1rem;\r\n}\r\n\r\n#town {\r\n    width: 100%;\r\n    color: #65605d;\r\n    font-size: 1rem;\r\n    font-weight: 800;\r\n    line-height: 24px;\r\n    padding: .7rem 0;\r\n\r\n}\r\n\r\n.s-icon {\r\n    top: 53%;\r\n    left: 3%;\r\n}\r\n\r\n.p-small2 {\r\n    color: #76716d;\r\n    font-size: .75rem;\r\n    line-height: 16px;\r\n}\r\n\r\n#searchInp {\r\n    padding-left: 2.5rem;\r\n}\r\n\r\n.gridCol3 {\r\n    flex: 0 0 auto;\r\n    width: 32%;\r\n}\r\n\r\n.go2441762052{\r\n    display: flex;\r\n}\r\n.go2441762052 li{\r\n    width: 50% !important;\r\n}\r\n\r\n@media screen and (max-width:574px) {\r\n    .r2-inp, #num {\r\n        width: 100%;\r\n    }\r\n\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -75810,6 +75840,36 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
+/***/ "./resources/js/component/Register/Register.css":
+/*!******************************************************!*\
+  !*** ./resources/js/component/Register/Register.css ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Register_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Register.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/component/Register/Register.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Register_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Register_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./resources/js/component/servicePageList/TrendingCategories/TrendingCategories.css":
 /*!******************************************************************************************!*\
   !*** ./resources/js/component/servicePageList/TrendingCategories/TrendingCategories.css ***!
@@ -75927,36 +75987,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_PricvacyPolicy_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
-
-/***/ }),
-
-/***/ "./resources/js/pages/css/Register.css":
-/*!*********************************************!*\
-  !*** ./resources/js/pages/css/Register.css ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Register_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./Register.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./resources/js/pages/css/Register.css");
-
-            
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Register_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
-
-
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_Register_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 
