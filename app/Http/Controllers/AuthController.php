@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -27,7 +28,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'f_name' => 'required|string',
             'l_name' => 'required|string',
-            'phone_number' => 'required|number',
+            'phone_number' => ['required', new PhoneNumber],
             'address' => 'required|string',
             'email' => 'required|unique:users',
             'password' => 'required|min:8',
