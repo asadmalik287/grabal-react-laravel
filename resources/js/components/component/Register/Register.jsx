@@ -72,8 +72,24 @@ export const Register = () => {
     };
 
     const nextStep = () =>{
-        setstep1('d-none')
-        setstep2('d-block')
+        // All inputs
+        let allInputs = document.querySelectorAll('.inputStep1')
+        for(let i of allInputs){
+            focusInput(i , false,'input')
+        }
+
+        // Radio buttons inputs
+        let allRadio = document.querySelectorAll('.radioStep1')
+        for(let i of allRadio){
+            i.checked ? focusInput(i , false,'radio') : document.getElementsByClassName('messageCountry')[0].classList.remove('d-none');
+        }
+
+        let checkRunLoop = document.querySelectorAll('.runLoop')
+
+        if((allInputs.length + allRadio.length) === checkRunLoop.length){
+            setstep1('d-none')
+            setstep2('d-block')
+        }
         // console.log(emailRef.current.value != '' && passwordRef.current.value != '' && confirmPasswordRef.current.value !='' && userNameRef.current.value !='' && (country.current.checked != false || country1R.current.checked != false))
         // { }
 
@@ -84,8 +100,46 @@ export const Register = () => {
         setstep2('d-none')
     }
 
-    const focusInput = (e) =>{
-        console.log(e.target);
+    const focusInput = (e, check=false, type) => {
+        let targetElement = check ? e.target : e;
+        let messageTag = targetElement.nextSibling;
+
+        // Checking Input type and then perform action
+        if(type === 'input'){
+            if(targetElement.value === '') {
+                messageTag.classList.remove('d-none')
+                targetElement.classList.add('redBorder')
+                targetElement.classList.remove('runLoop')
+            }
+            else{
+                targetElement.classList.remove('redBorder')
+                messageTag.classList.add('d-none');
+                targetElement.classList.add('runLoop')
+            }
+        }
+
+
+        if(type === 'radio'){
+            if(targetElement.checked === true) {
+                document.getElementsByClassName('messageCountry')[0].classList.add('d-none')
+                targetElement.classList.add('runLoop');
+            }
+            else{
+                setTimeout(() => {
+                    document.getElementsByClassName('messageCountry')[0].classList.remove('d-none')
+                }, 100);
+            }
+        }
+
+
+
+
+    }
+
+    const radioInput = (e,check=false) =>{
+        let targetElement = check ? e.target : e;
+        let messageTag = targetElement.nextSibling;
+
     }
 
     // Days Array
@@ -125,43 +179,47 @@ export const Register = () => {
                                         <div>
                                             <div className="position-relative">
                                                 <label>Email</label>
-                                                <input type="email" ref={emailRef} onBlur ={focusInput} name="email" placeholder="Enter email" {...register("email", { required: true })} className='inp my-2 px-2  h__46 form-control' />
+                                                <input type="email" ref={emailRef} onInput={(e)=> focusInput(e, true , 'input')} name="email" placeholder="Enter email" {...register("email", { required: true })} className='inp my-2 px-2  h__46 form-control inputStep1 runLoop' />
+                                                <small className='message d-none text-danger mb-0'>Email is required</small>
                                                 <span className="position-absolute icon">
                                                     <i className="fa fa-envelope-o" aria-hidden="true" />
                                                 </span>
-                                                {/* <p className='text-danger mb-0'>Email is required</p> */}
                                             </div>
                                             <div>
                                                 <label className="pt-3">Password</label>
-                                                <input placeholder="Enter password" name="password" type="password" ref={password} {...register("password", { required: true })} className="my-2 h__46 form-control" />
+                                                <input placeholder="Enter password" onInput={(e)=> focusInput(e, true , 'input')} name="password" type="password" ref={password} {...register("password", { required: true })} className="my-2 h__46 form-control inputStep1 runLoop" />
+                                                <small className='message d-none text-danger mb-0'>Password is required</small>
                                             </div>
                                             <div>
                                                 <label className="pt-3">Confirm password</label>
-                                                <input placeholder="Enter confirm password" name="confirm_password" type="password" ref={confirmPassword} {...register("confirm_password", { required: true })} className="inp my-2 h__46 form-control" />
+                                                <input placeholder="Enter confirm password" onInput={(e)=> focusInput(e, true , 'input')} name="confirm_password" type="password" ref={confirmPassword} {...register("confirm_password", { required: true })} className="inp my-2 h__46 form-control inputStep1 runLoop" />
+                                                <small className='message d-none text-danger mb-0'>Confirm password is required</small>
                                             </div>
                                             <div>
                                                 <label className="pt-3">Username</label>
-                                                <input placeholder="Enter username" name="name" type="text" ref={userNameRef} {...register("name", { required: true })} className="my-2 h__46 form-control" />
+                                                <input placeholder="Enter username" name="name" onInput={(e)=> focusInput(e, true , 'input')} type="text" ref={userNameRef} {...register("name", { required: true })} className="my-2 h__46 form-control inputStep1 runLoop" />
+                                                <small className='message d-none text-danger mb-0'>Username is required</small>
                                             </div>
                                             <p className="p-small pt-4"> Have a think about this one - it's how you'll be known to other members and can't be changed </p>
                                             <div className="">
                                                 <label className="d-block py-2">Country</label>
                                                 <div className="ps-2 py-3">
-                                                    <input type="radio" ref={country} id="country" {...register("country")} defaultChecked="" name="country" value=" New Zealand " />
+                                                    <input type="radio" ref={country} id="country" onClick={(e)=> focusInput(e, true , 'radio')} {...register("country")} defaultChecked="" name="country" value=" New Zealand " className="radioStep1 runLoop"/>
                                                     <label className="ps-2" htmlFor="country">
                                                         New Zealand
                                                     </label>
                                                     <br />
                                                 </div>
                                                 <div className="ps-2">
-                                                    <input type="radio" ref={country1} id="country1" {...register("country")} name="country" value=" AUSTRALIA " />
+                                                    <input type="radio" ref={country1} id="country1" onClick={(e)=> focusInput(e, true , 'radio')} {...register("country")} name="country" value=" AUSTRALIA" className="radioStep1 runLoop" />
                                                     <label className="ps-2" htmlFor="country1">
                                                         AUSTRALIA
                                                     </label>
                                                     <br />
                                                 </div>
+                                                <small className='messageCountry d-none text-danger mb-0'>Country is required</small>
                                             </div>
-                                            <button type="button" id="nextBtn" onClick={nextStep} className="w-100 my-4">
+                                            <button type="button" onClick={nextStep} className="w-100 my-4 stepButton">
                                                 Next
                                             </button>
                                         </div>
@@ -349,7 +407,7 @@ export const Register = () => {
                                                     <Link to="/">privacy policy</Link>
                                                 </span>
                                             </div>
-                                            <button type="submit" id="nextBtn" className="w-100 my-4">
+                                            <button type="submit" className="w-100 my-4 stepButton">
                                                 Register
                                             </button>
                                         </div>

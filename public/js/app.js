@@ -7919,6 +7919,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -8061,9 +8063,48 @@ var Register = function Register() {
   };
 
   var nextStep = function nextStep() {
-    setstep1('d-none');
-    setstep2('d-block'); // console.log(emailRef.current.value != '' && passwordRef.current.value != '' && confirmPasswordRef.current.value !='' && userNameRef.current.value !='' && (country.current.checked != false || country1R.current.checked != false))
+    // All inputs
+    var allInputs = document.querySelectorAll('.inputStep1');
+
+    var _iterator = _createForOfIteratorHelper(allInputs),
+        _step;
+
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var i = _step.value;
+        focusInput(i, false, 'input');
+      } // Radio buttons inputs
+
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+
+    var allRadio = document.querySelectorAll('.radioStep1');
+
+    var _iterator2 = _createForOfIteratorHelper(allRadio),
+        _step2;
+
+    try {
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var _i2 = _step2.value;
+        _i2.checked ? focusInput(_i2, false, 'radio') : document.getElementsByClassName('messageCountry')[0].classList.remove('d-none');
+      }
+    } catch (err) {
+      _iterator2.e(err);
+    } finally {
+      _iterator2.f();
+    }
+
+    var checkRunLoop = document.querySelectorAll('.runLoop');
+
+    if (allInputs.length + allRadio.length === checkRunLoop.length) {
+      setstep1('d-none');
+      setstep2('d-block');
+    } // console.log(emailRef.current.value != '' && passwordRef.current.value != '' && confirmPasswordRef.current.value !='' && userNameRef.current.value !='' && (country.current.checked != false || country1R.current.checked != false))
     // { }
+
   };
 
   var previousStep = function previousStep() {
@@ -8072,7 +8113,39 @@ var Register = function Register() {
   };
 
   var focusInput = function focusInput(e) {
-    console.log(e.target);
+    var check = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var type = arguments.length > 2 ? arguments[2] : undefined;
+    var targetElement = check ? e.target : e;
+    var messageTag = targetElement.nextSibling; // Checking Input type and then perform action
+
+    if (type === 'input') {
+      if (targetElement.value === '') {
+        messageTag.classList.remove('d-none');
+        targetElement.classList.add('redBorder');
+        targetElement.classList.remove('runLoop');
+      } else {
+        targetElement.classList.remove('redBorder');
+        messageTag.classList.add('d-none');
+        targetElement.classList.add('runLoop');
+      }
+    }
+
+    if (type === 'radio') {
+      if (targetElement.checked === true) {
+        document.getElementsByClassName('messageCountry')[0].classList.add('d-none');
+        targetElement.classList.add('runLoop');
+      } else {
+        setTimeout(function () {
+          document.getElementsByClassName('messageCountry')[0].classList.remove('d-none');
+        }, 100);
+      }
+    }
+  };
+
+  var radioInput = function radioInput(e) {
+    var check = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+    var targetElement = check ? e.target : e;
+    var messageTag = targetElement.nextSibling;
   }; // Days Array
 
 
@@ -8087,8 +8160,8 @@ var Register = function Register() {
   var years = [];
   var currentYear = new Date().getFullYear();
 
-  for (var _i2 = 1980; _i2 <= currentYear - 18; _i2++) {
-    years.push(_i2);
+  for (var _i3 = 1980; _i3 <= currentYear - 18; _i3++) {
+    years.push(_i3);
   } // Years Array
 
 
@@ -8135,14 +8208,19 @@ var Register = function Register() {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
                         type: "email",
                         ref: emailRef,
-                        onBlur: focusInput,
+                        onInput: function onInput(e) {
+                          return focusInput(e, true, 'input');
+                        },
                         name: "email",
                         placeholder: "Enter email"
                       }, register("email", {
                         required: true
                       })), {}, {
-                        className: "inp my-2 px-2  h__46 form-control"
-                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                        className: "inp my-2 px-2  h__46 form-control inputStep1 runLoop"
+                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                        className: "message d-none text-danger mb-0",
+                        children: "Email is required"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
                         className: "position-absolute icon",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
                           className: "fa fa-envelope-o",
@@ -8155,28 +8233,40 @@ var Register = function Register() {
                         children: "Password"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
                         placeholder: "Enter password",
+                        onInput: function onInput(e) {
+                          return focusInput(e, true, 'input');
+                        },
                         name: "password",
                         type: "password",
                         ref: password
                       }, register("password", {
                         required: true
                       })), {}, {
-                        className: "my-2 h__46 form-control"
-                      }))]
+                        className: "my-2 h__46 form-control inputStep1 runLoop"
+                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                        className: "message d-none text-danger mb-0",
+                        children: "Password is required"
+                      })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
                         className: "pt-3",
                         children: "Confirm password"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
                         placeholder: "Enter confirm password",
+                        onInput: function onInput(e) {
+                          return focusInput(e, true, 'input');
+                        },
                         name: "confirm_password",
                         type: "password",
                         ref: confirmPassword
                       }, register("confirm_password", {
                         required: true
                       })), {}, {
-                        className: "inp my-2 h__46 form-control"
-                      }))]
+                        className: "inp my-2 h__46 form-control inputStep1 runLoop"
+                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                        className: "message d-none text-danger mb-0",
+                        children: "Confirm password is required"
+                      })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
                         className: "pt-3",
@@ -8184,13 +8274,19 @@ var Register = function Register() {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
                         placeholder: "Enter username",
                         name: "name",
+                        onInput: function onInput(e) {
+                          return focusInput(e, true, 'input');
+                        },
                         type: "text",
                         ref: userNameRef
                       }, register("name", {
                         required: true
                       })), {}, {
-                        className: "my-2 h__46 form-control"
-                      }))]
+                        className: "my-2 h__46 form-control inputStep1 runLoop"
+                      })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                        className: "message d-none text-danger mb-0",
+                        children: "Username is required"
+                      })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
                       className: "p-small pt-4",
                       children: " Have a think about this one - it's how you'll be known to other members and can't be changed "
@@ -8204,11 +8300,15 @@ var Register = function Register() {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
                           type: "radio",
                           ref: country,
-                          id: "country"
+                          id: "country",
+                          onClick: function onClick(e) {
+                            return focusInput(e, true, 'radio');
+                          }
                         }, register("country")), {}, {
                           defaultChecked: "",
                           name: "country",
-                          value: " New Zealand "
+                          value: " New Zealand ",
+                          className: "radioStep1 runLoop"
                         })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
                           className: "ps-2",
                           htmlFor: "country",
@@ -8219,21 +8319,27 @@ var Register = function Register() {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
                           type: "radio",
                           ref: country1,
-                          id: "country1"
+                          id: "country1",
+                          onClick: function onClick(e) {
+                            return focusInput(e, true, 'radio');
+                          }
                         }, register("country")), {}, {
                           name: "country",
-                          value: " AUSTRALIA "
+                          value: " AUSTRALIA",
+                          className: "radioStep1 runLoop"
                         })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
                           className: "ps-2",
                           htmlFor: "country1",
                           children: "AUSTRALIA"
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {})]
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("small", {
+                        className: "messageCountry d-none text-danger mb-0",
+                        children: "Country is required"
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
                       type: "button",
-                      id: "nextBtn",
                       onClick: nextStep,
-                      className: "w-100 my-4",
+                      className: "w-100 my-4 stepButton",
                       children: "Next"
                     })]
                   })]
@@ -8676,8 +8782,7 @@ var Register = function Register() {
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
                       type: "submit",
-                      id: "nextBtn",
-                      className: "w-100 my-4",
+                      className: "w-100 my-4 stepButton",
                       children: "Register"
                     })]
                   })]
@@ -16782,7 +16887,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Lato&family=Mulish&family=Poppins&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  margin: 0xp;\r\n  padding: 0px;\r\n  box-sizing: border-box;\r\n  font-family: \"Poppins\", sans-serif;\r\n}\r\n\r\n.bg-f6f5f3 {\r\n  background-color: #f6f5f4;\r\n}\r\n\r\ninput::-webkit-outer-spin-button,\r\ninput::-webkit-inner-spin-button {\r\n  -webkit-appearance: none;\r\n}\r\n\r\n.f-14 {\r\n  font-size: 14px;\r\n}\r\n\r\n.color__000 {\r\n  color: #000;\r\n}\r\n\r\na {\r\n  outline: none;\r\n}\r\n\r\n.font-weight-bolder {\r\n  font-weight: bolder;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n}\r\n\r\n.main__padding {\r\n  padding: 0 140px;\r\n}\r\n\r\n.main__padding_COl {\r\n  padding: 0 125px;\r\n}\r\n\r\n.cl-707070 {\r\n  color: #707070;\r\n}\r\n\r\nnav {\r\n  /* background: #f1f2f4;\r\n     */\r\n}\r\n\r\n.bg-f8af2e {\r\n  background-color: #f8af2e;\r\n}\r\n\r\n.costumInput {\r\n  height: 43px;\r\n  border-radius: 8px;\r\n}\r\n\r\n.radius-0 {\r\n  border-radius: 0px !important;\r\n}\r\n\r\n.btnGroup1 {\r\n  background-color: #d93a3e;\r\n  border-color: #d93a3e !important;\r\n}\r\n\r\n.btnGroup2 {\r\n  background-color: #f4622f;\r\n  border-color: #f4622f !important;\r\n}\r\n\r\n.btnGroup2:hover {\r\n  background-color: #f4622f;\r\n  border-color: #f4622f !important;\r\n}\r\n\r\n.bg-2a7a1 {\r\n  background-color: #2a7ad1;\r\n  border-color: #2a7ad1 !important;\r\n}\r\n\r\n.bg-3171b9 {\r\n  background-color: #3171b9;\r\n}\r\n\r\n.cl-4CAF50 {\r\n  color: #4caf50;\r\n}\r\n\r\n.btnGroup3 {\r\n  background-color: #5f6f89;\r\n  border-color: #5f6f89 !important;\r\n}\r\n\r\n.relative__btns {\r\n  position: relative;\r\n  top: 33px;\r\n}\r\n\r\n.cardTopImg {\r\n  position: absolute;\r\n  top: -1px;\r\n  right: 0%;\r\n}\r\n\r\n.radiusTopRight {\r\n  border-top-right-radius: 7px;\r\n}\r\n\r\n/*====OFFERS====*/\r\n\r\n.offers h2 {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.os-main {\r\n  background-color: #f5f5f5;\r\n  /* width: 85%; */\r\n  border: 1px solid #707070;\r\n}\r\n\r\n.os-main h2 {\r\n  color: #4caf50;\r\n}\r\n\r\n.os-main input {\r\n  width: 100%;\r\n  font-size: 14px;\r\n}\r\n\r\n.reset-btn {\r\n  color: #444444;\r\n  border: none;\r\n  background: transparent;\r\n  font-size: 17px;\r\n}\r\n\r\n.com-cleaning a,\r\n.res-cleaning a {\r\n  display: block;\r\n  text-decoration: none;\r\n  color: #444444;\r\n  font-size: 14px;\r\n  line-height: 2;\r\n}\r\n\r\n.com-cleaning a:hover,\r\n.res-cleaning a:hover {\r\n  color: #3171b9;\r\n}\r\n\r\n/*====TRENDING CATEGORIES====*/\r\n\r\n.tc-text p {\r\n  font-size: 14px;\r\n}\r\n\r\n.tc-icon img {\r\n  width: 20%;\r\n}\r\n\r\nfooter {\r\n  width: 100%;\r\n}\r\n\r\nfooter .content {\r\n  /* max-width: 98%; */\r\n  margin: auto;\r\n  padding: 30px 0px;\r\n}\r\n\r\nfooter .content .link-boxes {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n}\r\n\r\nfooter .content .link-boxes .box {\r\n  width: calc(100% / 5 - 10px);\r\n}\r\n\r\n.content .link-boxes .box .link_name {\r\n  color: #000;\r\n  font-size: 16px;\r\n  font-weight: 600;\r\n  margin-bottom: 10px;\r\n  position: relative;\r\n}\r\n\r\n.content .link-boxes .box li {\r\n  margin: 6px 0;\r\n  list-style: none;\r\n}\r\n\r\n.content .link-boxes .box li a {\r\n  color: #000;\r\n  font-size: 14px;\r\n  font-weight: 400;\r\n  text-decoration: none;\r\n  opacity: 0.8;\r\n  transition: all 0.4s ease;\r\n}\r\n\r\n.content .link-boxes .box li a:hover {\r\n  opacity: 1;\r\n  text-decoration: underline;\r\n}\r\n\r\n.footerChild__1 {\r\n  padding-left: 0px !important;\r\n}\r\n\r\n@media (max-width: 900px) {\r\n  footer .content .link-boxes {\r\n    flex-wrap: wrap;\r\n  }\r\n}\r\n\r\n@media (max-width: 1100px) {\r\n\r\n  .main__padding,\r\n  .main__padding_COl {\r\n    padding: 0 15px;\r\n  }\r\n}\r\n\r\n@media (min-width: 1650px) {\r\n  .main__padding {\r\n    padding: 0 190px;\r\n  }\r\n}\r\n\r\n@media (max-width: 700px) {\r\n  footer {\r\n    position: relative;\r\n  }\r\n\r\n  footer .content .link-boxes .box {\r\n    width: calc(100% / 3 - 10px);\r\n  }\r\n}\r\n\r\n@media (max-width: 520px) {\r\n  footer::before {\r\n    top: 145px;\r\n  }\r\n\r\n  footer .content .link-boxes .box {\r\n    width: calc(100% / 2 - 10px);\r\n  }\r\n}\r\n\r\n@media only screen and (max-width: 600px) {\r\n  .sm__100 {\r\n    width: 100%;\r\n  }\r\n\r\n  .padding__left__1rem {\r\n    padding-left: 1rem !important;\r\n  }\r\n\r\n  .padding__Zero {\r\n    padding: 0px !important;\r\n  }\r\n\r\n  .anchorNavHover {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n  }\r\n\r\n  .smallIcon {\r\n    width: 16px;\r\n    height: 16px;\r\n  }\r\n\r\n  .fdreverse {\r\n    flex-direction: column-reverse;\r\n  }\r\n\r\n  .logoNav {\r\n    width: 100px;\r\n\r\n    margin: auto;\r\n    display: flex;\r\n  }\r\n\r\n  .text__sm__center {\r\n    text-align: center;\r\n  }\r\n\r\n  .relative__btns {\r\n    position: relative;\r\n    top: 0px !important;\r\n  }\r\n\r\n  .btnGroup2,\r\n  .btnGroup1,\r\n  .btnGroup3 {\r\n    border-radius: 8px !important;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 992px) and (max-width: 1231px) {\r\n  .tc-icon {\r\n    width: 30%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 992px) and (max-width: 1150px) {\r\n\r\n  /*====OFFERS====*/\r\n  .offers h2 {\r\n    font-size: 28px;\r\n  }\r\n\r\n  .com-cleaning a,\r\n  .res-cleaning a {\r\n    font-size: 12px;\r\n  }\r\n\r\n  /*====TRENDING CATEGORIES====*/\r\n  .tc-text h2 {\r\n    color: var(--mainbg);\r\n  }\r\n\r\n  .tc-text p {\r\n    font-size: 17px;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 768px) and (max-width: 991px) {\r\n\r\n  /*====OFFERS====*/\r\n  .os-main {\r\n    width: 100%;\r\n    font-size: 12px;\r\n  }\r\n\r\n  .offers h2 {\r\n    font-size: 21px;\r\n  }\r\n\r\n  .com-cleaning a,\r\n  .res-cleaning a {\r\n    font-size: 12px;\r\n    line-height: 2;\r\n  }\r\n\r\n  .search-btn {\r\n    padding: 5px 16px;\r\n    font-size: 13px;\r\n  }\r\n\r\n  .reset-btn {\r\n    padding: 5px 0px;\r\n    font-size: 15px;\r\n  }\r\n\r\n  /*====TRENDING CATEGORIES====*/\r\n  .tc-text h2 {\r\n    font-size: 24px;\r\n  }\r\n\r\n  .tc-text p {\r\n    font-size: 14px;\r\n  }\r\n\r\n  .tc-icon {\r\n    width: 30%;\r\n  }\r\n\r\n  .tc-icon img {\r\n    width: 23%;\r\n  }\r\n}\r\n\r\n/*====SMALL SCREEN====*/\r\n\r\n@media screen and (min-width: 576px) and (max-width: 767px) {\r\n\r\n  /*====OFFERS====*/\r\n  .search-btn {\r\n    padding: 6px 35px;\r\n    font-size: 17px;\r\n  }\r\n\r\n  .reset-btn {\r\n    padding: 6px 0px;\r\n    font-size: 17px;\r\n  }\r\n\r\n  .com-cleaning a,\r\n  .res-cleaning a {\r\n    line-height: 2;\r\n  }\r\n\r\n  /*====TRENDING CATEGORIES====*/\r\n  .tc-text h2 {\r\n    font-size: 25px;\r\n  }\r\n\r\n  .tc-text p {\r\n    font-size: 17px;\r\n  }\r\n\r\n  .tc-icon {\r\n    width: 30%;\r\n  }\r\n\r\n  .tc-icon img {\r\n    width: 20%;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 574px) {\r\n  .tc-icon {\r\n    width: 30%;\r\n  }\r\n\r\n  .tc-icon img {\r\n    width: 20%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 295px) and (max-width: 348px) {\r\n  .tc-icon {\r\n    width: 35%;\r\n  }\r\n}\r\n\r\n/*====CARPET CLEANING====*/\r\n\r\n.cc-heading h2 {\r\n  font-weight: 800;\r\n}\r\n\r\n.cc-heading p {\r\n  color: #7e7e7e;\r\n  font-weight: 700;\r\n}\r\n\r\n.enquireButton button {\r\n  width: 100%;\r\n}\r\n\r\n.listCard {\r\n  /* width: 75%; */\r\n}\r\n\r\n.listCard .card {\r\n  flex-direction: row;\r\n  transition: 0.7s ease-in-out;\r\n}\r\n\r\n.cardMainAnchor {\r\n  margin-bottom: 1.5rem;\r\n}\r\n\r\n.listCard .card .mainImageCard {\r\n  width: auto !important;\r\n}\r\n\r\n.listCard .card .card-body .card-text {\r\n  text-align: start !important;\r\n  padding-right: 18px;\r\n}\r\n\r\n.listCard .card .radiusTopRight {\r\n  border-top-right-radius: 0 !important;\r\n}\r\n\r\n/*====PARAGRAPH====*/\r\n\r\n.p-list {\r\n  list-style-type: circle;\r\n  padding: 1rem !important;\r\n}\r\n\r\n/*====REVIEWS====*/\r\n\r\n.r-img img {\r\n  width: 20px;\r\n}\r\n\r\n.reviews-card {\r\n  border: 2px solid #4caf50;\r\n}\r\n\r\n.reviews-card h6 {\r\n  font-weight: 700;\r\n}\r\n\r\n.reviews-card p {\r\n  font-weight: 500;\r\n  color: #7e7e7e;\r\n}\r\n\r\n.star-5 {\r\n  color: #c0c0c0;\r\n}\r\n\r\n.rc-2,\r\n.rc-3 {\r\n  border: 2px solid #d5d5d5;\r\n}\r\n\r\n.serviceProviderCol {\r\n  flex: 0 0 auto;\r\n  width: 32.55555555%;\r\n}\r\n\r\n@media screen and (max-width: 768px) {\r\n  .cc-heading h2 {\r\n    font-size: 22px;\r\n  }\r\n\r\n  .listCard .card .mainImageCard {\r\n    width: auto !important;\r\n  }\r\n\r\n  .cardMainAnchor {\r\n    padding: 0px !important;\r\n  }\r\n\r\n  .listCard {\r\n    width: 100%;\r\n  }\r\n\r\n  .serviceProviderCol {\r\n    flex: 0 0 auto;\r\n    width: 100%;\r\n  }\r\n\r\n  .listCard .card .radiusTopRight {\r\n    width: 155px !important;\r\n    height: 161px;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 574px) {\r\n  .mob-center {\r\n    text-align: center;\r\n  }\r\n\r\n  .cch-btn {\r\n    width: 100%;\r\n  }\r\n\r\n  .p-list li {\r\n    padding: 0.5rem 0;\r\n  }\r\n}\r\n\r\n/*====SERVICE.HTML UPDATED====*/\r\n\r\n.modal-header h5 {\r\n  font-size: 24px;\r\n  font-weight: 700;\r\n}\r\n\r\n.wmInp {\r\n  height: 48px;\r\n  border-radius: 3px;\r\n  padding: 0 2rem;\r\n  border: 1px solid #d7d5d2;\r\n}\r\n\r\n.wmAbs {\r\n  top: 58%;\r\n  left: 8%;\r\n}\r\n\r\n.wmSwitch {\r\n  border-color: #65605d;\r\n}\r\n\r\n.wmBtn:focus {\r\n  outline: none !important;\r\n}\r\n\r\n.wmdMenu {\r\n  width: 100%;\r\n  padding: 1rem;\r\n  font-size: 14px;\r\n}\r\n\r\n.wmRadio {\r\n  width: 15px;\r\n  height: 15px;\r\n}\r\n\r\n.wmInpFtr {\r\n  width: 22px;\r\n  height: 22px;\r\n}\r\n\r\n.serviceModal {\r\n  min-width: 750px !important;\r\n}\r\n\r\n.watchModal {\r\n  min-width: 700px !important;\r\n  font-size: 14px;\r\n}\r\n\r\n.wf-14 {\r\n  font-size: 14px;\r\n}\r\n\r\n.wf-24 {\r\n  font-size: 24px;\r\n}\r\n\r\n.wf75 {\r\n  font-size: .75rem;\r\n}\r\n\r\n.wf85 {\r\n  font-size: .85rem;\r\n}\r\n\r\n.modal-header h5 {\r\n  font-size: 24px;\r\n  font-weight: 700;\r\n}\r\n\r\n@media screen and (max-width:768px) {\r\n  .wmAbs {\r\n    top: 58%;\r\n    left: 8%;\r\n  }\r\n\r\n  .watchModal {\r\n    min-width: 94% !important;\r\n    font-size: 14px;\r\n  }\r\n\r\n  .wmInp {\r\n    height: 48px;\r\n    border-radius: 3px;\r\n    padding: 0 1.7rem;\r\n    border: 1px solid #d7d5d2;\r\n  }\r\n\r\n  .wmAbs {\r\n    top: 58%;\r\n    left: 4%;\r\n  }\r\n\r\n  .wmfBtn {\r\n    width: 100%;\r\n    display: block !important;\r\n  }\r\n}\r\n\r\n.checkBoxWatchList {\r\n  /* Double-sized Checkboxes */\r\n  -ms-transform: scale(1.5);\r\n  /* IE */\r\n  -moz-transform: scale(1.5);\r\n  /* FF */\r\n  -webkit-transform: scale(1.5);\r\n  /* Safari and Chrome */\r\n  -o-transform: scale(1.5);\r\n  /* Opera */\r\n  padding: 9px;\r\n}\r\n.cardWatchListCard{\r\n  position: absolute;\r\n  left: 8px;\r\n  top: 8px;\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\n  margin: 0xp;\n  padding: 0px;\n  box-sizing: border-box;\n  font-family: \"Poppins\", sans-serif;\n}\n\n.bg-f6f5f3 {\n  background-color: #f6f5f4;\n}\n\n.redBorder{\n    border: 1px solid red !important;\n}\n\n.form-control:focus {\n    border-color: none !important;\n    box-shadow: none !important;\n}\n\ninput::-webkit-outer-spin-button,\ninput::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n}\n\n.f-14 {\n  font-size: 14px;\n}\n\n.color__000 {\n  color: #000;\n}\n\na {\n  outline: none;\n}\n\n.font-weight-bolder {\n  font-weight: bolder;\n}\n\na {\n  text-decoration: none;\n}\n\n.main__padding {\n  padding: 0 140px;\n}\n\n.main__padding_COl {\n  padding: 0 125px;\n}\n\n.cl-707070 {\n  color: #707070;\n}\n\nnav {\n  /* background: #f1f2f4;\n     */\n}\n\n.bg-f8af2e {\n  background-color: #f8af2e;\n}\n\n.costumInput {\n  height: 43px;\n  border-radius: 8px;\n}\n\n.radius-0 {\n  border-radius: 0px !important;\n}\n\n.btnGroup1 {\n  background-color: #d93a3e;\n  border-color: #d93a3e !important;\n}\n\n.btnGroup2 {\n  background-color: #f4622f;\n  border-color: #f4622f !important;\n}\n\n.btnGroup2:hover {\n  background-color: #f4622f;\n  border-color: #f4622f !important;\n}\n\n.bg-2a7a1 {\n  background-color: #2a7ad1;\n  border-color: #2a7ad1 !important;\n}\n\n.bg-3171b9 {\n  background-color: #3171b9;\n}\n\n.cl-4CAF50 {\n  color: #4caf50;\n}\n\n.btnGroup3 {\n  background-color: #5f6f89;\n  border-color: #5f6f89 !important;\n}\n\n.relative__btns {\n  position: relative;\n  top: 33px;\n}\n\n.cardTopImg {\n  position: absolute;\n  top: -1px;\n  right: 0%;\n}\n\n.radiusTopRight {\n  border-top-right-radius: 7px;\n}\n\n/*====OFFERS====*/\n\n.offers h2 {\n  font-size: 1.5rem;\n}\n\n.os-main {\n  background-color: #f5f5f5;\n  /* width: 85%; */\n  border: 1px solid #707070;\n}\n\n.os-main h2 {\n  color: #4caf50;\n}\n\n.os-main input {\n  width: 100%;\n  font-size: 14px;\n}\n\n.reset-btn {\n  color: #444444;\n  border: none;\n  background: transparent;\n  font-size: 17px;\n}\n\n.com-cleaning a,\n.res-cleaning a {\n  display: block;\n  text-decoration: none;\n  color: #444444;\n  font-size: 14px;\n  line-height: 2;\n}\n\n.com-cleaning a:hover,\n.res-cleaning a:hover {\n  color: #3171b9;\n}\n\n/*====TRENDING CATEGORIES====*/\n\n.tc-text p {\n  font-size: 14px;\n}\n\n.tc-icon img {\n  width: 20%;\n}\n\nfooter {\n  width: 100%;\n}\n\nfooter .content {\n  /* max-width: 98%; */\n  margin: auto;\n  padding: 30px 0px;\n}\n\nfooter .content .link-boxes {\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n}\n\nfooter .content .link-boxes .box {\n  width: calc(100% / 5 - 10px);\n}\n\n.content .link-boxes .box .link_name {\n  color: #000;\n  font-size: 16px;\n  font-weight: 600;\n  margin-bottom: 10px;\n  position: relative;\n}\n\n.content .link-boxes .box li {\n  margin: 6px 0;\n  list-style: none;\n}\n\n.content .link-boxes .box li a {\n  color: #000;\n  font-size: 14px;\n  font-weight: 400;\n  text-decoration: none;\n  opacity: 0.8;\n  transition: all 0.4s ease;\n}\n\n.content .link-boxes .box li a:hover {\n  opacity: 1;\n  text-decoration: underline;\n}\n\n.footerChild__1 {\n  padding-left: 0px !important;\n}\n\n@media (max-width: 900px) {\n  footer .content .link-boxes {\n    flex-wrap: wrap;\n  }\n}\n\n@media (max-width: 1100px) {\n\n  .main__padding,\n  .main__padding_COl {\n    padding: 0 15px;\n  }\n}\n\n@media (min-width: 1650px) {\n  .main__padding {\n    padding: 0 190px;\n  }\n}\n\n@media (max-width: 700px) {\n  footer {\n    position: relative;\n  }\n\n  footer .content .link-boxes .box {\n    width: calc(100% / 3 - 10px);\n  }\n}\n\n@media (max-width: 520px) {\n  footer::before {\n    top: 145px;\n  }\n\n  footer .content .link-boxes .box {\n    width: calc(100% / 2 - 10px);\n  }\n}\n\n@media only screen and (max-width: 600px) {\n  .sm__100 {\n    width: 100%;\n  }\n\n  .padding__left__1rem {\n    padding-left: 1rem !important;\n  }\n\n  .padding__Zero {\n    padding: 0px !important;\n  }\n\n  .anchorNavHover {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n  }\n\n  .smallIcon {\n    width: 16px;\n    height: 16px;\n  }\n\n  .fdreverse {\n    flex-direction: column-reverse;\n  }\n\n  .logoNav {\n    width: 100px;\n\n    margin: auto;\n    display: flex;\n  }\n\n  .text__sm__center {\n    text-align: center;\n  }\n\n  .relative__btns {\n    position: relative;\n    top: 0px !important;\n  }\n\n  .btnGroup2,\n  .btnGroup1,\n  .btnGroup3 {\n    border-radius: 8px !important;\n  }\n}\n\n@media screen and (min-width: 992px) and (max-width: 1231px) {\n  .tc-icon {\n    width: 30%;\n  }\n}\n\n@media screen and (min-width: 992px) and (max-width: 1150px) {\n\n  /*====OFFERS====*/\n  .offers h2 {\n    font-size: 28px;\n  }\n\n  .com-cleaning a,\n  .res-cleaning a {\n    font-size: 12px;\n  }\n\n  /*====TRENDING CATEGORIES====*/\n  .tc-text h2 {\n    color: var(--mainbg);\n  }\n\n  .tc-text p {\n    font-size: 17px;\n  }\n}\n\n@media screen and (min-width: 768px) and (max-width: 991px) {\n\n  /*====OFFERS====*/\n  .os-main {\n    width: 100%;\n    font-size: 12px;\n  }\n\n  .offers h2 {\n    font-size: 21px;\n  }\n\n  .com-cleaning a,\n  .res-cleaning a {\n    font-size: 12px;\n    line-height: 2;\n  }\n\n  .search-btn {\n    padding: 5px 16px;\n    font-size: 13px;\n  }\n\n  .reset-btn {\n    padding: 5px 0px;\n    font-size: 15px;\n  }\n\n  /*====TRENDING CATEGORIES====*/\n  .tc-text h2 {\n    font-size: 24px;\n  }\n\n  .tc-text p {\n    font-size: 14px;\n  }\n\n  .tc-icon {\n    width: 30%;\n  }\n\n  .tc-icon img {\n    width: 23%;\n  }\n}\n\n/*====SMALL SCREEN====*/\n\n@media screen and (min-width: 576px) and (max-width: 767px) {\n\n  /*====OFFERS====*/\n  .search-btn {\n    padding: 6px 35px;\n    font-size: 17px;\n  }\n\n  .reset-btn {\n    padding: 6px 0px;\n    font-size: 17px;\n  }\n\n  .com-cleaning a,\n  .res-cleaning a {\n    line-height: 2;\n  }\n\n  /*====TRENDING CATEGORIES====*/\n  .tc-text h2 {\n    font-size: 25px;\n  }\n\n  .tc-text p {\n    font-size: 17px;\n  }\n\n  .tc-icon {\n    width: 30%;\n  }\n\n  .tc-icon img {\n    width: 20%;\n  }\n}\n\n@media screen and (max-width: 574px) {\n  .tc-icon {\n    width: 30%;\n  }\n\n  .tc-icon img {\n    width: 20%;\n  }\n}\n\n@media screen and (min-width: 295px) and (max-width: 348px) {\n  .tc-icon {\n    width: 35%;\n  }\n}\n\n/*====CARPET CLEANING====*/\n\n.cc-heading h2 {\n  font-weight: 800;\n}\n\n.cc-heading p {\n  color: #7e7e7e;\n  font-weight: 700;\n}\n\n.enquireButton button {\n  width: 100%;\n}\n\n.listCard {\n  /* width: 75%; */\n}\n\n.listCard .card {\n  flex-direction: row;\n  transition: 0.7s ease-in-out;\n}\n\n.cardMainAnchor {\n  margin-bottom: 1.5rem;\n}\n\n.listCard .card .mainImageCard {\n  width: auto !important;\n}\n\n.listCard .card .card-body .card-text {\n  text-align: start !important;\n  padding-right: 18px;\n}\n\n.listCard .card .radiusTopRight {\n  border-top-right-radius: 0 !important;\n}\n\n/*====PARAGRAPH====*/\n\n.p-list {\n  list-style-type: circle;\n  padding: 1rem !important;\n}\n\n/*====REVIEWS====*/\n\n.r-img img {\n  width: 20px;\n}\n\n.reviews-card {\n  border: 2px solid #4caf50;\n}\n\n.reviews-card h6 {\n  font-weight: 700;\n}\n\n.reviews-card p {\n  font-weight: 500;\n  color: #7e7e7e;\n}\n\n.star-5 {\n  color: #c0c0c0;\n}\n\n.rc-2,\n.rc-3 {\n  border: 2px solid #d5d5d5;\n}\n\n.serviceProviderCol {\n  flex: 0 0 auto;\n  width: 32.55555555%;\n}\n\n@media screen and (max-width: 768px) {\n  .cc-heading h2 {\n    font-size: 22px;\n  }\n\n  .listCard .card .mainImageCard {\n    width: auto !important;\n  }\n\n  .cardMainAnchor {\n    padding: 0px !important;\n  }\n\n  .listCard {\n    width: 100%;\n  }\n\n  .serviceProviderCol {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n\n  .listCard .card .radiusTopRight {\n    width: 155px !important;\n    height: 161px;\n  }\n}\n\n@media screen and (max-width: 574px) {\n  .mob-center {\n    text-align: center;\n  }\n\n  .cch-btn {\n    width: 100%;\n  }\n\n  .p-list li {\n    padding: 0.5rem 0;\n  }\n}\n\n/*====SERVICE.HTML UPDATED====*/\n\n.modal-header h5 {\n  font-size: 24px;\n  font-weight: 700;\n}\n\n.wmInp {\n  height: 48px;\n  border-radius: 3px;\n  padding: 0 2rem;\n  border: 1px solid #d7d5d2;\n}\n\n.wmAbs {\n  top: 58%;\n  left: 8%;\n}\n\n.wmSwitch {\n  border-color: #65605d;\n}\n\n.wmBtn:focus {\n  outline: none !important;\n}\n\n.wmdMenu {\n  width: 100%;\n  padding: 1rem;\n  font-size: 14px;\n}\n\n.wmRadio {\n  width: 15px;\n  height: 15px;\n}\n\n.wmInpFtr {\n  width: 22px;\n  height: 22px;\n}\n\n.serviceModal {\n  min-width: 750px !important;\n}\n\n.watchModal {\n  min-width: 700px !important;\n  font-size: 14px;\n}\n\n.wf-14 {\n  font-size: 14px;\n}\n\n.wf-24 {\n  font-size: 24px;\n}\n\n.wf75 {\n  font-size: .75rem;\n}\n\n.wf85 {\n  font-size: .85rem;\n}\n\n.modal-header h5 {\n  font-size: 24px;\n  font-weight: 700;\n}\n\n@media screen and (max-width:768px) {\n  .wmAbs {\n    top: 58%;\n    left: 8%;\n  }\n\n  .watchModal {\n    min-width: 94% !important;\n    font-size: 14px;\n  }\n\n  .wmInp {\n    height: 48px;\n    border-radius: 3px;\n    padding: 0 1.7rem;\n    border: 1px solid #d7d5d2;\n  }\n\n  .wmAbs {\n    top: 58%;\n    left: 4%;\n  }\n\n  .wmfBtn {\n    width: 100%;\n    display: block !important;\n  }\n}\n\n.checkBoxWatchList {\n  /* Double-sized Checkboxes */\n  -ms-transform: scale(1.5);\n  /* IE */\n  -moz-transform: scale(1.5);\n  /* FF */\n  -webkit-transform: scale(1.5);\n  /* Safari and Chrome */\n  -o-transform: scale(1.5);\n  /* Opera */\n  padding: 9px;\n}\n.cardWatchListCard{\n  position: absolute;\n  left: 8px;\n  top: 8px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -17022,7 +17127,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/*====REGISTERATION PAGE 1====*/\r\n\r\n.register-1 h1, .register-2 h1 {\r\n    font-size: 1.125rem;\r\n    font-weight: 900;\r\n    line-height: 24px;\r\n}\r\n\r\n.register-1 label, .register-2 label {\r\n    color: #65605d;\r\n    font-size: 1rem;\r\n    font-weight: 800;\r\n    line-height: 24px;\r\n}\r\n\r\n.icon {\r\n    right: 3%;\r\n    top: 55%;\r\n}\r\n\r\n.register-1 input {}\r\n\r\n.p-small {\r\n    color: #76716d;\r\n    font-size: .7rem;\r\n    line-height: 16px;\r\n}\r\n\r\n#nextBtn {\r\n    background-color: #d93a3f;\r\n    color: #fff;\r\n    border: none;\r\n    cursor: pointer;\r\n    font-size: 1rem;\r\n    font-weight: 500;\r\n    line-height: 1.5rem;\r\n    text-align: center;\r\n    padding: 0.75rem 24px;\r\n}\r\n\r\n\r\n.border-line {\r\n    border-bottom: 1px solid #898989;\r\n    opacity: .5;\r\n}\r\n\r\n\r\n/*====REGISTERATION PAGE 2====*/\r\n\r\n.after-inp {\r\n    color: #76716d;\r\n    font-size: .875rem;\r\n}\r\n\r\n.r2-inp {\r\n    padding: .5rem 0;\r\n}\r\n\r\n#mnth, #num {\r\n    padding: .64rem 0;\r\n}\r\n\r\nh4 {\r\n    font-size: 1rem;\r\n}\r\n\r\n#town {\r\n    width: 100%;\r\n    color: #65605d;\r\n    font-size: 1rem;\r\n    font-weight: 800;\r\n    line-height: 24px;\r\n    padding: .7rem 0;\r\n\r\n}\r\n\r\n.s-icon {\r\n    top: 53%;\r\n    left: 3%;\r\n}\r\n\r\n.p-small2 {\r\n    color: #76716d;\r\n    font-size: .75rem;\r\n    line-height: 16px;\r\n}\r\n\r\n#searchInp {\r\n    padding-left: 2.5rem;\r\n}\r\n\r\n.gridCol3 {\r\n    flex: 0 0 auto;\r\n    width: 32%;\r\n}\r\n\r\n.go2441762052{\r\n    display: flex;\r\n}\r\n.go2441762052 li{\r\n    width: 50% !important;\r\n}\r\n\r\n@media screen and (max-width:574px) {\r\n    .r2-inp, #num {\r\n        width: 100%;\r\n    }\r\n\r\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/*====REGISTERATION PAGE 1====*/\n\n.register-1 h1, .register-2 h1 {\n    font-size: 1.125rem;\n    font-weight: 900;\n    line-height: 24px;\n}\n\n.register-1 label, .register-2 label {\n    color: #65605d;\n    font-size: 1rem;\n    font-weight: 800;\n    line-height: 24px;\n}\n\n.icon {\n    right: 3%;\n    top: 43px;\n}\n\n.p-small {\n    color: #76716d;\n    font-size: .7rem;\n    line-height: 16px;\n}\n\n.stepButton {\n    background-color: #d93a3f;\n    color: #fff;\n    border: none;\n    cursor: pointer;\n    font-size: 1rem;\n    font-weight: 500;\n    line-height: 1.5rem;\n    text-align: center;\n    padding: 0.75rem 24px;\n}\n\n\n.border-line {\n    border-bottom: 1px solid #898989;\n    opacity: .5;\n}\n\n\n/*====REGISTERATION PAGE 2====*/\n\n.after-inp {\n    color: #76716d;\n    font-size: .875rem;\n}\n\n.r2-inp {\n    padding: .5rem 0;\n}\n\n#mnth, #num {\n    padding: .64rem 0;\n}\n\nh4 {\n    font-size: 1rem;\n}\n\n#town {\n    width: 100%;\n    color: #65605d;\n    font-size: 1rem;\n    font-weight: 800;\n    line-height: 24px;\n    padding: .7rem 0;\n\n}\n\n.s-icon {\n    top: 53%;\n    left: 3%;\n}\n\n.p-small2 {\n    color: #76716d;\n    font-size: .75rem;\n    line-height: 16px;\n}\n\n#searchInp {\n    padding-left: 2.5rem;\n}\n\n.gridCol3 {\n    flex: 0 0 auto;\n    width: 32%;\n}\n\n.go2441762052{\n    display: flex;\n}\n.go2441762052 li{\n    width: 50% !important;\n}\n\n@media screen and (max-width:574px) {\n    .r2-inp, #num {\n        width: 100%;\n    }\n\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
