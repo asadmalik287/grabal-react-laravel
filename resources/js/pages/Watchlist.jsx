@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./css/Watchlist.css";
-import watchlistAdd from "../images/2099323960490510824.png";
+import watchlistAdd from "../assets/images/2099323960490510824.png";
 import WatchlistSidebar from "../component/WatchList/WatchlistSidebar/WatchlistSidebar";
 import WatchListCard from "../component/WatchList/watchListCard/watchListCard";
 import ModalWatchList from "../component/WatchList/modalWatchList/modalWatchList";
@@ -156,7 +156,7 @@ const Watchlist = () => {
                         <WatchListCard functionChecbox={singleChecked} scrClassWatchListCard={watchListCard} checboxBlock={checkboxBlock} />
                     </div>
                     <div className="col-md-2">
-                        <div className="sticky-top" >
+                        <div className="sticky-top" style={{top:'12px'}} >
                             <img src={watchlistAdd} className="w-100" alt="" />
 
                         </div>

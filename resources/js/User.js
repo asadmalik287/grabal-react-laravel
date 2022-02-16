@@ -1,7 +1,7 @@
 import React, {useEffect,useState} from 'react';
 import ReactDOM from 'react-dom';
-import './app.css'
-import './index.css'
+import './assets/css/app.css'
+import './assets/css/index.css'
 import { BrowserRouter as Router, Route, Switch, useLocation, withRouter} from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom'
 

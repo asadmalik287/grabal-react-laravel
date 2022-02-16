@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/CommunityEnvironment.css'
 import ServiceBanner from '../component/ServiceBanner/ServiceBanner';
-import CommunityEnvironmentImage from '../images/profile_image_362725142811_2129876.jpg'
+import CommunityEnvironmentImage from '../assets/images/profile_image_362725142811_2129876.jpg'
 import CommunityEnvironmentCard from '../component/CommunityEnvironment/CommunityEnvironmentCard/CommunityEnvironmentCard';
 
 export const CommunityEnvironment = () => {

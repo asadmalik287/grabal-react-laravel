@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NavbarLogo from '../images/logo.png'
+import NavbarLogo from '../assets/images/logo.png'
 
 export const Navbar = () => {
   return <React.Fragment>

@@ -1,7 +1,7 @@
 import React from 'react';
 import ServiceBanner from '../component/ServiceBanner/ServiceBanner';
 import AboutsUSCard from '../component/AboutUs/AboutsUSCard/AboutsUSCard';
-import imageSrc from '../images/TRADEME001-Trade-Me-story.jpg'
+import imageSrc from '../assets/images/TRADEME001-Trade-Me-story.jpg'
 const AboutUs = () => {
     return <React.Fragment>
         <ServiceBanner title="About Us" />

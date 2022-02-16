@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import NavbarLogo from "../images/Logo.png";
-import "./css/login.css";
+import NavbarLogo from '../assets/images/Logo.png'
+import './css/login.css'
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
@@ -18,6 +18,9 @@ export const Login = () => {
           if (resp.data.status === 1) {
             localStorage.setItem('user', JSON.stringify(resp.data))
             history.push('/');
+
+
+            
           } else {
             alert("error");
           }

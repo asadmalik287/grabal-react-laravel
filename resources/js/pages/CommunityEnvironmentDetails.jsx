@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ServiceBanner from '../component/ServiceBanner/ServiceBanner';
-import './css/CommunityEnvironment.css'
+import './css/CommunityEnvironmentDetails.css'
 
 export const CommunityEnvironmentDetails = () => {
     return <React.Fragment>

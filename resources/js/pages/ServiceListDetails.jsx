@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import ServicesCardsMain from '../component/ServicesCardsMain/ServicesCardsMain';
-import Adds from '../images/11651651507964915389.png'
-import serviceImageOne from '../images/3.png'
+import Adds from '../assets/images/11651651507964915389.png'
+import serviceImageOne from '../assets/images/3.png'
 export const ServiceListDetails = () => {
     const listGridSerList = useRef();
     const galleryGridSerList = useRef();
