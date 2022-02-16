@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import NavbarLogo from '../images/Logo.png'
+import NavbarLogo from '../assets/images/Logo.png'
 import { useForm } from "react-hook-form";
 
 export const ForgotPassword = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import imageSrc from '../images/TRADEME001-Trade-Me-story.jpg'
+import imageSrc from '../assets/images/TRADEME001-Trade-Me-story.jpg'
 import ServiceBanner from '../component/ServiceBanner/ServiceBanner';
 const AboutsUsDetails = () => {
     return <React.Fragment>

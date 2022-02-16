@@ -1,9 +1,9 @@
 import React from 'react';
 import ServicesCardsMain from '../ServicesCardsMain/ServicesCardsMain';
-import serviceImageOne from '../../images/3.png'
-import serviceImageTwo from '../../images/4.png'
-import serviceImageThree from '../../images/5.png'
-import serviceImageFour from '../../images/6.png'
+import serviceImageOne from '../../assets/images/3.png'
+import serviceImageTwo from '../../assets/images/4.png'
+import serviceImageThree from '../../assets/images/5.png'
+import serviceImageFour from '../../assets/images/6.png'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 export const ServicesCards = ({ heading }) => {

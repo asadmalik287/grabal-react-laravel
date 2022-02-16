@@ -1,5 +1,5 @@
 import React from 'react';
-import featureCate from '../../../images/featureCate.png'
+import featureCate from '../../../assets/images/featureCate.png'
 import './TrendingCategories.css'
 import { Link } from 'react-router-dom';
 export const TrendingCategories = () => {

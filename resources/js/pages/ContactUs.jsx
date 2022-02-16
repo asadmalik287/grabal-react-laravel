@@ -4,7 +4,7 @@ import './css/contactUs.css'
 import { useForm } from "react-hook-form";
 
 export const ContactUs = () => {
-    const { register, setValue, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const loginSubmit = handleSubmit(data => console.log(data));
 
     return <React.Fragment>
@@ -19,7 +19,7 @@ export const ContactUs = () => {
                         </label>
                         <input placeholder='Enter  Name' type="text" {...register("name", { required: true })} className={`h__46 form-control   ${errors.name ? 'is-invalid' : ''}`} id="inputEmail4" />
                         <p className='text-danger mb-0'>  {errors.name && "Name is required"}</p>
-                        </div>
+                    </div>
                 </div>
                 <div className="form-group  pt-3">
                     <label className="f-font pb-1">
@@ -27,7 +27,7 @@ export const ContactUs = () => {
                     </label>
                     <input type="email" placeholder='Enter Email'  {...register("email", { required: true })} className={`h__46 form-control ${errors.email ? 'is-invalid' : ''}`} id="inputAddress" />
                     <p className='text-danger mb-0'>  {errors.name && "Email is required"}</p>
-                    </div>
+                </div>
                 <div className="form-group  pt-3">
                     <label className="d-block f-font pb-1" htmlFor="inputtext">
                         MESSAGE

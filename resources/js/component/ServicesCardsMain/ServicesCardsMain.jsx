@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import mShape from '../../images/m.png'
-import logo from '../../images/Logo.png'
-import icon1 from '../../images/iconCard2.png'
-import icon2 from '../../images/iconCard1.png'
+import mShape from '../../assets/images/m.png'
+import logo from '../../assets/images/Logo.png'
+import icon1 from '../../assets/images/iconCard2.png'
+import icon2 from '../../assets/images/iconCard1.png'
 
 export const ServicesCardsMain = ({ imageSrc, date, title, desc, updateClass }) => {
     return <React.Fragment>

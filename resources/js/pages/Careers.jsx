@@ -1,8 +1,8 @@
 import React from 'react';
-import Careers1 from '../images/TRADEME003-staff.jpg'
-import Careers2 from '../images/TRADEME002-Trade-Me-values.jpg'
-import Careers3 from '../images/TRADEME003-careers.jpg'
-import Careers4 from '../images/TRADEME003-teams.jpg'
+import Careers1 from '../assets/images/TRADEME003-staff.jpg'
+import Careers2 from '../assets/images/TRADEME002-Trade-Me-values.jpg'
+import Careers3 from '../assets/images/TRADEME003-careers.jpg'
+import Careers4 from '../assets/images/TRADEME003-teams.jpg'
 import ServiceBanner from '../component/ServiceBanner/ServiceBanner';
 import { Link } from 'react-router-dom';
 
