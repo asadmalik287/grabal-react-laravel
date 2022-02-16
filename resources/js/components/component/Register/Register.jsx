@@ -37,7 +37,7 @@ export const Register = () => {
     let emailRef = useRef();
     let password = useRef();
     let confirmPassword = useRef();
-    let userName = useRef();
+    let userNameRef = useRef();
     let country = useRef();
     let country1 = useRef();
     let fname = useRef();
@@ -74,14 +74,18 @@ export const Register = () => {
     const nextStep = () =>{
         setstep1('d-none')
         setstep2('d-block')
-        // if(email.current.value != '' && password.current.value != '' && confirmPassword.current.value !='' && userName.current.value !='' && (country.current.checked != false || country1.current.checked != false)){
-        // }
+        // console.log(emailRef.current.value != '' && passwordRef.current.value != '' && confirmPasswordRef.current.value !='' && userNameRef.current.value !='' && (country.current.checked != false || country1R.current.checked != false))
+        // { }
 
     }
 
     const previousStep = () =>{
         setstep1('d-block')
         setstep2('d-none')
+    }
+
+    const focusInput = (e) =>{
+        console.log(e.target);
     }
 
     // Days Array
@@ -94,7 +98,7 @@ export const Register = () => {
     // Years Array
     const years = [];
     let currentYear = new Date().getFullYear();
-    for (let i = 1985; i <= currentYear; i++) {
+    for (let i = 1980; i <= (currentYear - 18); i++) {
         years.push(i)
     }
     // Years Array
@@ -121,7 +125,7 @@ export const Register = () => {
                                         <div>
                                             <div className="position-relative">
                                                 <label>Email</label>
-                                                <input type="email" ref={emailRef} name="email" placeholder="Enter email" {...register("email", { required: true })} className='inp my-2 px-2  h__46 form-control' />
+                                                <input type="email" ref={emailRef} onBlur ={focusInput} name="email" placeholder="Enter email" {...register("email", { required: true })} className='inp my-2 px-2  h__46 form-control' />
                                                 <span className="position-absolute icon">
                                                     <i className="fa fa-envelope-o" aria-hidden="true" />
                                                 </span>
@@ -137,7 +141,7 @@ export const Register = () => {
                                             </div>
                                             <div>
                                                 <label className="pt-3">Username</label>
-                                                <input placeholder="Enter username" name="name" type="text" ref={userName} {...register("name", { required: true })} className="my-2 h__46 form-control" />
+                                                <input placeholder="Enter username" name="name" type="text" ref={userNameRef} {...register("name", { required: true })} className="my-2 h__46 form-control" />
                                             </div>
                                             <p className="p-small pt-4"> Have a think about this one - it's how you'll be known to other members and can't be changed </p>
                                             <div className="">
@@ -187,7 +191,7 @@ export const Register = () => {
                                             <div className="d-flex flex-wrap mx-0 align-items-end justify-content-between">
                                                 <div className="gridCol3">
                                                     <label className="d-block">Date of Birth</label>
-                                                    <select name="date" ref={day} {...register("date")} className="r2-inp w-100  my-3 my-sm-0">
+                                                    <select name="date" ref={day} {...register("date")} className="r2-inp w-100  my-3 my-sm-0" defaultValue="Choose date">
                                                         <option value="" disabled>
                                                             Select date
                                                         </option>
@@ -197,7 +201,7 @@ export const Register = () => {
                                                     </select>
                                                 </div>
                                                 <div className="gridCol3">
-                                                    <select name="month" ref={monthRef} {...register("month")} className="r2-inp w-100  my-3 my-sm-0">
+                                                    <select name="month" ref={monthRef} {...register("month")} className="r2-inp w-100  my-3 my-sm-0" defaultValue="Choose month">
                                                         <option value="" disabled>
                                                             Select month
                                                         </option>
@@ -216,7 +220,7 @@ export const Register = () => {
                                                     </select>
                                                 </div>
                                                 <div className="gridCol3">
-                                                    <select name="year" ref={yearRef} {...register("year")} className="r2-inp w-100  my-3 my-sm-0">
+                                                    <select name="year" ref={yearRef} {...register("year")} className="r2-inp w-100  my-3 my-sm-0" defaultValue="Choose year">
                                                         <option value="" disabled>
                                                             Select year
                                                         </option>
@@ -230,7 +234,7 @@ export const Register = () => {
                                                 <label className="d-block">Phone number</label>
                                                 <div className="row justify-content-between">
                                                     <div className="col-4">
-                                                        <select name="countryCode" ref={countryCodeRef} {...register("countryCode")} className="r2-inp w-100 my-3 my-sm-0 ps-2">
+                                                        <select name="countryCode" ref={countryCodeRef} {...register("countryCode")} className="r2-inp w-100 my-3 my-sm-0 ps-2" defaultValue="Choose country code">
                                                             <option value="" selected>
                                                                 Country code
                                                             </option>
@@ -322,7 +326,7 @@ export const Register = () => {
                                             </div>
                                             <div className="py-4">
                                                 <label>Closest Town</label>
-                                                <select name="town" ref={town} {...register("town")} className="d-block r2-inp w-100  my-3 my-sm-0 ps-2">
+                                                <select name="town" ref={town} {...register("town")} className="d-block r2-inp w-100  my-3 my-sm-0 ps-2" defaultValue="Choose town">
                                                     <option value="Northland - Dargaville"> Northland - Dargaville </option>
                                                     <option value="Northland - Kaikohe"> Northland - Kaikohe </option>
                                                     <option value="Northland - Kaikohe"> Northland - Kaikohe </option>
