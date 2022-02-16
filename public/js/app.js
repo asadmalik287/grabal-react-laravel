@@ -8071,7 +8071,24 @@ var Register = function Register() {
   var previousStep = function previousStep() {
     setstep1('d-block');
     setstep2('d-none');
-  };
+  }; // Days Array
+
+
+  var days = [];
+
+  for (var i = 1; i <= 31; i++) {
+    days.push(i);
+  } // Days Array
+  // Years Array
+
+
+  var years = [];
+  var currentYear = new Date().getFullYear();
+
+  for (var _i2 = 1985; _i2 <= currentYear; _i2++) {
+    years.push(_i2);
+  } // Years Array
+
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("section", {
@@ -8092,7 +8109,7 @@ var Register = function Register() {
                 alt: ""
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-              className: "shadoow login-form bg-white px-4",
+              className: "shadoow login-form bg-white px-4 pb-2",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("form", {
                 onSubmit: handleSubmit(signUpForm),
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
@@ -8280,16 +8297,21 @@ var Register = function Register() {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("label", {
                           className: "d-block",
                           children: "Date of Birth"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", _objectSpread(_objectSpread({
-                          type: "text",
-                          ref: day
-                        }, register("date", {
-                          required: true
-                        })), {}, {
-                          placeholder: "Day",
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("select", _objectSpread(_objectSpread({
                           name: "date",
-                          maxLength: 2,
-                          className: "r2-inp w-100  ps-2 my-3 my-sm-0"
+                          ref: day
+                        }, register("date")), {}, {
+                          className: "r2-inp w-100  my-3 my-sm-0",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
+                            value: "",
+                            disabled: true,
+                            children: "Select date"
+                          }), days.map(function (singleCount) {
+                            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
+                              value: singleCount,
+                              children: singleCount
+                            }, singleCount);
+                          })]
                         }))]
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                         className: "gridCol3",
@@ -8342,16 +8364,21 @@ var Register = function Register() {
                         }))
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
                         className: "gridCol3",
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", _objectSpread(_objectSpread({
-                          type: "text",
-                          ref: yearRef
-                        }, register("year", {
-                          required: true
-                        })), {}, {
-                          maxLength: 4,
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("select", _objectSpread(_objectSpread({
                           name: "year",
-                          placeholder: "Year(YYYY)",
-                          className: "r2-inp w-100 ps-2 my-3 my-sm-0"
+                          ref: yearRef
+                        }, register("year")), {}, {
+                          className: "r2-inp w-100  my-3 my-sm-0",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
+                            value: "",
+                            disabled: true,
+                            children: "Select year"
+                          }), years.map(function (singleCount) {
+                            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
+                              value: singleCount,
+                              children: singleCount
+                            }, singleCount);
+                          })]
                         }))
                       })]
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {

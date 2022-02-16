@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('gender');
             $table->string('address');
             $table->string('town');
+            $table->string('is_verified')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

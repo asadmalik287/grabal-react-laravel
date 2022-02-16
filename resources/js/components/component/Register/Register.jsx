@@ -86,6 +86,20 @@ export const Register = () => {
         setstep2('d-none')
     }
 
+    // Days Array
+    const days = []
+    for (let i = 1; i <= 31; i++) {
+        days.push(i)
+    }
+    // Days Array
+
+    // Years Array
+    const years = [];
+    let currentYear = new Date().getFullYear();
+    for (let i = 1985; i <= currentYear; i++) {
+        years.push(i)
+    }
+    // Years Array
 
     return (
         <React.Fragment>
@@ -96,7 +110,7 @@ export const Register = () => {
                             <div className="logo text-center mb-2">
                                 <img className="w-50 " src={NavbarLogo} alt="" />
                             </div>
-                            <div className="shadoow login-form bg-white px-4">
+                            <div className="shadoow login-form bg-white px-4 pb-2">
                                 <form onSubmit={handleSubmit(signUpForm)}>
 
                                     {/* Step 1 start*/}
@@ -175,7 +189,14 @@ export const Register = () => {
                                             <div className="d-flex flex-wrap mx-0 align-items-end justify-content-between">
                                                 <div className="gridCol3">
                                                     <label className="d-block">Date of Birth</label>
-                                                    <input type="text" ref={day} {...register("date", { required: true })} placeholder="Day" name="date" maxLength={2} className="r2-inp w-100  ps-2 my-3 my-sm-0" />
+                                                    <select name="date" ref={day} {...register("date")} className="r2-inp w-100  my-3 my-sm-0">
+                                                        <option value="" disabled>
+                                                            Select date
+                                                        </option>
+                                                        {
+                                                            days.map((singleCount)=>(<option key={singleCount} value={singleCount}>{singleCount}</option>))
+                                                        }
+                                                    </select>
                                                 </div>
                                                 <div className="gridCol3">
                                                     <select name="month" ref={monthRef} {...register("month")} className="r2-inp w-100  my-3 my-sm-0">
@@ -197,7 +218,14 @@ export const Register = () => {
                                                     </select>
                                                 </div>
                                                 <div className="gridCol3">
-                                                    <input type="text" ref={yearRef} {...register("year", { required: true })} maxLength={4} name="year" placeholder="Year(YYYY)" className="r2-inp w-100 ps-2 my-3 my-sm-0" />
+                                                    <select name="year" ref={yearRef} {...register("year")} className="r2-inp w-100  my-3 my-sm-0">
+                                                        <option value="" disabled>
+                                                            Select year
+                                                        </option>
+                                                        {
+                                                            years.map((singleCount)=>(<option key={singleCount} value={singleCount}>{singleCount}</option>))
+                                                        }
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div className="py-4">
