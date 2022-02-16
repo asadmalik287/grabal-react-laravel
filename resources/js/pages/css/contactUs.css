@@ -1,0 +1,13 @@
+/*====CONTACT US====*/
+
+.bg-back {
+    background-color: #d93a3f;
+}
+
+.bg-back:hover {
+    color: white;
+}
+
+.color {
+    color: red;
+}
