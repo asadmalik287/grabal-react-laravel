@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./css/Register.css";
 import NavbarLogo from "../images/Logo.png";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
 
@@ -9,6 +9,7 @@ export const Register = () => {
     const [newData, setNewData] = useState('')
     const {  register, handleSubmit, formState: { errors },} = useForm();
     const signUpForm = handleSubmit(data => setNewData(data));
+    let history = useHistory();
 
     let {date,month,year,countryCode,number} = newData;
     let dob = `${date}-${month}-${year}`;
@@ -19,12 +20,14 @@ export const Register = () => {
 
     useEffect(() => {
         sendingData()
-    }, [changeData]);
-
+    }, [newData]);
 
     const sendingData = async () => {
         try {
-            await axios.post('/api/signup', changeData)
+            const response = await axios.post('/api/register', changeData)
+            if(response.data.status === 1){
+                history.push('/Login');
+            }
         } catch (error) {
             console.log(error.message);
         }

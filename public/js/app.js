@@ -8297,17 +8297,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Login": () => (/* binding */ Login),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _images_Logo_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../images/Logo.png */ "./resources/js/images/Logo.png");
-/* harmony import */ var _css_login_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./css/login.css */ "./resources/js/pages/css/login.css");
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _images_Logo_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../images/Logo.png */ "./resources/js/images/Logo.png");
+/* harmony import */ var _css_login_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./css/login.css */ "./resources/js/pages/css/login.css");
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -8317,104 +8329,139 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var Login = function Login() {
-  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_3__.useForm)(),
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_4__.useForm)(),
       register = _useForm.register,
       handleSubmit = _useForm.handleSubmit,
-      errors = _useForm.formState.errors;
+      errors = _useForm.formState.errors; // const loginSubmit = handleSubmit((data) => console.log(data));
 
-  var loginSubmit = handleSubmit(function (data) {
-    return console.log(data);
-  });
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("section", {
+
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useHistory)();
+
+  var loginSubmit = /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(formData) {
+      var resp;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_5___default().post('/api/login', formData);
+
+            case 2:
+              resp = _context.sent;
+              console.log(resp);
+
+              try {
+                if (resp.data.status === 1) {
+                  localStorage.setItem('user', JSON.stringify(resp.data));
+                  history.push('/');
+                } else {
+                  alert("error");
+                }
+              } catch (error) {
+                console.log(error.message);
+              }
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function loginSubmit(_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("section", {
       className: "login h-100",
       style: {
-        background: '#f6f5f4'
+        background: "#f6f5f4"
       },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
         className: "row mx-0 pt-5 h-100 justify-content-center align-items-center",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
           className: "col-12 col-sm-7 col-lg-4 col-md-5  m-auto ",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
               className: "logo text-center mb-2",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
                 className: "w-50 ",
-                src: _images_Logo_png__WEBPACK_IMPORTED_MODULE_1__["default"],
+                src: _images_Logo_png__WEBPACK_IMPORTED_MODULE_2__["default"],
                 alt: ""
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
               className: "login-form shadow bg-white px-4 pt-3 pt-4 pb-5",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
                 className: "ttu text-center titleBlue",
                 children: "Login"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
                 className: "login-text py-2 text-center",
-                children: ["New to Grobal? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+                children: ["New to Grobal? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
                   to: "Register",
                   children: " Register now"
                 })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
                 action: "",
                 onSubmit: handleSubmit(loginSubmit),
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
                   htmlFor: "",
                   children: "Email"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", _objectSpread(_objectSpread({
-                  className: "my-2 h__46 form-control ".concat(errors.email ? 'is-invalid' : '')
-                }, register("email", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                  className: "my-2 h__46 form-control ".concat(errors.email ? "is-invalid" : "")
+                }, register("name", {
                   required: true
                 })), {}, {
                   type: "email"
-                })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
                   className: "text-danger mb-0",
-                  children: ["  ", errors.email && "Email is required"]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                  children: [" ", errors.email && "Email is required"]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
                   className: "pt-3",
                   htmlFor: "",
                   children: "Password"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", _objectSpread(_objectSpread({
-                  className: "my-2  h__46 form-control ".concat(errors.password ? 'is-invalid' : '')
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({
+                  className: "my-2  h__46 form-control ".concat(errors.password ? "is-invalid" : "")
                 }, register("password", {
                   required: true
                 })), {}, {
                   type: "password"
-                })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                })), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
                   className: "text-danger mb-0",
-                  children: ["  ", errors.password && "Password  required"]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                  children: [" ", errors.password && "Password  required"]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
                   className: "pt-3 ",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
                     to: "ForgotPassword",
                     children: "Forgotten password?"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
                   type: "checkbox",
                   id: "rememberMe",
                   className: "box"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
                   className: "mb-0 d-inline-block ps-2",
                   htmlFor: "rememberMe",
                   children: "Remember me"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "buttons pt-4",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
-                    to: "/",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-                      type: "submit",
-                      className: "btn w-100 ttu",
-                      id: "btn-1",
-                      children: "Log in"
-                    })
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+                    type: "submit",
+                    className: "btn w-100 ttu",
+                    id: "btn-1",
+                    children: "Log in"
                   })
                 })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
               className: " ftr-text px-4 py-3",
-              children: ["This site is protected by reCAPTCHA and the Google", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+              children: ["This site is protected by reCAPTCHA and the Google", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
                 to: "#",
                 children: "Privacy Policy"
-              }), " and ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
+              }), " and ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
                 to: "#",
                 children: " Terms of Service"
               }), " apply"]
@@ -8653,7 +8700,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _css_Register_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./css/Register.css */ "./resources/js/pages/css/Register.css");
 /* harmony import */ var _images_Logo_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../images/Logo.png */ "./resources/js/images/Logo.png");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.mjs");
@@ -8706,6 +8754,7 @@ var Register = function Register() {
   var signUpForm = handleSubmit(function (data) {
     return setNewData(data);
   });
+  var history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useHistory)();
   var date = newData.date,
       month = newData.month,
       year = newData.year,
@@ -8720,33 +8769,40 @@ var Register = function Register() {
   });
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     sendingData();
-  }, [changeData]);
+  }, [newData]);
 
   var sendingData = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/signup', changeData);
+              return axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/register', changeData);
 
             case 3:
-              _context.next = 8;
+              response = _context.sent;
+
+              if (response.data.status === 1) {
+                history.push('/Login');
+              }
+
+              _context.next = 10;
               break;
 
-            case 5:
-              _context.prev = 5;
+            case 7:
+              _context.prev = 7;
               _context.t0 = _context["catch"](0);
               console.log(_context.t0.message);
 
-            case 8:
+            case 10:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 5]]);
+      }, _callee, null, [[0, 7]]);
     }));
 
     return function sendingData() {
@@ -9511,10 +9567,10 @@ var Register = function Register() {
                         ref: cbox,
                         className: "box"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
-                        children: ["I am over 18 and have read and accepted Grobal's ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+                        children: ["I am over 18 and have read and accepted Grobal's ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
                           to: "/",
                           children: " terms & conditions"
-                        }), " and", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+                        }), " and", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
                           to: "/",
                           children: "privacy policy"
                         })]
@@ -9530,7 +9586,7 @@ var Register = function Register() {
                 className: "border-line"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
                 className: "pt-2",
-                children: ["Already have an account? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Link, {
+                children: ["Already have an account? ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
                   to: "Login",
                   children: "Log in"
                 })]
@@ -16417,7 +16473,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Lato&family=Mulish&family=Poppins&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  margin: 0xp;\r\n  padding: 0px;\r\n  box-sizing: border-box;\r\n  font-family: \"Poppins\", sans-serif;\r\n}\r\n\r\n.bg-f6f5f3 {\r\n  background-color: #f6f5f4;\r\n}\r\n\r\n.redBorder{\r\n    border: 1px solid red !important;\r\n}\r\n\r\n.form-control:focus {\r\n    border-color: none !important;\r\n    box-shadow: none !important;\r\n}\r\n\r\ninput::-webkit-outer-spin-button,\r\ninput::-webkit-inner-spin-button {\r\n  -webkit-appearance: none;\r\n}\r\n\r\n.f-14 {\r\n  font-size: 14px;\r\n}\r\n\r\n.color__000 {\r\n  color: #000;\r\n}\r\n\r\na {\r\n  outline: none;\r\n}\r\n\r\n.font-weight-bolder {\r\n  font-weight: bolder;\r\n}\r\n\r\na {\r\n  text-decoration: none;\r\n}\r\n\r\n.main__padding {\r\n  padding: 0 140px;\r\n}\r\n\r\n.main__padding_COl {\r\n  padding: 0 125px;\r\n}\r\n\r\n.cl-707070 {\r\n  color: #707070;\r\n}\r\n\r\nnav {\r\n  /* background: #f1f2f4;\r\n     */\r\n}\r\n\r\n.bg-f8af2e {\r\n  background-color: #f8af2e;\r\n}\r\n\r\n.costumInput {\r\n  height: 43px;\r\n  border-radius: 8px;\r\n}\r\n\r\n.radius-0 {\r\n  border-radius: 0px !important;\r\n}\r\n\r\n.btnGroup1 {\r\n  background-color: #d93a3e;\r\n  border-color: #d93a3e !important;\r\n}\r\n\r\n.btnGroup2 {\r\n  background-color: #f4622f;\r\n  border-color: #f4622f !important;\r\n}\r\n\r\n.btnGroup2:hover {\r\n  background-color: #f4622f;\r\n  border-color: #f4622f !important;\r\n}\r\n\r\n.bg-2a7a1 {\r\n  background-color: #2a7ad1;\r\n  border-color: #2a7ad1 !important;\r\n}\r\n\r\n.bg-3171b9 {\r\n  background-color: #3171b9;\r\n}\r\n\r\n.cl-4CAF50 {\r\n  color: #4caf50;\r\n}\r\n\r\n.btnGroup3 {\r\n  background-color: #5f6f89;\r\n  border-color: #5f6f89 !important;\r\n}\r\n\r\n.relative__btns {\r\n  position: relative;\r\n  top: 33px;\r\n}\r\n\r\n.cardTopImg {\r\n  position: absolute;\r\n  top: -1px;\r\n  right: 0%;\r\n}\r\n\r\n.radiusTopRight {\r\n  border-top-right-radius: 7px;\r\n}\r\n\r\n/*====OFFERS====*/\r\n\r\n.offers h2 {\r\n  font-size: 1.5rem;\r\n}\r\n\r\n.os-main {\r\n  background-color: #f5f5f5;\r\n  /* width: 85%; */\r\n  border: 1px solid #707070;\r\n}\r\n\r\n.os-main h2 {\r\n  color: #4caf50;\r\n}\r\n\r\n.os-main input {\r\n  width: 100%;\r\n  font-size: 14px;\r\n}\r\n\r\n.reset-btn {\r\n  color: #444444;\r\n  border: none;\r\n  background: transparent;\r\n  font-size: 17px;\r\n}\r\n\r\n.com-cleaning a,\r\n.res-cleaning a {\r\n  display: block;\r\n  text-decoration: none;\r\n  color: #444444;\r\n  font-size: 14px;\r\n  line-height: 2;\r\n}\r\n\r\n.com-cleaning a:hover,\r\n.res-cleaning a:hover {\r\n  color: #3171b9;\r\n}\r\n\r\n/*====TRENDING CATEGORIES====*/\r\n\r\n.tc-text p {\r\n  font-size: 14px;\r\n}\r\n\r\n.tc-icon img {\r\n  width: 20%;\r\n}\r\n\r\nfooter {\r\n  width: 100%;\r\n}\r\n\r\nfooter .content {\r\n  /* max-width: 98%; */\r\n  margin: auto;\r\n  padding: 30px 0px;\r\n}\r\n\r\nfooter .content .link-boxes {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: space-between;\r\n}\r\n\r\nfooter .content .link-boxes .box {\r\n  width: calc(100% / 5 - 10px);\r\n}\r\n\r\n.content .link-boxes .box .link_name {\r\n  color: #000;\r\n  font-size: 16px;\r\n  font-weight: 600;\r\n  margin-bottom: 10px;\r\n  position: relative;\r\n}\r\n\r\n.content .link-boxes .box li {\r\n  margin: 6px 0;\r\n  list-style: none;\r\n}\r\n\r\n.content .link-boxes .box li a {\r\n  color: #000;\r\n  font-size: 14px;\r\n  font-weight: 400;\r\n  text-decoration: none;\r\n  opacity: 0.8;\r\n  transition: all 0.4s ease;\r\n}\r\n\r\n.content .link-boxes .box li a:hover {\r\n  opacity: 1;\r\n  text-decoration: underline;\r\n}\r\n\r\n.footerChild__1 {\r\n  padding-left: 0px !important;\r\n}\r\n\r\n@media (max-width: 900px) {\r\n  footer .content .link-boxes {\r\n    flex-wrap: wrap;\r\n  }\r\n}\r\n\r\n@media (max-width: 1100px) {\r\n\r\n  .main__padding,\r\n  .main__padding_COl {\r\n    padding: 0 15px;\r\n  }\r\n}\r\n\r\n@media (min-width: 1650px) {\r\n  .main__padding {\r\n    padding: 0 190px;\r\n  }\r\n}\r\n\r\n@media (max-width: 700px) {\r\n  footer {\r\n    position: relative;\r\n  }\r\n\r\n  footer .content .link-boxes .box {\r\n    width: calc(100% / 3 - 10px);\r\n  }\r\n}\r\n\r\n@media (max-width: 520px) {\r\n  footer::before {\r\n    top: 145px;\r\n  }\r\n\r\n  footer .content .link-boxes .box {\r\n    width: calc(100% / 2 - 10px);\r\n  }\r\n}\r\n\r\n@media only screen and (max-width: 600px) {\r\n  .sm__100 {\r\n    width: 100%;\r\n  }\r\n\r\n  .padding__left__1rem {\r\n    padding-left: 1rem !important;\r\n  }\r\n\r\n  .padding__Zero {\r\n    padding: 0px !important;\r\n  }\r\n\r\n  .anchorNavHover {\r\n    display: flex;\r\n    flex-direction: column;\r\n    align-items: center;\r\n  }\r\n\r\n  .smallIcon {\r\n    width: 16px;\r\n    height: 16px;\r\n  }\r\n\r\n  .fdreverse {\r\n    flex-direction: column-reverse;\r\n  }\r\n\r\n  .logoNav {\r\n    width: 100px;\r\n\r\n    margin: auto;\r\n    display: flex;\r\n  }\r\n\r\n  .text__sm__center {\r\n    text-align: center;\r\n  }\r\n\r\n  .relative__btns {\r\n    position: relative;\r\n    top: 0px !important;\r\n  }\r\n\r\n  .btnGroup2,\r\n  .btnGroup1,\r\n  .btnGroup3 {\r\n    border-radius: 8px !important;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 992px) and (max-width: 1231px) {\r\n  .tc-icon {\r\n    width: 30%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 992px) and (max-width: 1150px) {\r\n\r\n  /*====OFFERS====*/\r\n  .offers h2 {\r\n    font-size: 28px;\r\n  }\r\n\r\n  .com-cleaning a,\r\n  .res-cleaning a {\r\n    font-size: 12px;\r\n  }\r\n\r\n  /*====TRENDING CATEGORIES====*/\r\n  .tc-text h2 {\r\n    color: var(--mainbg);\r\n  }\r\n\r\n  .tc-text p {\r\n    font-size: 17px;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 768px) and (max-width: 991px) {\r\n\r\n  /*====OFFERS====*/\r\n  .os-main {\r\n    width: 100%;\r\n    font-size: 12px;\r\n  }\r\n\r\n  .offers h2 {\r\n    font-size: 21px;\r\n  }\r\n\r\n  .com-cleaning a,\r\n  .res-cleaning a {\r\n    font-size: 12px;\r\n    line-height: 2;\r\n  }\r\n\r\n  .search-btn {\r\n    padding: 5px 16px;\r\n    font-size: 13px;\r\n  }\r\n\r\n  .reset-btn {\r\n    padding: 5px 0px;\r\n    font-size: 15px;\r\n  }\r\n\r\n  /*====TRENDING CATEGORIES====*/\r\n  .tc-text h2 {\r\n    font-size: 24px;\r\n  }\r\n\r\n  .tc-text p {\r\n    font-size: 14px;\r\n  }\r\n\r\n  .tc-icon {\r\n    width: 30%;\r\n  }\r\n\r\n  .tc-icon img {\r\n    width: 23%;\r\n  }\r\n}\r\n\r\n/*====SMALL SCREEN====*/\r\n\r\n@media screen and (min-width: 576px) and (max-width: 767px) {\r\n\r\n  /*====OFFERS====*/\r\n  .search-btn {\r\n    padding: 6px 35px;\r\n    font-size: 17px;\r\n  }\r\n\r\n  .reset-btn {\r\n    padding: 6px 0px;\r\n    font-size: 17px;\r\n  }\r\n\r\n  .com-cleaning a,\r\n  .res-cleaning a {\r\n    line-height: 2;\r\n  }\r\n\r\n  /*====TRENDING CATEGORIES====*/\r\n  .tc-text h2 {\r\n    font-size: 25px;\r\n  }\r\n\r\n  .tc-text p {\r\n    font-size: 17px;\r\n  }\r\n\r\n  .tc-icon {\r\n    width: 30%;\r\n  }\r\n\r\n  .tc-icon img {\r\n    width: 20%;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 574px) {\r\n  .tc-icon {\r\n    width: 30%;\r\n  }\r\n\r\n  .tc-icon img {\r\n    width: 20%;\r\n  }\r\n}\r\n\r\n@media screen and (min-width: 295px) and (max-width: 348px) {\r\n  .tc-icon {\r\n    width: 35%;\r\n  }\r\n}\r\n\r\n/*====CARPET CLEANING====*/\r\n\r\n.cc-heading h2 {\r\n  font-weight: 800;\r\n}\r\n\r\n.cc-heading p {\r\n  color: #7e7e7e;\r\n  font-weight: 700;\r\n}\r\n\r\n.enquireButton button {\r\n  width: 100%;\r\n}\r\n\r\n.listCard {\r\n  /* width: 75%; */\r\n}\r\n\r\n.listCard .card {\r\n  flex-direction: row;\r\n  transition: 0.7s ease-in-out;\r\n}\r\n\r\n.cardMainAnchor {\r\n  margin-bottom: 1.5rem;\r\n}\r\n\r\n.listCard .card .mainImageCard {\r\n  width: auto !important;\r\n}\r\n\r\n.listCard .card .card-body .card-text {\r\n  text-align: start !important;\r\n  padding-right: 18px;\r\n}\r\n\r\n.listCard .card .radiusTopRight {\r\n  border-top-right-radius: 0 !important;\r\n}\r\n\r\n/*====PARAGRAPH====*/\r\n\r\n.p-list {\r\n  list-style-type: circle;\r\n  padding: 1rem !important;\r\n}\r\n\r\n/*====REVIEWS====*/\r\n\r\n.r-img img {\r\n  width: 20px;\r\n}\r\n\r\n.reviews-card {\r\n  border: 2px solid #4caf50;\r\n}\r\n\r\n.reviews-card h6 {\r\n  font-weight: 700;\r\n}\r\n\r\n.reviews-card p {\r\n  font-weight: 500;\r\n  color: #7e7e7e;\r\n}\r\n\r\n.star-5 {\r\n  color: #c0c0c0;\r\n}\r\n\r\n.rc-2,\r\n.rc-3 {\r\n  border: 2px solid #d5d5d5;\r\n}\r\n\r\n.serviceProviderCol {\r\n  flex: 0 0 auto;\r\n  width: 32.55555555%;\r\n}\r\n\r\n@media screen and (max-width: 768px) {\r\n  .cc-heading h2 {\r\n    font-size: 22px;\r\n  }\r\n\r\n  .listCard .card .mainImageCard {\r\n    width: auto !important;\r\n  }\r\n\r\n  .cardMainAnchor {\r\n    padding: 0px !important;\r\n  }\r\n\r\n  .listCard {\r\n    width: 100%;\r\n  }\r\n\r\n  .serviceProviderCol {\r\n    flex: 0 0 auto;\r\n    width: 100%;\r\n  }\r\n\r\n  .listCard .card .radiusTopRight {\r\n    width: 155px !important;\r\n    height: 161px;\r\n  }\r\n}\r\n\r\n@media screen and (max-width: 574px) {\r\n  .mob-center {\r\n    text-align: center;\r\n  }\r\n\r\n  .cch-btn {\r\n    width: 100%;\r\n  }\r\n\r\n  .p-list li {\r\n    padding: 0.5rem 0;\r\n  }\r\n}\r\n\r\n/*====SERVICE.HTML UPDATED====*/\r\n\r\n.modal-header h5 {\r\n  font-size: 24px;\r\n  font-weight: 700;\r\n}\r\n\r\n.wmInp {\r\n  height: 48px;\r\n  border-radius: 3px;\r\n  padding: 0 2rem;\r\n  border: 1px solid #d7d5d2;\r\n}\r\n\r\n.wmAbs {\r\n  top: 58%;\r\n  left: 8%;\r\n}\r\n\r\n.wmSwitch {\r\n  border-color: #65605d;\r\n}\r\n\r\n.wmBtn:focus {\r\n  outline: none !important;\r\n}\r\n\r\n.wmdMenu {\r\n  width: 100%;\r\n  padding: 1rem;\r\n  font-size: 14px;\r\n}\r\n\r\n.wmRadio {\r\n  width: 15px;\r\n  height: 15px;\r\n}\r\n\r\n.wmInpFtr {\r\n  width: 22px;\r\n  height: 22px;\r\n}\r\n\r\n.serviceModal {\r\n  min-width: 750px !important;\r\n}\r\n\r\n.watchModal {\r\n  min-width: 700px !important;\r\n  font-size: 14px;\r\n}\r\n\r\n.wf-14 {\r\n  font-size: 14px;\r\n}\r\n\r\n.wf-24 {\r\n  font-size: 24px;\r\n}\r\n\r\n.wf75 {\r\n  font-size: .75rem;\r\n}\r\n\r\n.wf85 {\r\n  font-size: .85rem;\r\n}\r\n\r\n.modal-header h5 {\r\n  font-size: 24px;\r\n  font-weight: 700;\r\n}\r\n\r\n@media screen and (max-width:768px) {\r\n  .wmAbs {\r\n    top: 58%;\r\n    left: 8%;\r\n  }\r\n\r\n  .watchModal {\r\n    min-width: 94% !important;\r\n    font-size: 14px;\r\n  }\r\n\r\n  .wmInp {\r\n    height: 48px;\r\n    border-radius: 3px;\r\n    padding: 0 1.7rem;\r\n    border: 1px solid #d7d5d2;\r\n  }\r\n\r\n  .wmAbs {\r\n    top: 58%;\r\n    left: 4%;\r\n  }\r\n\r\n  .wmfBtn {\r\n    width: 100%;\r\n    display: block !important;\r\n  }\r\n}\r\n\r\n.checkBoxWatchList {\r\n  /* Double-sized Checkboxes */\r\n  -ms-transform: scale(1.5);\r\n  /* IE */\r\n  -moz-transform: scale(1.5);\r\n  /* FF */\r\n  -webkit-transform: scale(1.5);\r\n  /* Safari and Chrome */\r\n  -o-transform: scale(1.5);\r\n  /* Opera */\r\n  padding: 9px;\r\n}\r\n.cardWatchListCard{\r\n  position: absolute;\r\n  left: 8px;\r\n  top: 8px;\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\n  margin: 0xp;\n  padding: 0px;\n  box-sizing: border-box;\n  font-family: \"Poppins\", sans-serif;\n}\n\n.bg-f6f5f3 {\n  background-color: #f6f5f4;\n}\n\n.redBorder{\n    border: 1px solid red !important;\n}\n\n.form-control:focus {\n    border-color: none !important;\n    box-shadow: none !important;\n}\n\ninput::-webkit-outer-spin-button,\ninput::-webkit-inner-spin-button {\n  -webkit-appearance: none;\n}\n\n.f-14 {\n  font-size: 14px;\n}\n\n.color__000 {\n  color: #000;\n}\n\na {\n  outline: none;\n}\n\n.font-weight-bolder {\n  font-weight: bolder;\n}\n\na {\n  text-decoration: none;\n}\n\n.main__padding {\n  padding: 0 140px;\n}\n\n.main__padding_COl {\n  padding: 0 125px;\n}\n\n.cl-707070 {\n  color: #707070;\n}\n\nnav {\n  /* background: #f1f2f4;\n     */\n}\n\n.bg-f8af2e {\n  background-color: #f8af2e;\n}\n\n.costumInput {\n  height: 43px;\n  border-radius: 8px;\n}\n\n.radius-0 {\n  border-radius: 0px !important;\n}\n\n.btnGroup1 {\n  background-color: #d93a3e;\n  border-color: #d93a3e !important;\n}\n\n.btnGroup2 {\n  background-color: #f4622f;\n  border-color: #f4622f !important;\n}\n\n.btnGroup2:hover {\n  background-color: #f4622f;\n  border-color: #f4622f !important;\n}\n\n.bg-2a7a1 {\n  background-color: #2a7ad1;\n  border-color: #2a7ad1 !important;\n}\n\n.bg-3171b9 {\n  background-color: #3171b9;\n}\n\n.cl-4CAF50 {\n  color: #4caf50;\n}\n\n.btnGroup3 {\n  background-color: #5f6f89;\n  border-color: #5f6f89 !important;\n}\n\n.relative__btns {\n  position: relative;\n  top: 33px;\n}\n\n.cardTopImg {\n  position: absolute;\n  top: -1px;\n  right: 0%;\n}\n\n.radiusTopRight {\n  border-top-right-radius: 7px;\n}\n\n/*====OFFERS====*/\n\n.offers h2 {\n  font-size: 1.5rem;\n}\n\n.os-main {\n  background-color: #f5f5f5;\n  /* width: 85%; */\n  border: 1px solid #707070;\n}\n\n.os-main h2 {\n  color: #4caf50;\n}\n\n.os-main input {\n  width: 100%;\n  font-size: 14px;\n}\n\n.reset-btn {\n  color: #444444;\n  border: none;\n  background: transparent;\n  font-size: 17px;\n}\n\n.com-cleaning a,\n.res-cleaning a {\n  display: block;\n  text-decoration: none;\n  color: #444444;\n  font-size: 14px;\n  line-height: 2;\n}\n\n.com-cleaning a:hover,\n.res-cleaning a:hover {\n  color: #3171b9;\n}\n\n/*====TRENDING CATEGORIES====*/\n\n.tc-text p {\n  font-size: 14px;\n}\n\n.tc-icon img {\n  width: 20%;\n}\n\nfooter {\n  width: 100%;\n}\n\nfooter .content {\n  /* max-width: 98%; */\n  margin: auto;\n  padding: 30px 0px;\n}\n\nfooter .content .link-boxes {\n  width: 100%;\n  display: flex;\n  justify-content: space-between;\n}\n\nfooter .content .link-boxes .box {\n  width: calc(100% / 5 - 10px);\n}\n\n.content .link-boxes .box .link_name {\n  color: #000;\n  font-size: 16px;\n  font-weight: 600;\n  margin-bottom: 10px;\n  position: relative;\n}\n\n.content .link-boxes .box li {\n  margin: 6px 0;\n  list-style: none;\n}\n\n.content .link-boxes .box li a {\n  color: #000;\n  font-size: 14px;\n  font-weight: 400;\n  text-decoration: none;\n  opacity: 0.8;\n  transition: all 0.4s ease;\n}\n\n.content .link-boxes .box li a:hover {\n  opacity: 1;\n  text-decoration: underline;\n}\n\n.footerChild__1 {\n  padding-left: 0px !important;\n}\n\n@media (max-width: 900px) {\n  footer .content .link-boxes {\n    flex-wrap: wrap;\n  }\n}\n\n@media (max-width: 1100px) {\n\n  .main__padding,\n  .main__padding_COl {\n    padding: 0 15px;\n  }\n}\n\n@media (min-width: 1650px) {\n  .main__padding {\n    padding: 0 190px;\n  }\n}\n\n@media (max-width: 700px) {\n  footer {\n    position: relative;\n  }\n\n  footer .content .link-boxes .box {\n    width: calc(100% / 3 - 10px);\n  }\n}\n\n@media (max-width: 520px) {\n  footer::before {\n    top: 145px;\n  }\n\n  footer .content .link-boxes .box {\n    width: calc(100% / 2 - 10px);\n  }\n}\n\n@media only screen and (max-width: 600px) {\n  .sm__100 {\n    width: 100%;\n  }\n\n  .padding__left__1rem {\n    padding-left: 1rem !important;\n  }\n\n  .padding__Zero {\n    padding: 0px !important;\n  }\n\n  .anchorNavHover {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n  }\n\n  .smallIcon {\n    width: 16px;\n    height: 16px;\n  }\n\n  .fdreverse {\n    flex-direction: column-reverse;\n  }\n\n  .logoNav {\n    width: 100px;\n\n    margin: auto;\n    display: flex;\n  }\n\n  .text__sm__center {\n    text-align: center;\n  }\n\n  .relative__btns {\n    position: relative;\n    top: 0px !important;\n  }\n\n  .btnGroup2,\n  .btnGroup1,\n  .btnGroup3 {\n    border-radius: 8px !important;\n  }\n}\n\n@media screen and (min-width: 992px) and (max-width: 1231px) {\n  .tc-icon {\n    width: 30%;\n  }\n}\n\n@media screen and (min-width: 992px) and (max-width: 1150px) {\n\n  /*====OFFERS====*/\n  .offers h2 {\n    font-size: 28px;\n  }\n\n  .com-cleaning a,\n  .res-cleaning a {\n    font-size: 12px;\n  }\n\n  /*====TRENDING CATEGORIES====*/\n  .tc-text h2 {\n    color: var(--mainbg);\n  }\n\n  .tc-text p {\n    font-size: 17px;\n  }\n}\n\n@media screen and (min-width: 768px) and (max-width: 991px) {\n\n  /*====OFFERS====*/\n  .os-main {\n    width: 100%;\n    font-size: 12px;\n  }\n\n  .offers h2 {\n    font-size: 21px;\n  }\n\n  .com-cleaning a,\n  .res-cleaning a {\n    font-size: 12px;\n    line-height: 2;\n  }\n\n  .search-btn {\n    padding: 5px 16px;\n    font-size: 13px;\n  }\n\n  .reset-btn {\n    padding: 5px 0px;\n    font-size: 15px;\n  }\n\n  /*====TRENDING CATEGORIES====*/\n  .tc-text h2 {\n    font-size: 24px;\n  }\n\n  .tc-text p {\n    font-size: 14px;\n  }\n\n  .tc-icon {\n    width: 30%;\n  }\n\n  .tc-icon img {\n    width: 23%;\n  }\n}\n\n/*====SMALL SCREEN====*/\n\n@media screen and (min-width: 576px) and (max-width: 767px) {\n\n  /*====OFFERS====*/\n  .search-btn {\n    padding: 6px 35px;\n    font-size: 17px;\n  }\n\n  .reset-btn {\n    padding: 6px 0px;\n    font-size: 17px;\n  }\n\n  .com-cleaning a,\n  .res-cleaning a {\n    line-height: 2;\n  }\n\n  /*====TRENDING CATEGORIES====*/\n  .tc-text h2 {\n    font-size: 25px;\n  }\n\n  .tc-text p {\n    font-size: 17px;\n  }\n\n  .tc-icon {\n    width: 30%;\n  }\n\n  .tc-icon img {\n    width: 20%;\n  }\n}\n\n@media screen and (max-width: 574px) {\n  .tc-icon {\n    width: 30%;\n  }\n\n  .tc-icon img {\n    width: 20%;\n  }\n}\n\n@media screen and (min-width: 295px) and (max-width: 348px) {\n  .tc-icon {\n    width: 35%;\n  }\n}\n\n/*====CARPET CLEANING====*/\n\n.cc-heading h2 {\n  font-weight: 800;\n}\n\n.cc-heading p {\n  color: #7e7e7e;\n  font-weight: 700;\n}\n\n.enquireButton button {\n  width: 100%;\n}\n\n.listCard {\n  /* width: 75%; */\n}\n\n.listCard .card {\n  flex-direction: row;\n  transition: 0.7s ease-in-out;\n}\n\n.cardMainAnchor {\n  margin-bottom: 1.5rem;\n}\n\n.listCard .card .mainImageCard {\n  width: auto !important;\n}\n\n.listCard .card .card-body .card-text {\n  text-align: start !important;\n  padding-right: 18px;\n}\n\n.listCard .card .radiusTopRight {\n  border-top-right-radius: 0 !important;\n}\n\n/*====PARAGRAPH====*/\n\n.p-list {\n  list-style-type: circle;\n  padding: 1rem !important;\n}\n\n/*====REVIEWS====*/\n\n.r-img img {\n  width: 20px;\n}\n\n.reviews-card {\n  border: 2px solid #4caf50;\n}\n\n.reviews-card h6 {\n  font-weight: 700;\n}\n\n.reviews-card p {\n  font-weight: 500;\n  color: #7e7e7e;\n}\n\n.star-5 {\n  color: #c0c0c0;\n}\n\n.rc-2,\n.rc-3 {\n  border: 2px solid #d5d5d5;\n}\n\n.serviceProviderCol {\n  flex: 0 0 auto;\n  width: 32.55555555%;\n}\n\n@media screen and (max-width: 768px) {\n  .cc-heading h2 {\n    font-size: 22px;\n  }\n\n  .listCard .card .mainImageCard {\n    width: auto !important;\n  }\n\n  .cardMainAnchor {\n    padding: 0px !important;\n  }\n\n  .listCard {\n    width: 100%;\n  }\n\n  .serviceProviderCol {\n    flex: 0 0 auto;\n    width: 100%;\n  }\n\n  .listCard .card .radiusTopRight {\n    width: 155px !important;\n    height: 161px;\n  }\n}\n\n@media screen and (max-width: 574px) {\n  .mob-center {\n    text-align: center;\n  }\n\n  .cch-btn {\n    width: 100%;\n  }\n\n  .p-list li {\n    padding: 0.5rem 0;\n  }\n}\n\n/*====SERVICE.HTML UPDATED====*/\n\n.modal-header h5 {\n  font-size: 24px;\n  font-weight: 700;\n}\n\n.wmInp {\n  height: 48px;\n  border-radius: 3px;\n  padding: 0 2rem;\n  border: 1px solid #d7d5d2;\n}\n\n.wmAbs {\n  top: 58%;\n  left: 8%;\n}\n\n.wmSwitch {\n  border-color: #65605d;\n}\n\n.wmBtn:focus {\n  outline: none !important;\n}\n\n.wmdMenu {\n  width: 100%;\n  padding: 1rem;\n  font-size: 14px;\n}\n\n.wmRadio {\n  width: 15px;\n  height: 15px;\n}\n\n.wmInpFtr {\n  width: 22px;\n  height: 22px;\n}\n\n.serviceModal {\n  min-width: 750px !important;\n}\n\n.watchModal {\n  min-width: 700px !important;\n  font-size: 14px;\n}\n\n.wf-14 {\n  font-size: 14px;\n}\n\n.wf-24 {\n  font-size: 24px;\n}\n\n.wf75 {\n  font-size: .75rem;\n}\n\n.wf85 {\n  font-size: .85rem;\n}\n\n.modal-header h5 {\n  font-size: 24px;\n  font-weight: 700;\n}\n\n@media screen and (max-width:768px) {\n  .wmAbs {\n    top: 58%;\n    left: 8%;\n  }\n\n  .watchModal {\n    min-width: 94% !important;\n    font-size: 14px;\n  }\n\n  .wmInp {\n    height: 48px;\n    border-radius: 3px;\n    padding: 0 1.7rem;\n    border: 1px solid #d7d5d2;\n  }\n\n  .wmAbs {\n    top: 58%;\n    left: 4%;\n  }\n\n  .wmfBtn {\n    width: 100%;\n    display: block !important;\n  }\n}\n\n.checkBoxWatchList {\n  /* Double-sized Checkboxes */\n  -ms-transform: scale(1.5);\n  /* IE */\n  -moz-transform: scale(1.5);\n  /* FF */\n  -webkit-transform: scale(1.5);\n  /* Safari and Chrome */\n  -o-transform: scale(1.5);\n  /* Opera */\n  padding: 9px;\n}\n.cardWatchListCard{\n  position: absolute;\n  left: 8px;\n  top: 8px;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -78760,7 +78816,7 @@ function useForm(props = {}) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\laravel-react-js"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\laravel-react-js","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\grabal-react-laravel"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\grabal-react-laravel","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 
