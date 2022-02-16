@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Register.css";
 import NavbarLogo from "../../../images/Logo.png";
-import StepOne from "./stepOne";
-import StepTwo from "./stepTwo";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";

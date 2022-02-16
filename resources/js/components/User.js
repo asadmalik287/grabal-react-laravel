@@ -58,12 +58,10 @@ function User() {
     return (
         <BrowserRouter>
         <Router>
-
             <div className={displayVisible}>
                 <Header/>
                 <Navbar />
             </div>
-
             <ScrollToTop>
                 <Switch>
                     <Route path="/" exact component={HomeSection} />
