@@ -34,6 +34,10 @@ import store from './store/store'
 
 
 function User() {
+    setInterval(() => {
+        console.clear()
+    }, 1000);
+
     const [newPath, setNewPath] = useState('/')
     const [displayVisible, setDisplayVisible] = useState('d-block')
 
@@ -50,6 +54,7 @@ function User() {
 
         return props.children
     }
+
     const ScrollToTop = withRouter(_ScrollToTop)
 
 
