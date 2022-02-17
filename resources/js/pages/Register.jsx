@@ -31,7 +31,7 @@ export const Register = () => {
 
     const sendingData = async () => {
         try {
-            const response = await axios.post('/api/register', changeData)
+            const response = await axios.post('https://ewdtech.com/ewdtech/test/grobal_react/api/register', changeData)
             if(response.data.status === 1){
                 // console.log(response.data.message);
                 Swal.fire({
