@@ -8399,7 +8399,7 @@ var Login = function Login() {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_5___default().post('https://ewdtech.com/ewdtech/test/grobal_react/api/login', formData);
+              return axios__WEBPACK_IMPORTED_MODULE_5___default().post('/api/login', formData);
 
             case 2:
               resp = _context.sent;
@@ -8862,7 +8862,7 @@ var Register = function Register() {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_4___default().post('https://ewdtech.com/ewdtech/test/grobal_react/api/register', changeData);
+              return axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/register', changeData);
 
             case 3:
               response = _context.sent;
@@ -9121,7 +9121,6 @@ var Register = function Register() {
                         onInput: function onInput(e) {
                           return focusInput(e, true, 'input');
                         },
-                        "data-password": "true",
                         name: "password",
                         type: "password",
                         ref: password
@@ -9143,7 +9142,6 @@ var Register = function Register() {
                           return focusInput(e, true, 'input');
                         },
                         name: "confirm_password",
-                        "dataConfirm-password": "true",
                         type: "password",
                         ref: confirmPassword
                       }, register("confirm_password", {

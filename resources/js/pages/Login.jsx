@@ -22,7 +22,7 @@ export const Login = () => {
 
 
     const loginSubmit = async (formData) => {
-        let resp = await axios.post('https://ewdtech.com/ewdtech/test/grobal_react/api/login', formData);
+        let resp = await axios.post('/api/login', formData);
 
         try {
           if (resp.data.status === 1) {
