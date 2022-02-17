@@ -4,7 +4,6 @@ import NavbarLogo from '../assets/images/logo.png'
 import { useSelector} from 'react-redux';
 
 export const Navbar = () => {
-
   return <React.Fragment>
     <nav className="mt-1  main__padding d-flex align-items-center justify-content-between removeHeaderFooterClass">
       <div>
