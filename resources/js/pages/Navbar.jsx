@@ -1,8 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import NavbarLogo from '../assets/images/logo.png'
+import { useSelector} from 'react-redux';
 
 export const Navbar = () => {
+    let user = useSelector((store)=>{
+        return store.userReducer.user;
+    })
+    console.log(user);
+    
   return <React.Fragment>
     <nav className="mt-1  main__padding d-flex align-items-center justify-content-between removeHeaderFooterClass">
       <div>
@@ -28,4 +34,4 @@ export const Navbar = () => {
     </nav>
   </React.Fragment>;
 };
-export default Navbar;
+export default Navbar
