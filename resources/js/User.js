@@ -4,7 +4,7 @@ import './assets/css/app.css'
 import './assets/css/index.css'
 import { BrowserRouter as Router, Route, Switch, useLocation, withRouter} from 'react-router-dom'
 import { BrowserRouter } from 'react-router-dom'
-
+import {Provider} from 'react-redux';
 import HomeSection from './pages/HomeSection';
 import servicePageList from './pages/servicePageList'
 import SingleServicePage from './pages/SingleServicePage';
@@ -29,6 +29,7 @@ import ChangeEmailAddress from './pages/changeEmailAddress'
 import Changepassword from './pages/changepassword';
 import Editdelieveryaddress from './pages/editdelieveryaddress'
 import EditAddressForm from './pages/EditAddressForm';
+import store from './store/store'
 
 
 
@@ -54,44 +55,46 @@ function User() {
 
 
     return (
-        <BrowserRouter>
-        <Router>
-            <div className={displayVisible}>
-                <Header/>
-                <Navbar />
-            </div>
-            <ScrollToTop>
-                <Switch>
-                    <Route path="/" exact component={HomeSection} />
-                    <Route path="/SingleServicePage" component={SingleServicePage} />
-                    <Route path="/servicePageList" component={servicePageList} />
-                    <Route path="/Login" component={Login} />
-                    <Route path="/Register" component={Register} />
-                    <Route path="/ForgotPassword" component={ForgotPassword} />
-                    <Route path="/ServiceListDetails" component={ServiceListDetails} />
-                    <Route path="/Careers" component={Careers} />
-                    <Route path="/AboutUs" component={AboutUs} />
-                    <Route path="/AboutsUsDetails" component={AboutsUsDetails} />
-                    <Route path="/PricvacyPolicy" component={PricvacyPolicy} />
-                    <Route path="/CommunityEnvironment" component={CommunityEnvironment} />
-                    <Route path="/CommunityEnvironmentDetails" component={CommunityEnvironmentDetails} />
-                    <Route path="/Faqs" component={Faqs} />
-                    <Route path="/ContactUs" component={ContactUs} />
-                    <Route path="/watchlist" component={WatchList} />
-                    <Route path="/WatchListAccountDetails" component={WatchListAccountDetails} />
-                    <Route path="/ChangeEmailAddress" component={ChangeEmailAddress} />
-                    <Route path="/Changepassword" component={Changepassword} />
-                    <Route path="/Editdelieveryaddress" component={Editdelieveryaddress} />
-                    <Route path="/EditAddressForm" component={EditAddressForm} />
-                </Switch>
-            </ScrollToTop>
+        <Provider store = {store}>
+            <BrowserRouter>
+                <Router>
+                    <div className={displayVisible}>
+                        <Header/>
+                        <Navbar />
+                    </div>
+                    <ScrollToTop>
+                        <Switch>
+                            <Route path="/" exact component={HomeSection} />
+                            <Route path="/SingleServicePage" component={SingleServicePage} />
+                            <Route path="/servicePageList" component={servicePageList} />
+                            <Route path="/Login" component={Login} />
+                            <Route path="/Register" component={Register} />
+                            <Route path="/ForgotPassword" component={ForgotPassword} />
+                            <Route path="/ServiceListDetails" component={ServiceListDetails} />
+                            <Route path="/Careers" component={Careers} />
+                            <Route path="/AboutUs" component={AboutUs} />
+                            <Route path="/AboutsUsDetails" component={AboutsUsDetails} />
+                            <Route path="/PricvacyPolicy" component={PricvacyPolicy} />
+                            <Route path="/CommunityEnvironment" component={CommunityEnvironment} />
+                            <Route path="/CommunityEnvironmentDetails" component={CommunityEnvironmentDetails} />
+                            <Route path="/Faqs" component={Faqs} />
+                            <Route path="/ContactUs" component={ContactUs} />
+                            <Route path="/watchlist" component={WatchList} />
+                            <Route path="/WatchListAccountDetails" component={WatchListAccountDetails} />
+                            <Route path="/ChangeEmailAddress" component={ChangeEmailAddress} />
+                            <Route path="/Changepassword" component={Changepassword} />
+                            <Route path="/Editdelieveryaddress" component={Editdelieveryaddress} />
+                            <Route path="/EditAddressForm" component={EditAddressForm} />
+                        </Switch>
+                    </ScrollToTop>
 
-            <div className={displayVisible}>
-                <Footer/>
-            </div>
+                    <div className={displayVisible}>
+                        <Footer/>
+                    </div>
 
-        </Router>
-        </BrowserRouter>
+                </Router>
+            </BrowserRouter>
+        </Provider>
     );
 }
 

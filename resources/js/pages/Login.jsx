@@ -4,6 +4,9 @@ import NavbarLogo from '../assets/images/Logo.png'
 import './css/login.css'
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import Swal from "sweetalert2";
+import {connect} from 'react-redux';
+import store from '../store/store';
 
 export const Login = () => {
     const { register, handleSubmit, formState: { errors }, } = useForm();
@@ -13,16 +16,48 @@ export const Login = () => {
 
     const loginSubmit = async (formData) => {
         let resp = await axios.post('/api/login', formData);
-        console.log(resp)
+
         try {
           if (resp.data.status === 1) {
+            // console.log(resp.data.result);
+            // Sending Data to store
+               store.dispatch({
+                type: "USER_LOGIN",
+                payload: resp.data.result
+              })
+
+
+            // Alert Message code Start
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+
+              Toast.fire({
+                icon: 'success',
+                title: 'Login Successfully'
+            })
+            // Alert Message code
+
+
             localStorage.setItem('user', JSON.stringify(resp.data))
             history.push('/');
 
-
-            
           } else {
-            alert("error");
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed to login',
+                text: resp.data.message
+              })
+
+
           }
 
         } catch (error) {
@@ -81,4 +116,6 @@ export const Login = () => {
         </React.Fragment>
     );
 };
-export default Login;
+
+
+export default connect((store)=>{ return store; })(Login);

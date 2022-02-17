@@ -7,16 +7,16 @@ import { useForm } from "react-hook-form";
 
 export const Register = () => {
     const [newData, setNewData] = useState('')
-    const {  register, handleSubmit, formState: { errors },} = useForm();
+    const { register, handleSubmit, formState: { errors }, } = useForm();
     const signUpForm = handleSubmit(data => setNewData(data));
     let history = useHistory();
 
-    let {date,month,year,countryCode,number} = newData;
+    let { date, month, year, countryCode, number } = newData;
     let dob = `${date}-${month}-${year}`;
 
     let phone_number = `${countryCode} ${number} `;
     let changeData = newData;
-    changeData = {...changeData,'dob':dob ,'phone_number':phone_number};
+    changeData = { ...changeData, 'dob': dob, 'phone_number': phone_number };
 
     useEffect(() => {
         sendingData()
@@ -25,7 +25,7 @@ export const Register = () => {
     const sendingData = async () => {
         try {
             const response = await axios.post('/api/register', changeData)
-            if(response.data.status === 1){
+            if (response.data.status === 1) {
                 history.push('/Login');
             }
         } catch (error) {
@@ -74,22 +74,21 @@ export const Register = () => {
         }
     };
 
-    const nextStep = () =>{
+    const nextStep = () => {
         // All inputs
         let allInputs = document.querySelectorAll('.inputStep1')
-        for(let i of allInputs){
-            focusInput(i , false,'input')
+        for (let i of allInputs) {
+            focusInput(i, false, 'input')
         }
-
         // Radio buttons inputs
         let allRadio = document.querySelectorAll('.radioStep1')
-        for(let i of allRadio){
-            i.checked ? focusInput(i , false,'radio') : document.getElementsByClassName('messageCountry')[0].classList.remove('d-none');
+        for (let i of allRadio) {
+            i.checked ? focusInput(i, false, 'radio') : document.getElementsByClassName('messageCountry')[0].classList.remove('d-none');
         }
 
         let checkRunLoop = document.querySelectorAll('.runLoop')
 
-        if((allInputs.length + allRadio.length) === checkRunLoop.length){
+        if ((allInputs.length + allRadio.length) === checkRunLoop.length) {
             setstep1('d-none')
             setstep2('d-block')
         }
@@ -98,23 +97,25 @@ export const Register = () => {
 
     }
 
-    const previousStep = () =>{
+    const previousStep = () => {
         setstep1('d-block')
         setstep2('d-none')
     }
 
-    const focusInput = (e, check=false, type) => {
+    const focusInput = (e, check = false, type) => {
         let targetElement = check ? e.target : e;
         let messageTag = targetElement.nextSibling;
 
+
+
         // Checking Input type and then perform action
-        if(type === 'input'){
-            if(targetElement.value === '') {
+        if (type === 'input') {
+            if (targetElement.value === '') {
                 messageTag.classList.remove('d-none')
                 targetElement.classList.add('redBorder')
                 targetElement.classList.remove('runLoop')
             }
-            else{
+            else {
                 targetElement.classList.remove('redBorder')
                 messageTag.classList.add('d-none');
                 targetElement.classList.add('runLoop')
@@ -122,12 +123,12 @@ export const Register = () => {
         }
 
 
-        if(type === 'radio'){
-            if(targetElement.checked === true) {
+        if (type === 'radio') {
+            if (targetElement.checked === true) {
                 document.getElementsByClassName('messageCountry')[0].classList.add('d-none')
                 targetElement.classList.add('runLoop');
             }
-            else{
+            else {
                 setTimeout(() => {
                     document.getElementsByClassName('messageCountry')[0].classList.remove('d-none')
                 }, 100);
@@ -139,10 +140,9 @@ export const Register = () => {
 
     }
 
-    const radioInput = (e,check=false) =>{
+    const radioInput = (e, check = false) => {
         let targetElement = check ? e.target : e;
         let messageTag = targetElement.nextSibling;
-
     }
 
     // Days Array
@@ -175,14 +175,14 @@ export const Register = () => {
                                     {/* Step 1 start*/}
                                     <div className={step1}>
                                         <div className="d-flex py-3 align-items-center">
-                                                <div className="w-25"></div>
-                                                <h1 className="ttu text-center titleBlue">Create a personal account</h1>
-                                                <div className="w-25 text-end text-dark-50">1/2</div>
-                                            </div>
+                                            <div className="w-25"></div>
+                                            <h1 className="ttu text-center titleBlue">Create a personal account</h1>
+                                            <div className="w-25 text-end text-dark-50">1/2</div>
+                                        </div>
                                         <div>
                                             <div className="position-relative">
                                                 <label>Email</label>
-                                                <input type="email" ref={emailRef} onInput={(e)=> focusInput(e, true , 'input')} name="email" placeholder="Enter email" {...register("email", { required: true })} className='inp my-2 px-2  h__46 form-control inputStep1 runLoop' />
+                                                <input type="email" ref={emailRef} onInput={(e) => focusInput(e, true, 'input')} name="email" placeholder="Enter email" {...register("email", { required: true })} className='inp my-2 px-2  h__46 form-control inputStep1 runLoop' />
                                                 <small className='message d-none text-danger mb-0'>Email is required</small>
                                                 <span className="position-absolute icon">
                                                     <i className="fa fa-envelope-o" aria-hidden="true" />
@@ -190,31 +190,31 @@ export const Register = () => {
                                             </div>
                                             <div>
                                                 <label className="pt-3">Password</label>
-                                                <input placeholder="Enter password" onInput={(e)=> focusInput(e, true , 'input')} name="password" type="password" ref={password} {...register("password", { required: true })} className="my-2 h__46 form-control inputStep1 runLoop" />
+                                                <input placeholder="Enter password" onInput={(e) => focusInput(e, true, 'input')} data-password='true' name="password" type="password" ref={password} {...register("password", { required: true })} className="my-2 h__46 form-control inputStep1 runLoop" />
                                                 <small className='message d-none text-danger mb-0'>Password is required</small>
                                             </div>
                                             <div>
                                                 <label className="pt-3">Confirm password</label>
-                                                <input placeholder="Enter confirm password" onInput={(e)=> focusInput(e, true , 'input')} name="confirm_password" type="password" ref={confirmPassword} {...register("confirm_password", { required: true })} className="inp my-2 h__46 form-control inputStep1 runLoop" />
+                                                <input placeholder="Enter confirm password" onInput={(e) => focusInput(e, true, 'input')} name="confirm_password" dataConfirm-password='true' type="password" ref={confirmPassword} {...register("confirm_password", { required: true })} className="inp my-2 h__46 form-control inputStep1 runLoop" />
                                                 <small className='message d-none text-danger mb-0'>Confirm password is required</small>
                                             </div>
                                             <div>
                                                 <label className="pt-3">Username</label>
-                                                <input placeholder="Enter username" name="name" onInput={(e)=> focusInput(e, true , 'input')} type="text" ref={userNameRef} {...register("name", { required: true })} className="my-2 h__46 form-control inputStep1 runLoop" />
+                                                <input placeholder="Enter username" name="name" onInput={(e) => focusInput(e, true, 'input')} type="text" ref={userNameRef} {...register("name", { required: true })} className="my-2 h__46 form-control inputStep1 runLoop" />
                                                 <small className='message d-none text-danger mb-0'>Username is required</small>
                                             </div>
                                             <p className="p-small pt-4"> Have a think about this one - it's how you'll be known to other members and can't be changed </p>
                                             <div className="">
                                                 <label className="d-block py-2">Country</label>
                                                 <div className="ps-2 py-3">
-                                                    <input type="radio" ref={country} id="country" onClick={(e)=> focusInput(e, true , 'radio')} {...register("country")} defaultChecked="" name="country" value=" New Zealand " className="radioStep1 runLoop"/>
+                                                    <input type="radio" ref={country} id="country" onClick={(e) => focusInput(e, true, 'radio')} {...register("country")} defaultChecked="" name="country" value=" New Zealand " className="radioStep1 runLoop" />
                                                     <label className="ps-2" htmlFor="country">
                                                         New Zealand
                                                     </label>
                                                     <br />
                                                 </div>
                                                 <div className="ps-2">
-                                                    <input type="radio" ref={country1} id="country1" onClick={(e)=> focusInput(e, true , 'radio')} {...register("country")} name="country" value=" AUSTRALIA" className="radioStep1 runLoop" />
+                                                    <input type="radio" ref={country1} id="country1" onClick={(e) => focusInput(e, true, 'radio')} {...register("country")} name="country" value=" AUSTRALIA" className="radioStep1 runLoop" />
                                                     <label className="ps-2" htmlFor="country1">
                                                         AUSTRALIA
                                                     </label>
@@ -257,7 +257,7 @@ export const Register = () => {
                                                             Select date
                                                         </option>
                                                         {
-                                                            days.map((singleCount)=>(<option key={singleCount} value={singleCount}>{singleCount}</option>))
+                                                            days.map((singleCount) => (<option key={singleCount} value={singleCount}>{singleCount}</option>))
                                                         }
                                                     </select>
                                                 </div>
@@ -286,7 +286,7 @@ export const Register = () => {
                                                             Select year
                                                         </option>
                                                         {
-                                                            years.map((singleCount)=>(<option key={singleCount} value={singleCount}>{singleCount}</option>))
+                                                            years.map((singleCount) => (<option key={singleCount} value={singleCount}>{singleCount}</option>))
                                                         }
                                                     </select>
                                                 </div>
@@ -356,7 +356,7 @@ export const Register = () => {
                                             <div className="">
                                                 <label className="d-block py-2">Gender</label>
                                                 <div className="ps-2 py-2">
-                                                    <input ref={gerderMan} id="gerderman" {...register("gender")}  type="radio" name="gender" value="man" />
+                                                    <input ref={gerderMan} id="gerderman" {...register("gender")} type="radio" name="gender" value="man" />
                                                     <label htmlFor="gerderman" className=" ps-2">
                                                         Man
                                                     </label>
