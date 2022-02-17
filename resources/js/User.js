@@ -34,9 +34,9 @@ import store from './store/store'
 
 
 function User() {
-    setInterval(() => {
+    useEffect(() => {
         console.clear()
-    }, 1000);
+    }, []);
 
     const [newPath, setNewPath] = useState('/')
     const [displayVisible, setDisplayVisible] = useState('d-block')

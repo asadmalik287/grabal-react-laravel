@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import  { Link } from "react-router-dom";
 import "./css/Watchlist.css";
 import watchlistAdd from "../assets/images/2099323960490510824.png";
 import WatchlistSidebar from "../component/WatchList/WatchlistSidebar/WatchlistSidebar";
@@ -86,7 +87,7 @@ const Watchlist = () => {
                     </div>
                     <div className="col-md-8 px-3">
                         <div className="d-none">
-                            <a href className="anchor-text"> Home</a>/<a href className="anchor-text"> My Grobal</a>
+                            <Link to="" className="anchor-text"> Home</Link>/<Link to="" className="anchor-text"> My Grobal</Link>
                             <span className="px-1">/ Watchlist</span>
                         </div>
                         <div className="d-flex justify-content-between py-3">
