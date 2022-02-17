@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import watchlist from "../../../assets/images/watchlist.jpg";
 
 export const ModalWatchList = () => {
@@ -16,14 +17,14 @@ export const ModalWatchList = () => {
                     </p>
                     <h6 className="fw-bold wf85 text-start">HP Workstation Z200 Quad Coree i7 870 (2.93GHz) 16G memory 1TB HDD win 10 PRO</h6>
                     <div className="pt-4 text-start">
-                        <a href className="d-block wf75 clr-light">
+                        <Link to="" className="d-block wf75 clr-light">
                             {" "}
                             Reserve met{" "}
-                        </a>
-                        <a href className="d-block text-black fw-bold">
+                        </Link>
+                        <Link to="" className="d-block text-black fw-bold">
                             {" "}
                             $71.00{" "}
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import watchlist from "../../../assets/images/watchlist.jpg";
 import mShape from '../../../assets/images/m.png'
+import { Link } from 'react-router-dom';
 
 export const WatchListCard = (props) => {
     return <React.Fragment>
@@ -19,12 +20,12 @@ export const WatchListCard = (props) => {
                         </p>
                         <h6 className="fw-bold wf85">HP Workstation Z200 Quad Coree i7 870 (2.93GHz) 16G memory 1TB HDD win 10 PRO</h6>
                         <div className="pt-4">
-                            <a href className="d-block wf75 clr-light">
+                            <Link to="" className="d-block wf75 clr-light">
                                 Reserve met
-                            </a>
-                            <a href className="d-block text-black fw-bold">
+                            </Link>
+                            <Link to="" className="d-block text-black fw-bold">
                                 $71.00
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

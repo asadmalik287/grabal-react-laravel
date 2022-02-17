@@ -1,4 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+
+
 export const EditAddressForm = () => {
     return (
         <React.Fragment>
@@ -122,9 +125,9 @@ export const EditAddressForm = () => {
                                         name="email"
                                         className="w-25 ps-2 bordermain input1 form-control fs14"
                                     />
-                                    <a className="f-14" href="">
+                                    <Link  className="f-14" to="">
                                         Find your postcode
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -141,17 +144,17 @@ export const EditAddressForm = () => {
                             <p class="pt-1 ">
                                 Old password <span class="text-danger"> * </span></p>
                             <p class="para">New password <span class="text-danger"> * </span></p>
-      
-      
+
+
                             <p class="para">Confirm new password <span class="text-danger"> *  </span> </p>
-      
+
                             <p class="para">Password strength We recommend you use a strong, unique password.
                                 <a href="">Find out more</a>
                             </p>
                         </div>
                     </div>
                     <div class="col-md-6 bg-f8af2e">
-      
+
                         <div class="my-1"> <input type="text" name="email" class="input1 form-control">
                             <input type="text" class="my-3 input1 form-control form-control" name="email2">
                             <input type="text" size="20" maxlength="50" name="email3" class="input1 form-control">

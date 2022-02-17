@@ -5,21 +5,28 @@ import './css/login.css'
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
-import {connect} from 'react-redux';
 import store from '../store/store';
+import {connect} from 'react-redux';
 
 export const Login = () => {
     const { register, handleSubmit, formState: { errors }, } = useForm();
     // const loginSubmit = handleSubmit((data) => console.log(data));
     let history = useHistory();
 
+    useEffect(() => {
+        if(localStorage.getItem('user')){
+            history.push('/')
+        }
+    }, [])
+
+
 
     const loginSubmit = async (formData) => {
-        let resp = await axios.post('/api/login', formData);
+        let resp = await axios.post('https://ewdtech.com/ewdtech/test/grobal_react/api/login', formData);
 
         try {
           if (resp.data.status === 1) {
-            // console.log(resp.data.result);
+
             // Sending Data to store
                store.dispatch({
                 type: "USER_LOGIN",
@@ -32,7 +39,7 @@ export const Login = () => {
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 2000,
                 timerProgressBar: true,
                 didOpen: (toast) => {
                     toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -46,8 +53,7 @@ export const Login = () => {
             })
             // Alert Message code
 
-
-            localStorage.setItem('user', JSON.stringify(resp.data))
+            localStorage.setItem('user', JSON.stringify(resp.data.result))
             history.push('/');
 
           } else {
