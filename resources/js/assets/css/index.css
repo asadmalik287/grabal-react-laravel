@@ -175,11 +175,25 @@ input {
   border-bottom: 1px solid rgb(240, 238, 238);
   padding: 10px;
   width: 90%;
-  
+
 }
 .searchAbleSelectMain .form-control__select ul li button{
   border: 0px;
   width: 100%;
   background-color: transparent;
   text-align: start;
+}
+
+
+.profileName {
+    background: #c4f6de;
+    color: #00bc82;
+    width: 23px;
+    height: 23px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 900;
 }

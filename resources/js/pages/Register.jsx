@@ -4,6 +4,7 @@ import NavbarLogo from "../assets/images/Logo.png";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 export const Register = () => {
     const [newData, setNewData] = useState('')
@@ -19,20 +20,35 @@ export const Register = () => {
     changeData = {...changeData,'dob':dob ,'phone_number':phone_number};
 
     useEffect(() => {
-        sendingData()
-    }, [newData]);
+        if(localStorage.getItem('user')){
+            history.push('/')
+        }
+    }, [])
+
+    // useEffect(() => {
+    //     sendingData()
+    // }, []);
 
     const sendingData = async () => {
         try {
             const response = await axios.post('/api/register', changeData)
             if(response.data.status === 1){
-                history.push('/Login');
+                // console.log(response.data.message);
+                Swal.fire({
+                    icon: 'success',
+                    title: response.data.message
+                }).then(function() {
+                    history.push('/Login');
+                });
+
             }
+
         } catch (error) {
             console.log(error.message);
         }
     }
 
+    sendingData()
 
     const [step1, setstep1] = useState('d-block')
     const [step2, setstep2] = useState('d-none')

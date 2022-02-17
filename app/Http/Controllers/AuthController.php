@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Session;
 class AuthController extends Controller
 {
     // test api/middleware function starts
@@ -172,7 +172,9 @@ class AuthController extends Controller
 
                 $status = 1;
                 $message = "Login successful";
-                return (new ResponseController)->sendResponse($status, $message, $user);
+                Session::put('user',$user);
+
+                return (new ResponseController)->sendResponse($status, $message, Session::get('user'));
             }
 
         } else {
@@ -181,5 +183,7 @@ class AuthController extends Controller
         }
     }
     //login APi for user to sign in function ends
+
+
 
 }

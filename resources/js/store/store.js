@@ -10,6 +10,7 @@ function userReducer(state = initialUserData, action) {
     state = { ...state };
     switch (action.type) {
 
+        // getting data from localStorage
         case 'USER_LOGIN':
             state.user = action.payload;
             break;
@@ -19,8 +20,6 @@ function userReducer(state = initialUserData, action) {
             break;
 
         }
-
-    console.log(state.user,'state');
     return state;
 }
 
