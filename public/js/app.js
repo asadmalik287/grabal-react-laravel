@@ -5487,8 +5487,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Regist
 
 __webpack_require__(/*! ./User */ "./resources/js/User.js");
 
-__webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'pages/HomeSection'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
