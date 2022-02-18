@@ -7,20 +7,28 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Grobal - Admin') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/css/lib/calendar2/pignose.calendar.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/css/lib/chartist/chartist.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/css/lib/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/css/lib/themify-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/css/lib/owl.carousel.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/css/lib/owl.theme.default.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/css/lib/weather-icons.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/admin/css/lib/menubar/sidebar.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/css/lib/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/css/lib/helper.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet">
 </head>
-<body>
-    <div id="app">
+<body class="h-100">
+    <div id="app" class="h-100">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -75,7 +83,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>
