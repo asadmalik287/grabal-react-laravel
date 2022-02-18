@@ -15,7 +15,7 @@ class AdminController extends Controller
     public function logout()
     {
         FacadesAuth::logout();
-        return redirect()->route('adminLogout');
+        return redirect()->route('login');
 
     }
 }
