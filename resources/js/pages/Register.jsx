@@ -20,7 +20,7 @@ export const Register = () => {
     changeData = { ...changeData, 'dob': dob, 'phone_number': phone_number };
 
     useEffect(() => {
-        if(localStorage.getItem('user')){
+        if (localStorage.getItem('user')) {
             history.push('/')
         }
     }, [])
@@ -32,12 +32,12 @@ export const Register = () => {
     const sendingData = async () => {
         try {
             const response = await axios.post('https://ewdtech.com/ewdtech/test/grobal_react/api/register', changeData)
-            if(response.data.status === 1){
+            if (response.data.status === 1) {
                 // console.log(response.data.message);
                 Swal.fire({
                     icon: 'success',
                     title: response.data.message
-                }).then(function() {
+                }).then(function () {
                     history.push('/Login');
                 });
 
