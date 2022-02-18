@@ -2,7 +2,6 @@
 
 @section('content')
     <div class="bg-blue h-100">
-
         <div class="unix-login">
             <div class="container-fluid">
                 <div class="row justify-content-center">
@@ -15,7 +14,7 @@
                             </div>
                             <div class="login-form shadow">
                                 <h4>Administratior Login</h4>
-                                <form method="POST" action="{{ url('admin/login') }}">
+                                <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="form-group">
                                         <label>Email address</label>
@@ -40,7 +39,6 @@
                                                 </label>
                                             </a>
                                         @endif
-
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
 
