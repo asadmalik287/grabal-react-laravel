@@ -274,11 +274,11 @@ span.badge {
   transform: translateY(-50%) !important;
   width: 70%;
 }
-.modal-header .close {
+/* .modal-header .close {
   font-size: 14px;
   margin-right: 15px;
   margin-top: 5px;
-}
+} */
 .modal-content {
   border-radius: 3px;
 }
@@ -722,7 +722,7 @@ a.dt-button.active:not(.disabled) {
 .sidebar-hide .logo {
   width: 0;
 }
-.sidebar-hide .logo span {
+.sidebar-hide .logo img {
   display: none;
 }
 .header-icon {

@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\CategoriesController;
+use App\Http\Controllers\admin\SubCategoriesController;
 use App\Http\Controllers\UserController;
+use App\Models\SubCategories;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +32,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth', 'namespace' => 'App\Ht
 });
 Route::group(['prefix' => 'admin'], function () {
     Auth::routes();
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('categories', CategoriesController::class);
+    Route::resource('sub_categories', SubCategoriesController::class);
 
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

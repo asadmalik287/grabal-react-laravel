@@ -7,11 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Grobal - Admin') }}</title>
-
-    <!-- Scripts -->
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
-
+    <title>Grobal - @yield('title') </title>
 
     <!-- Styles -->
     <link href="{{ asset('assets/admin/css/lib/calendar2/pignose.calendar.min.css') }}" rel="stylesheet">
@@ -26,66 +22,89 @@
     <link href="{{ asset('assets/admin/css/lib/helper.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/css/lib/sweetalert/sweetalert.css') }}" rel="stylesheet">
+
+    @yield('style')
 </head>
-<body class="h-100">
+<body class="h-100" onclick="btnToggle('body')">
+
+    <input type="hidden" value="{{ csrf_token() }}" id="laravelToken">
+    
     <div id="app" class="h-100">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+        {{-- SidebarCode --}}
+        @include('layouts.includes.sidebar')
+        {{-- NavbarCde --}}
+        @include('layouts.includes.navbar')
 
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+        <div class="content-wrap">
+            <div class="main">
+                <div class="container-fluid">
+                    @yield('content')
                 </div>
             </div>
-        </nav>
+        </div>
 
-        <main>
-            @yield('content')
-        </main>
     </div>
+
+
+
+
+        <!-- jquery vendor -->
+        <script src="{{ asset('assets/admin/js/lib/jquery.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/lib/jquery.nanoscroller.min.js') }}"></script>
+        <!-- nano scroller -->
+        <script src="{{ asset('assets/admin/js/lib/menubar/sidebar.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/lib/preloader/pace.min.js') }}"></script>
+        <!-- sidebar -->
+
+        <script src="{{ asset('assets/admin/js/lib/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/scripts.js') }}"></script>
+        <!-- bootstrap -->
+
+        <script src="{{ asset('assets/admin/js/lib/calendar-2/moment.latest.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/lib/calendar-2/pignose.calendar.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/lib/calendar-2/pignose.init.js') }}"></script>
+
+
+        <script src="{{ asset('assets/admin/js/lib/weather/jquery.simpleWeather.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/lib/weather/weather-init.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/lib/circle-progress/circle-progress.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/lib/circle-progress/circle-progress-init.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/lib/chartist/chartist.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/lib/sparklinechart/jquery.sparkline.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/lib/sparklinechart/sparkline.init.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/lib/owl-carousel/owl.carousel.min.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/lib/owl-carousel/owl.carousel-init.js') }}"></script>
+        <script src="{{ asset('assets/admin/js/lib/sweetalert/sweetalert.min.js') }}"></script>
+        <!-- scripit init-->
+        <script src="{{ asset('assets/admin/js/dashboard2.js') }}"></script>
+
+        {{-- custom Js --}}
+        <script src="{{ asset('assets/admin/js/custom.js') }}"></script>
+
+
+        <script>
+
+            function btnToggle(where) {
+                document.getElementById("Dropdown").classList.remove("show");
+                if(where == 'body' && document.getElementById("Dropdown").classList.contains('show')){
+                    document.getElementById("Dropdown").classList.remove("show");
+                }
+                if(where == 'any'){
+                    document.getElementById("Dropdown").classList.toggle("show");
+                }
+            }
+
+            // Prevents menu from closing when clicked inside
+            document.getElementById("Dropdown").addEventListener('click', function (event) {
+                event.stopPropagation();
+            });
+
+        </script>
+
+
+        @yield('script')
+
 </body>
 </html>

@@ -6,3 +6,7 @@
 .bg-blue{
     background-color: var(--blue);
 }
+
+.cp{
+    cursor: pointer;
+}
