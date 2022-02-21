@@ -12,12 +12,8 @@
                     <a href="{{url('admin/home')}}"><i class="ti-home"></i> Dashboard </a>
                 </li>
 
-                <li class="@if (Request::is('admin/categories')) active @endif">
-                    <a href="{{url('admin/categories')}}"><i class="ti-home"></i> Category </a>
-                </li>
-
                 <li class="@if (Request::is('admin/sub_categories')) active @endif">
-                    <a href="{{url('admin/sub_categories')}}"><i class="ti-home"></i>Sub Category </a>
+                    <a href="{{url('admin/sub_categories')}}"><i class="ti-home"></i>Manage Category </a>
                 </li>
 
                 <li>

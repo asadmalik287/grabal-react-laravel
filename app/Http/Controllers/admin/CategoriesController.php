@@ -112,8 +112,13 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        if(Categories ::where('id',$id)->delete()){
-            return response()->json(['success' => true, 'message' =>'Category been deleted successfully']);
+        if(!Categories::where('id',$id)->whereHas('get_sub_categories')->exists()){
+            if(Categories ::where('id',$id)->delete()){
+                return response()->json(['success' => true, 'message' =>'Category been deleted successfully']);
+            }
+        }else{
+            return response()->json(['success' => false , 'redirect'=>false , 'message' =>'Please delete Sub Category first ']);
         }
+
     }
 }

@@ -23,7 +23,7 @@
     <!-- /# column -->
 </div>
 
-<div><h3 class="text-center mb-3">All SubCategories</h3></div>
+<div><h3 class="text-center mb-3">Manage Categories</h3></div>
 
 <div class="row">
     <div class="col-lg-12">
@@ -49,7 +49,8 @@
                                 <td>{{++$key}}</td>
                                 <td>{{ucfirst($category->name)}}</td>
 
-                                <td>
+                                <td class="{{$category->get_sub_categories}}">
+
                                     @if ($category->get_sub_categories != '')
                                         <table class="w-100">
                                             @foreach ($category->get_sub_categories as $key=>$subCategory )
@@ -61,8 +62,8 @@
                                                             {{ucfirst($subCategory->name)}}
                                                         </div>
                                                         <div>
-                                                            <span class="ti-trash text-danger cp mr-2" style="font-size: 18px" data-toggle="modal" data-target=".updatesubCategory" onclick="editResource('{{ route('sub_categories.edit', $subCategory->id) }}','.updateModalsubCategory')"></span>
-                                                            <span class="ti-pencil-alt text-primary cp " style="font-size: 15px" onclick="commonFunction(true,'{{ route('sub_categories.destroy',$subCategory->id) }}','{{route('sub_categories.index')}}','delete','Are you sure you want to delete?','');"></span>
+                                                            <span class="ti-pencil-alt text-primary cp " style="font-size: 15px" data-toggle="modal" data-target=".updatesubCategory" onclick="editResource('{{ route('sub_categories.edit', $subCategory->id) }}','.updateModalsubCategory')"></span>
+                                                            <span class="ti-trash text-danger cp mr-2" style="font-size: 18px" onclick="commonFunction(true,'{{ route('sub_categories.destroy',$subCategory->id) }}','{{route('sub_categories.index')}}','delete','Are you sure you want to delete?','');"></span>
                                                         </div>
                                                     </div>
                                                 </td>
