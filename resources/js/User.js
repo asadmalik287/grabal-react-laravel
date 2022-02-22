@@ -32,7 +32,6 @@ import EditAddressForm from './pages/EditAddressForm';
 import store from './store/store'
 
 
-
 function User() {
     useEffect(() => {
         console.clear()
@@ -55,9 +54,7 @@ function User() {
         return props.children
     }
 
-    const ScrollToTop = withRouter(_ScrollToTop)
-
-
+    const ScrollToTop = withRouter(_ScrollToTop);
 
     return (
         <Provider store = {store}>

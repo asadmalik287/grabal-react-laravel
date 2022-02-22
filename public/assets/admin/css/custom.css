@@ -10,3 +10,13 @@
 .cp{
     cursor: pointer;
 }
+
+.nav-link.active.approved{
+    background-color: rgb(67, 189, 67) !important;
+}
+.nav-link.active.pending{
+    background-color: rgb(74, 131, 255) !important;
+}
+.nav-link.active.rejected{
+    background-color: rgb(255, 44, 44) !important;
+}

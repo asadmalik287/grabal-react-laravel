@@ -16,6 +16,10 @@
                     <a href="{{url('admin/sub_categories')}}"><i class="ti-home"></i>Manage Category </a>
                 </li>
 
+                <li class="@if (Request::is('admin/serviceProviders')) active @endif">
+                    <a href="{{url('admin/serviceProviders')}}"><i class="ti-home"></i>Services </a>
+                </li>
+
                 <li>
                     <a class="sidebar-sub-toggle"><i class="ti-map"></i> Maps <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
