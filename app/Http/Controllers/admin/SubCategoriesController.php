@@ -47,4 +47,42 @@ class SubCategoriesController extends Controller
         $sub_category->save();
         return response()->json(['success' => true, 'message' =>'Subcategory has been added successfully']);
     }
+
+
+    public function edit($id)
+    {
+        $categories = Categories::with('get_sub_categories')->get();
+        $sub_category = SubCategories::where('id',$id)->first();
+        return view('admin.manage_categories.sub_categories.edit',compact('sub_category','categories'))->render();
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validations = Validator::make($request->all(),[
+            'category_id'=>'required',
+            'name'=>'required || unique:sub_categories,name,'.$id,
+            'status'=>'required',
+        ]);
+
+        if($validations->fails())
+        {
+            return response()->json(['success' => false, 'message' => $validations->errors()]);
+        }
+
+        $sub_category = SubCategories::find($id);
+        $sub_category->category_id = $request->category_id;
+        $sub_category->name = $request->name;
+        $sub_category->status = $request->status;
+        if($sub_category->save()){
+            return response()->json(['success' => true, 'message' =>'Sub Category has been updated successfully']);
+        }
+    }
+
+
+    public function destroy($id)
+    {
+        if(SubCategories::where('id',$id)->delete()){
+            return response()->json(['success' => true, 'message' =>'Sub Category been deleted successfully']);
+        }
+    }
 }

@@ -28,6 +28,7 @@ Route::post('login', [UserController::class, 'login']);
 Route::group(['prefix' => 'admin','middleware' => 'auth', 'namespace' => 'App\Http\Controllers\admin'], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::get('/logout', [AdminController::class, 'logout'])->name('adminLogout');
+    Route::get('/serviceProviders', [AdminController::class, 'manageServiceProvider'])->name('admin.serviceProviders');
 
 });
 Route::group(['prefix' => 'admin'], function () {

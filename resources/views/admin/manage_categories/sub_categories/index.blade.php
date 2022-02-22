@@ -23,7 +23,7 @@
     <!-- /# column -->
 </div>
 
-<div><h3 class="text-center mb-3">All SubCategories</h3></div>
+<div><h3 class="text-center mb-3">Manage Categories</h3></div>
 
 <div class="row">
     <div class="col-lg-12">
@@ -49,32 +49,43 @@
                                 <td>{{++$key}}</td>
                                 <td>{{ucfirst($category->name)}}</td>
 
-                                @if ($category->get_sub_categories != '')
+                                <td class="{{$category->get_sub_categories}}">
 
-                                <td>
-                                    <table class="w-100">
-                                        @foreach ($category->get_sub_categories as $key=>$subCategory )
-                                        <tr class="bg-transparent">
-                                            <td>{{++$key}}</td>
-                                            <td class="text-left">
-                                                <div class="d-flex justify-content-between">
-                                                    <div>
-                                                        {{ucfirst($subCategory->name)}}
+                                    @if ($category->get_sub_categories != '')
+                                        <table class="w-100">
+                                            @foreach ($category->get_sub_categories as $key=>$subCategory )
+                                            <tr class="bg-transparent">
+                                                <td>{{++$key}}</td>
+                                                <td class="text-left">
+                                                    <div class="d-flex justify-content-between">
+                                                        <div>
+                                                            {{ucfirst($subCategory->name)}}
+                                                        </div>
+                                                        <div>
+                                                            <span class="ti-pencil-alt text-primary cp " style="font-size: 15px" data-toggle="modal" data-target=".updatesubCategory" onclick="editResource('{{ route('sub_categories.edit', $subCategory->id) }}','.updateModalsubCategory')"></span>
+                                                            <span class="ti-trash text-danger cp mr-2" style="font-size: 18px" onclick="commonFunction(true,'{{ route('sub_categories.destroy',$subCategory->id) }}','{{route('sub_categories.index')}}','delete','Are you sure you want to delete?','');"></span>
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <span class="ti-trash text-danger cp mr-2" style="font-size: 18px" data-toggle="modal" data-target=".updatesubCategory" onclick="editResource('{{ route('sub_categories.edit', $subCategory->id) }}','.updateModalsubCategory')"></span>
-                                                        <span class="ti-pencil-alt text-primary cp " style="font-size: 15px" onclick="commonFunction(true,'{{ route('sub_categories.destroy',$subCategory->id) }}','{{route('sub_categories.index')}}','delete','Are you sure you want to delete?','');"></span>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </table>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+
+                                        </table>
+
+                                    @else
+
+                                        <table class="w-100">
+                                            <tr>
+                                                <td>
+                                                    <p>No Sub category has been added yet <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addsubCategory">Add +</button></p>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    @endif
+
                                 </td>
 
-                                @else
-                                    <td></td>
-                                @endif
 
                                 <td>
                                     <button class="btn btn-info" data-toggle="modal" data-target=".updateCategory" onclick="editResource('{{ route('categories.edit', $category->id) }}','.updateModalCategory')">Update</button>
@@ -155,7 +166,7 @@
 <div class="modal fade" id="addsubCategory" tabindex="-1" role="dialog" aria-labelledby="addsubCategoryTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form class="form-valide" id="create-form">
+            <form class="form-valide" id="create-category">
 
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Add subCategory</h5>
@@ -196,7 +207,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" onclick="commonFunction(false,'{{ route('sub_categories.store') }}','{{route('sub_categories.index')}}','post','','create-form');">Save</button>
+                    <button type="button" class="btn btn-success" onclick="commonFunction(false,'{{ route('sub_categories.store') }}','{{route('sub_categories.index')}}','post','','create-category');">Save</button>
                 </div>
             </form>
         </div>
