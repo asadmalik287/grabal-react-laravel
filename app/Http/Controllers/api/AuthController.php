@@ -4,12 +4,14 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Session;
+use Spatie\Permission\Models\Role;
+
 class AuthController extends Controller
 {
     // test api/middleware function starts
@@ -40,6 +42,7 @@ class AuthController extends Controller
             'country' => 'required',
             'gender' => 'required',
             'town' => 'required',
+            'role_id' => 'required',
         ]);
 
         // if validator fails
@@ -48,6 +51,7 @@ class AuthController extends Controller
         }
 
         // password encryption
+        $password = $request['password'];
         $request['password'] = Hash::make($request['password']);
         // if ($request['role_id'] == 2) {
 
@@ -75,8 +79,13 @@ class AuthController extends Controller
         // }
 
         // create new user and save db
+
         $user = User::create($request->except(["confirm_password"]));
         if ($user) {
+            Mail::send('mails.credentials', ['userName' => $userName, 'password' => $password], function ($message) use ($user) {
+                $message->to($user->email);
+                $message->subject('Customer Login Details');
+            });
 
             // check verification of user
             if ($user->is_verified == 1) {
@@ -173,7 +182,7 @@ class AuthController extends Controller
 
                 $status = 1;
                 $message = "Login successful";
-                Session::put('user',$user);
+                Session::put('user', $user);
 
                 return (new ResponseController)->sendResponse($status, $message, Session::get('user'));
             }
@@ -184,7 +193,106 @@ class AuthController extends Controller
         }
     }
     //login APi for user to sign in function ends
+    public function serviceProviderRegister(Request $request)
+    {
+        // validate inputs
+        $validator = Validator::make($request->all(), [
+            'business_name' => 'required|string',
+            'contact_person' => 'required|string',
+            'phone_number' => 'required',
+            'email' => 'required|unique:users',
+            'vetting_doc' => 'required',
+            'vaccinations_doc' => 'required',
+            'certifications_doc' => 'required',
+            'message' => 'required',
+            'role_id' => 'required',
+        ]);
 
+        // if validator fails
+        if ($validator->fails()) {
+            return (new ResponseController)->sendError(0, $validator->errors());
+        }
+        // password encryption
+        $password = substr(str_shuffle('012#$%^&345&^^%%#s35+DE+_)gsdgsgsd$&*#@_36363#$5&^^%%#s35+DE+_)gsd%^4667%$@$89$%$$sgsd$&*#@_36363#ABCDE+_)gsdgsgsdd@$%^&($&#+_(@gFGHIJK+))(*^&LMNOPsdgsgw45_)(*&^^$&$*%(%)_%_+#+#3trfesfgs___+)()gsdg_)(*&^%$sQRSTUVWXYZ'),1,8);
+        $passwordHashed = Hash::make($password);
+        $userName = strtok($request['email'], '@');
+        $request['is_verified'] = 1;
 
+        // $request['is_active'] = 1;
+        // $request['country_code'] = substr($request['phone'], 0, 3);
+        // $request['phone'] = strip_tags($request['phone']);
+        // $request['phone'] = substr($request['phone'], -10);
 
+        // // save profile picture of user
+        if ($request->has('vaccinations_doc')) {
+            $file = $request->file('vaccinations_doc');
+            $name = $file->getClientOriginalName();
+            $name = date("dmyHis.") . gettimeofday()["usec"] . '_' . $name;
+            $path = "assets/backend/vac_docs";
+            $save_path = public_path() . '/' . $path;
+            $file->move($save_path, $name);
+            //$path = base_path() . "/public" . $directory;
+            // $file->move($path, $name);
+            // $request['vaccinations_doc'] = $name;
+        }
+        if ($request->has('certifications_doc')) {
+            $file = $request->file('certifications_doc');
+            $name = $file->getClientOriginalName();
+            $name = date("dmyHis.") . gettimeofday()["usec"] . '_' . $name;
+            $path = "assets/backend/cert_docs";
+            $save_path = public_path() . '/' . $path;
+            $file->move($save_path, $name);
+        }
+        if ($request->has('vetting_doc')) {
+            $file = $request->file('vetting_doc');
+            $name = $file->getClientOriginalName();
+            $name = date("dmyHis.") . gettimeofday()["usec"] . '_' . $name;
+            $path = "assets/backend/vet_docs";
+            $save_path = public_path() . '/' . $path;
+            $file->move($save_path, $name);
+        }
+        // create new user and save db
+        $user = User::create([
+            'business_name' => $request['business_name'],
+            'email' => $request['email'],
+            'vaccinations_doc' => $name,
+            'contact_person' => $request['contact_person'],
+            'phone_number' => $request['phone_number'],
+            'vetting_doc' => $name,
+            'certifications_doc' => $name,
+            'message' => $request['message'],
+            'role_id' => $request['role_id'],
+            'password' => $passwordHashed,
+        ]);
+        $role = Role::where('id', $request['role_id'])->first();
+        $user->assignRole($role);
+
+        if ($user) {
+            Mail::send('mails.credentials', ['userName' => $userName, 'password' => $password], function ($message) use ($user) {
+                $message->to($user->email);
+                $message->subject('Login Credentials');
+            });
+
+            // check verification of user
+            if ($user->is_verified == 1) {
+                $message = "Registration successful";
+            } else {
+                $message = "Your account is under verification!";
+            }
+            // get registered user to return token
+            $user = User::find($user->id);
+            $user['token'] = $user->createToken('token')->accessToken;
+
+            // if ($user->picture != null) {
+            //     $user->picture = getImageUrl($user->picture);
+            // }
+
+            // return response
+            return (new ResponseController)->sendResponse(1, $message, $user);
+        } else {
+            $error = "Something went wrong! Please try again";
+            return (new ResponseController)->sendError(0, $error);
+        }
+
+    }
 }
