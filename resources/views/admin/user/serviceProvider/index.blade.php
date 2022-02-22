@@ -46,7 +46,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Category Title</th>
+                                            <th>Username</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -68,7 +68,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Category Title</th>
+                                            <th>Username</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
@@ -90,7 +90,7 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Category Title</th>
+                                            <th>Username</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                         </tr>
