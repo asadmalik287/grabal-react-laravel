@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    Email/Username : {{ $userName }}
+    Email/Username : {{ $use }}
     <br>
     Password : {{ $password }}
 </body>
