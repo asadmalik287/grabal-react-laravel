@@ -255,6 +255,7 @@ class AuthController extends Controller
         $user = User::create([
             'business_name' => $request['business_name'],
             'email' => $request['email'],
+            'name' => $userName,
             // 'vaccinations_doc' => $name,
             'contact_person' => $request['contact_person'],
             'phone_number' => $request['phone_number'],
