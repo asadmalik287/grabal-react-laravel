@@ -198,12 +198,12 @@ class AuthController extends Controller
         // validate inputs
         $validator = Validator::make($request->all(), [
             'business_name' => 'required|string',
-            'contact_person' => 'required|string',
+            'contact_person' => 'required',
             'phone_number' => 'required',
             'email' => 'required|unique:users',
-            'vetting_doc' => 'required',
-            'vaccinations_doc' => 'required',
-            'certifications_doc' => 'required',
+            // 'vetting_doc' => 'required',
+            // 'vaccinations_doc' => 'required',
+            // 'certifications_doc' => 'required',
             'message' => 'required',
             'role_id' => 'required',
         ]);
@@ -224,42 +224,42 @@ class AuthController extends Controller
         // $request['phone'] = substr($request['phone'], -10);
 
         // // save profile picture of user
-        if ($request->has('vaccinations_doc')) {
-            $file = $request->file('vaccinations_doc');
-            $name = $file->getClientOriginalName();
-            $name = date("dmyHis.") . gettimeofday()["usec"] . '_' . $name;
-            $path = "assets/backend/vac_docs";
-            $save_path = public_path() . '/' . $path;
-            $file->move($save_path, $name);
-            //$path = base_path() . "/public" . $directory;
-            // $file->move($path, $name);
-            // $request['vaccinations_doc'] = $name;
-        }
-        if ($request->has('certifications_doc')) {
-            $file = $request->file('certifications_doc');
-            $name = $file->getClientOriginalName();
-            $name = date("dmyHis.") . gettimeofday()["usec"] . '_' . $name;
-            $path = "assets/backend/cert_docs";
-            $save_path = public_path() . '/' . $path;
-            $file->move($save_path, $name);
-        }
-        if ($request->has('vetting_doc')) {
-            $file = $request->file('vetting_doc');
-            $name = $file->getClientOriginalName();
-            $name = date("dmyHis.") . gettimeofday()["usec"] . '_' . $name;
-            $path = "assets/backend/vet_docs";
-            $save_path = public_path() . '/' . $path;
-            $file->move($save_path, $name);
-        }
+        // if ($request->has('vaccinations_doc')) {
+        //     $file = $request->file('vaccinations_doc');
+        //     $name = $file->getClientOriginalName();
+        //     $name = date("dmyHis.") . gettimeofday()["usec"] . '_' . $name;
+        //     $path = "assets/backend/vac_docs";
+        //     $save_path = public_path() . '/' . $path;
+        //     $file->move($save_path, $name);
+        //     //$path = base_path() . "/public" . $directory;
+        //     // $file->move($path, $name);
+        //     // $request['vaccinations_doc'] = $name;
+        // }
+        // if ($request->has('certifications_doc')) {
+        //     $file = $request->file('certifications_doc');
+        //     $name = $file->getClientOriginalName();
+        //     $name = date("dmyHis.") . gettimeofday()["usec"] . '_' . $name;
+        //     $path = "assets/backend/cert_docs";
+        //     $save_path = public_path() . '/' . $path;
+        //     $file->move($save_path, $name);
+        // }
+        // if ($request->has('vetting_doc')) {
+        //     $file = $request->file('vetting_doc');
+        //     $name = $file->getClientOriginalName();
+        //     $name = date("dmyHis.") . gettimeofday()["usec"] . '_' . $name;
+        //     $path = "assets/backend/vet_docs";
+        //     $save_path = public_path() . '/' . $path;
+        //     $file->move($save_path, $name);
+        // }
         // create new user and save db
         $user = User::create([
             'business_name' => $request['business_name'],
             'email' => $request['email'],
-            'vaccinations_doc' => $name,
+            // 'vaccinations_doc' => $name,
             'contact_person' => $request['contact_person'],
             'phone_number' => $request['phone_number'],
-            'vetting_doc' => $name,
-            'certifications_doc' => $name,
+            // 'vetting_doc' => $name,
+            // 'certifications_doc' => $name,
             'message' => $request['message'],
             'role_id' => $request['role_id'],
             'password' => $passwordHashed,
