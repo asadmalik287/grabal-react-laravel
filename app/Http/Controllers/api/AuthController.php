@@ -51,8 +51,14 @@ class AuthController extends Controller
         }
 
         // password encryption
-        $password = $request['password'];
-        $request['password'] = Hash::make($request['password']);
+        // $password = $request['password'];
+        // $request['password'] = Hash::make($request['password']);
+
+        $password = substr(str_shuffle('012#$%^&345&^^%%#s35+DE+_)gsdgsgsd$&*#@_36363#$5&^^%%#s35+DE+_)gsd%^4667%$@$89$%$$sgsd$&*#@_36363#ABCDE+_)gsdgsgsdd@$%^&($&#+_(@gFGHIJK+))(*^&LMNOPsdgsgw45_)(*&^^$&$*%(%)_%_+#+#3trfesfgs___+)()gsdg_)(*&^%$sQRSTUVWXYZ'), 1, 8);
+        $passwordHashed = Hash::make($password);
+        $userName = strtok($request['email'], '@');
+        $request['password'] = $passwordHashed;
+        $request['name'] = $userName;
         // if ($request['role_id'] == 2) {
 
         //     $request['is_verified'] = 0;
@@ -213,7 +219,7 @@ class AuthController extends Controller
             return (new ResponseController)->sendError(0, $validator->errors());
         }
         // password encryption
-        $password = substr(str_shuffle('012#$%^&345&^^%%#s35+DE+_)gsdgsgsd$&*#@_36363#$5&^^%%#s35+DE+_)gsd%^4667%$@$89$%$$sgsd$&*#@_36363#ABCDE+_)gsdgsgsdd@$%^&($&#+_(@gFGHIJK+))(*^&LMNOPsdgsgw45_)(*&^^$&$*%(%)_%_+#+#3trfesfgs___+)()gsdg_)(*&^%$sQRSTUVWXYZ'),1,8);
+        $password = substr(str_shuffle('012#$%^&345&^^%%#s35+DE+_)gsdgsgsd$&*#@_36363#$5&^^%%#s35+DE+_)gsd%^4667%$@$89$%$$sgsd$&*#@_36363#ABCDE+_)gsdgsgsdd@$%^&($&#+_(@gFGHIJK+))(*^&LMNOPsdgsgw45_)(*&^^$&$*%(%)_%_+#+#3trfesfgs___+)()gsdg_)(*&^%$sQRSTUVWXYZ'), 1, 8);
         $passwordHashed = Hash::make($password);
         $userName = strtok($request['email'], '@');
         $request['is_verified'] = 1;
