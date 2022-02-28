@@ -52,7 +52,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Test user</td>
+                                            <td>Active</td>
+                                            <td>
+                                                <a href="{{url('admin/services')}}">
+                                                    <button class="btn btn-info btn-sm">View</button>
+                                                </a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -119,7 +128,7 @@
 
 
 @section('script')
-<script src="{{ asset('assets/admin/js/lib/form-validation/jquery.validate.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/admin/js/lib/form-validation/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('assets/admin/js/lib/form-validation/jquery.validate-init.js') }}"></script>
     <script src="{{ asset('assets/admin/js/lib/data-table/datatables.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/lib/data-table/dataTables.buttons.min.js') }}"></script>
@@ -129,5 +138,5 @@
     <script src="{{ asset('assets/admin/js/lib/data-table/vfs_fonts.js') }}"></script>
     <script src="{{ asset('assets/admin/js/lib/data-table/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/lib/data-table/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('assets/admin/js/lib/data-table/datatables-init.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/lib/data-table/datatables-init.js') }}"></script> --}}
 @endsection
