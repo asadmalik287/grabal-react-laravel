@@ -32,17 +32,18 @@ class AuthController extends Controller
             'f_name' => 'required|string',
             'l_name' => 'required|string',
             'phone_number' => 'required',
-            // 'phone_number' => ['required', new PhoneNumber],
-            'address' => 'required|string',
             'email' => 'required|unique:users',
-            'password' => 'required|min:8',
-            'confirm_password' => 'required|same:password',
-            'dob' => 'required|date',
-            'name' => 'required|unique:users',
             'country' => 'required',
-            'gender' => 'required',
-            'town' => 'required',
             'role_id' => 'required',
+            // 'phone_number' => ['required', new PhoneNumber],
+
+            // 'address' => 'required|string',
+            // 'password' => 'required|min:8',
+            // 'confirm_password' => 'required|same:password',
+            // 'dob' => 'required|date',
+            // 'name' => 'required|unique:users',
+            // 'gender' => 'required',
+            // 'town' => 'required',
         ]);
 
         // if validator fails
