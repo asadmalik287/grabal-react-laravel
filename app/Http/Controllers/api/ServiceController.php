@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Validator;
 
 class ServiceController extends Controller
 {
+    public function index()
+    {
+        return view('admin.services.index');
+    }
+
+
     // store services
     public function storeService(Request $request)
     {

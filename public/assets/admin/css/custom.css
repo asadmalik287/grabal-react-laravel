@@ -20,3 +20,14 @@
 .nav-link.active.rejected{
     background-color: rgb(255, 44, 44) !important;
 }
+
+.wsnw{
+    white-space: nowrap;
+}
+
+.serviceDescription {
+    white-space: nowrap;
+    width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }

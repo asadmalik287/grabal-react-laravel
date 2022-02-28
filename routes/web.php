@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\SubCategoriesController;
+use App\Http\Controllers\api\ServiceController;
 use App\Http\Controllers\UserController;
 use App\Models\SubCategories;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('categories', CategoriesController::class);
     Route::resource('sub_categories', SubCategoriesController::class);
+    Route::resource('services', ServiceController::class);
 
 });
 
