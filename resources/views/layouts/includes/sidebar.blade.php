@@ -9,13 +9,13 @@
                 </div>
                 <li class="label">Main</li>
                 <li class="@if (Request::is('admin/home')) active @endif">
-                    <a href="{{url('admin/home')}}"><i class="ti-home"></i> Dashboard </a>
+                    <a href="{{url('admin/home')}}"><i class="ti-dashboard"></i> Dashboard </a>
                 </li>
 
                 <li class="@if (Request::is('admin/sub_categories')) active @endif">
-                    <a href="{{url('admin/sub_categories')}}"><i class="ti-home"></i>Manage Category </a>
+                    <a href="{{url('admin/sub_categories')}}"><i class="ti-vector"></i>Manage Category </a>
                 </li>
-                
+
                 <li class="@if (Request::is('admin/services')) active @endif">
                     <a href="{{url('admin/services')}}"><i class="ti-home"></i>Services </a>
                 </li>
@@ -34,7 +34,7 @@
                 </li> --}}
 
                 <li>
-                    <a href="{{ url('admin/logout') }}"> <i class="ti-close"></i> Logout </a>
+                    <a href="{{ url('admin/logout') }}"> <i class="ti-arrow-left"></i> Logout </a>
                 </li>
             </ul>
         </div>

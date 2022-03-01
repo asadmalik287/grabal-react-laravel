@@ -27,8 +27,8 @@
 
 
 <ul class="nav nav-pills m-t-30 m-b-30 justify-content-end">
-    <li class=" nav-item"> <a href="#approved" class="nav-link border active approved" data-toggle="tab" aria-expanded="false">Approved</a> </li>
-    <li class="nav-item"> <a href="#pending" class="nav-link border pending" data-toggle="tab" aria-expanded="false">Pending</a> </li>
+    <li class="nav-item"> <a href="#pending" class="nav-link border active pending" data-toggle="tab" aria-expanded="false">Pending</a> </li>
+    <li class=" nav-item"> <a href="#approved" class="nav-link border approved" data-toggle="tab" aria-expanded="false">Approved</a> </li>
     <li class="nav-item"> <a href="#rejected" class="nav-link border rejected" data-toggle="tab" aria-expanded="true">Rejected</a> </li>
 </ul>
 
@@ -38,8 +38,8 @@
         <div class="card">
                 <div class="tab-content br-n pn">
 
-                    {{-- Approved tab start --}}
-                    <div id="approved" class="tab-pane active">
+                      {{-- Pending tab start --}}
+                      <div id="pending" class="tab-pane active">
                         <div class="bootstrap-data-table-panel">
                             <div class="table-responsive">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -52,16 +52,55 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($serviceProviders as $key=> $serviceProvider)
+                                            @if ($serviceProvider->is_verified == 0)
+                                                <tr>
+                                                    <td>{{++$key}}</td>
+                                                    <td>{{$serviceProvider->name}}</td>
+                                                    <td>Pending</td>
+                                                    <td>
+                                                        <a href="{{url('admin/services')}}">
+                                                            <button class="btn btn-info btn-sm">View</button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Pending tab end --}}
+
+                    {{-- Approved tab start --}}
+                    <div id="approved" class="tab-pane">
+                        <div class="bootstrap-data-table-panel">
+                            <div class="table-responsive">
+                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                    <thead>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Test user</td>
-                                            <td>Active</td>
-                                            <td>
-                                                <a href="{{url('admin/services')}}">
-                                                    <button class="btn btn-info btn-sm">View</button>
-                                                </a>
-                                            </td>
+                                            <th>#</th>
+                                            <th>Username</th>
+                                            <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($serviceProviders as $key=> $serviceProvider)
+                                            @if ($serviceProvider->is_verified == 1)
+                                                <tr>
+                                                    <td>{{++$key}}</td>
+                                                    <td>{{$serviceProvider->name}}</td>
+                                                    <td>Active</td>
+                                                    <td>
+                                                        <a href="{{url('admin/services')}}">
+                                                            <button class="btn btn-info btn-sm">View</button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -69,29 +108,7 @@
                     </div>
                     {{-- Approved tab end --}}
 
-                    {{-- Pending tab start --}}
-                    <div id="pending" class="tab-pane">
-                        <div class="bootstrap-data-table-panel">
-                            <div class="table-responsive">
-                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Username</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                {{-- Pending tab end --}}
-
-                {{-- Rejected tab start --}}
+                    {{-- Rejected tab start --}}
                     <div id="rejected" class="tab-pane">
                         <div class="bootstrap-data-table-panel">
                             <div class="table-responsive">
@@ -105,7 +122,20 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
+                                        @foreach ($serviceProviders as $key=> $serviceProvider)
+                                            @if ($serviceProvider->is_verified == 2)
+                                                <tr>
+                                                    <td>{{++$key}}</td>
+                                                    <td>{{$serviceProvider->name}}</td>
+                                                    <td>Rejected</td>
+                                                    <td>
+                                                        <a href="{{url('admin/services')}}">
+                                                            <button class="btn btn-info btn-sm">View</button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

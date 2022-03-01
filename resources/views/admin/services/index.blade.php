@@ -42,44 +42,22 @@
                         </thead>
                         <tbody>
 
-                            <tr>
-                                <td>1</td>
-                                <td class="wsnw">Demo</td>
-                                <td class="wsnw">Demo category</td>
-                                <td class="wsnw">Demo sub-category</td>
-                                <td>
-                                    <div class="serviceDescription">Demo Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste similique, rerum ducimus minus officia quod quibusdam quia deserunt distinctio perspiciatis sunt, quidem eaque numquam quos alias, soluta voluptatum illo molestiae!</div>
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#viewServices">View</button>
-                                </td>
-                            </tr>
+                            @foreach ($services as $key=>$service)
+                                <tr>
+                                    <td>{{++$key}}</td>
+                                    <td class="wsnw">{{$service->title}}</td>
+                                    @dd($service->get_service_category)
+                                    <td class="wsnw">{{$service->category_id}}</td>
+                                    <td class="wsnw">{{$service->subCategory_id}}</td>
+                                    <td>
+                                        <div class="serviceDescription">{{$service->description}}</div>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#viewServices">View</button>
+                                    </td>
+                                </tr>
+                            @endforeach
 
-                            <tr>
-                                <td>2</td>
-                                <td class="wsnw">Demo</td>
-                                <td class="wsnw">Demo category</td>
-                                <td class="wsnw">Demo sub-category</td>
-                                <td>
-                                    <div class="serviceDescription">Demo Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste similique, rerum ducimus minus officia quod quibusdam quia deserunt distinctio perspiciatis sunt, quidem eaque numquam quos alias, soluta voluptatum illo molestiae!</div>
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#viewServices">View</button>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>3</td>
-                                <td class="wsnw">Demo</td>
-                                <td class="wsnw">Demo category</td>
-                                <td class="wsnw">Demo sub-category</td>
-                                <td>
-                                    <div class="serviceDescription">Demo Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste similique, rerum ducimus minus officia quod quibusdam quia deserunt distinctio perspiciatis sunt, quidem eaque numquam quos alias, soluta voluptatum illo molestiae!</div>
-                                </td>
-                                <td>
-                                    <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#viewServices">View</button>
-                                </td>
-                            </tr>
 
                         </tbody>
                     </table>
