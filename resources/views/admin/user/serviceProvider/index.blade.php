@@ -47,7 +47,6 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Username</th>
-                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -57,7 +56,6 @@
                                                 <tr>
                                                     <td>{{++$key}}</td>
                                                     <td>{{$serviceProvider->name}}</td>
-                                                    <td>Pending</td>
                                                     <td>
                                                         <a href="{{url('admin/services')}}">
                                                             <button class="btn btn-info btn-sm">View</button>
@@ -82,7 +80,6 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Username</th>
-                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -92,7 +89,6 @@
                                                 <tr>
                                                     <td>{{++$key}}</td>
                                                     <td>{{$serviceProvider->name}}</td>
-                                                    <td>Active</td>
                                                     <td>
                                                         <a href="{{url('admin/services')}}">
                                                             <button class="btn btn-info btn-sm">View</button>
@@ -117,7 +113,6 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Username</th>
-                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -127,7 +122,6 @@
                                                 <tr>
                                                     <td>{{++$key}}</td>
                                                     <td>{{$serviceProvider->name}}</td>
-                                                    <td>Rejected</td>
                                                     <td>
                                                         <a href="{{url('admin/services')}}">
                                                             <button class="btn btn-info btn-sm">View</button>
