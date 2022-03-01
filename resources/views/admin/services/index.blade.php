@@ -46,7 +46,6 @@
                                 <tr>
                                     <td>{{++$key}}</td>
                                     <td class="wsnw">{{$service->title}}</td>
-                                    @dd($service->get_service_category)
                                     <td class="wsnw">{{$service->category_id}}</td>
                                     <td class="wsnw">{{$service->subCategory_id}}</td>
                                     <td>

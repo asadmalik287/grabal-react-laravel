@@ -1,9 +1,9 @@
 <form class="form-valide" id="update-Subcategory">
     @csrf
     @method('put')
-    
+
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Add subCategory</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Update subCategory</h5>
         <button type="button" class="close pt-3" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -42,6 +42,6 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
-        <button type="button" class="btn btn-success" onclick="commonFunction(false,'{{ route('sub_categories.update',$sub_category->id) }}','{{route('sub_categories.index')}}','post','','update-Subcategory');">Save</button>
+        <button type="button" class="btn btn-success" onclick="commonFunction(false,'{{ route('sub-categories.update',$sub_category->id) }}','{{route('sub-categories.index')}}','post','','update-Subcategory');">Save</button>
     </div>
 </form>

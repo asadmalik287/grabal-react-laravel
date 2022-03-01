@@ -39,7 +39,7 @@ Route::group(['prefix' => 'admin'], function () {
     Auth::routes();
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('categories', CategoriesController::class);
-    Route::resource('sub_categories', SubCategoriesController::class);
+    Route::resource('sub-categories', SubCategoriesController::class);
     Route::resource('services', ServiceController::class);
 
 });

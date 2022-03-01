@@ -35,7 +35,7 @@
                 </div>
                 <div class="stat-content dib">
                     <div class="stat-text">Total Users</div>
-                    <div class="stat-digit">0</div>
+                    <div class="stat-digit">{{\App\Models\User::where('role_id', 2)->count()}}</div>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="stat-content dib">
                     <div class="stat-text">Active Users</div>
-                    <div class="stat-digit">0</div>
+                    <div class="stat-digit">{{\App\Models\User::where(['role_id'=> 2,'is_verified'=> 1])->count()}}</div>
                 </div>
             </div>
         </div>
@@ -58,7 +58,7 @@
                 <div class="stat-icon dib"><i class="ti-alert color-danger border-danger"></i></div>
                 <div class="stat-content dib">
                     <div class="stat-text">Unverified</div>
-                    <div class="stat-digit">0</div>
+                    <div class="stat-digit">{{\App\Models\User::where(['role_id'=> 2,'is_verified'=> 0])->count()}}</div>
                 </div>
             </div>
         </div>

@@ -16,8 +16,9 @@ class SubCategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Categories::with('get_sub_categories')->get();
-        return view('admin.manage_categories.sub_categories.index', compact('categories'));
+        $categories = Categories::all();
+        $subCategories = SubCategories::all();
+        return view('admin.manage_categories.sub_categories.index', compact('categories','subCategories'));
     }
 
     public function create(){
