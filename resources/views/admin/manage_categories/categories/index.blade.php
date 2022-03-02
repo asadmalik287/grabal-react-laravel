@@ -150,6 +150,31 @@
             load_datatable()
             // appendJdlOptions()
         })
-        
+        function load_datatable() {
+            var option_table = $('#bootstrap-data-table-export').DataTable({
+                destroy: true,
+                processing: true,
+                serverSide: true,
+                ajax: {
+                    url: "{{ route('view-categories-table') }}",
+                    type: "GET",
+                },
+                columns: [{
+                        data: 'title',
+                        name: 'title'
+                    },
+                    {
+                        data: 'status',
+                        name: 'status'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        searchable: false,
+                        orderable: false
+                    }
+                ]
+            });
+        }
     </script>
 @endsection

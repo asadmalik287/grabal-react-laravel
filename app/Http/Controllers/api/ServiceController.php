@@ -176,7 +176,7 @@ class ServiceController extends Controller
     {
         $category = DB::select('select * from categories');
         $subCategory = DB::select('select * from sub_categories');
-        return response()->json(['caegories' => $category, 'subCategory' => $subCategory]);
+        return response()->json(['categories' => $category, 'subCategory' => $subCategory]);
     }
     // close
 }
