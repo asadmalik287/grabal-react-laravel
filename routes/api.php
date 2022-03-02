@@ -25,6 +25,7 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
 
     // service routes 
     Route::post('add-service', 'ServiceController@storeService')->name('storeService');
+    Route::get('category-list', 'ServiceController@categoriesList')->name('category-list');
 
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('test', 'AuthController@test')->name('test');

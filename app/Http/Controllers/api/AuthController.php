@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Session;
 use Spatie\Permission\Models\Role;
+use App\Mail\AuthenticationMail;
 
 class AuthController extends Controller
 {
@@ -89,10 +90,11 @@ class AuthController extends Controller
 
         $user = User::create($request->except(["confirm_password"]));
         if ($user) {
-            Mail::send('mails.credentials', ['userName' => $userName, 'password' => $password], function ($message) use ($user) {
-                $message->to($user->email);
-                $message->subject('Customer Login Details');
-            });
+            Mail::to($user->email)->send(new AuthenticationMail( ['userName' => $userName, 'password' => $password]));
+            // Mail::send('mails.credentials', ['userName' => $userName, 'password' => $password], function ($message) use ($user) {
+            //     $message->to($user->email);
+            //     $message->subject('Customer Login Details');
+            // });
 
             // check verification of user
             if ($user->is_verified == 1) {

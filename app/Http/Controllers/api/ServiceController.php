@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use DB;
 class ServiceController extends Controller
 {
     public function index()
@@ -14,7 +14,6 @@ class ServiceController extends Controller
         $services = Service::all();
         return view('admin.services.index', compact('services'));
     }
-
 
     // store services
     public function storeService(Request $request)
@@ -169,6 +168,15 @@ class ServiceController extends Controller
         $message = 'Service has been added successfully';
         return (new ResponseController)->sendResponse(1, $message, $service);
 
+    }
+    // close
+
+    // list category and sub category
+    public function categoriesList()
+    {
+        $category = DB::select('select * from categories');
+        $subCategory = DB::select('select * from sub_categories');
+        return response()->json(['caegories' => $category, 'subCategory' => $subCategory]);
     }
     // close
 }
