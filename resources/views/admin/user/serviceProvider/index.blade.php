@@ -70,8 +70,9 @@
                                                     <td>{{ $serviceProvider->contact_person }}</td>
                                                     <td>{{ $serviceProvider->message }}</td>
                                                     <td>
-                                                        <a href="{{ url('admin/services') }}">
-                                                            <button class="btn btn-info btn-sm">View</button>
+                                                        <a
+                                                            href="{{ url('admin/services') }}?id={{ $serviceProvider->id }}">
+                                                            <button class="btn btn-info btn-sm">View Services</button>
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -111,8 +112,9 @@
                                                     <td>{{ $serviceProvider->contact_person }}</td>
                                                     <td>{{ $serviceProvider->message }}</td>
                                                     <td>
-                                                        <a href="{{ url('admin/services') }}">
-                                                            <button class="btn btn-info btn-sm">View</button>
+                                                        <a
+                                                            href="{{ url('admin/services') }}?id={{ $serviceProvider->id }}">
+                                                            <button class="btn btn-info btn-sm">View Services</button>
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -152,8 +154,9 @@
                                                     <td>{{ $serviceProvider->contact_person }}</td>
                                                     <td>{{ $serviceProvider->message }}</td>
                                                     <td>
-                                                        <a href="{{ url('admin/services') }}">
-                                                            <button class="btn btn-info btn-sm">View</button>
+                                                        <a
+                                                            href="{{ url('admin/services') }}?id={{ $serviceProvider->id }}">
+                                                            <button class="btn btn-info btn-sm">View Services</button>
                                                         </a>
                                                     </td>
                                                 </tr>

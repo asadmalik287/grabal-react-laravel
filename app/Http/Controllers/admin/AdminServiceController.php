@@ -4,19 +4,30 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminServiceController extends Controller
 {
     public function index()
     {
-        $pendingServices = Service::where('status', 'pending')->get();
-        $approvedServices = Service::where('status', 'approved')->get();
-        $rejectedServices = Service::where('status', 'rejected')->get();
+        $seller = null;
+        if (isset($_GET['id'])) {
+            $pendingServices = Service::where(['status' => 'pending', 'added_by' => $_GET['id']])->get();
+            $approvedServices = Service::where(['status' => 'approved', 'added_by' => $_GET['id']])->get();
+            $rejectedServices = Service::where(['status' => 'rejected', 'added_by' => $_GET['id']])->get();
+            $seller = User::where('id', $_GET['id'])->first();
+        } else {
+
+            $pendingServices = Service::where('status', 'pending')->get();
+            $approvedServices = Service::where('status', 'approved')->get();
+            $rejectedServices = Service::where('status', 'rejected')->get();
+        }
         $data = [
             'pendingServices' => $pendingServices,
             'approvedServices' => $approvedServices,
             'rejectedServices' => $rejectedServices,
+            'seller' => $seller,
         ];
         return view('admin.services.index', $data);
     }

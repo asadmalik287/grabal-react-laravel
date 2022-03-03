@@ -32,7 +32,10 @@
 
 
     <div>
-        <h3 class="text-center mb-3">All Services</h3>
+        <h3 class="text-center mb-3">
+            {{-- All Services --}}
+            {{ $seller == null ? 'All Services' : 'List of Services By ' . $seller->name }}
+        </h3>
     </div>
 
 
@@ -56,7 +59,10 @@
                         <td style="width: 5%;"></td>
                         <td>
                             <div class="d-flex  justify-content-between">
-                                <h5 class="text-left"> View All Services</h5>
+                                <h5 class="text-left">
+                                    {{ $seller == null ? 'View All Services' : 'Services By ' . $seller->name }}
+
+                                </h5>
                                 {{-- <button class="btn btn-success text-right" data-toggle="modal"
                                 data-target="#addsubCategory">Add
                                 new +</button> --}}
