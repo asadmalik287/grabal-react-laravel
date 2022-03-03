@@ -15,7 +15,10 @@
                 <div class="page-title">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('admin/home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Categories</li>
+                        <li class="breadcrumb-item active">Sellers</li>
+                        @if ($seller == true)
+                            <li class="breadcrumb-item active">{{ $serviceProviders[0]['business_name'] }}</li>
+                        @endif
                     </ol>
                 </div>
             </div>
@@ -25,13 +28,16 @@
 
     <div>
         <h3 class="text-center mb-3">
-            {{ $seller == false ? 'All Service Providers' : $serviceProviders[0]['name'] }}
+            {{ $seller == false ? 'All Service Providers' : $serviceProviders[0]['business_name'] }}
         </h3>
     </div>
 
 
     <ul class="nav nav-pills m-t-30 m-b-30 justify-content-end">
-        <li class="nav-item"> <a href="#pending" class="nav-link border active pending" data-toggle="tab"
+        <li class="nav-item"> <a href="#all" class="nav-link active border all" data-toggle="tab"
+                aria-expanded="false">All
+                Service Providers</a> </li>
+        <li class="nav-item"> <a href="#pending" class="nav-link border pending" data-toggle="tab"
                 aria-expanded="false">Pending</a> </li>
         <li class=" nav-item"> <a href="#approved" class="nav-link border approved" data-toggle="tab"
                 aria-expanded="false">Approved</a> </li>
@@ -39,17 +45,81 @@
                 aria-expanded="true">Rejected</a> </li>
     </ul>
 
+    <div class="row p-0">
+        <div class="col-lg-12 pb-0">
+            {{-- <div class="card mb-0"> --}}
+            <table id="" class="table table-striped table-bordered">
 
+                <tbody>
+                    <tr class="bg-transparent">
+                        <td style="width: 5%;"></td>
+                        <td>
+                            <div class="d-flex  justify-content-between">
+                                <h5 class="text-left">
+                                    {{ $seller == false ? ' View Service Providers' : 'View ' . $serviceProviders[0]['business_name'] . 'Details' }}
+                                </h5>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            {{-- </div> --}}
+        </div>
+    </div>
     <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
+        <div class="col-lg-12 pt-0">
+            <div class="card mt-0">
                 <div class="tab-content br-n pn">
 
-                    {{-- Pending tab start --}}
-                    <div id="pending" class="tab-pane active">
+                    {{-- all tab start --}}
+                    <div id="all" class="tab-pane active">
                         <div class="bootstrap-data-table-panel">
                             <div class="table-responsive">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr</th>
+                                            <th>Business Name</th>
+                                            <th>Email</th>
+                                            <th>Phone Number</th>
+                                            <th>Contact Person</th>
+                                            <th>Message</th>
+                                            <th>Crrent Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($serviceProviders as $key => $serviceProvider)
+                                            <tr>
+                                                <td>{{ $key + 1 }}</td>
+                                                <td>{{ $serviceProvider->business_name }}</td>
+                                                <td>{{ $serviceProvider->email }}</td>
+                                                <td>{{ $serviceProvider->phone_number }}</td>
+                                                <td>{{ $serviceProvider->contact_person }}</td>
+                                                <td>{{ $serviceProvider->message }}</td>
+                                                <td>{{ $serviceProvider->status }}</td>
+                                                <td>
+                                                    <a
+                                                        href="{{ url('admin/services') }}?id={{ $serviceProvider->id }}">
+                                                        <button class="btn btn-info btn-sm">View Services</button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- all tab end --}}
+
+                    {{-- Pending tab start --}}
+                    <div id="pending" class="tab-pane">
+                        <div class="bootstrap-data-table-panel">
+                            <div class="table-responsive">
+                                <table id="bootstrap-data-table-export1" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Sr</th>
@@ -63,7 +133,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($serviceProviders as $key => $serviceProvider)
-                                            @if ($serviceProvider->is_verified == 0)
+                                            @if ($serviceProvider->status == 'pending')
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>{{ $serviceProvider->business_name }}</td>
@@ -91,7 +161,7 @@
                     <div id="approved" class="tab-pane">
                         <div class="bootstrap-data-table-panel">
                             <div class="table-responsive">
-                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                <table id="bootstrap-data-table-export2" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Sr</th>
@@ -105,7 +175,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($serviceProviders as $key => $serviceProvider)
-                                            @if ($serviceProvider->is_verified == 1)
+                                            @if ($serviceProvider->status == 'approved')
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>{{ $serviceProvider->business_name }}</td>
@@ -133,7 +203,7 @@
                     <div id="rejected" class="tab-pane">
                         <div class="bootstrap-data-table-panel">
                             <div class="table-responsive">
-                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                <table id="bootstrap-data-table-export3" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Sr</th>
@@ -147,7 +217,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($serviceProviders as $key => $serviceProvider)
-                                            @if ($serviceProvider->is_verified == 2)
+                                            @if ($serviceProvider->status == 'rejected')
                                                 <tr>
                                                     <td>{{ $key + 1 }}</td>
                                                     <td>{{ $serviceProvider->business_name }}</td>
@@ -197,4 +267,12 @@
     <script src="{{ asset('assets/admin/js/lib/data-table/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/lib/data-table/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/lib/data-table/datatables-init.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#bootstrap-data-table-export_wrapper').addClass('justify-content-between')
+            $('#bootstrap-data-table-export1_wrapper').addClass('justify-content-between')
+            $('#bootstrap-data-table-export2_wrapper').addClass('justify-content-between')
+            $('#bootstrap-data-table-export3_wrapper').addClass('justify-content-between')
+        })
+    </script>
 @endsection

@@ -14,16 +14,19 @@ class AdminServiceController extends Controller
         $seller = null;
         if (isset($_GET['id'])) {
             $pendingServices = Service::where(['status' => 'pending', 'added_by' => $_GET['id']])->get();
+            $allServices = Service::where(['added_by' => $_GET['id']])->get();
             $approvedServices = Service::where(['status' => 'approved', 'added_by' => $_GET['id']])->get();
             $rejectedServices = Service::where(['status' => 'rejected', 'added_by' => $_GET['id']])->get();
             $seller = User::where('id', $_GET['id'])->first();
         } else {
 
             $pendingServices = Service::where('status', 'pending')->get();
+            $allServices = Service::all();
             $approvedServices = Service::where('status', 'approved')->get();
             $rejectedServices = Service::where('status', 'rejected')->get();
         }
         $data = [
+            'allServices' => $allServices,
             'pendingServices' => $pendingServices,
             'approvedServices' => $approvedServices,
             'rejectedServices' => $rejectedServices,

@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->string('vetting_doc')->nullable();
             $table->string('vaccinations_doc')->nullable();
             $table->string('certifications_doc')->nullable();
+            $table->enum('status', ['approved','pending','rejected'])->default('pending');
             $table->string('message')->nullable();
             $table->rememberToken();
             $table->timestamps();

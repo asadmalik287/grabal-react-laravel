@@ -26,6 +26,9 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('admin/home') }}">Dashboard</a></li>
                         <li class="breadcrumb-item active">Services</li>
+                        @if ($seller != null)
+                            <li class="breadcrumb-item active"> {{ $seller->business_name }}</li>
+                        @endif
                     </ol>
                 </div>
             </div>
@@ -38,14 +41,16 @@
     <div>
         <h3 class="text-center mb-3">
             {{-- All Services --}}
-            {{ $seller == null ? 'All Services' : 'List of Services By ' . $seller->name }}
+            {{ $seller == null ? 'All Services' : 'List of Services By ' . $seller->business_name }}
         </h3>
     </div>
 
 
 
     <ul class="nav nav-pills m-t-30 m-b-30 justify-content-end">
-        <li class="nav-item"> <a href="#pending" class="nav-link border active pending" data-toggle="tab"
+        <li class="nav-item"> <a href="#all" class="nav-link border active all" data-toggle="tab"
+                aria-expanded="false">All Services</a> </li>
+        <li class="nav-item"> <a href="#pending" class="nav-link border pending" data-toggle="tab"
                 aria-expanded="false">Pending</a> </li>
         <li class=" nav-item"> <a href="#approved" class="nav-link border approved" data-toggle="tab"
                 aria-expanded="false">Approved</a> </li>
@@ -64,7 +69,7 @@
                         <td>
                             <div class="d-flex  justify-content-between">
                                 <h5 class="text-left">
-                                    {{ $seller == null ? 'View All Services' : 'Services By ' . $seller->name }}
+                                    {{ $seller == null ? 'View All Services' : 'Services By ' . $seller->business_name }}
 
                                 </h5>
                                 {{-- <button class="btn btn-success text-right" data-toggle="modal"
@@ -84,8 +89,61 @@
             <div class="card mt-0">
                 <div class="tab-content br-n pn">
 
+                    {{-- all tab start --}}
+                    <div id="all" class="tab-pane active">
+                        <div class="bootstrap-data-table-panel">
+                            <div class="table-responsive">
+                                <table id="bootstrap-data-table-export1" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr</th>
+                                            <th>Title</th>
+                                            <th>Category</th>
+                                            <th>Sub-category</th>
+                                            <th>Business Name</th>
+                                            <th>Description</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($allServices as $key => $allService)
+                                            <tr>
+                                                <td>{{ $key + 1 }}</td>
+                                                <td class="wsnw">{{ $allService->title }}</td>
+                                                <td class="wsnw">{{ $allService->hasCategory->name }}</td>
+                                                <td class="wsnw">{{ $allService->hasSubCategory->name }}
+                                                </td>
+                                                <td class="wsnw"> <a class="sellerLink"
+                                                        href="{{ url('admin/serviceProviders') }}?id={{ $allService->haveProvider->id }}">
+                                                        <u> {{ $allService->haveProvider->business_name }} </u>
+                                                    </a></td>
+                                                <td>
+                                                    <div class="serviceDescription">{{ $allService->description }}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-info" data-toggle="modal"
+                                                        onclick="updateService(this,'view', '{{ route('admin.services.update') }}', '{{ $allService->id }}', 'GET')"
+                                                        data-target="#viewServices">View</button>
+                                                    <button class="btn btn-sm btn-success" type="button"
+                                                        onclick="updateService(this,'approve', '{{ route('admin.services.update') }}', '{{ $allService->id }}', 'POST')">Approve</button>
+                                                    <button class="btn btn-sm btn-danger"
+                                                        onclick="updateService(this,'reject', '{{ route('admin.services.update') }}', '{{ $allService->id }}', 'POST')">Reject</button>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                        @endforelse
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- all tab end --}}
+
                     {{-- Pending tab start --}}
-                    <div id="pending" class="tab-pane active">
+                    <div id="pending" class="tab-pane">
                         <div class="bootstrap-data-table-panel">
                             <div class="table-responsive">
                                 <table id="bootstrap-data-table-export1" class="table table-striped table-bordered">

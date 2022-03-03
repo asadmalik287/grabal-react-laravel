@@ -26,7 +26,9 @@
 .nav-link.active.rejected{
     background-color: rgb(255, 44, 44) !important;
 }
-
+.nav-link.active.all{
+    background-color: rgb(105, 85, 219) !important;
+}
 .wsnw{
     white-space: nowrap;
 }

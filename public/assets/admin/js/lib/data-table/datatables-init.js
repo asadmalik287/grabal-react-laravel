@@ -17,7 +17,9 @@
 	$('#bootstrap-data-table2').DataTable({
 		lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
 	});
-
+	$('#bootstrap-data-table3').DataTable({
+		lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+	});
 
 
 	$('#bootstrap-data-table-export').DataTable({
@@ -35,6 +37,13 @@
 		]
 	});
 	$('#bootstrap-data-table-export2').DataTable({
+		dom: 'lBfrtip',
+		lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+		buttons: [
+			'copy', 'csv', 'excel', 'pdf', 'print'
+		]
+	});
+	$('#bootstrap-data-table-export3').DataTable({
 		dom: 'lBfrtip',
 		lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
 		buttons: [
