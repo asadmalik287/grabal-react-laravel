@@ -19,6 +19,11 @@ class ServiceController extends Controller
     // store services
     public function storeService(Request $request)
     {
+        if($request->hasFile('certificate')){
+            return 'fine';
+        }else{
+            return 'not fine';
+        }
         $validator = Validator::make($request->all(), [
             'business_streetNo' => 'required|string',
             'business_unit' => 'required|string',
