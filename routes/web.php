@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\AdminServiceController;
 use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\SubCategoriesController;
 use App\Http\Controllers\api\ServiceController;
@@ -41,8 +42,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('categories', CategoriesController::class);
     Route::resource('sub-categories', SubCategoriesController::class);
     Route::resource('services', ServiceController::class);
-    Route::get('view-categories-table', [CategoriesController::class, 'viewCategoriesTable'])->name('view-categories-table');
-
-   
+    Route::get('/services', [App\Http\Controllers\admin\AdminServiceController::class, 'index'])->name('admin.services');
+    Route::post('/update-service', [App\Http\Controllers\admin\AdminServiceController::class, 'changeServiceStatus'])->name('admin.services.update');
+    
 });
 

@@ -2,7 +2,13 @@
     --blue: #79b0eb;
 }
 
-
+@font-face {
+    font-family: trebuc;
+    src: url('../../../fonts/trebuc.ttf');
+}
+*{
+    font-family: trebuc !important;
+}
 .bg-blue{
     background-color: var(--blue);
 }

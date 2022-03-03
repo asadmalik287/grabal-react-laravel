@@ -3,7 +3,7 @@
     @method('put')
 
     <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Update subCategory</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Update SubCategory</h5>
         <button type="button" class="close pt-3" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
