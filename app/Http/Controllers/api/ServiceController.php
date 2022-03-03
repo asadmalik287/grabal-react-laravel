@@ -22,11 +22,11 @@ class ServiceController extends Controller
     public function storeService(Request $request)
     {
         // return $request->all();
-        if($request->hasFile('vacc_doc')){
-            return 'fine';
-        }else{
-            return 'not fine';
-        }
+        // if($request->hasFile('vacc_doc')){
+        //     return 'fine';
+        // }else{
+        //     return 'not fine';
+        // }
         $validator = Validator::make($request->all(), [
             'business_streetNo' => 'required|string',
             'business_unit' => 'required|string',
@@ -55,7 +55,7 @@ class ServiceController extends Controller
         $service->business_unit = $request->business_unit;
         $service->business_street = $request->business_street;
         $service->contact_name = $request->contact_name;
-        $service->added_by = Auth::user()->id;
+        // $service->added_by = Auth::user()->id;
         $service->phone_number = $request->phone_number;
 
         // for ($i = 0; $i < count($request->file('images')); $i++) {

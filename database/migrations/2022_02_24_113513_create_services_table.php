@@ -29,7 +29,7 @@ class CreateServicesTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->string('vet_doc')->nullable();
             $table->string('vacc_doc')->nullable();
-            $table->unsignedBigInteger('added_by');
+            $table->unsignedBigInteger('added_by')->nullable();
             $table->foreign('added_by')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('certificate')->nullable();
             $table->enum('status', ['approved','pending','rejected'])->default('pending');
