@@ -159,7 +159,7 @@
                                                         onclick="updateService(this,'view' ,'{{ route('admin.services.update') }}', '{{ $approvedService->id }}', 'POST')"
                                                         data-target="#viewServices">View</button>
                                                     <button class="btn btn-sm btn-danger" type="button"
-                                                        onclick="updateService(this,'reject' ,'{{ route('admin.services.update') }}', '{{ $approvedService->id }}', 'POST')">Reject</button>
+                                                        onclick="updateService(this,'reject' ,'{{ route('admin.services.update') }}', '{{ $approvedService->id }}', 'POST')">Disapprove</button>
                                                 </td>
                                             </tr>
                                         @empty
