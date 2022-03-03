@@ -18,8 +18,7 @@ class ServiceController extends Controller
     // store services
     public function storeService(Request $request)
     {
-        return $request->certificate;
-        if($request->hasFile('certificate')){
+        if($request->hasFile('vacc_doc')){
             return 'fine';
         }else{
             return 'not fine';
