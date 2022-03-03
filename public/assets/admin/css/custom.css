@@ -6,7 +6,7 @@
     font-family: trebuc;
     src: url('../../../fonts/trebuc.ttf');
 }
-*{
+div span section body{
     font-family: trebuc !important;
 }
 .bg-blue{
