@@ -24,7 +24,9 @@
     </div>
 
     <div>
-        <h3 class="text-center mb-3">All Service Provider</h3>
+        <h3 class="text-center mb-3">
+            {{$seller == false ? 'All Service Providers' : $serviceProviders[0]['name']}}
+        </h3>
     </div>
 
 

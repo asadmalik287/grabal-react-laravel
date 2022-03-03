@@ -104,7 +104,9 @@
                                                 <td class="wsnw">{{ $pendingService->hasCategory->name }}</td>
                                                 <td class="wsnw">{{ $pendingService->hasSubCategory->name }}
                                                 </td>
-                                                <td class="wsnw">{{ $pendingService->haveProvider->name }}</td>
+                                                <td class="wsnw"> <a
+                                                        href="{{ url('admin/serviceProviders') }}?id={{ $pendingService->haveProvider->id  }}">
+                                                        {{ $pendingService->haveProvider->name }}</a></td>
                                                 <td>
                                                     <div class="serviceDescription">{{ $pendingService->description }}
                                                     </div>
@@ -154,7 +156,10 @@
                                                 <td class="wsnw">{{ $approvedService->hasCategory->name }}</td>
                                                 <td class="wsnw">{{ $approvedService->hasSubCategory->name }}
                                                 </td>
-                                                <td class="wsnw">{{ $approvedService->haveProvider->name }}
+                                                <td class="wsnw">
+                                                    <a
+                                                        href="{{ url('admin/serviceProviders') }}?id={{  $approvedService->haveProvider->id }}">
+                                                        {{ $approvedService->haveProvider->name }}</a>
                                                 </td>
                                                 <td>
                                                     <div class="serviceDescription">{{ $approvedService->description }}
@@ -201,7 +206,11 @@
                                                 <td class="wsnw">{{ $rejectedService->hasCategory->name }}</td>
                                                 <td class="wsnw">{{ $rejectedService->hasSubCategory->name }}
                                                 </td>
-                                                <td class="wsnw">{{ $rejectedService->haveProvider->name }}
+                                                <td class="wsnw">
+                                                    <a
+                                                        href="{{ url('admin/serviceProviders') }}?id={{  $rejectedService->haveProvider->id }}">
+                                                        {{ $rejectedService->haveProvider->name }}</a>
+
                                                 </td>
                                                 <td>
                                                     <div class="serviceDescription">{{ $rejectedService->description }}
