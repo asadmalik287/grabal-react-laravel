@@ -17,7 +17,7 @@
     <!-- Styles -->
     <link href="{{ asset('assets/admin/css/lib/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/lib/themify-icons.css') }}" rel="stylesheet">
-    {{-- <link href="{{ asset('assets/admin/css/lib/bootstrap.min.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('assets/admin/css/lib/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/lib/helper.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/css/custom.css') }}" rel="stylesheet">
