@@ -182,7 +182,7 @@
 
 @section('script')
     <script src="{{ asset('assets/admin/js/lib/form-validation/jquery.validate.min.js') }}"></script>
-<script src="{{ asset('assets/admin/js/lib/form-validation/jquery.validate-init.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/lib/form-validation/jquery.validate-init.js') }}"></script>
     <script src="{{ asset('assets/admin/js/lib/data-table/datatables.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/lib/data-table/dataTables.buttons.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/lib/data-table/buttons.flash.min.js') }}"></script>

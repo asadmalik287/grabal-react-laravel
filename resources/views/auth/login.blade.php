@@ -13,7 +13,7 @@
                                 </a>
                             </div>
                             <div class="login-form shadow">
-                                <h4>Administratior Login</h4>
+                                <h4>Administrator Login</h4>
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="form-group">
