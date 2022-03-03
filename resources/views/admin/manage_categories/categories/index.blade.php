@@ -3,6 +3,13 @@
 
 @section('style')
     <link href="{{ asset('assets/admin/css/lib/data-table/buttons.bootstrap.min.css') }}" rel="stylesheet" />
+    <style>
+        .table thead,
+        .table tr {
+            text-align: center;
+        }
+
+    </style>
 @endsection
 
 @section('content')
@@ -24,14 +31,33 @@
     </div>
 
     <div>
-        <h3 class="text-center mb-3">All Categories</h3>
+        <h3 class="text-center mb-3">Main Categories</h3>
     </div>
+    <div class="row p-0">
+        <div class="col-lg-12 pb-0">
+            {{-- <div class="card mb-0"> --}}
+            <table id="" class="table table-striped table-bordered">
 
+                <tbody>
+                    <tr class="bg-transparent">
+                        <td style="width: 5%;"></td>
+                        <td>
+                            <div class="d-flex  justify-content-between">
+                                <h5 class="text-left"> View Categories</h5>
+                                <button class="btn btn-success" data-toggle="modal" data-target="#addCategory">Add new
+                                    +</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            {{-- </div> --}}
+        </div>
+    </div>
     <div class="row">
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="text-right mb-4"><button class="btn btn-primary" data-toggle="modal"
-                        data-target="#addCategory">Add new +</button></div>
+        <div class="col-lg-12 pt-0">
+            <div class="card mt-0">
                 <div class="bootstrap-data-table-panel">
                     <div class="table-responsive">
                         <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -40,22 +66,23 @@
                                     <th>Sr</th>
                                     <th>Category Title</th>
                                     <th>Status</th>
-                                    <th>Action</th>
+                                    <th style="width:20%;">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($categories as $key => $category)
-                            <tr>
-                                <td>{{$key+1}}</td>
-                                <td>{{ucfirst($category->name)}}</td>
-                                <td>{{ucfirst( $category->status)}}</td>
-                                <td>
-                                    <button class="btn btn-info" data-toggle="modal" data-target=".updateCategory" onclick="editResource('{{ route('categories.edit', $category->id) }}','.updateModalCategory')">Update</button>
-                                    <button class="btn btn-danger" onclick="commonFunction(true,'{{ route('categories.destroy',$category->id) }}','{{route('categories.index')}}','delete','Are you sure you want to delete?','');">Delete</button>
-                                </td>
-                            </tr>
-
-                            @endforeach --}}
+                                @foreach ($categories as $key => $category)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ ucfirst($category->name) }}</td>
+                                        <td>{{ ucfirst($category->status) }}</td>
+                                        <td>
+                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".updateCategory"
+                                                onclick="editResource('{{ route('categories.edit', $category->id) }}','.updateModalCategory')">Update</button>
+                                            <button class="btn btn-danger btn-sm"
+                                                onclick="commonFunction(true,'{{ route('categories.destroy', $category->id) }}','{{ route('categories.index') }}','delete','Are you sure you want to delete?','');">Delete</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -147,34 +174,7 @@
     <script src="{{ asset('assets/admin/js/lib/data-table/datatables-init.js') }}"></script>
     <script>
         $(document).ready(function() {
-            load_datatable()
-            // appendJdlOptions()
+            $('#bootstrap-data-table-export_wrapper').addClass('justify-content-between')
         })
-        function load_datatable() {
-            var option_table = $('#bootstrap-data-table-export').DataTable({
-                destroy: true,
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: "{{ route('view-categories-table') }}",
-                    type: "GET",
-                },
-                columns: [{
-                        data: 'title',
-                        name: 'title'
-                    },
-                    {
-                        data: 'status',
-                        name: 'status'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        searchable: false,
-                        orderable: false
-                    }
-                ]
-            });
-        }
     </script>
 @endsection

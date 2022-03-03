@@ -14,10 +14,10 @@
 
 
                 <li>
-                    <a class="sidebar-sub-toggle"><i class="ti-vector"></i> Manage Category <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                    <a class="sidebar-sub-toggle"><i class="ti-vector"></i> Manage Categories<span class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
-                        <li class="@if (Request::is('admin/categories')) active @endif"><a href="{{url('admin/categories')}}"> Category</a></li>
-                        <li class="@if (Request::is('admin/sub-categories')) active @endif"><a href="{{url('admin/sub-categories')}}"> Sub Category</a></li>
+                        <li class="@if (Request::is('admin/categories')) active @endif"><a href="{{url('admin/categories')}}"> Categories</a></li>
+                        <li class="@if (Request::is('admin/sub-categories')) active @endif"><a href="{{url('admin/sub-categories')}}"> Sub Categories</a></li>
                     </ul>
                 </li>
 

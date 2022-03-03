@@ -125,6 +125,7 @@ class CategoriesController extends Controller
     {
         $category = Categories::all();
         return Datatables::of($category)
+        ->addIndexColumn()
             ->addColumn('title', function ($category) {
                 return $category->name;
             })

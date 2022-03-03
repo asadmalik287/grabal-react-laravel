@@ -2699,24 +2699,25 @@ ul {
   border-radius: 3px;
 }
 thead tr th {
-  color: #373757;
+  color: #000000;
   font-weight: 500;
 }
-thead tr th:last-child {
+/* thead tr th:last-child {
   text-align: right;
-}
+} */
 tbody tr th {
-  color: #373757;
+  color: #000000;
   font-family: 'Roboto', sans-serif;
   font-weight: normal;
 }
 tbody tr td {
   font-family: 'Roboto', sans-serif;
-  color: #868e96;
+  color: #686868;
+  line-height: 0px;
 }
-tbody tr td:last-child {
+/* tbody tr td:last-child {
   text-align: right;
-}
+} */
 .table > tbody > tr > td,
 .table > tbody > tr > th,
 .table > tfoot > tr > td,

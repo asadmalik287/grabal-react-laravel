@@ -4,14 +4,17 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use Auth;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use DB;
+
 class ServiceController extends Controller
 {
     public function index()
     {
         $services = Service::all();
+        return $services;
         return view('admin.services.index', compact('services'));
     }
 
@@ -46,6 +49,7 @@ class ServiceController extends Controller
         $service->business_unit = $request->business_unit;
         $service->business_street = $request->business_street;
         $service->contact_name = $request->contact_name;
+        $service->added_by = Auth::user()->id;
         $service->phone_number = $request->phone_number;
 
         // for ($i = 0; $i < count($request->file('images')); $i++) {

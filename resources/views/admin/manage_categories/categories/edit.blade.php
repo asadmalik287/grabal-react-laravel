@@ -30,6 +30,6 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" onclick="commonFunction(false,'{{ route('categories.update',$category->id) }}','{{route('sub_categories.index')}}','post','','update-form');">Save</button>
+        <button type="button" class="btn btn-success" onclick="commonFunction(false,'{{ route('categories.update',$category->id) }}','{{route('sub-categories.index')}}','post','','update-form');">Save</button>
     </div>
 </form>
