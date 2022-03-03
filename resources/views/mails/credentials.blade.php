@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    
     Email/Username : {{ $userName }}
     <br>
     Password : {{ $password }}

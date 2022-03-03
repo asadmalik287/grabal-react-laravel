@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\Categories;
-use Validator;
 use Illuminate\Http\Request;
+use Validator;
+use Yajra\DataTables\DataTables;
 
 class CategoriesController extends Controller
 {
@@ -37,13 +39,12 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $validations = Validator::make($request->all(),[
-            'name'=>'required || unique:categories',
-            'status'=>'required'
+        $validations = Validator::make($request->all(), [
+            'name' => 'required || unique:categories',
+            'status' => 'required',
         ]);
 
-        if($validations->fails())
-        {
+        if ($validations->fails()) {
             return response()->json(['success' => false, 'message' => $validations->errors()]);
         }
 
@@ -51,7 +52,7 @@ class CategoriesController extends Controller
         $category->name = $request->name;
         $category->status = $request->status;
         $category->save();
-        return response()->json(['success' => true, 'message' =>'Category has been added successfully']);
+        return response()->json(['success' => true, 'message' => 'Category has been added successfully']);
     }
 
     /**
@@ -73,8 +74,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $category = Categories::where('id',$id)->first();
-        return view('admin.manage_categories.categories.edit',compact('category'))->render();
+        $category = Categories::where('id', $id)->first();
+        return view('admin.manage_categories.categories.edit', compact('category'))->render();
     }
 
     /**
@@ -86,21 +87,20 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validations = Validator::make($request->all(),[
-            'name'=>'required || unique:categories,name,'.$id,
-            'status'=>'required',
+        $validations = Validator::make($request->all(), [
+            'name' => 'required || unique:categories,name,' . $id,
+            'status' => 'required',
         ]);
 
-        if($validations->fails())
-        {
+        if ($validations->fails()) {
             return response()->json(['success' => false, 'message' => $validations->errors()]);
         }
 
         $category = Categories::find($id);
         $category->name = $request->name;
         $category->status = $request->status;
-        if($category->save()){
-            return response()->json(['success' => true, 'message' =>'Category has been updated successfully']);
+        if ($category->save()) {
+            return response()->json(['success' => true, 'message' => 'Category has been updated successfully']);
         }
     }
 
@@ -112,13 +112,37 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        if(!Categories::where('id',$id)->whereHas('get_sub_categories')->exists()){
-            if(Categories ::where('id',$id)->delete()){
-                return response()->json(['success' => true, 'message' =>'Category been deleted successfully']);
+        if (!Categories::where('id', $id)->whereHas('get_sub_categories')->exists()) {
+            if (Categories::where('id', $id)->delete()) {
+                return response()->json(['success' => true, 'message' => 'Category been deleted successfully']);
             }
-        }else{
-            return response()->json(['success' => false , 'redirect'=>false , 'message' =>'Please delete Sub Category first ']);
+        } else {
+            return response()->json(['success' => false, 'redirect' => false, 'message' => 'Please delete Sub Category first ']);
         }
 
+    }
+    public function viewCategoriesTable()
+    {
+        $category = Categories::all();
+        return Datatables::of($category)
+            ->addColumn('title', function ($category) {
+                return $category->name;
+            })
+            ->addColumn('status', function ($category) {
+                return $category->status;
+            })
+            ->addColumn('action', function ($category) {
+
+                $b = '';
+                //$this->authorize('option-status');
+                $b = '<button onclick="change_status(this);" data-status="' . $category->status . '" data-id="' . $category->id . '" class="btn btn-primary border-0"  >Update </button>';
+                //$this->authorize('delete-option');
+                $route = Route("home");
+                $function = 'delete_data(this,"' . $route . '")';
+                $b .= '<button onclick=' . $function . '  data-id="' . $category->id . '" class="bg-transparent text-danger border-0">Delete</button>';
+                return $b;
+            })
+            ->rawColumns(['title', 'status', 'action'])
+            ->make(true);
     }
 }
