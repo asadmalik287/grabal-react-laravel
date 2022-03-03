@@ -9,6 +9,10 @@
             text-align: center;
         }
 
+        .sellerLink {
+            color: rgb(54, 54, 214)
+        }
+
     </style>
 @endsection
 @section('content')
@@ -104,9 +108,10 @@
                                                 <td class="wsnw">{{ $pendingService->hasCategory->name }}</td>
                                                 <td class="wsnw">{{ $pendingService->hasSubCategory->name }}
                                                 </td>
-                                                <td class="wsnw"> <a
-                                                        href="{{ url('admin/serviceProviders') }}?id={{ $pendingService->haveProvider->id  }}">
-                                                        {{ $pendingService->haveProvider->name }}</a></td>
+                                                <td class="wsnw"> <a class="sellerLink"
+                                                        href="{{ url('admin/serviceProviders') }}?id={{ $pendingService->haveProvider->id }}">
+                                                        <u> {{ $pendingService->haveProvider->name }} </u>
+                                                    </a></td>
                                                 <td>
                                                     <div class="serviceDescription">{{ $pendingService->description }}
                                                     </div>
@@ -157,9 +162,10 @@
                                                 <td class="wsnw">{{ $approvedService->hasSubCategory->name }}
                                                 </td>
                                                 <td class="wsnw">
-                                                    <a
-                                                        href="{{ url('admin/serviceProviders') }}?id={{  $approvedService->haveProvider->id }}">
-                                                        {{ $approvedService->haveProvider->name }}</a>
+                                                    <a class="sellerLink"
+                                                        href="{{ url('admin/serviceProviders') }}?id={{ $approvedService->haveProvider->id }}">
+                                                        <u> {{ $approvedService->haveProvider->name }} </u>
+                                                    </a>
                                                 </td>
                                                 <td>
                                                     <div class="serviceDescription">{{ $approvedService->description }}
@@ -207,9 +213,10 @@
                                                 <td class="wsnw">{{ $rejectedService->hasSubCategory->name }}
                                                 </td>
                                                 <td class="wsnw">
-                                                    <a
-                                                        href="{{ url('admin/serviceProviders') }}?id={{  $rejectedService->haveProvider->id }}">
-                                                        {{ $rejectedService->haveProvider->name }}</a>
+                                                    <a class="sellerLink"
+                                                        href="{{ url('admin/serviceProviders') }}?id={{ $rejectedService->haveProvider->id }}">
+                                                        <u> {{ $rejectedService->haveProvider->name }} </u>
+                                                    </a>
 
                                                 </td>
                                                 <td>
