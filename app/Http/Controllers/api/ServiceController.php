@@ -4,7 +4,6 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
-use Auth;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -187,6 +186,14 @@ class ServiceController extends Controller
         $category = DB::select('select * from categories');
         $subCategory = DB::select('select * from sub_categories');
         return response()->json(['categories' => $category, 'subCategory' => $subCategory]);
+    }
+    // close
+
+    // get all services
+    public function allServices()
+    {
+        $services = Service::all();
+        return response()->json(['services' => $services]);
     }
     // close
 }

@@ -18,12 +18,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
-    // auth routes 
+    // auth routes
     Route::post('register', 'AuthController@register')->name('register');
     Route::post('serviceProviderRegister', 'AuthController@serviceProviderRegister')->name('serviceProviderRegister');
     Route::post('login', 'AuthController@login')->name('login');
+    Route::get('all-services', 'ServiceController@allServices')->name('allServices');
 
-    // service routes 
+    // service routes
     Route::post('add-service', 'ServiceController@storeService')->name('storeService');
     Route::get('category-list', 'ServiceController@categoriesList')->name('category-list');
 
