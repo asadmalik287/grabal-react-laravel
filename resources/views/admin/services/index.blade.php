@@ -144,10 +144,11 @@
                                 <table id="bootstrap-data-table-export2" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>Sr</th>
                                             <th>Title</th>
                                             <th>Category</th>
                                             <th>Sub-category</th>
+                                            <th>Seller Name</th>
                                             <th>Description</th>
                                             <th>Action</th>
                                         </tr>
