@@ -43,7 +43,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('sub-categories', SubCategoriesController::class);
     Route::resource('services', ServiceController::class);
     Route::get('/services', [App\Http\Controllers\admin\AdminServiceController::class, 'index'])->name('admin.services');
-    Route::post('/update-service', [App\Http\Controllers\admin\AdminServiceController::class, 'changeServiceStatus'])->name('admin.services.update');
-    
+    Route::match(['get', 'post'],'/update-service', [App\Http\Controllers\admin\AdminServiceController::class, 'changeServiceStatus'])->name('admin.services.update');
 });
 

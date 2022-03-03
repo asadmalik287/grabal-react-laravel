@@ -91,7 +91,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($pendingServices as $key => $pendingService)
+                                        @forelse ($pendingServices as $key => $pendingService)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td class="wsnw">{{ $pendingService->title }}</td>
@@ -105,13 +105,17 @@
                                                 </td>
                                                 <td>
                                                     <button class="btn btn-sm btn-info" data-toggle="modal"
+                                                        onclick="updateService(this,'view', '{{ route('admin.services.update') }}', '{{ $pendingService->id }}', 'GET')"
                                                         data-target="#viewServices">View</button>
                                                     <button class="btn btn-sm btn-success" type="button"
                                                         onclick="updateService(this,'approve', '{{ route('admin.services.update') }}', '{{ $pendingService->id }}', 'POST')">Approve</button>
-                                                    <button class="btn btn-sm btn-danger">Reject</button>
+                                                    <button class="btn btn-sm btn-danger"
+                                                        onclick="updateService(this,'reject', '{{ route('admin.services.update') }}', '{{ $pendingService->id }}', 'POST')">Reject</button>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                        @endforelse
+
 
                                     </tbody>
                                 </table>
@@ -137,29 +141,29 @@
                                     </thead>
                                     <tbody>
 
-                                        @foreach ($approvedServices as $key => $service)
+                                        @forelse ($approvedServices as $key => $approvedService)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
-                                                <td class="wsnw">{{ $pendingService->title }}</td>
-                                                <td class="wsnw">{{ $pendingService->hasCategory->name }}</td>
-                                                <td class="wsnw">{{ $pendingService->hasSubCategory->name }}
+                                                <td class="wsnw">{{ $approvedService->title }}</td>
+                                                <td class="wsnw">{{ $approvedService->hasCategory->name }}</td>
+                                                <td class="wsnw">{{ $approvedService->hasSubCategory->name }}
                                                 </td>
-                                                <td class="wsnw">{{ $pendingService->haveProvider->name }}</td>
+                                                <td class="wsnw">{{ $approvedService->haveProvider->name }}
+                                                </td>
                                                 <td>
-                                                    <div class="serviceDescription">{{ $pendingService->description }}
+                                                    <div class="serviceDescription">{{ $approvedService->description }}
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <button class="btn btn-sm btn-info" data-toggle="modal"
+                                                        onclick="updateService(this,'view' ,'{{ route('admin.services.update') }}', '{{ $approvedService->id }}', 'POST')"
                                                         data-target="#viewServices">View</button>
-                                                    <button class="btn btn-sm btn-success" type="button"
-                                                        onclick="updateService(this,'reject' '{{ route('admin.services.update') }}', '{{ $pendingService->id }}', 'POST')">Reject</button>
-                                                    <button class="btn btn-sm btn-danger">Reject</button>
+                                                    <button class="btn btn-sm btn-danger" type="button"
+                                                        onclick="updateService(this,'reject' ,'{{ route('admin.services.update') }}', '{{ $approvedService->id }}', 'POST')">Reject</button>
                                                 </td>
                                             </tr>
-                                        @endforeach
-
-
+                                        @empty
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
@@ -174,34 +178,42 @@
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>#</th>
+                                            <th>Sr</th>
                                             <th>Title</th>
                                             <th>Category</th>
                                             <th>Sub-category</th>
+                                            <th>Seller Name</th>
                                             <th>Description</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($rejectedServices as $key => $rejectedService)
+                                            <tr>
+                                                <td>{{ $key + 1 }}</td>
+                                                <td class="wsnw">{{ $rejectedService->title }}</td>
+                                                <td class="wsnw">{{ $rejectedService->hasCategory->name }}</td>
+                                                <td class="wsnw">{{ $rejectedService->hasSubCategory->name }}
+                                                </td>
+                                                <td class="wsnw">{{ $rejectedService->haveProvider->name }}
+                                                </td>
+                                                <td>
+                                                    <div class="serviceDescription">{{ $rejectedService->description }}
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-info" data-toggle="modal"
+                                                        onclick="updateService(this,'view', '{{ route('admin.services.update') }}', '{{ $rejectedService->id }}', 'POST')"
+                                                        data-target="#viewServices">View</button>
+                                                    <button class="btn btn-sm btn-success" type="button"
+                                                        onclick="updateService(this,'approve', '{{ route('admin.services.update') }}', '{{ $rejectedService->id }}', 'POST')">Approve</button>
+                                                    <button class="btn btn-sm btn-danger"
+                                                        onclick="updateService(this,'delete', '{{ route('admin.services.update') }}', '{{ $rejectedService->id }}', 'POST')">Delete</button>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                        @endforelse
 
-                                        <tr>
-                                            <td>1</td>
-                                            <td class="wsnw">Demo title</td>
-                                            <td class="wsnw">demo category</td>
-                                            <td class="wsnw">demo sub category</td>
-                                            <td>
-                                                <div class="serviceDescription">Lorem ipsum dolor sit, amet consectetur
-                                                    adipisicing elit. Ratione deleniti consectetur aliquid ea numquam
-                                                    laboriosam architecto. Doloribus odit neque debitis animi, nemo porro.
-                                                    Consequatur dolorum sunt impedit optio labore quidem.</div>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-sm btn-info" data-toggle="modal"
-                                                    data-target="#viewServices">View</button>
-                                                <button class="btn btn-sm btn-success">Approve</button>
-                                                <button class="btn btn-sm btn-danger">Delete</button>
-                                            </td>
-                                        </tr>
 
                                     </tbody>
                                 </table>
@@ -225,103 +237,12 @@
     <div class="modal fade" id="viewServices" tabindex="-1" role="dialog" aria-labelledby="viewServicesTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <form class="form-valide" id="create-form">
+            <div class="modal-content" id="viewServiceModal_div">
 
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">View Service</h5>
-                        <button type="button" class="close pt-3 btn-sm" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-lg-2"> Category:</div>
-                            <div class="col-lg-10">
-                                Category is here
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2"> Sub category:</div>
-                            <div class="col-lg-10">
-                                Sub category is here
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2"> Title:</div>
-                            <div class="col-lg-10">
-                                Title is here
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2"> Description:</div>
-                            <div class="col-lg-10">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, consequatur,
-                                pariatur rerum voluptates iusto necessitatibus explicabo placeat natus, consectetur nesciunt
-                                minima obcaecati. Est maxime perspiciatis repellendus ipsam. Consequuntur, pariatur
-                                accusamus!
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2"> Contact name:</div>
-                            <div class="col-lg-10">
-                                Contact name is here
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2"> Phone number:</div>
-                            <div class="col-lg-10">
-                                Phone number is here
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2"> Business name:</div>
-                            <div class="col-lg-10">
-                                Business name is here
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2"> Business address:</div>
-                            <div class="col-lg-10">
-                                Street No - Business street - Business unit - Business address is here
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2"> Vetting Docs:</div>
-                            <div class="col-lg-10">
-                                <div class="d-flex">
-                                    <img src="{{ asset('assets/admin/images/2.png') }}" class="mr-2" alt="">
-                                    <img src="{{ asset('assets/admin/images/2.png') }}" class="mr-2" alt="">
-                                    <img src="{{ asset('assets/admin/images/2.png') }}" class="mr-2" alt="">
-                                    <img src="{{ asset('assets/admin/images/2.png') }}" class="mr-2" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2"> Vaccinations:</div>
-                            <div class="col-lg-10">
-                                <div class="d-flex">
-                                    <img src="{{ asset('assets/admin/images/2.png') }}" class="mr-2" alt="">
-                                    <img src="{{ asset('assets/admin/images/2.png') }}" class="mr-2" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2"> Certifications:</div>
-                            <div class="col-lg-10">
-                                <div class="d-flex">
-                                    <img src="{{ asset('assets/admin/images/2.png') }}" class="mr-2" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Save</button>
-                </div> --}}
-                </form>
+
             </div>
         </div>
+    </div>
     </div>
     {{-- Add Category Modal end --}}
 
@@ -349,49 +270,59 @@
         });
 
         function updateService(elem, action, targetUrl, id, method) {
+            $('#viewServiceModal_div').html('');
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            swal({
-                    title: "Are you sure?",
-                    text: "Once approved, you can reject from approved tab!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        console.log(id);
-                        $.ajax({
-                            url: targetUrl,
-                            type: method,
-                            data: {
-                                id: id,
-                                action: action
-                                // _token: token,
-                            },
-                            success: function(data) {
-                                if (data.success == true) {
-                                    swal("success", data.message, "success").then((value) => {
-                                        window.location.reload();
-                                    });
-                                } else {
+            if (action == 'view') {
+                serviceCommonAjax(targetUrl, method, id, action)
+            } else {
+                swal({
+                        title: 'Do you want to ' + action + ' this service?',
+                        text: "Changes will be saved immediately!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            serviceCommonAjax(targetUrl, method, id, action)
+                        } else {
+                            swal("Change is reverted!");
+                            return false;
+                        }
+                    });
+            }
 
-                                    swal({
-                                        icon: "error",
-                                        text: "Approve Service Failed",
-                                        // content: wrapper,
-                                        type: "error",
-                                    });
-                                }
-                            },
+        }
+
+        function serviceCommonAjax(targetUrl, method, id, action) {
+            $.ajax({
+                url: targetUrl,
+                type: method,
+                data: {
+                    id: id,
+                    action: action
+                },
+                success: function(data) {
+                    if (data.success == true) {
+                        swal("success", data.message, "success").then((value) => {
+                            window.location.reload();
                         });
-                    } else {
-                        swal("Service not Approved!");
+                    } else if (data.success == false) {
+                        swal({
+                            icon: "error",
+                            text: "Action Failed due to some Error!",
+                            type: "error",
+                        });
+                    } else if (data.success != false && data.success != true) {
+                        $('#viewServiceModal_div').html('');
+                        $('#viewServiceModal_div').html(data);
                     }
-                });
+                },
+            });
         }
     </script>
 @endsection
