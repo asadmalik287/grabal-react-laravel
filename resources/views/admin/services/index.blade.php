@@ -95,7 +95,7 @@
                                             <th>Title</th>
                                             <th>Category</th>
                                             <th>Sub-category</th>
-                                            <th>Seller Name</th>
+                                            <th>Business Name</th>
                                             <th>Description</th>
                                             <th>Action</th>
                                         </tr>
@@ -110,7 +110,7 @@
                                                 </td>
                                                 <td class="wsnw"> <a class="sellerLink"
                                                         href="{{ url('admin/serviceProviders') }}?id={{ $pendingService->haveProvider->id }}">
-                                                        <u> {{ $pendingService->haveProvider->name }} </u>
+                                                        <u> {{ $pendingService->haveProvider->business_name }} </u>
                                                     </a></td>
                                                 <td>
                                                     <div class="serviceDescription">{{ $pendingService->description }}
@@ -148,7 +148,7 @@
                                             <th>Title</th>
                                             <th>Category</th>
                                             <th>Sub-category</th>
-                                            <th>Seller Name</th>
+                                            <th>Business Name</th>
                                             <th>Description</th>
                                             <th>Action</th>
                                         </tr>
@@ -165,7 +165,7 @@
                                                 <td class="wsnw">
                                                     <a class="sellerLink"
                                                         href="{{ url('admin/serviceProviders') }}?id={{ $approvedService->haveProvider->id }}">
-                                                        <u> {{ $approvedService->haveProvider->name }} </u>
+                                                        <u> {{ $approvedService->haveProvider->business_name }} </u>
                                                     </a>
                                                 </td>
                                                 <td>
@@ -200,7 +200,7 @@
                                             <th>Title</th>
                                             <th>Category</th>
                                             <th>Sub-category</th>
-                                            <th>Seller Name</th>
+                                            <th>Business Name</th>
                                             <th>Description</th>
                                             <th>Action</th>
                                         </tr>
@@ -216,7 +216,7 @@
                                                 <td class="wsnw">
                                                     <a class="sellerLink"
                                                         href="{{ url('admin/serviceProviders') }}?id={{ $rejectedService->haveProvider->id }}">
-                                                        <u> {{ $rejectedService->haveProvider->name }} </u>
+                                                        <u> {{ $rejectedService->haveProvider->business_name }} </u>
                                                     </a>
 
                                                 </td>
