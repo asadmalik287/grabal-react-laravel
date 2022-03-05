@@ -192,8 +192,26 @@ class ServiceController extends Controller
     // get all services
     public function allServices()
     {
-        $services = Service::all();
+        $services = Service::join('categories', 'services.category_id', 'categories.id')
+            ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
+            ->join('users', 'services.added_by', 'users.id')
+            ->select('users.business_name', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
+                'services.id as Service_id')->get();
         return response()->json(['services' => $services]);
     }
     // close
+
+        // get specific services
+        public function serviceDetail()
+        {
+            if(isset($_GET['id'])) {
+            $services = Service::join('categories', 'services.category_id', 'categories.id')
+                ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
+                ->join('users', 'services.added_by', 'users.id')
+                ->select('users.business_name', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
+                    'services.id as Service_id')->where('services.id',$_GET['id'])->get();
+            return response()->json(['services' => $services]);
+        }
+    }
+        // close
 }
