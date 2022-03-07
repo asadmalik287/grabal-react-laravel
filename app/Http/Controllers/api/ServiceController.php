@@ -55,7 +55,7 @@ class ServiceController extends Controller
         $service->business_unit = $request->business_unit;
         $service->business_street = $request->business_street;
         $service->contact_name = $request->contact_name;
-        // $service->added_by = Auth::user()->id;
+        $service->added_by = $request->added_by_id;
         $service->phone_number = $request->phone_number;
 
         // for ($i = 0; $i < count($request->file('images')); $i++) {
