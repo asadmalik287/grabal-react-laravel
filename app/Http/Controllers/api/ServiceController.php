@@ -213,5 +213,14 @@ class ServiceController extends Controller
             return response()->json(['services' => $services]);
         }
     }
+    public function sellerServices() {
+        $sellerServices = Service::join('categories', 'services.category_id', 'categories.id')
+        ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
+        ->join('users', 'services.added_by', 'users.id')
+        ->select('users.business_name', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
+            'services.id as Service_id')->where('services.added_by',$_GET['id'])->get();
+            return response()->json(['sellerServices' => $sellerServices]);
+
+    }
         // close
 }
