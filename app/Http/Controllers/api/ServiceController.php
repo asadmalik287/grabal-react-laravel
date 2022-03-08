@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\ServiceAttachment;
+use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -51,7 +52,7 @@ class ServiceController extends Controller
         $service->business_unit = $request->business_unit;
         $service->business_street = $request->business_street;
         $service->contact_name = $request->contact_name;
-        // $service->added_by = $request->added_by_id;
+        $service->added_by = $request->added_by_id;
         $service->phone_number = $request->phone_number;
 
 
@@ -239,4 +240,15 @@ class ServiceController extends Controller
 
     }
         // close
+            // get all services
+    public function sellerDetail(Request $request)
+    {
+        if(isset($_GET['id'])) {
+        $seller = User::where('id',$_GET['id'])->first();
+        return response()->json(['seller' => $seller]);
+    }
+    }
+
+    // close
+
 }
