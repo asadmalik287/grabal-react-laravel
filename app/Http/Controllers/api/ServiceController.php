@@ -20,19 +20,20 @@ class ServiceController extends Controller
     // store services
     public function storeService(Request $request)
     {
-        if ($request->hasFile('image')) {
-            $file = $request->file("image");
-            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('images'), $image_changed_name);
-            $img_url2 = url('images') . "/" . $image_changed_name;
-            return $img_url2;
-        }
-        return "file not found";
-        // if($request->hasFile('vacc_doc')){
-        //     return 'fine';
-        // }else{
-        //     return 'not fine';
+        // if ($request->hasFile('image')) {
+        //     $file = $request->file("image");
+        //     $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
+        //     $file->move(public_path('images'), $image_changed_name);
+        //     $img_url2 = url('images') . "/" . $image_changed_name;
+        //     return $img_url2;
         // }
+        // return "file not found";
+        
+        if($request->hasFile('vacc_doc')){
+            return 'fine';
+        }else{
+            return 'not fine';
+        }
         $validator = Validator::make($request->all(), [
             'business_streetNo' => 'required|string',
             'business_unit' => 'required|string',
