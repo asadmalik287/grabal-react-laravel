@@ -48,7 +48,7 @@ class ServiceController extends Controller
         $service->business_unit = $request->business_unit;
         $service->business_street = $request->business_street;
         $service->contact_name = $request->contact_name;
-        $service->added_by = $request->added_by_id;
+        // $service->added_by = $request->added_by_id;
         $service->phone_number = $request->phone_number;
 
         // for ($i = 0; $i < count($request->file('images')); $i++) {
@@ -73,11 +73,11 @@ class ServiceController extends Controller
         //     $attachment->service_id = $service->id;
         //     $attachment->save();
         // }
+        $path = 'assets/admin/images';
         if ($request->hasFile('certificate')) {
             $file = $request->file("certificate");
             $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($path), $image_changed_name);
-            $path = '/public' . '/' . $path;
             $img_url2 = url($path) . "/" . $image_changed_name;
             $service->vacc_doc = $img_url2;
         }
@@ -85,7 +85,6 @@ class ServiceController extends Controller
             $file = $request->file("vac_doc");
             $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($path), $image_changed_name);
-            $path = '/public' . '/' . $path;
             $img_url2 = url($path) . "/" . $image_changed_name;
             $service->vacc_doc = $img_url2;
         }
@@ -94,7 +93,6 @@ class ServiceController extends Controller
             $file = $request->file("vet_doc");
             $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($path), $image_changed_name);
-            $path = '/public' . '/' . $path;
             $img_url3 = url($path) . "/" . $image_changed_name;
             $service->vet_doc = $img_url3;
         }
