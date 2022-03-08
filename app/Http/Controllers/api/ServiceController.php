@@ -55,6 +55,7 @@ class ServiceController extends Controller
 
 
         $path = 'assets/admin/images';
+        return $request->file('service_image');
         for ($i = 0; $i < count($request->file('service_image')); $i++) {
             $file = $request->file("service_image")[$i];
             $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
