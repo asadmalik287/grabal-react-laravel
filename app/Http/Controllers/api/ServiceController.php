@@ -75,25 +75,25 @@ class ServiceController extends Controller
         // }
         $path = 'assets/admin/images';
         if ($request->hasFile('certificate')) {
-            $file = $request->file("certificate");
-            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path($path), $image_changed_name);
-            $img_url2 = url($path) . "/" . $image_changed_name;
-            $service->vacc_doc = $img_url2;
+            $file1 = $request->file("certificate");
+            $image_changed_name1 = time() . '.' . $file1->getClientOriginalExtension();
+            $file1->move(public_path($path), $image_changed_name1);
+            $img_url1 = url($path) . "/" . $image_changed_name1;
+            $service->vacc_doc = $img_url1;
         }
         if ($request->hasFile('vacc_doc')) {
-            $file = $request->file("vacc_doc");
-            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path($path), $image_changed_name);
-            $img_url2 = url($path) . "/" . $image_changed_name;
+            $file2 = $request->file("vacc_doc");
+            $image_changed_name2 = time() . '.' . $file2->getClientOriginalExtension();
+            $file2->move(public_path($path), $image_changed_name2);
+            $img_url2 = url($path) . "/" . $image_changed_name2;
             $service->vacc_doc = $img_url2;
         }
 
         if ($request->hasFile('vet_doc')) {
-            $file = $request->file("vet_doc");
-            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path($path), $image_changed_name);
-            $img_url3 = url($path) . "/" . $image_changed_name;
+            $file3 = $request->file("vet_doc");
+            $image_changed_name3 = time() . '.' . $file3->getClientOriginalExtension();
+            $file3->move(public_path($path), $image_changed_name3);
+            $img_url3 = url($path) . "/" . $image_changed_name3;
             $service->vet_doc = $img_url3;
         }
         $service->save();
