@@ -114,7 +114,7 @@
                                                 <td class="wsnw">{{ $allService->hasSubCategory->name }}
                                                 </td>
                                                 <td class="wsnw"> <a class="sellerLink"
-                                                        href="{{ url('admin/serviceProviders') }}?id={{ $allService->haveProvider->id }}">
+                                                        href="{{ url('admin/serviceProviders') }}?id={{ $allService->haveProvider['id'] }}">
                                                         <u> {{ $allService->haveProvider->business_name }} </u>
                                                     </a></td>
                                                 <td>
@@ -167,7 +167,7 @@
                                                 <td class="wsnw">{{ $pendingService->hasSubCategory->name }}
                                                 </td>
                                                 <td class="wsnw"> <a class="sellerLink"
-                                                        href="{{ url('admin/serviceProviders') }}?id={{ $pendingService->haveProvider->id }}">
+                                                        href="{{ url('admin/serviceProviders') }}?id={{ $pendingService->haveProvider['id'] }}">
                                                         <u> {{ $pendingService->haveProvider->business_name }} </u>
                                                     </a></td>
                                                 <td>
