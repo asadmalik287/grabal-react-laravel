@@ -87,7 +87,7 @@ class ServiceController extends Controller
             $image_changed_name1 = time() . '.' . $file1->getClientOriginalExtension();
             $file1->move(public_path($path), $image_changed_name1);
             $img_url1 = url($path) . "/" . $image_changed_name1;
-            $service->vacc_doc = $img_url1;
+            $service->main_service_image = $img_url1;
         }
 
         // if ($request->hasFile('certificate')) {
