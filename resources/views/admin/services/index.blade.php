@@ -222,7 +222,7 @@
                                                 </td>
                                                 <td class="wsnw">
                                                     <a class="sellerLink"
-                                                        href="{{ url('admin/serviceProviders') }}?id={{ $approvedService->haveProvider->id }}">
+                                                        href="{{ url('admin/serviceProviders') }}?id={{ $approvedService->haveProvider['id'] }}">
                                                         <u> {{ $approvedService->haveProvider->business_name }} </u>
                                                     </a>
                                                 </td>
