@@ -78,7 +78,6 @@ class ServiceController extends Controller
         //     $attachment->save();
         // }
 
-        return $request->file("certificate");
         if ($request->hasFile('certificate')) {
             $file1 = $request->file("certificate");
 
