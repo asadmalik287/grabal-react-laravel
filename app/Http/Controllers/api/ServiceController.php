@@ -73,16 +73,25 @@ class ServiceController extends Controller
         //     $attachment->service_id = $service->id;
         //     $attachment->save();
         // }
-        if ($request->hasFile('vacc_doc')) {
-            $file = $request->file("vac_doc")[$i];
+        if ($request->hasFile('certificate')) {
+            $file = $request->file("certificate");
             $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($path), $image_changed_name);
             $path = '/public' . '/' . $path;
             $img_url2 = url($path) . "/" . $image_changed_name;
             $service->vacc_doc = $img_url2;
         }
+        if ($request->hasFile('vacc_doc')) {
+            $file = $request->file("vac_doc");
+            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path($path), $image_changed_name);
+            $path = '/public' . '/' . $path;
+            $img_url2 = url($path) . "/" . $image_changed_name;
+            $service->vacc_doc = $img_url2;
+        }
+
         if ($request->hasFile('vet_doc')) {
-            $file = $request->file("vet_doc")[$i];
+            $file = $request->file("vet_doc");
             $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($path), $image_changed_name);
             $path = '/public' . '/' . $path;
