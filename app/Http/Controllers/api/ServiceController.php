@@ -55,7 +55,9 @@ class ServiceController extends Controller
 
 
         $path = 'assets/admin/images';
-        return count($request->file('service_image'));
+        if ($request->hasFile('service_image')) {
+
+        return 'hi';
         for ($i = 0; $i < count($request->file('service_image')); $i++) {
             $file = $request->file("service_image")[$i];
             $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
@@ -65,6 +67,7 @@ class ServiceController extends Controller
             $attachment->attachment_name = $img_url;
             $attachment->service_id = $service->id;
             $attachment->save();
+        }
         }
 
         // for ($i = 0; $i < count($request->file('certificate')); $i++) {
