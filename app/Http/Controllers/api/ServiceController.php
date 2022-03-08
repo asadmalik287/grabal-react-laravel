@@ -20,7 +20,14 @@ class ServiceController extends Controller
     // store services
     public function storeService(Request $request)
     {
-        return $request->all();
+        if ($request->hasFile('image')) {
+            $file = $request->file("image");
+            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $image_changed_name);
+            $img_url2 = url('images') . "/" . $image_changed_name;
+            return $img_url2;
+        }
+        return "file not found";
         // if($request->hasFile('vacc_doc')){
         //     return 'fine';
         // }else{
