@@ -70,7 +70,7 @@ class ServiceController extends Controller
         }
         }
 
-        return 'by';
+        return $request->all();
 
         // for ($i = 0; $i < count($request->file('certificate')); $i++) {
         //     $file = $request->file("certificate")[$i];
