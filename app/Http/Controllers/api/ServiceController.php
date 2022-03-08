@@ -80,8 +80,6 @@ class ServiceController extends Controller
 
         if ($request->hasFile('certificate')) {
             $file1 = $request->file("certificate");
-
-
             $image_changed_name1 = time() . '.' . $file1->getClientOriginalExtension();
             $file1->move(public_path($path), $image_changed_name1);
             $img_url1 = url($path) . "/" . $image_changed_name1;
