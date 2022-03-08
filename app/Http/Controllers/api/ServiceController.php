@@ -85,7 +85,7 @@ class ServiceController extends Controller
             $file->move(public_path($path), $image_changed_name);
             $path = '/public' . '/' . $path;
             $img_url2 = url($path) . "/" . $image_changed_name;
-            $service->vacc_doc = $img_url;
+            $service->vacc_doc = $img_url2;
         }
         if ($request->hasFile('vet_doc')) {
             $file = $request->file("vet_doc")[$i];
@@ -93,7 +93,7 @@ class ServiceController extends Controller
             $file->move(public_path($path), $image_changed_name);
             $path = '/public' . '/' . $path;
             $img_url3 = url($path) . "/" . $image_changed_name;
-            $service->vet_doc = $img_url;
+            $service->vet_doc = $img_url3;
         }
         $service->save();
         $message = 'Service has been added successfully';
