@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Models\ServiceAttachment;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -51,17 +52,20 @@ class ServiceController extends Controller
         // $service->added_by = $request->added_by_id;
         $service->phone_number = $request->phone_number;
 
-        // for ($i = 0; $i < count($request->file('images')); $i++) {
-        //     $file = $request->file("images")[$i];
-        //     $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
-        //     $file->move(public_path($path), $image_changed_name);
-        //     $path = '/public' . '/' . $path;
-        //     $img_url = url($path) . "/" . $image_changed_name;
-        //     $attachment = new ServiceAttachment;
-        //     $attachment->name = $img_url;
-        //     $attachment->service_id = $service->id;
-        //     $attachment->save();
-        // }
+
+        $path = 'assets/admin/images';
+        for ($i = 0; $i < count($request->file('images')); $i++) {
+            $file = $request->file("images")[$i];
+            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path($path), $image_changed_name);
+            $path = '/public' . '/' . $path;
+            $img_url = url($path) . "/" . $image_changed_name;
+            $attachment = new ServiceAttachment;
+            $attachment->name = $img_url;
+            $attachment->service_id = $service->id;
+            $attachment->save();
+        }
+
         // for ($i = 0; $i < count($request->file('certificate')); $i++) {
         //     $file = $request->file("certificate")[$i];
         //     $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
@@ -73,7 +77,7 @@ class ServiceController extends Controller
         //     $attachment->service_id = $service->id;
         //     $attachment->save();
         // }
-        $path = 'assets/admin/images';
+
         if ($request->hasFile('certificate')) {
             $file1 = $request->file("certificate");
             $image_changed_name1 = time() . '.' . $file1->getClientOriginalExtension();
