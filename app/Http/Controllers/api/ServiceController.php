@@ -55,7 +55,7 @@ class ServiceController extends Controller
 
 
         $path = 'assets/admin/images';
-        if ($request->hasFile('service_image')) {
+        if ($request->hasFile('service_image[]')) {
 
         return 'hi';
         for ($i = 0; $i < count($request->file('service_image')); $i++) {
@@ -69,6 +69,8 @@ class ServiceController extends Controller
             $attachment->save();
         }
         }
+
+        return 'by';
 
         // for ($i = 0; $i < count($request->file('certificate')); $i++) {
         //     $file = $request->file("certificate")[$i];
