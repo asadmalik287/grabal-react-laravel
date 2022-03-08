@@ -55,17 +55,17 @@ class ServiceController extends Controller
 
 
         $path = 'assets/admin/images';
-        for ($i = 0; $i < count($request->file('service_image[]')); $i++) {
-            $file = $request->file("service_image")[$i];
-            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path($path), $image_changed_name);
-            $path = '/public' . '/' . $path;
-            $img_url = url($path) . "/" . $image_changed_name;
-            $attachment = new ServiceAttachment;
-            $attachment->name = $img_url;
-            $attachment->service_id = $service->id;
-            $attachment->save();
-        }
+        // for ($i = 0; $i < count($request->file('service_image[]')); $i++) {
+        //     $file = $request->file("service_image")[$i];
+        //     $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
+        //     $file->move(public_path($path), $image_changed_name);
+        //     $path = '/public' . '/' . $path;
+        //     $img_url = url($path) . "/" . $image_changed_name;
+        //     $attachment = new ServiceAttachment;
+        //     $attachment->name = $img_url;
+        //     $attachment->service_id = $service->id;
+        //     $attachment->save();
+        // }
 
         // for ($i = 0; $i < count($request->file('certificate')); $i++) {
         //     $file = $request->file("certificate")[$i];
@@ -81,7 +81,7 @@ class ServiceController extends Controller
 
         if ($request->hasFile('certificate')) {
             $file1 = $request->file("certificate");
-            
+
             return $request->file("certificate");
 
             $image_changed_name1 = time() . '.' . $file1->getClientOriginalExtension();
