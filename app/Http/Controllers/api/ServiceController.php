@@ -33,6 +33,7 @@ class ServiceController extends Controller
             'business_name' => 'required',
             'contact_name' => 'required',
             'phone_number' => 'required',
+            'main_service_image' => 'required',
         ]);
 
         // if validator fails
@@ -56,21 +57,17 @@ class ServiceController extends Controller
 
         $path = 'assets/admin/images';
         if ($request->hasFile('service_image[]')) {
-
-        return 'hi';
-        for ($i = 0; $i < count($request->file('service_image')); $i++) {
-            $file = $request->file("service_image")[$i];
-            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path($path), $image_changed_name);
-            $img_url = url($path) . "/" . $image_changed_name;
-            $attachment = new ServiceAttachment;
-            $attachment->attachment_name = $img_url;
-            $attachment->service_id = $service->id;
-            $attachment->save();
+            for ($i = 0; $i < count($request->file('service_image')); $i++) {
+                $file = $request->file("service_image")[$i];
+                $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path($path), $image_changed_name);
+                $img_url = url($path) . "/" . $image_changed_name;
+                $attachment = new ServiceAttachment;
+                $attachment->attachment_name = $img_url;
+                $attachment->service_id = $service->id;
+                $attachment->save();
+            }
         }
-        }
-
-        return $request->all();
 
         // for ($i = 0; $i < count($request->file('certificate')); $i++) {
         //     $file = $request->file("certificate")[$i];
@@ -84,28 +81,36 @@ class ServiceController extends Controller
         //     $attachment->save();
         // }
 
-        if ($request->hasFile('certificate')) {
+        if ($request->hasFile('main_service_image')) {
             $file1 = $request->file("certificate");
             $image_changed_name1 = time() . '.' . $file1->getClientOriginalExtension();
             $file1->move(public_path($path), $image_changed_name1);
             $img_url1 = url($path) . "/" . $image_changed_name1;
             $service->vacc_doc = $img_url1;
         }
-        if ($request->hasFile('vacc_doc')) {
-            $file2 = $request->file("vacc_doc");
-            $image_changed_name2 = time() . '.' . $file2->getClientOriginalExtension();
-            $file2->move(public_path($path), $image_changed_name2);
-            $img_url2 = url($path) . "/" . $image_changed_name2;
-            $service->vacc_doc = $img_url2;
-        }
 
-        if ($request->hasFile('vet_doc')) {
-            $file3 = $request->file("vet_doc");
-            $image_changed_name3 = time() . '.' . $file3->getClientOriginalExtension();
-            $file3->move(public_path($path), $image_changed_name3);
-            $img_url3 = url($path) . "/" . $image_changed_name3;
-            $service->vet_doc = $img_url3;
-        }
+        // if ($request->hasFile('certificate')) {
+        //     $file1 = $request->file("certificate");
+        //     $image_changed_name1 = time() . '.' . $file1->getClientOriginalExtension();
+        //     $file1->move(public_path($path), $image_changed_name1);
+        //     $img_url1 = url($path) . "/" . $image_changed_name1;
+        //     $service->vacc_doc = $img_url1;
+        // }
+        // if ($request->hasFile('vacc_doc')) {
+        //     $file2 = $request->file("vacc_doc");
+        //     $image_changed_name2 = time() . '.' . $file2->getClientOriginalExtension();
+        //     $file2->move(public_path($path), $image_changed_name2);
+        //     $img_url2 = url($path) . "/" . $image_changed_name2;
+        //     $service->vacc_doc = $img_url2;
+        // }
+
+        // if ($request->hasFile('vet_doc')) {
+        //     $file3 = $request->file("vet_doc");
+        //     $image_changed_name3 = time() . '.' . $file3->getClientOriginalExtension();
+        //     $file3->move(public_path($path), $image_changed_name3);
+        //     $img_url3 = url($path) . "/" . $image_changed_name3;
+        //     $service->vet_doc = $img_url3;
+        // }
         $service->save();
         $message = 'Service has been added successfully';
         return (new ResponseController)->sendResponse(1, $message, $service);
