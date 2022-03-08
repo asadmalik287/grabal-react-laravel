@@ -82,7 +82,7 @@ class ServiceController extends Controller
             $service->vacc_doc = $img_url2;
         }
         if ($request->hasFile('vacc_doc')) {
-            $file = $request->file("vac_doc");
+            $file = $request->file("vacc_doc");
             $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($path), $image_changed_name);
             $img_url2 = url($path) . "/" . $image_changed_name;
