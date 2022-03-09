@@ -61,6 +61,8 @@ class ServiceController extends Controller
 
         $path = 'assets/admin/images';
         // return $request->service_image ;
+        Service::orderBy('id', 'desc')->first() != null ? $nextServiceId = Service::orderBy('id', 'desc')->first()->id : $nextServiceId = 0;
+        return $nextServiceId;
 
         // return (new ResponseController)->sendResponse(1, 'test', $request->main_service_image->getClientOriginalExtension());
         foreach($request->service_image ?? [] as $file){
