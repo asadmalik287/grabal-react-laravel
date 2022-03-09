@@ -22,9 +22,7 @@ class ServiceController extends Controller
     // store services
     public function storeService(Request $request)
     {
-// dd($request->all());
-// print_r($request->category_id);
-// die;
+        return $request->all();
         $validator = Validator::make($request->all(), [
             'business_streetNo' => 'required|string',
             'business_unit' => 'required|string',
@@ -59,10 +57,9 @@ class ServiceController extends Controller
 
 
         $path = 'assets/admin/images';
-        // return (new ResponseController)->sendResponse(1, 'test', $request->main_service_image->getClientOriginalExtension());
-        foreach($request->service_image ?? [] as $file){
-
-            // return (new ResponseController)->sendResponse(1, 'test', $file);
+        if ($request->hasFile('service_image[]')) {
+            for ($i = 0; $i < count($request->file('service_image')); $i++) {
+                $file = $request->file("service_image")[$i];
                 $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path($path), $image_changed_name);
                 $img_url = url($path) . "/" . $image_changed_name;
@@ -70,15 +67,8 @@ class ServiceController extends Controller
                 $attachment->attachment_name = $img_url;
                 $attachment->service_id = $service->id;
                 $attachment->save();
+            }
         }
-
-
-        // if ($request->hasFile('service_image[]')) {
-            // for ($i = 0; $i < count($request->file('service_image')); $i++) {
-                // $file = $request->file("service_image")[$i];
-
-            // }
-        // }
 
         // for ($i = 0; $i < count($request->file('certificate')); $i++) {
         //     $file = $request->file("certificate")[$i];
