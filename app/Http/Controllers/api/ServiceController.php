@@ -60,7 +60,7 @@ class ServiceController extends Controller
 
 
         $path = 'assets/admin/images';
-        return is_array($request->service_image );
+        return gettype($request->service_image );
 
         // return (new ResponseController)->sendResponse(1, 'test', $request->main_service_image->getClientOriginalExtension());
         foreach($request->service_image ?? [] as $file){
