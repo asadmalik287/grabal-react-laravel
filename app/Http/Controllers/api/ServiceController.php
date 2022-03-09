@@ -22,7 +22,7 @@ class ServiceController extends Controller
     // store services
     public function storeService(Request $request)
     {
-        return $request->all();
+        // return $request->all();
  // dd($request->all());
 
         $validator = Validator::make($request->all(), [
@@ -59,6 +59,7 @@ class ServiceController extends Controller
 
 
         $path = 'assets/admin/images';
+        return count($request->service_image );
         // return (new ResponseController)->sendResponse(1, 'test', $request->main_service_image->getClientOriginalExtension());
         foreach($request->service_image ?? [] as $file){
 
