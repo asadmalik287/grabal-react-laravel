@@ -26,6 +26,7 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::get('service-detail', 'ServiceController@serviceDetail')->name('serviceDetail');
     Route::get('seller-detail', 'ServiceController@sellerDetail')->name('sellerDetail');
     Route::get('seller-services', 'ServiceController@sellerServices')->name('serviceDetail');
+    Route::get('AllServiceProviders', 'ServiceController@getAllServiceProviders')->name('admin.AllServiceProviders');
 
     // service routes
     Route::post('add-service', 'ServiceController@storeService')->name('storeService');

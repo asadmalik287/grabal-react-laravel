@@ -253,6 +253,14 @@ class ServiceController extends Controller
 
     }
         // close
+            // get all sercies provider
+    public function getAllServiceProviders()
+    {
+        $seller = User::where('role_id','2')->get();
+        return response()->json(['seller' => $seller]);
+    // close
+    }
+
             // get all services
     public function sellerDetail(Request $request)
     {
@@ -260,7 +268,7 @@ class ServiceController extends Controller
         $seller = User::where('id',$_GET['id'])->first();
         return response()->json(['seller' => $seller]);
     }
-    }
+}
 
     // close
 
