@@ -61,8 +61,7 @@ class ServiceController extends Controller
 
         $path = 'assets/admin/images';
         // return $request->service_image ;
-        Service::orderBy('id', 'desc')->first() != null ? $nextServiceId = Service::orderBy('id', 'desc')->first()->id + 1 : $nextServiceId = 0;
-        return $nextServiceId;
+
 
         // return (new ResponseController)->sendResponse(1, 'test', $request->main_service_image->getClientOriginalExtension());
         foreach($request->service_image ?? [] as $file){
@@ -73,7 +72,7 @@ class ServiceController extends Controller
                 $img_url = url($path) . "/" . $image_changed_name;
                 $attachment = new ServiceAttachment;
                 $attachment->attachment_name = $img_url;
-                $attachment->service_id = $service->id;
+                $attachment->service_id = Service::orderBy('id', 'desc')->first() != null ? Service::orderBy('id', 'desc')->first()->id + 1 : 0;
                 $attachment->save();
         }
 
