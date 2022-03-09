@@ -7,6 +7,7 @@ use App\Models\Service;
 use App\Models\ServiceAttachment;
 use App\Models\User;
 use DB;
+use Hamcrest\Arrays\IsArray;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -59,7 +60,8 @@ class ServiceController extends Controller
 
 
         $path = 'assets/admin/images';
-        return count($request->service_image );
+        return is_array($request->service_image );
+
         // return (new ResponseController)->sendResponse(1, 'test', $request->main_service_image->getClientOriginalExtension());
         foreach($request->service_image ?? [] as $file){
 
