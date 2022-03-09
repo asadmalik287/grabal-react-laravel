@@ -22,7 +22,7 @@ class ServiceController extends Controller
     // store services
     public function storeService(Request $request)
     {
-
+        return $request->all();
         $validator = Validator::make($request->all(), [
             'business_streetNo' => 'required|string',
             'business_unit' => 'required|string',
