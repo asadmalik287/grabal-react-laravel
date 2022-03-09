@@ -60,20 +60,20 @@ class ServiceController extends Controller
 
 
         $path = 'assets/admin/images';
-        return $request->service_image ;
+        // return $request->service_image ;
 
         // return (new ResponseController)->sendResponse(1, 'test', $request->main_service_image->getClientOriginalExtension());
-        // foreach($request->service_image ?? [] as $file){
+        foreach($request->service_image ?? [] as $file){
 
-        //     // return (new ResponseController)->sendResponse(1, 'test', $file);
-        //         $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
-        //         $file->move(public_path($path), $image_changed_name);
-        //         $img_url = url($path) . "/" . $image_changed_name;
-        //         $attachment = new ServiceAttachment;
-        //         $attachment->attachment_name = $img_url;
-        //         $attachment->service_id = $service->id;
-        //         $attachment->save();
-        // }
+            // return (new ResponseController)->sendResponse(1, 'test', $file);
+                $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path($path), $image_changed_name);
+                $img_url = url($path) . "/" . $image_changed_name;
+                $attachment = new ServiceAttachment;
+                $attachment->attachment_name = $img_url;
+                $attachment->service_id = $service->id;
+                $attachment->save();
+        }
 
 
         // if ($request->hasFile('service_image[]')) {
