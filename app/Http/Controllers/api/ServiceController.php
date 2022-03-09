@@ -22,9 +22,9 @@ class ServiceController extends Controller
     // store services
     public function storeService(Request $request)
     {
-// dd($request->all());
-// print_r($request->category_id);
-// die;
+        return $request->all();
+ // dd($request->all());
+
         $validator = Validator::make($request->all(), [
             'business_streetNo' => 'required|string',
             'business_unit' => 'required|string',
