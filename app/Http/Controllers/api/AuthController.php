@@ -260,6 +260,15 @@ class AuthController extends Controller
         //     $save_path = public_path() . '/' . $path;
         //     $file->move($save_path, $name);
         // }
+        $path = 'assets/admin/images/logo';
+
+        if ($request->has('logo')) {
+            $file1 = $request->file("logo");
+            $image_changed_name1 = time() . '.' . $file1->getClientOriginalExtension();
+            $file1->move(public_path($path), $image_changed_name1);
+            $img_url1 = url($path) . "/" . $image_changed_name1;
+            $logo = $img_url1;
+        }
         // create new user and save db
         $user = User::create([
             'business_name' => $request['business_name'],
@@ -273,6 +282,7 @@ class AuthController extends Controller
             'message' => $request['message'],
             'role_id' => $request['role_id'],
             'password' => $passwordHashed,
+            'logo' => $logo
         ]);
         $role = Role::where('id', $request['role_id'])->first();
         $user->assignRole($role);
