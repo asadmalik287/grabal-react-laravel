@@ -60,21 +60,6 @@ class ServiceController extends Controller
 
 
         $path = 'assets/admin/images';
-        // return $request->service_image ;
-
-
-        // return (new ResponseController)->sendResponse(1, 'test', $request->main_service_image->getClientOriginalExtension());
-        foreach($request->service_image ?? [] as $file){
-
-            // return (new ResponseController)->sendResponse(1, 'test', $file);
-                $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path($path), $image_changed_name);
-                $img_url = url($path) . "/" . $image_changed_name;
-                $attachment = new ServiceAttachment;
-                $attachment->attachment_name = $img_url;
-                $attachment->service_id = Service::orderBy('id', 'desc')->first() != null ? Service::orderBy('id', 'desc')->first()->id + 1 : 0;
-                $attachment->save();
-        }
 
 
         // if ($request->hasFile('service_image[]')) {
@@ -127,6 +112,19 @@ class ServiceController extends Controller
         //     $service->vet_doc = $img_url3;
         // }
         $service->save();
+
+        foreach($request->service_image ?? [] as $file){
+
+            // return (new ResponseController)->sendResponse(1, 'test', $file);
+                $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path($path), $image_changed_name);
+                $img_url = url($path) . "/" . $image_changed_name;
+                $attachment = new ServiceAttachment;
+                $attachment->attachment_name = $img_url;
+                $attachment->service_id = Service::orderBy('id', 'desc')->first() != null ? Service::orderBy('id', 'desc')->first()->id + 1 : 0;
+                $attachment->save();
+        }
+
         $message = 'Service has been added successfully';
         return (new ResponseController)->sendResponse(1, $message, $service);
 

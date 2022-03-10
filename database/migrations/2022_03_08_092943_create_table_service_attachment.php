@@ -16,7 +16,7 @@ class CreateTableServiceAttachment extends Migration
         Schema::create('service_attachment', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('service_id');
-            // $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade')->onUpdate('cascade');
             $table->string('attachment_name');
 
             $table->timestamps();
