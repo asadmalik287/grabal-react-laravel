@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Categories;
 use App\Models\ServiceProvider;
 use App\Models\SubCategory;
+use App\Models\ServiceAttachment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,4 +28,11 @@ class Service extends Model
     {
         return $this->hasOne(SubCategories::class,'id','subCategory_id');
     }
+
+    public function hasAttachment()
+    {
+        return $this->hasMany(ServiceAttachment::class,'service_id');
+    }
+
+
 }

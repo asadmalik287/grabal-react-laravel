@@ -9,4 +9,9 @@ class ServiceAttachment extends Model
 {
     use HasFactory;
     protected $table = 'service_attachment';
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class,'service_id','id');
+    }
 }

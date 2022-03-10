@@ -225,7 +225,6 @@ class ServiceController extends Controller
         $services = Service::join('categories', 'services.category_id', 'categories.id')
             ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
             ->join('users', 'services.added_by', 'users.id')
-            ->join('service_attachment', 'services.id', 'service_attachment.services_id')
             ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller','users.role_id','users.logo', 'categories.name as Category', 'services.*',
                 'services.id as Service_id')->get();
         return response()->json(['services' => $services]);
@@ -241,7 +240,8 @@ class ServiceController extends Controller
                 ->join('users', 'services.added_by', 'users.id')
                 ->select('users.business_name','users.name as Seller','users.role_id','users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
                     'services.id as Service_id')->where('services.id',$_GET['id'])->get();
-            return response()->json(['services' => $services]);
+                    $images = Service::with('hasAttachment')->where('services.id',$_GET['id'])->get();
+            return response()->json(['services' => $services,'images' => $images]);
         }
     }
     public function sellerServices() {
