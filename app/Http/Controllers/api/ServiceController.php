@@ -121,7 +121,8 @@ class ServiceController extends Controller
                 $img_url = url($path) . "/" . $image_changed_name;
                 $attachment = new ServiceAttachment;
                 $attachment->attachment_name = $img_url;
-                $attachment->service_id = Service::orderBy('id', 'desc')->first() != null ? Service::orderBy('id', 'desc')->first()->id + 1 : 0;
+                // $attachment->service_id = Service::orderBy('id', 'desc')->first() != null ? Service::orderBy('id', 'desc')->first()->id + 1 : 0;
+                $attachment->service_id = $service->id;
                 $attachment->save();
         }
 
