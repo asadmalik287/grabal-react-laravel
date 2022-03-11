@@ -276,7 +276,8 @@ class ServiceController extends Controller
     public function saveServiceImage(Request $request)
     {
         if ($request->hasFile('image')) {
-            $file = $request->file("image")[$i];
+            $path = 'assets/admin/ServiceImages';
+            $file = $request->file("image");
             $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($path), $image_changed_name);
             $path = '/public' . '/' . $path;
