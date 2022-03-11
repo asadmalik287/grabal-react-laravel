@@ -7,7 +7,6 @@ use App\Models\Service;
 use App\Models\ServiceAttachment;
 use App\Models\User;
 use DB;
-use Hamcrest\Arrays\IsArray;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -24,7 +23,7 @@ class ServiceController extends Controller
     public function storeService(Request $request)
     {
         // return $request->all();
- // dd($request->all());
+        // dd($request->all());
 
         $validator = Validator::make($request->all(), [
             'business_streetNo' => 'required|string',
@@ -58,15 +57,13 @@ class ServiceController extends Controller
         $service->added_by = $request->added_by_id;
         $service->phone_number = $request->phone_number;
 
-
         $path = 'assets/admin/images';
 
-
         // if ($request->hasFile('service_image[]')) {
-            // for ($i = 0; $i < count($request->file('service_image')); $i++) {
-                // $file = $request->file("service_image")[$i];
+        // for ($i = 0; $i < count($request->file('service_image')); $i++) {
+        // $file = $request->file("service_image")[$i];
 
-            // }
+        // }
         // }
 
         // for ($i = 0; $i < count($request->file('certificate')); $i++) {
@@ -113,17 +110,17 @@ class ServiceController extends Controller
         // }
         $service->save();
 
-        foreach($request->service_image ?? [] as $file){
+        foreach ($request->service_image ?? [] as $file) {
 
             // return (new ResponseController)->sendResponse(1, 'test', $file);
-                $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path($path), $image_changed_name);
-                $img_url = url($path) . "/" . $image_changed_name;
-                $attachment = new ServiceAttachment;
-                $attachment->attachment_name = $img_url;
-                // $attachment->service_id = Service::orderBy('id', 'desc')->first() != null ? Service::orderBy('id', 'desc')->first()->id + 1 : 0;
-                $attachment->service_id = $service->id;
-                $attachment->save();
+            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path($path), $image_changed_name);
+            $img_url = url($path) . "/" . $image_changed_name;
+            $attachment = new ServiceAttachment;
+            $attachment->attachment_name = $img_url;
+            // $attachment->service_id = Service::orderBy('id', 'desc')->first() != null ? Service::orderBy('id', 'desc')->first()->id + 1 : 0;
+            $attachment->service_id = $service->id;
+            $attachment->save();
         }
 
         $message = 'Service has been added successfully';
@@ -165,7 +162,6 @@ class ServiceController extends Controller
         $service->business_street = $request->business_street;
         $service->contact_name = $request->contact_name;
         $service->phone_number = $request->phone_number;
-
 
         // for ($i = 0; $i < count($request->file('images')); $i++) {
         //     $file = $request->file("images")[$i];
@@ -227,52 +223,66 @@ class ServiceController extends Controller
         $services = Service::join('categories', 'services.category_id', 'categories.id')
             ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
             ->join('users', 'services.added_by', 'users.id')
-            ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller','users.role_id','users.logo', 'categories.name as Category', 'services.*',
+            ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller', 'users.role_id', 'users.logo', 'categories.name as Category', 'services.*',
                 'services.id as Service_id')->get();
         return response()->json(['services' => $services]);
     }
     // close
 
-        // get specific services
-        public function serviceDetail()
-        {
-            if(isset($_GET['id'])) {
+    // get specific services
+    public function serviceDetail()
+    {
+        if (isset($_GET['id'])) {
             $services = Service::join('categories', 'services.category_id', 'categories.id')
                 ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
                 ->join('users', 'services.added_by', 'users.id')
-                ->select('users.business_name','users.name as Seller','users.role_id','users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
-                    'services.id as Service_id')->where('services.id',$_GET['id'])->get();
-                    $images = Service::with('hasAttachment')->where('services.id',$_GET['id'])->get();
-            return response()->json(['services' => $services,'images' => $images]);
+                ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
+                    'services.id as Service_id')->where('services.id', $_GET['id'])->get();
+            $images = Service::with('hasAttachment')->where('services.id', $_GET['id'])->get();
+            return response()->json(['services' => $services, 'images' => $images]);
         }
     }
-    public function sellerServices() {
+    public function sellerServices()
+    {
         $sellerServices = Service::join('categories', 'services.category_id', 'categories.id')
-        ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
-        ->join('users', 'services.added_by', 'users.id')
-        ->select('users.business_name', 'users.name as Seller','users.role_id','users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
-            'services.id as Service_id')->where('services.added_by',$_GET['id'])->get();
-            return response()->json(['sellerServices' => $sellerServices]);
+            ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
+            ->join('users', 'services.added_by', 'users.id')
+            ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
+                'services.id as Service_id')->where('services.added_by', $_GET['id'])->get();
+        return response()->json(['sellerServices' => $sellerServices]);
 
     }
-        // close
-            // get all sercies provider
+    // close
+    // get all sercies provider
     public function getAllServiceProviders()
     {
-        $seller = User::where('role_id','2')->get();
+        $seller = User::where('role_id', '2')->get();
         return response()->json(['seller' => $seller]);
-    // close
+        // close
     }
 
-            // get all services
+    // get all services
     public function sellerDetail(Request $request)
     {
-        if(isset($_GET['id'])) {
-        $seller = User::where('id',$_GET['id'])->first();
-        return response()->json(['seller' => $seller]);
+        if (isset($_GET['id'])) {
+            $seller = User::where('id', $_GET['id'])->first();
+            return response()->json(['seller' => $seller]);
+        }
     }
-}
 
     // close
 
+    // save image for url showing
+    public function saveServiceImage(Request $request)
+    {
+        if ($request->hasFile('image')) {
+            $file = $request->file("image")[$i];
+            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path($path), $image_changed_name);
+            $path = '/public' . '/' . $path;
+            $img_url2 = url($path) . "/" . $image_changed_name;
+            return $img_url2;
+        }
+    }
+    // close
 }
