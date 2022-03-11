@@ -327,8 +327,10 @@ class ServiceController extends Controller
                     'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
                     'services.id as Service_id')->where('services.subCategory_id', $_GET['id'])->get();
             // $images = Service::with('hasAttachment')->where('services.subCategory_id', $_GET['id'])->get();
+            $totalServices  = count($services);
             return response()->json(['services' => $services
             // , 'images' => $images
+            , 'totalServices' => $totalServices
         ]);
         }
         // close
