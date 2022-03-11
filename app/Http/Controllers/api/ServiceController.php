@@ -130,7 +130,7 @@ class ServiceController extends Controller
     // close .
 
     // update service
-    public function updateService(Request $request,$id)
+    public function updateService(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'business_streetNo' => 'required|string',
@@ -151,7 +151,7 @@ class ServiceController extends Controller
             return (new ResponseController)->sendError(0, $validator->errors());
         }
 
-        $service =  Service::find($id);
+        $service = Service::find($id);
         $service->category_id = $request->category_id;
         $service->subCategory_id = $request->subCategory_id;
         $service->title = $request->title;
@@ -161,19 +161,18 @@ class ServiceController extends Controller
         $service->business_unit = $request->business_unit;
         $service->business_street = $request->business_street;
         $service->contact_name = $request->contact_name;
+        $service->added_by = $request->added_by_id;
         $service->phone_number = $request->phone_number;
 
-        // for ($i = 0; $i < count($request->file('images')); $i++) {
-        //     $file = $request->file("images")[$i];
-        //     $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
-        //     $file->move(public_path($path), $image_changed_name);
-        //     $path = '/public' . '/' . $path;
-        //     $img_url = url($path) . "/" . $image_changed_name;
-        //     $attachment = new ServiceAttachment;
-        //     $attachment->name = $img_url;
-        //     $attachment->service_id = $service->id;
-        //     $attachment->save();
+        $path = 'assets/admin/images';
+
+        // if ($request->hasFile('service_image[]')) {
+        // for ($i = 0; $i < count($request->file('service_image')); $i++) {
+        // $file = $request->file("service_image")[$i];
+
         // }
+        // }
+
         // for ($i = 0; $i < count($request->file('certificate')); $i++) {
         //     $file = $request->file("certificate")[$i];
         //     $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
@@ -185,23 +184,52 @@ class ServiceController extends Controller
         //     $attachment->service_id = $service->id;
         //     $attachment->save();
         // }
-        if ($request->hasFile('vacc_doc')) {
-            $file = $request->file("vac_doc")[$i];
-            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path($path), $image_changed_name);
-            $path = '/public' . '/' . $path;
-            $img_url2 = url($path) . "/" . $image_changed_name;
-            $service->vacc_doc = $img_url;
+
+        if ($request->hasFile('main_service_image')) {
+            $file1 = $request->file("main_service_image");
+            $image_changed_name1 = time() . '.' . $file1->getClientOriginalExtension();
+            $file1->move(public_path($path), $image_changed_name1);
+            $img_url1 = url($path) . "/" . $image_changed_name1;
+            $service->main_service_image = $img_url1;
         }
-        if ($request->hasFile('vet_doc')) {
-            $file = $request->file("vet_doc")[$i];
-            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path($path), $image_changed_name);
-            $path = '/public' . '/' . $path;
-            $img_url3 = url($path) . "/" . $image_changed_name;
-            $service->vet_doc = $img_url;
-        }
+
+        // if ($request->hasFile('certificate')) {
+        //     $file1 = $request->file("certificate");
+        //     $image_changed_name1 = time() . '.' . $file1->getClientOriginalExtension();
+        //     $file1->move(public_path($path), $image_changed_name1);
+        //     $img_url1 = url($path) . "/" . $image_changed_name1;
+        //     $service->vacc_doc = $img_url1;
+        // }
+        // if ($request->hasFile('vacc_doc')) {
+        //     $file2 = $request->file("vacc_doc");
+        //     $image_changed_name2 = time() . '.' . $file2->getClientOriginalExtension();
+        //     $file2->move(public_path($path), $image_changed_name2);
+        //     $img_url2 = url($path) . "/" . $image_changed_name2;
+        //     $service->vacc_doc = $img_url2;
+        // }
+
+        // if ($request->hasFile('vet_doc')) {
+        //     $file3 = $request->file("vet_doc");
+        //     $image_changed_name3 = time() . '.' . $file3->getClientOriginalExtension();
+        //     $file3->move(public_path($path), $image_changed_name3);
+        //     $img_url3 = url($path) . "/" . $image_changed_name3;
+        //     $service->vet_doc = $img_url3;
+        // }
         $service->save();
+
+        foreach ($request->service_image ?? [] as $file) {
+
+            // return (new ResponseController)->sendResponse(1, 'test', $file);
+            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path($path), $image_changed_name);
+            $img_url = url($path) . "/" . $image_changed_name;
+            $attachment = new ServiceAttachment;
+            $attachment->attachment_name = $img_url;
+            // $attachment->service_id = Service::orderBy('id', 'desc')->first() != null ? Service::orderBy('id', 'desc')->first()->id + 1 : 0;
+            $attachment->service_id = $service->id;
+            $attachment->save();
+        }
+
         $message = 'Service has been added successfully';
         return (new ResponseController)->sendResponse(1, $message, $service);
 
@@ -272,8 +300,8 @@ class ServiceController extends Controller
 
     // close
 
-    // save image for url showing 
-    
+    // save image for url showing
+
     public function saveServiceImage(Request $request)
     {
         if ($request->hasFile('image')) {
@@ -283,7 +311,7 @@ class ServiceController extends Controller
             $file->move(public_path($path), $image_changed_name);
             // $path = '/public' . '/' . $path;
             $img_url2 = url($path) . "/" . $image_changed_name;
-            return $img_url2; 
+            return $img_url2;
         }
     }
     // close
