@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Service;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -26,26 +26,26 @@ class User extends Authenticatable
         'password',
         'f_name',
         'l_name',
-        'phone_number' ,
+        'phone_number',
         'address',
         'email',
-        'password' ,
-        'confirm_password' ,
+        'password',
+        'confirm_password',
         'dob',
-        'name' ,
-        'country' ,
-        'gender' ,
-        'town' ,
+        'name',
+        'country',
+        'gender',
+        'town',
         'is_verified',
         'business_name',
         'contact_person',
-        'phone_number' ,
-        'email' ,
-        'vetting_doc' ,
+        'phone_number',
+        'email',
+        'vetting_doc',
         'vaccinations_doc',
-        'certifications_doc' ,
+        'certifications_doc',
         'message',
-        'role_id' ,
+        'role_id',
     ];
 
     /**
@@ -66,4 +66,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function hasService()
+    {
+        return $this->hasMany(Service::class, 'added_by');
+    }
 }

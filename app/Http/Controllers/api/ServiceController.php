@@ -327,12 +327,31 @@ class ServiceController extends Controller
                     'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
                     'services.id as Service_id')->where('services.subCategory_id', $_GET['id'])->get();
             // $images = Service::with('hasAttachment')->where('services.subCategory_id', $_GET['id'])->get();
-            $totalServices  = count($services);
+            $totalServices = count($services);
             return response()->json(['services' => $services
-            // , 'images' => $images
-            , 'totalServices' => $totalServices
-        ]);
+                // , 'images' => $images
+                , 'totalServices' => $totalServices,
+            ]);
         }
         // close
     }
+
+    // function for counting providers of single category
+    public function countCatProviders(Request $request)
+    {
+        if (isset($_GET['id'])) {
+            $providers = DB::table('users')
+                ->join('services', 'services.added_by', 'users.id')
+                ->where('services.category_id', $_GET['id'])
+                ->select('users.*')
+                ->distinct()
+                ->get();
+            $count = count($providers);
+            return response()->json(['count' => $count,
+                'providers' => $providers,
+            ]);
+        }
+    }
+
+    // close
 }

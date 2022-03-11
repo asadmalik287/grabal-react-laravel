@@ -33,6 +33,7 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::post('update-service/{id}', 'ServiceController@updateService')->name('updateService');
     Route::get('category-list', 'ServiceController@categoriesList')->name('category-list');
     Route::get('sub-cat-services', 'ServiceController@getServiceFromSubCategory')->name('sub-cat-services');
+    Route::get('count-cat-providers', 'ServiceController@countCatProviders')->name('count-cat-providers');
     
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('test', 'AuthController@test')->name('test');
