@@ -130,7 +130,7 @@ class ServiceController extends Controller
     // close .
 
     // update service
-    public function updateService(Request $request)
+    public function updateService(Request $request,$id)
     {
         $validator = Validator::make($request->all(), [
             'business_streetNo' => 'required|string',
@@ -151,7 +151,7 @@ class ServiceController extends Controller
             return (new ResponseController)->sendError(0, $validator->errors());
         }
 
-        $service = new Service();
+        $service =  Service::find($id);
         $service->category_id = $request->category_id;
         $service->subCategory_id = $request->subCategory_id;
         $service->title = $request->title;
@@ -280,7 +280,7 @@ class ServiceController extends Controller
             $file = $request->file("image");
             $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($path), $image_changed_name);
-            $path = '/public' . '/' . $path;
+            // $path = '/public' . '/' . $path;
             $img_url2 = url($path) . "/" . $image_changed_name;
             return $img_url2;
         }

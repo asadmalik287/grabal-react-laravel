@@ -30,7 +30,7 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::post('save-service-image', 'ServiceController@saveServiceImage')->name('api.saveServiceImage');
     // service routes
     Route::post('add-service', 'ServiceController@storeService')->name('storeService');
-    Route::post('update-service', 'ServiceController@updateService')->name('updateService');
+    Route::post('update-service/{id}', 'ServiceController@updateService')->name('updateService');
     Route::get('category-list', 'ServiceController@categoriesList')->name('category-list');
 
     Route::group(['middleware' => 'auth:api'], function () {
