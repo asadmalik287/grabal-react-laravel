@@ -326,8 +326,10 @@ class ServiceController extends Controller
                 ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.logo',
                     'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
                     'services.id as Service_id')->where('services.subCategory_id', $_GET['id'])->get();
-            $images = Service::with('hasAttachment')->where('services.subCategory_id', $_GET['id'])->get();
-            return response()->json(['services' => $services, 'images' => $images]);
+            // $images = Service::with('hasAttachment')->where('services.subCategory_id', $_GET['id'])->get();
+            return response()->json(['services' => $services
+            // , 'images' => $images
+        ]);
         }
         // close
     }
