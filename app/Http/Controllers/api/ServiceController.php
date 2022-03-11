@@ -272,7 +272,8 @@ class ServiceController extends Controller
 
     // close
 
-    // save image for url showing
+    // save image for url showing 
+    
     public function saveServiceImage(Request $request)
     {
         if ($request->hasFile('image')) {
@@ -282,7 +283,7 @@ class ServiceController extends Controller
             $file->move(public_path($path), $image_changed_name);
             // $path = '/public' . '/' . $path;
             $img_url2 = url($path) . "/" . $image_changed_name;
-            return $img_url2;
+            return $img_url2; 
         }
     }
     // close
