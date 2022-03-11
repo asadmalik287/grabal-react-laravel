@@ -30,6 +30,7 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
 
     // service routes
     Route::post('add-service', 'ServiceController@storeService')->name('storeService');
+    Route::post('update-service', 'ServiceController@updateService')->name('updateService');
     Route::get('category-list', 'ServiceController@categoriesList')->name('category-list');
 
     Route::group(['middleware' => 'auth:api'], function () {

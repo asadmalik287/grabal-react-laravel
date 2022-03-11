@@ -146,6 +146,7 @@ class ServiceController extends Controller
             'business_name' => 'required',
             'contact_name' => 'required',
             'phone_number' => 'required',
+            'main_service_image' => 'required',
         ]);
 
         // if validator fails
@@ -165,6 +166,7 @@ class ServiceController extends Controller
         $service->contact_name = $request->contact_name;
         $service->phone_number = $request->phone_number;
 
+        
         // for ($i = 0; $i < count($request->file('images')); $i++) {
         //     $file = $request->file("images")[$i];
         //     $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
