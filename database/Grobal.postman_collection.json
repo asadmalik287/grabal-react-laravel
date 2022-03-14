@@ -1,0 +1,1223 @@
+{
+	"info": {
+		"_postman_id": "b4cace17-f411-49eb-b422-926457ffb5a1",
+		"name": "Grobal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "test",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{website_url}}/test",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "f_name",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "l_name",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "+611223435313",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "muhammadsarfraz531@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "confirm_password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "dob",
+									"value": "22-09-2000",
+									"type": "text"
+								},
+								{
+									"key": "country",
+									"value": "13",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "132",
+									"type": "text"
+								},
+								{
+									"key": "town",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "abc",
+									"type": "text"
+								},
+								{
+									"key": "is_verified",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/register",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "muhammadsarfraz531",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "*es3^g)%",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/login",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Service Provider Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "business_name",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "contact_person",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "+611223435313",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "muhammadsarfraz531@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "vetting_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html",
+									"disabled": true
+								},
+								{
+									"key": "vaccinations_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html",
+									"disabled": true
+								},
+								{
+									"key": "is_verified",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "certifications_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html",
+									"disabled": true
+								},
+								{
+									"key": "message",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/serviceProviderRegister",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"serviceProviderRegister"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "Store Service",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "business_streetNo",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "business_unit",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "business_street",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "subCategory_id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "324234",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "234234234",
+									"type": "text"
+								},
+								{
+									"key": "business_name",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "contact_name",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/add-service",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"add-service"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Service",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "business_streetNo",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "business_unit",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "business_street",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "subCategory_id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "324234",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "234234234",
+									"type": "text"
+								},
+								{
+									"key": "business_name",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "contact_name",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/update-service/4",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"update-service",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Save Image processing",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/2021-12-29_15-11-24.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/save-service-image",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"save-service-image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All services",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "subCategory_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "+611223435313",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "vet_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "vacc_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "certificate",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "business_name",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_streetNo",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_unit",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "business_street",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "contact_name",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/all-services",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"all-services"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Service Providers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "subCategory_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "+611223435313",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "vet_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "vacc_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "certificate",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "business_name",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_streetNo",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_unit",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "business_street",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "contact_name",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/AllServiceProviders",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"AllServiceProviders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Service",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "subCategory_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "+611223435313",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "vet_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "vacc_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "certificate",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "business_name",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_streetNo",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_unit",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "business_street",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "contact_name",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/service-detail?id=3",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"service-detail"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Seller",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "subCategory_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "+611223435313",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "vet_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "vacc_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "certificate",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "business_name",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_streetNo",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_unit",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "business_street",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "contact_name",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/seller-detail?id=16",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"seller-detail"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "16"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Count Category Providers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "subCategory_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "+611223435313",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "vet_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "vacc_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "certificate",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "business_name",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_streetNo",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_unit",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "business_street",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "contact_name",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/count-cat-providers?id=14",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"count-cat-providers"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "14"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Service From Sub_cat",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "subCategory_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "+611223435313",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "vet_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "vacc_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "certificate",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "business_name",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_streetNo",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_unit",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "business_street",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "contact_name",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/sub-cat-services?id=43",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"sub-cat-services"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "43"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Service Providers' Services",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "subCategory_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "+611223435313",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "vet_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "vacc_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "certificate",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "business_name",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_streetNo",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_unit",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "business_street",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "contact_name",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/seller-services?id=50",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"seller-services"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "all-categories",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -342,7 +342,7 @@ class ServiceController extends Controller
         if (isset($_GET['id'])) {
             $providers = DB::table('users')
                 ->join('services', 'services.added_by', 'users.id')
-                ->where('services.category_id', $_GET['id'])
+                ->where('services.subCategory_id', $_GET['id'])
                 ->select('users.*')
                 ->distinct()
                 ->get();
