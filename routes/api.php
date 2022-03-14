@@ -34,6 +34,7 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::get('category-list', 'ServiceController@categoriesList')->name('category-list');
     Route::get('sub-cat-services', 'ServiceController@getServiceFromSubCategory')->name('sub-cat-services');
     Route::get('count-cat-providers', 'ServiceController@countCatProviders')->name('count-cat-providers');
+    Route::get('get-cat-services-count', 'ServiceController@getCatServices_cout')->name('get-cat-services-count');
     
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('test', 'AuthController@test')->name('test');
