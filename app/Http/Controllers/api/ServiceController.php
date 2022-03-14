@@ -36,6 +36,7 @@ class ServiceController extends Controller
             'business_name' => 'required',
             'contact_name' => 'required',
             'phone_number' => 'required',
+            'about' => 'required',
             'main_service_image' => 'required',
         ]);
 
@@ -55,6 +56,7 @@ class ServiceController extends Controller
         $service->business_street = $request->business_street;
         $service->contact_name = $request->contact_name;
         $service->added_by = $request->added_by_id;
+        $service->about = $request->about;
         $service->phone_number = $request->phone_number;
 
         $path = 'assets/admin/images';
@@ -143,6 +145,7 @@ class ServiceController extends Controller
             'business_name' => 'required',
             'contact_name' => 'required',
             'phone_number' => 'required',
+            'about' => 'required',
             'main_service_image' => 'required',
         ]);
 
@@ -162,6 +165,7 @@ class ServiceController extends Controller
         $service->business_street = $request->business_street;
         $service->contact_name = $request->contact_name;
         $service->added_by = $request->added_by_id;
+        $service->about = $request->about;
         $service->phone_number = $request->phone_number;
 
         $path = 'assets/admin/images';
