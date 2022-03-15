@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 
 class WatchListController extends Controller
 {
-    // add service to watchlist after checking if already exists 
+    // add service to watchlist after checking if already exists
     public function addToWatchlist(Request $request)
     {
+        return $request->all();
         if (WatchList::where(['user_id' => $request->user_id, 'service_id' => $request->service_id])->exists()) {
             $error = 'Service has been already added in Watchlist';
             return (new ResponseController)->sendError(0, $error);
@@ -32,5 +33,5 @@ class WatchListController extends Controller
             }
         }
     }
-    //close 
+    //close
 }
