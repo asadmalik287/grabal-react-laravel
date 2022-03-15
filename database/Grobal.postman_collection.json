@@ -158,86 +158,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "Service Provider Register",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "business_name",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "contact_person",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "+611223435313",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "muhammadsarfraz531@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "vetting_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html",
-									"disabled": true
-								},
-								{
-									"key": "vaccinations_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html",
-									"disabled": true
-								},
-								{
-									"key": "is_verified",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "role_id",
-									"value": "2",
-									"type": "text"
-								},
-								{
-									"key": "certifications_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html",
-									"disabled": true
-								},
-								{
-									"key": "message",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "logo",
-									"type": "file",
-									"src": []
-								}
-							]
-						},
-						"url": {
-							"raw": "{{website_url}}/serviceProviderRegister",
-							"host": [
-								"{{website_url}}"
-							],
-							"path": [
-								"serviceProviderRegister"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -539,112 +459,6 @@
 					"response": []
 				},
 				{
-					"name": "All Service Providers",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "category_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "subCategory_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "title",
-									"value": "+611223435313",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "vet_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "vacc_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "certificate",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "business_name",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_streetNo",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_unit",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "business_street",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "contact_name",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "234",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{website_url}}/AllServiceProviders",
-							"host": [
-								"{{website_url}}"
-							],
-							"path": [
-								"AllServiceProviders"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Get Service",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -751,6 +565,448 @@
 									"key": "id",
 									"value": "3"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Service From Sub_cat",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "subCategory_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "+611223435313",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "vet_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "vacc_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "certificate",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "business_name",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_streetNo",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_unit",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "business_street",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "contact_name",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/sub-cat-services?id=43",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"sub-cat-services"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "43"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Services count against sub_cat",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{website_url}}/get-cat-services-count",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"get-cat-services-count"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "all-categories",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Watch List",
+			"item": [
+				{
+					"name": "Add to Watch list",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "68",
+									"type": "text"
+								},
+								{
+									"key": "service_id",
+									"value": "49",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/add-watch-list",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"add-watch-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get  Watch List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{website_url}}/get-watch-list?user_id=68",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"get-watch-list"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "68"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Service Providers",
+			"item": [
+				{
+					"name": "Service Provider Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "business_name",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "contact_person",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "+611223435313",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "muhammadsarfraz531@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "vetting_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html",
+									"disabled": true
+								},
+								{
+									"key": "vaccinations_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html",
+									"disabled": true
+								},
+								{
+									"key": "is_verified",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "certifications_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html",
+									"disabled": true
+								},
+								{
+									"key": "message",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/serviceProviderRegister",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"serviceProviderRegister"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Service Providers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "subCategory_id",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "+611223435313",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "vet_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "vacc_doc",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "certificate",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/user.html"
+								},
+								{
+									"key": "business_name",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_streetNo",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "business_unit",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "business_street",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "contact_name",
+									"value": "234",
+									"type": "text"
+								},
+								{
+									"key": "phone_number",
+									"value": "234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{website_url}}/AllServiceProviders",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"AllServiceProviders"
 							]
 						}
 					},
@@ -963,124 +1219,12 @@
 							]
 						},
 						"url": {
-							"raw": "{{website_url}}/count-cat-providers?id=14",
+							"raw": "{{website_url}}/count-cat-providers?id=43",
 							"host": [
 								"{{website_url}}"
 							],
 							"path": [
 								"count-cat-providers"
-							],
-							"query": [
-								{
-									"key": "id",
-									"value": "14"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get Service From Sub_cat",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "category_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "subCategory_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "title",
-									"value": "+611223435313",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "vet_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "vacc_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "certificate",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "business_name",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_streetNo",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_unit",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "business_street",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "contact_name",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "234",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{website_url}}/sub-cat-services?id=43",
-							"host": [
-								"{{website_url}}"
-							],
-							"path": [
-								"sub-cat-services"
 							],
 							"query": [
 								{
@@ -1201,19 +1345,6 @@
 								}
 							]
 						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Category",
-			"item": [
-				{
-					"name": "all-categories",
-					"request": {
-						"method": "GET",
-						"header": []
 					},
 					"response": []
 				}

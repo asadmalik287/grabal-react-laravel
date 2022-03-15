@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class WatchListController extends Controller
 {
-    // add service to watchlist after checking if already exists 
+    // add service to watchlist after checking if already exists
     public function addToWatchlist(Request $request)
     {
         if (WatchList::where(['user_id' => $request->user_id, 'service_id' => $request->service_id])->exists()) {
@@ -32,5 +32,26 @@ class WatchListController extends Controller
             }
         }
     }
-    //close 
+    //close
+
+    // get services from watchlist
+    public function getWatchList(Request $request)
+    {
+        $arr = [];
+        $getWatchList = WatchList::where('user_id', $request->user_id)->distinct()->get('service_id');
+        if (count($getWatchList) > 0) {
+            foreach ($getWatchList as $service) {
+                array_push($arr, $service->service_id);
+            }
+            // return count($arr);
+            $status = 1;
+            $message = 'Services has been retrieved!';
+            return (new ResponseController)->sendResponse($status, $message, $arr);
+        } else {
+            $error = 'No Service Found in Watch List';
+            return (new ResponseController)->sendError(0, $error);
+        }
+    }
+
+    //close
 }
