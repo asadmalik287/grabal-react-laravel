@@ -66,7 +66,8 @@ class WatchListController extends Controller
         } else {
             $error = 'Error Occured!';
             return (new ResponseController)->sendError(0, $error);
-        }
+        } 
+        
 
     }
     // close
