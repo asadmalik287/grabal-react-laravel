@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\ServiceAttachment;
+use App\Models\WatchList;
 use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
@@ -262,7 +263,7 @@ class ServiceController extends Controller
     // close
 
     // get specific services
-    public function serviceDetail()
+    public function serviceDetail(Request $request)
     {
         if (isset($_GET['id'])) {
             $services = Service::join('categories', 'services.category_id', 'categories.id')
@@ -271,7 +272,14 @@ class ServiceController extends Controller
                 ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
                     'services.id as Service_id')->where('services.id', $_GET['id'])->get();
             $images = Service::with('hasAttachment')->where('services.id', $_GET['id'])->get();
-            return response()->json(['services' => $services, 'images' => $images]);
+            if (isset($_GET['user_id'])) {
+                if (WatchList::where(['service_id' => $services[0]['Service_id'], 'user_id' => $request->user_id])->exists()) {
+                    $watchlist = 1;
+                } else {
+                    $watchlist = 0;
+                }
+            }
+            return response()->json(['services' => $services, 'images' => $images, 'added_to_watchlist' => $watchlist]);
         }
     }
     public function sellerServices()

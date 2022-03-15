@@ -221,6 +221,16 @@
 									"key": "phone_number",
 									"value": "234",
 									"type": "text"
+								},
+								{
+									"key": "about",
+									"value": "about test",
+									"type": "text"
+								},
+								{
+									"key": "main_service_image",
+									"type": "file",
+									"src": "/C:/Users/WindowS 10/Downloads/image_2022_03_05T12_40_55_777Z.png"
 								}
 							]
 						},
@@ -378,73 +388,7 @@
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "category_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "subCategory_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "title",
-									"value": "+611223435313",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "vet_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "vacc_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "certificate",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "business_name",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_streetNo",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_unit",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "business_street",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "contact_name",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "234",
-									"type": "text"
-								}
-							]
+							"formdata": []
 						},
 						"url": {
 							"raw": "{{website_url}}/all-services",
@@ -484,76 +428,10 @@
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "category_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "subCategory_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "title",
-									"value": "+611223435313",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "vet_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "vacc_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "certificate",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "business_name",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_streetNo",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_unit",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "business_street",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "contact_name",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "234",
-									"type": "text"
-								}
-							]
+							"formdata": []
 						},
 						"url": {
-							"raw": "{{website_url}}/service-detail?id=3",
+							"raw": "{{website_url}}/service-detail?id=48&user_id=5",
 							"host": [
 								"{{website_url}}"
 							],
@@ -563,7 +441,11 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "3"
+									"value": "48"
+								},
+								{
+									"key": "user_id",
+									"value": "5"
 								}
 							]
 						}
@@ -596,73 +478,7 @@
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "category_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "subCategory_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "title",
-									"value": "+611223435313",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "vet_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "vacc_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "certificate",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "business_name",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_streetNo",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_unit",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "business_street",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "contact_name",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "234",
-									"type": "text"
-								}
-							]
+							"formdata": []
 						},
 						"url": {
 							"raw": "{{website_url}}/sub-cat-services?id=43",
@@ -766,12 +582,12 @@
 							"formdata": [
 								{
 									"key": "user_id",
-									"value": "68",
+									"value": "5",
 									"type": "text"
 								},
 								{
 									"key": "service_id",
-									"value": "49",
+									"value": "48",
 									"type": "text"
 								}
 							]
@@ -789,7 +605,7 @@
 					"response": []
 				},
 				{
-					"name": "Get  Watch List",
+					"name": "Get  Watch List Services",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -804,7 +620,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{website_url}}/get-watch-list?user_id=68",
+							"raw": "{{website_url}}/get-watch-list?user_id=5",
 							"host": [
 								"{{website_url}}"
 							],
@@ -814,7 +630,51 @@
 							"query": [
 								{
 									"key": "user_id",
-									"value": "68"
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Service From Watch List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{website_url}}/remove-watch-list?user_id=5&service_id=52",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"remove-watch-list"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "5"
+								},
+								{
+									"key": "service_id",
+									"value": "52"
 								}
 							]
 						}
@@ -932,73 +792,7 @@
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "category_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "subCategory_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "title",
-									"value": "+611223435313",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "vet_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "vacc_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "certificate",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "business_name",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_streetNo",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_unit",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "business_street",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "contact_name",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "234",
-									"type": "text"
-								}
-							]
+							"formdata": []
 						},
 						"url": {
 							"raw": "{{website_url}}/AllServiceProviders",
@@ -1013,7 +807,7 @@
 					"response": []
 				},
 				{
-					"name": "Get Seller",
+					"name": "Get Service Provider",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1038,76 +832,10 @@
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "category_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "subCategory_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "title",
-									"value": "+611223435313",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "vet_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "vacc_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "certificate",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "business_name",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_streetNo",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_unit",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "business_street",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "contact_name",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "234",
-									"type": "text"
-								}
-							]
+							"formdata": []
 						},
 						"url": {
-							"raw": "{{website_url}}/seller-detail?id=16",
+							"raw": "{{website_url}}/seller-detail?id=5",
 							"host": [
 								"{{website_url}}"
 							],
@@ -1117,7 +845,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "16"
+									"value": "5"
 								}
 							]
 						}
@@ -1150,73 +878,7 @@
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "category_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "subCategory_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "title",
-									"value": "+611223435313",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "vet_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "vacc_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "certificate",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "business_name",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_streetNo",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_unit",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "business_street",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "contact_name",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "234",
-									"type": "text"
-								}
-							]
+							"formdata": []
 						},
 						"url": {
 							"raw": "{{website_url}}/count-cat-providers?id=43",
@@ -1262,76 +924,10 @@
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "category_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "subCategory_id",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "title",
-									"value": "+611223435313",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "123",
-									"type": "text"
-								},
-								{
-									"key": "vet_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "vacc_doc",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "certificate",
-									"type": "file",
-									"src": "/C:/Users/WindowS 10/Downloads/user.html"
-								},
-								{
-									"key": "business_name",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_streetNo",
-									"value": "1",
-									"type": "text"
-								},
-								{
-									"key": "business_unit",
-									"value": "test",
-									"type": "text"
-								},
-								{
-									"key": "business_street",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "contact_name",
-									"value": "234",
-									"type": "text"
-								},
-								{
-									"key": "phone_number",
-									"value": "234",
-									"type": "text"
-								}
-							]
+							"formdata": []
 						},
 						"url": {
-							"raw": "{{website_url}}/seller-services?id=50",
+							"raw": "{{website_url}}/seller-services?id=5",
 							"host": [
 								"{{website_url}}"
 							],
@@ -1341,7 +937,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "50"
+									"value": "5"
 								}
 							]
 						}
