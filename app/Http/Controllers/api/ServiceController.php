@@ -273,7 +273,7 @@ class ServiceController extends Controller
                     'services.id as Service_id')->where('services.id', $_GET['id'])->first();
             $images = Service::with('hasAttachment')->where('services.id', $_GET['id'])->get();
             if (isset($_GET['user_id'])) {
-                if (WatchList::where(['service_id' => $services[0]['Service_id'], 'user_id' => $request->user_id])->exists()) {
+                if (WatchList::where(['service_id' => $services->Service_id, 'user_id' => $request->user_id])->exists()) {
                     $watchlist = 1;
                 } else {
                     $watchlist = 0;
