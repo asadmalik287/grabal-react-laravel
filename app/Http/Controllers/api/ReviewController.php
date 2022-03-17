@@ -118,7 +118,9 @@ class ReviewController extends Controller
 
     public function getAllReviews(Request $request)
     {
-        $allReviews = Review::where('service_id', $request->service_id)->get();
+        // $allReviews = Review::where('service_id', $request->service_id)->get();
+        $allReviews = Review::join('users', 'reviews.user_id', 'users.id')
+        ->select('users.name as Seller', 'reviews.*')->where('service_id', $request->service_id)->get();
         return (new ResponseController)->sendResponse(1,'',$allReviews);
     }
 
@@ -126,6 +128,5 @@ class ReviewController extends Controller
 
 
 }
-
 
 
