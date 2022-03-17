@@ -113,27 +113,20 @@ class ReviewController extends Controller
 
             return response()->json(['success' => true, 'message' =>'Review has been added successfully']);
         }
-        // if (Review::where(['service_id' => $request->service_id])->exists()) {
-        //     $error = 'Review has been already added against this service';
-        //     return (new ResponseController)->sendError(0, $error);
-        // } else {
-        //     try {
-        //         $check = Review::create($request->all());
-        //         if ($check) {
-        //             $status = 1;
-        //             $message = 'Review has been added against this service!';
-        //             $result = Review::where('id', $check->id)->first();
-        //             return (new ResponseController)->sendResponse($status, $message, $result);
-        //         } else {
-        //             $error = 'Error Occured while adding to Review!';
-        //             return (new ResponseController)->sendError(0, $error);
-        //         }
-        //     } catch (\Exception$e) {
-        //         $error = $e->getMessage();
-        //         return (new ResponseController)->sendError(0, $error);
-        //     }
-        // }
     }
+
+
+    public function getAllReviews(Request $request)
+    {
+        $allReviews = Review::where('service_id', $request->service_id)->get();
+        // if(count($allReviews) > 0){
+        //     $message = '';
+        // }else{
+        //     $message = '';
+        // }
+        return (new ResponseController)->sendResponse(1,'',$allReviews);
+    }
+
 
 
 
