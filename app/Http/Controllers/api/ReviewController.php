@@ -88,8 +88,6 @@ class ReviewController extends Controller
 
     public function addReview(Request $request)
     {
-        return  $request->all();
-
         $validator = Validator::make($request->all(), [
             'service_id' => 'required',
             'rating' => 'required',
