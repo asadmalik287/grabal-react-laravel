@@ -88,6 +88,7 @@ class ReviewController extends Controller
 
     public function addReview(Request $request)
     {
+        return  $request->all();
 
         $validator = Validator::make($request->all(), [
             'service_id' => 'required',
@@ -101,12 +102,13 @@ class ReviewController extends Controller
         }
 
 
-        if (Review::where(['service_id' => $request->service_id])->exists()) {
+        if (Review::where(['service_id' => $request->service_id, 'user_id' => $request->user_id])->exists()) {
             $error = 'Review has been already added against this service';
             return (new ResponseController)->sendError(0, $error);
         } else {
             $add_review = new Review();
             $add_review->service_id = $request->service_id;
+            $add_review->user_id = $request->user_id;
             $add_review->rating = $request->rating;
             $add_review->review = $request->review;
             $add_review->save();
@@ -119,11 +121,6 @@ class ReviewController extends Controller
     public function getAllReviews(Request $request)
     {
         $allReviews = Review::where('service_id', $request->service_id)->get();
-        // if(count($allReviews) > 0){
-        //     $message = '';
-        // }else{
-        //     $message = '';
-        // }
         return (new ResponseController)->sendResponse(1,'',$allReviews);
     }
 
