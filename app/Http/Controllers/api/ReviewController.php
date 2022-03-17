@@ -96,7 +96,8 @@ class ReviewController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return (new ResponseController)->sendError(0, $validator->errors());
+            return response()->json(['success' => false, 'message' =>'Please fill all fields']);
+            // return (new ResponseController)->sendError(0, $validator->errors());
         }
 
 
