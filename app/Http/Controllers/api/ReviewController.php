@@ -99,13 +99,19 @@ class ReviewController extends Controller
             return (new ResponseController)->sendError(0, $validator->errors());
         }
 
-        $add_review = new Review();
-        $add_review->service_id = $request->service_id;
-        $add_review->rating = $request->rating;
-        $add_review->review = $request->review;
-        $add_review->save();
 
-        return response()->json(['success' => true, 'message' =>'Review has been added successfully']);
+        if (Review::where(['service_id' => $request->service_id])->exists()) {
+            $error = 'Review has been already added against this service';
+            return (new ResponseController)->sendError(0, $error);
+        } else {
+            $add_review = new Review();
+            $add_review->service_id = $request->service_id;
+            $add_review->rating = $request->rating;
+            $add_review->review = $request->review;
+            $add_review->save();
+
+            return response()->json(['success' => true, 'message' =>'Review has been added successfully']);
+        }
         // if (Review::where(['service_id' => $request->service_id])->exists()) {
         //     $error = 'Review has been already added against this service';
         //     return (new ResponseController)->sendError(0, $error);
