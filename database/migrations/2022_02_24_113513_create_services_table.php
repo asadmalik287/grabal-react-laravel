@@ -20,9 +20,11 @@ class CreateServicesTable extends Migration
             $table->text('contact_name')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('business_name')->nullable();
-            $table->string('business_streetNo')->nullable();
-            $table->string('business_unit')->nullable();
-            $table->string('business_street')->nullable();
+            // $table->string('business_streetNo')->nullable();
+            // $table->string('business_unit')->nullable();
+            // $table->string('business_street')->nullable();
+            $table->string('address')->nullable();
+            $table->string('address1')->nullable();
             $table->unsignedBigInteger('subCategory_id');
             $table->foreign('subCategory_id')->references('id')->on('sub_categories')->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger('category_id')->nullable();

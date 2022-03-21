@@ -27,9 +27,10 @@ class ServiceController extends Controller
         // dd($request->all());
 
         $validator = Validator::make($request->all(), [
-            'business_streetNo' => 'required|string',
-            'business_unit' => 'required|string',
-            'business_street' => 'required',
+            // 'business_streetNo' => 'required|string',
+            // 'business_unit' => 'required|string',
+            // 'business_street' => 'required',
+            'address' => 'required',
             'category_id' => 'required|string',
             'subCategory_id' => 'required',
             'title' => 'required',
@@ -52,9 +53,11 @@ class ServiceController extends Controller
         $service->title = $request->title;
         $service->description = $request->description;
         $service->business_name = $request->business_name;
-        $service->business_streetNo = $request->business_streetNo;
-        $service->business_unit = $request->business_unit;
-        $service->business_street = $request->business_street;
+        // $service->business_streetNo = $request->business_streetNo;
+        // $service->business_unit = $request->business_unit;
+        // $service->business_street = $request->business_street;
+        $service->address = $request->address;
+        $service->address1 = $request->address1;
         $service->contact_name = $request->contact_name;
         $service->added_by = $request->added_by_id;
         $service->about = $request->about;
