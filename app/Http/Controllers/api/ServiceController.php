@@ -31,6 +31,8 @@ class ServiceController extends Controller
             // 'business_unit' => 'required|string',
             // 'business_street' => 'required',
             'address' => 'required',
+            'aboutService' => 'required',
+            'aboutService1' => 'required',
             'category_id' => 'required|string',
             'subCategory_id' => 'required',
             'title' => 'required',
@@ -58,6 +60,9 @@ class ServiceController extends Controller
         // $service->business_street = $request->business_street;
         $service->address = $request->address;
         $service->address1 = $request->address1;
+        $service->aboutService = $request->aboutService;
+        $service->aboutService1 = $request->aboutService1;
+        $service->aboutService2 = $request->aboutService2;
         $service->contact_name = $request->contact_name;
         $service->added_by = $request->added_by_id;
         $service->about = $request->about;
