@@ -40,6 +40,10 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::post('add-review', 'ReviewController@addReview')->name('add-review');
     Route::get('get-reviews', 'ReviewController@getAllReviews')->name('get-reviews');
 
+    // stripe payment gateway
+    Route::post('stripe-payment','StripeController@store')->name("stripe-payment");
+
+
     Route::get('get-watch-list', 'WatchListController@getWatchList')->name('get-watch-list');
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('test', 'AuthController@test')->name('test');
