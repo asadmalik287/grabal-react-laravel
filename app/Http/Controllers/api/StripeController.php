@@ -22,6 +22,7 @@ class StripeController extends Controller
 
     public function store(Request $request){
         $validations = Validator::make($request->all(),[
+            'user_id'=>"required",
             'amount'=>'required',
             'stripeToken'=>'required',
         ]);
@@ -30,17 +31,11 @@ class StripeController extends Controller
             return response()->json(['success'=>false,"errors"=>$validations->errors()]);
         }
 
-         // $customer = $this->stripe->customers->create([
-        //     'name'=>"muhammadWaseem",
-        //     'email' => 'waseem@ewdtech.com'
-        // ]);
-
-        // return $customer;
         $errorCheck = false;
         $errorArray = [];
         try {
 
-            $user = User::find($request->id);
+            $user = User::find($request->user_id);
             if($user!=null){
                 if($user->stripe_id==''){
                     $user->stripe_id = $this->stripe->customers->create([
@@ -82,7 +77,7 @@ class StripeController extends Controller
                 ]);
                 $subscription = Subscription::create(['user_id'=>$user->id,'stripe_id'=>$user->string_id,'name'=>"test",'stripe_price'=>$price->id,'stripe_status'=>$subscription->status,'trial_end_at'=>$subscription->trial_end,'quantity'=>1]);
                 if($subscription!=null){
-                    return        ()->json(['success'=>true]);
+                    return response()->json(['success'=>true]);
                 }
             }
 
