@@ -42,6 +42,9 @@ class ServiceController extends Controller
             'phone_number' => 'required',
             'about' => 'required',
             'main_service_image' => 'required',
+            'city' => 'required',
+            'suburb' => 'required',
+            'postal_code' => 'required',
         ]);
 
         // if validator fails
@@ -67,6 +70,9 @@ class ServiceController extends Controller
         $service->added_by = $request->added_by_id;
         $service->about = $request->about;
         $service->phone_number = $request->phone_number;
+        $service->city = $request->city;
+        $service->suburb = $request->suburb;
+        $service->postal_code = $request->postal_code;
 
         $path = 'assets/admin/images';
 
