@@ -107,7 +107,7 @@
                                     </thead>
                                     <tbody>
                                         @forelse ($allServices as $key => $allService)
-                                        @dd($allService->hasCategory->name)
+                                        @dd($allService->hasSubCategory)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td class="wsnw">{{ $allService->title }}</td>
