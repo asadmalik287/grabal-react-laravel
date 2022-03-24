@@ -19,23 +19,24 @@ class SubCategoryController extends Controller
         $subCategory = SubCategories::find($request->sub_category_id);
         if($subCategory!=null){
             $services = $subCategory->service();
-            if(count($this->getFilledFields($request,["sub_category_id"])) > 0){
-                foreach($this->getFilledFields($request,["sub_category_id"]) as $key=>$value){
+            $filledFieldAndData = $this->getFilledFields($request,['city','suburb','postal_code'],["sub_category_id"]);
+            if(count($filledFieldAndData) > 0){
+                foreach($filledFieldAndData as $key=>$value){
                     $services->where($key,$value);
                 }
             }
             $services = $services->get();
-            return response()->json(['success'=>true,'data'=>$services]);
+            return response()->json(['success'=>true,'services'=>$services]);
         }
         return response()->json(['success'=>false,'message'=>"Sorry sub category does not exist"]);
     }
 
     // get filled fields
-    private function getFilledFields($request,$ignore){
+    private function getFilledFields($request,$require,$ignore){
         $data = $request->except($ignore);
         foreach($data as $key=>$value)
         {
-            if(is_null($value) || $value == '') unset($data[$key]);
+            if((is_null($value) || $value == '') && !in_array($key,$require)) unset($data[$key]);
         }
         return $data;
     }
