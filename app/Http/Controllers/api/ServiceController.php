@@ -150,9 +150,22 @@ class ServiceController extends Controller
     public function updateService(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'business_streetNo' => 'required|string',
-            'business_unit' => 'required|string',
-            'business_street' => 'required',
+            // 'business_streetNo' => 'required|string',
+            // 'business_unit' => 'required|string',
+            // 'business_street' => 'required',
+            // 'category_id' => 'required|string',
+            // 'subCategory_id' => 'required',
+            // 'title' => 'required',
+            // 'description' => 'required',
+            // 'business_name' => 'required',
+            // 'contact_name' => 'required',
+            // 'phone_number' => 'required',
+            // 'about' => 'required',
+            // 'main_service_image' => 'required',
+
+            'address' => 'required',
+            'aboutService' => 'required',
+            'aboutService1' => 'required',
             'category_id' => 'required|string',
             'subCategory_id' => 'required',
             'title' => 'required',
@@ -162,6 +175,9 @@ class ServiceController extends Controller
             'phone_number' => 'required',
             'about' => 'required',
             'main_service_image' => 'required',
+            'city' => 'required',
+            'suburb' => 'required',
+            'postal_code' => 'required',
         ]);
 
         // if validator fails
@@ -175,13 +191,21 @@ class ServiceController extends Controller
         $service->title = $request->title;
         $service->description = $request->description;
         $service->business_name = $request->business_name;
-        $service->business_streetNo = $request->business_streetNo;
-        $service->business_unit = $request->business_unit;
-        $service->business_street = $request->business_street;
+        // $service->business_streetNo = $request->business_streetNo;
+        // $service->business_unit = $request->business_unit;
+        // $service->business_street = $request->business_street;
+        $service->address = $request->address;
+        $service->address1 = $request->address1;
+        $service->aboutService = $request->aboutService;
+        $service->aboutService1 = $request->aboutService1;
+        $service->aboutService2 = $request->aboutService2;
         $service->contact_name = $request->contact_name;
         $service->added_by = $request->added_by_id;
         $service->about = $request->about;
         $service->phone_number = $request->phone_number;
+        $service->city = $request->city;
+        $service->suburb = $request->suburb;
+        $service->postal_code = $request->postal_code;
 
         $path = 'assets/admin/images';
 
