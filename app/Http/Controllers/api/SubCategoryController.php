@@ -16,6 +16,27 @@ class SubCategoryController extends Controller
             return response()->json(['success'=>false,"errors"=>$validator->errors()]);
         }
 
-        $subCategory = SubCategory::find($request->)
+        $subCategory = SubCategories::find($request->sub_category_id);
+        if($subCategory!=null){
+            $services = $subCategory->service();
+            if(count($this->getFilledFields($request,["sub_category_id"])) > 0){
+                foreach($this->getFilledFields($request,["sub_category_id"]) as $key=>$value){
+                    $services->where($key,$value);
+                }
+            }
+            $services = $services->get();
+            return response()->json(['success'=>true,'data'=>$services]);
+        }
+        return response()->json(['success'=>false,'message'=>"Sorry sub category does not exist"]);
+    }
+
+    // get filled fields
+    private function getFilledFields($request,$ignore){
+        $data = $request->except($ignore);
+        foreach($data as $key=>$value)
+        {
+            if(is_null($value) || $value == '') unset($data[$key]);
+        }
+        return $data;
     }
 }
