@@ -79,8 +79,10 @@ class StripeController extends Controller
                 ]);
                 $subscription = Subscription::create(['user_id'=>$user->id,'stripe_id'=>$user->stripe_id,'name'=>"test",'stripe_price'=>$price->id,'stripe_status'=>$subscription->status,'trial_end_at'=>$subscription->trial_end,'quantity'=>1]);
                 if($subscription!=null){
-                    return response()->json(['success'=>true]);
+                    return response()->json(['success'=>true, "message"=>"Thanks! You have subscribed successfully"]);
                 }
+            }else{
+                return response()->json(['success'=>false, "message"=>"User doesn't exist"]);
             }
 
         } catch (\Stripe\Error\ApiConnection $e) {
@@ -109,6 +111,6 @@ class StripeController extends Controller
             return response()->json(['success'=>false,"errors"=>$errorArray]);
         }
 
-        return response()->json(['success'=>true]);
+        return response()->json(['success'=>false, "message"=>"Sorry! Something went wrong."]);
     }
 }
