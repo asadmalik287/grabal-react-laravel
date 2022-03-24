@@ -78,11 +78,18 @@ class SubCategoriesController extends Controller
         }
     }
 
-
     public function destroy($id)
     {
         if(SubCategories::where('id',$id)->delete()){
             return response()->json(['success' => true, 'message' =>'Sub Category been deleted successfully']);
+        }
+    }
+
+    // get list of all sub category services
+    public function getSubCategoryServices(Request $request){
+        $validator = Validator::make($request->all(),['sub_category_id'=>"required"]);
+        if($validator->fails()){
+            return response()->json(['success'=>false,"errors"=>$validator->errors()]);
         }
     }
 }

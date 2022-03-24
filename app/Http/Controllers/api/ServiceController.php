@@ -387,7 +387,7 @@ class ServiceController extends Controller
         $catCount = DB::select('SELECT sub_categories.id,sub_categories.name , count(services.subCategory_id) as total_services FROM sub_categories
         LEFT JOIN services
         ON sub_categories.id = services.subCategory_id
-        GROUP BY services.subCategory_id , sub_categories.name, sub_categories.id');
+        GROUP BY services.subCategory_id , sub_categories.name, sub_categories.id limit 3');
         return response()->json(['catCount' => $catCount]);
     }
     // close
