@@ -32,7 +32,7 @@ class SubCategoryController extends Controller
                                 $subCategory->select('id','name');
                             }])
                             ->get();
-            return response()->json(['success'=>true,'services'=>$services]);
+            return response()->json(['success'=>true,'services'=>$services,'formData'=>$request]);
         }
         return response()->json(['success'=>false,'message'=>"Sorry sub category does not exist"]);
     }
