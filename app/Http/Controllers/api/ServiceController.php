@@ -273,7 +273,7 @@ class ServiceController extends Controller
             $attachment->save();
         }
 
-        $message = 'Service has been added successfully';
+        $message = 'Service has been updated successfully';
         return (new ResponseController)->sendResponse(1, $message, $service);
 
     }
