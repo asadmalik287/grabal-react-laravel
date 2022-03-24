@@ -25,9 +25,11 @@ class SubCategoryController extends Controller
                     $services->where($key,$value);
                 }
             }
-            $services = $services->select(['id','title','description','main_service_image','created_at','added_by'])
+            $services = $services->select(['id','title','description','main_service_image','created_at','added_by','subCategory_id'])
                             ->with(['haveProvider' => function ($user) {
                                 $user->select('id','role_id','logo');
+                            },'subcat'=>function ($subCategory) {
+                                $subCategory->select('id','name');
                             }])
                             ->get();
             return response()->json(['success'=>true,'services'=>$services]);
