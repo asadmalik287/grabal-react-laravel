@@ -107,11 +107,12 @@
                                     </thead>
                                     <tbody>
                                         @forelse ($allServices as $key => $allService)
+                                        @dd($allService->hasCategory)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
                                                 <td class="wsnw">{{ $allService->title }}</td>
-                                                <td class="wsnw">{{ $allService->hasCategory['name'] }}</td>
-                                                <td class="wsnw">{{ $allService->hasSubCategory['name'] }}
+                                                <td class="wsnw">{{ $allService->hasCategory->name }}</td>
+                                                <td class="wsnw">{{ $allService->hasSubCategory->name }}
                                                 </td>
                                                 <td class="wsnw"> <a class="sellerLink"
                                                         href="{{ url('admin/serviceProviders') }}?id={{ $allService->haveProvider['id'] }}">
