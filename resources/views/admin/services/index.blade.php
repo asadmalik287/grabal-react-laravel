@@ -111,7 +111,7 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td class="wsnw">{{ $allService->title }}</td>
                                                 <td class="wsnw">{{ $allService->hasCategory->name }}</td>
-                                                <td class="wsnw">{{ $allService->hasSubCategory->name }}
+                                                <td class="wsnw">{{ $allService->subcat->name }}
                                                 </td>
                                                 <td class="wsnw"> <a class="sellerLink"
                                                         href="{{ url('admin/serviceProviders') }}?id={{ $allService->haveProvider['id'] }}">
@@ -164,7 +164,7 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td class="wsnw">{{ $pendingService->title }}</td>
                                                 <td class="wsnw">{{ $pendingService->hasCategory->name }}</td>
-                                                <td class="wsnw">{{ $pendingService->hasSubCategory->name }}
+                                                <td class="wsnw">{{ $pendingService->subcat->name }}
                                                 </td>
                                                 <td class="wsnw"> <a class="sellerLink"
                                                         href="{{ url('admin/serviceProviders') }}?id={{ $pendingService->haveProvider['id'] }}">
@@ -218,7 +218,7 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td class="wsnw">{{ $approvedService->title }}</td>
                                                 <td class="wsnw">{{ $approvedService->hasCategory->name }}</td>
-                                                <td class="wsnw">{{ $approvedService->hasSubCategory->name }}
+                                                <td class="wsnw">{{ $approvedService->subcat->name }}
                                                 </td>
                                                 <td class="wsnw">
                                                     <a class="sellerLink"
@@ -269,7 +269,7 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td class="wsnw">{{ $rejectedService->title }}</td>
                                                 <td class="wsnw">{{ $rejectedService->hasCategory->name }}</td>
-                                                <td class="wsnw">{{ $rejectedService->hasSubCategory->name }}
+                                                <td class="wsnw">{{ $rejectedService->subcat->name }}
                                                 </td>
                                                 <td class="wsnw">
                                                     <a class="sellerLink"

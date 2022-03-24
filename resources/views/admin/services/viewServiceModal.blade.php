@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-lg-2"> Sub category:</div>
             <div class="col-lg-10">
-                {{ $service->hasSubCategory->name }}
+                {{ $service->subcat->name }}
 
             </div>
         </div>
