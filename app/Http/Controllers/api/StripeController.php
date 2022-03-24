@@ -21,6 +21,7 @@ class StripeController extends Controller
     }
 
     public function store(Request $request){
+        // return $request->all();
         $validations = Validator::make($request->all(),[
             'user_id'=>"required",
             'amount'=>'required',
@@ -41,12 +42,12 @@ class StripeController extends Controller
                     $user->stripe_id = $this->stripe->customers->create([
                         'name'=>$user->name,
                         'email' => $user->email,
-                        'source' => $request->stripe_token,
+                        'source' => $request->stripeToken,
                     ])->id;
                     $user->save();
                 }
 
-                if($user->stripe_id!='' && Subscription::where(['user_id',$user->id])->first()!=null){
+                if($user->stripe_id!='' && Subscription::where('user_id',$user->id)->first()!=null){
                     $errorArray['type'] = ["duplication"];
                     $errorArray['message'] = ["You have already subscribed"];
                     return response()->json(['success'=>false,"errors"=>$errorArray]);
@@ -57,25 +58,26 @@ class StripeController extends Controller
                     'type' => 'service',
                 ]);
 
+                // return $product;
                 $price = $this->stripe->prices->create([
                     'unit_amount' => $request->amount,
                     'currency' => 'nzd',
                     'recurring' => ['interval' => 'month'],
                     'product' => $product->id,
                 ]);
-        
+
                 // $plan = $this->stripe->plans->create([
                 //     'product' => $product->id,
                 //     'interval' => 'month',
                 //     'currency' => 'eur',
                 //     'amount' => 560,
                 // ]);
-        
+
                 $subscription = $this->stripe->subscriptions->create([
                     'customer' => $user->stripe_id,
                     'items' => [['price' => $price->id]],
                 ]);
-                $subscription = Subscription::create(['user_id'=>$user->id,'stripe_id'=>$user->string_id,'name'=>"test",'stripe_price'=>$price->id,'stripe_status'=>$subscription->status,'trial_end_at'=>$subscription->trial_end,'quantity'=>1]);
+                $subscription = Subscription::create(['user_id'=>$user->id,'stripe_id'=>$user->stripe_id,'name'=>"test",'stripe_price'=>$price->id,'stripe_status'=>$subscription->status,'trial_end_at'=>$subscription->trial_end,'quantity'=>1]);
                 if($subscription!=null){
                     return response()->json(['success'=>true]);
                 }
