@@ -25,7 +25,11 @@ class SubCategoryController extends Controller
                     $services->where($key,$value);
                 }
             }
-            $services = $services->get();
+            $services = $services->select(['id','title','description','main_service_image','created_at','added_by'])
+                            ->with(['haveProvider' => function ($user) {
+                                $user->select('id','role_id','logo');
+                            }])
+                            ->get();
             return response()->json(['success'=>true,'services'=>$services]);
         }
         return response()->json(['success'=>false,'message'=>"Sorry sub category does not exist"]);

@@ -29,6 +29,7 @@ class Service extends Model
     {
         return $this->hasMany(ServiceAttachment::class,'service_id');
     }
+    
     public function subcat()
     {
         return $this->belongsTo(SubCategories::class,'subCategory_id');
