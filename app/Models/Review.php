@@ -12,4 +12,9 @@ class Review extends Model
     protected $fillable = [
         'service_id'
     ];
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class,'service_id');
+    }
 }

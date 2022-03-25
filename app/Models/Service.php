@@ -35,4 +35,9 @@ class Service extends Model
         return $this->belongsTo(SubCategories::class,'subCategory_id');
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class,'service_id');
+    }
+
 }
