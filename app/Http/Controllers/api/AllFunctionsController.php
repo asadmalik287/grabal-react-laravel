@@ -50,28 +50,33 @@ class AllFunctionsController extends Controller
 
     // get all reviews of services
     public function getServiceReviews(){
-        $reviews =  Review::with(["service"=>function($service){ 
-                        $service->select(['id','title','added_by'])->with(['haveProvider'=>function($user){
+        $reviewsList =  Review::with(["service"=>function($service){ 
+                        $service->select(['id','title','description','main_service_image','created_at','added_by'])->with(['haveProvider'=>function($user){
                             $user->select(['id','name','f_name','l_name']);
                         }]); }
                     ])->get()
                     ->groupBy("service_id");
-        $reviewsArray = $reviews->toArray();
+        $serviceArray = [];        
+        $sortServicesArray = [];            
+        foreach($reviewsList as $service_id=>$reviews){
+            $averageRating = 0;
+            $service = '';
+            foreach($reviews as $id=>$review){
+                $averageRating+= $review->rating;
+                $service = $review->service;
+            }
+            $service->averageRating = $averageRating/count($reviews);
+            $sortServicesArray[$service_id] = $service;
+            $serviceArray[$service_id] = $averageRating/count($reviews);
+        }
+        arsort($serviceArray);
         $ordered = array();
-        if($reviews->count() >0){
-            foreach ($reviewsArray as $key => $value){
-                $highestValueKey = '';
-                foreach ($reviewsArray as $k => $v){
-                    $highestValueKey = isset($reviewsArray[$highestValueKey]) && count($reviewsArray[$highestValueKey])<count($v)? $k : $key;
-                }
-    
-                if(isset($reviewsArray[$highestValueKey])){
-                    $ordered[$highestValueKey] = $reviewsArray[$highestValueKey];
-                    unset($reviewsArray[$highestValueKey]);
-                }
+        if(count($serviceArray) >0){
+            foreach ($serviceArray as $key => $value){
+                $ordered[$key] = $sortServicesArray[$key];
             } 
         }
 
-        return response()->json(['success'=>true,'reviews'=>$ordered]);
+        return response()->json(['success'=>true,'popularServices'=>array_values($ordered)]);
     }
 }
