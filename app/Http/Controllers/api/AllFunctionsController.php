@@ -50,14 +50,14 @@ class AllFunctionsController extends Controller
 
     // get all reviews of services
     public function getServiceReviews(){
-        $reviewsList =  Review::with(["service"=>function($service){ 
+        $reviewsList =  Review::with(["service"=>function($service){
                         $service->select(['id','title','description','main_service_image','created_at','added_by'])->with(['haveProvider'=>function($user){
-                            $user->select(['id','name','f_name','l_name']);
+                            $user->select(['id','name','f_name','l_name','role_id','logo']);
                         }]); }
                     ])->get()
                     ->groupBy("service_id");
-        $serviceArray = [];        
-        $sortServicesArray = [];            
+        $serviceArray = [];
+        $sortServicesArray = [];
         foreach($reviewsList as $service_id=>$reviews){
             $averageRating = 0;
             $service = '';
@@ -75,7 +75,7 @@ class AllFunctionsController extends Controller
         if(count($serviceArray) >0){
             foreach ($serviceArray as $key => $value){
                 $ordered[$key] = $sortServicesArray[$key];
-            } 
+            }
         }
         return response()->json(['success'=>true,'popularServices'=>array_values($ordered)]);
     }
