@@ -75,7 +75,7 @@ class AllFunctionsController extends Controller
         $topTenServices = array_slice(array_keys($serviceArray),0,10);
         $topThreeServices = array_slice(array_keys($serviceArray),0,3);
         if(count($topTenServices) >0){
-            foreach ($$topTenServices as $value){
+            foreach ($topTenServices as $value){
                 $ordered[$value] = $sortServicesArray[$value];
             }
         }
