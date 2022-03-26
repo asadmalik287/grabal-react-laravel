@@ -40,7 +40,7 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::post('add-review', 'ReviewController@addReview')->name('add-review');
     Route::get('get-reviews', 'ReviewController@getAllReviews')->name('get-reviews');
     Route::post('getSubCategoryServices','AllFunctionsController@getSubCategoryServices')->name('getSubCategoryServices');
-    Route::get('getServiceReviews','AllFunctionsController@getServiceReviews')->name('getSubCategoryServices');
+    Route::get('getPopularServicesAndCategories','AllFunctionsController@getPopularServicesAndCategories')->name('getPopularServicesAndCategories');
     // stripe payment gateway
     Route::post('stripe-payment','StripeController@store')->name("stripe-payment");
 

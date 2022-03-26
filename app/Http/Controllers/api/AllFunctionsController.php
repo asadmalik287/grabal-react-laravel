@@ -48,8 +48,8 @@ class AllFunctionsController extends Controller
         return response()->json(['success'=>false,'message'=>"Sorry sub category does not exist"]);
     }
 
-    // get all reviews of services
-    public function getServiceReviews(){
+    // get popular services and its category
+    public function getPopularServicesAndCategories(){
         $reviewsList =  Review::with(["service"=>function($service){
                         $service->select(['id','title','description','main_service_image','created_at','added_by'])->with(['haveProvider'=>function($user){
                             $user->select(['id','name','f_name','l_name','role_id','logo']);
@@ -72,9 +72,11 @@ class AllFunctionsController extends Controller
         }
         arsort($serviceArray);
         $ordered = array();
-        if(count($serviceArray) >0){
-            foreach ($serviceArray as $key => $value){
-                $ordered[$key] = $sortServicesArray[$key];
+        $topTenServices = array_slice(array_keys($serviceArray),0,10);
+        $topThreeServices = array_slice(array_keys($serviceArray),0,3);
+        if(count($topTenServices) >0){
+            foreach ($$topTenServices as $value){
+                $ordered[$value] = $sortServicesArray[$value];
             }
         }
         return response()->json(['success'=>true,'popularServices'=>array_values($ordered)]);
