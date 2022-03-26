@@ -65,9 +65,10 @@ class AllFunctionsController extends Controller
                 $averageRating+= $review->rating;
                 $service = $review->service;
             }
-            $service->averageRating = $averageRating/count($reviews);
+            $service->totalReviews = count($reviews); 
+            $service->averageRating = $averageRating/count($reviews); 
             $sortServicesArray[$service_id] = $service;
-            $serviceArray[$service_id] = $averageRating/count($reviews);
+            $serviceArray[$service_id] = count($reviews);
         }
         arsort($serviceArray);
         $ordered = array();
@@ -76,7 +77,6 @@ class AllFunctionsController extends Controller
                 $ordered[$key] = $sortServicesArray[$key];
             } 
         }
-
         return response()->json(['success'=>true,'popularServices'=>array_values($ordered)]);
     }
 }
