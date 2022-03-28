@@ -16,10 +16,12 @@ class Service extends Model
     {
         return $this->hasOne(Categories::class, 'category_id', 'id');
     }
+
     public function haveProvider()
     {
         return $this->belongsTo(ServiceProvider::class, 'added_by');
     }
+    
     public function hasCategory()
     {
         return $this->hasOne(Categories::class,'id','category_id');
