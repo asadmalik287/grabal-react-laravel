@@ -8,6 +8,7 @@ use Config;
 use Validator;
 use App\Models\User;
 use App\Models\Subscription;
+use Illuminate\Support\Facades\Storage;
 
 class StripeController extends Controller
 {
@@ -21,6 +22,13 @@ class StripeController extends Controller
     }
 
     public function store(Request $request){
+        // $webhook = $this->stripe->webhookEndpoints->create([
+        //     'url' => 'https://ewdtech.com/ewdtech/test/grobal_react/api/stripeWebhook',
+        //     'enabled_events' => [
+        //       'invoice.payment_succeeded'
+        //     ]
+        // ]);
+        // return $webhook;
         // return $request->all();
         $validations = Validator::make($request->all(),[
             'user_id'=>"required",
@@ -47,7 +55,7 @@ class StripeController extends Controller
                     $user->save();
                 }
 
-                if($user->stripe_id!='' && Subscription::where('user_id',$user->id)->first()!=null){
+                if($user->stripe_id!='' && Subscription::where('user_id',$user->id)->where('stripe_subscription_status','active')->first()!=null){
                     $errorArray['type'] = ["duplication"];
                     $errorArray['message'] = ["You have already subscribed"];
                     return response()->json(['success'=>false,"errors"=>$errorArray]);
@@ -62,22 +70,23 @@ class StripeController extends Controller
                 $price = $this->stripe->prices->create([
                     'unit_amount' => $request->amount,
                     'currency' => 'nzd',
-                    'recurring' => ['interval' => 'month'],
+                    'recurring' => ['interval' => 'day'],
                     'product' => $product->id,
                 ]);
 
                 // $plan = $this->stripe->plans->create([
                 //     'product' => $product->id,
                 //     'interval' => 'month',
-                //     'currency' => 'eur',
-                //     'amount' => 560,
+                //     'currency' => 'nzd',
+                //     'amount' => 30,
                 // ]);
 
                 $subscription = $this->stripe->subscriptions->create([
                     'customer' => $user->stripe_id,
                     'items' => [['price' => $price->id]],
                 ]);
-                $subscription = Subscription::create(['user_id'=>$user->id,'stripe_id'=>$user->stripe_id,'name'=>"test",'stripe_price'=>$price->id,'stripe_status'=>$subscription->status,'trial_end_at'=>$subscription->trial_end,'quantity'=>1]);
+
+                $subscription = Subscription::create(['user_id'=>$user->id,'stripe_id'=>$user->stripe_id,'stripe_subscription_id'=>$subscription->id,'stripe_price_id'=>$price->id,'stripe_subscription_status'=>$subscription->status,'trial_ends_at'=>$subscription->trial_end,'quantity'=>1]);
                 if($subscription!=null){
                     return response()->json(['success'=>true, "message"=>"Thanks! You have subscribed successfully"]);
                 }
@@ -112,5 +121,21 @@ class StripeController extends Controller
         }
 
         return response()->json(['success'=>false, "message"=>"Sorry! Something went wrong."]);
+    }
+
+    // stripe web hook for renewl of subscription
+    public function stripeWebhook()
+    {
+        header('Access-Control-Allow-Origin: *');
+        $payload_d = @file_get_contents('php://input');
+        Storage::put('files.txt',$payload_d);
+        $payload = json_decode($payload_d, true);
+        if(isset($payload['type']) && $payload['type']=="invoice.payment_succeeded"){
+            // for subscription update
+            if($payload['data']['object']['billing_reason']=="subscription_cycle"){
+                $subId = $payload['data']['object']['subscription'];
+                $subscription = Subscription::where("stripe_subscription_id",$subId)->update(['stripe_subscription_status'=>'active']);
+            }        
+        }
     }
 }

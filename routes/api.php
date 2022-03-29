@@ -41,8 +41,10 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::get('get-reviews', 'ReviewController@getAllReviews')->name('get-reviews');
     Route::post('getSubCategoryServices','AllFunctionsController@getSubCategoryServices')->name('getSubCategoryServices');
     Route::get('getPopularServicesAndCategories','AllFunctionsController@getPopularServicesAndCategories')->name('getPopularServicesAndCategories');
+    
     // stripe payment gateway
     Route::post('stripe-payment','StripeController@store')->name("stripe-payment");
+    Route::get('stripeWebhook','StripeController@stripeWebhook')->name("stripeWebhook");
 
 
     Route::get('get-watch-list', 'WatchListController@getWatchList')->name('get-watch-list');

@@ -16,16 +16,15 @@ return new class extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
-            $table->string('name');
             $table->string('stripe_id')->unique();
-            $table->string('stripe_status');
-            $table->string('stripe_price')->nullable();
-            $table->integer('quantity')->nullable();
+            $table->string('stripe_subscription_id')->nullable();
+            $table->string('stripe_price_id')->nullable();
+            $table->string('stripe_subscription_status');
+            $table->integer('quantity')->nullable()->nullable();
             $table->timestamp('trial_ends_at')->nullable();
             $table->timestamp('ends_at')->nullable();
             $table->timestamps();
-
-            $table->index(['user_id', 'stripe_status']);
+            $table->index(['user_id', 'stripe_subscription_status']);
         });
     }
 
