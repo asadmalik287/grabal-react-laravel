@@ -40,7 +40,7 @@ class AllFunctionsController extends Controller
             $services = [];
             if(count($filledFieldAndData) > 0){
                 foreach($filledFieldAndData as $key=>$value){
-                    if($key === array_key_first($filledFieldAndData)){
+                    if($key == array_key_first($filledFieldAndData)){
                         $services = Service::where($key,$value);
                     }else{
                         $services->where($key,$value);
