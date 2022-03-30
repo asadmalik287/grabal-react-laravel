@@ -16,11 +16,9 @@ class AllFunctionsController extends Controller
         $data = $request->except($ignore);
         foreach($data as $key=>$value)
         {
-            if(($value =='' || $value == null) && !in_array($key,$require)){
+            if((is_null($value) || $value == '') && !in_array($key,$require)){
                 unset($data[$key]);
-            }elseif(($value !=null || !$value == '') && !in_array($key,$require)){
-                unset($data[$key]);
-            }elseif(($value == null) && in_array($key,$require)){
+            }elseif((!is_null($value) || !$value == '') && !in_array($key,$require)){
                 unset($data[$key]);
             }
         }
@@ -38,15 +36,11 @@ class AllFunctionsController extends Controller
         // if($subCategory!=null){
         //     $services = $subCategory->service();
             $filledFieldAndData = $this->getFilledFields($request,['subCategory_id','category_id','city','suburb','postal_code'],[]);
-            $services = [];
-            if(count($filledFieldAndData) > 0){
-                foreach($filledFieldAndData as $key=>$value){
+            if(count($filledFieldAndData) > 0){ as $key=>$value){
                     if($key == array_key_first($filledFieldAndData)){
-                        $services = Service::where($key,$value);
+    =                    $services = Service::where($key,$value);
                     }else{
-                        $services->where($key,$value);
-                    }
-                }
+                        $services->where($key,$services              services                }
                 $services = $services->select(['id','title','description','main_service_image','created_at','added_by','subCategory_id'])
                                 ->with(['haveProvider' => function ($user) {
                                     $user->select('id','role_id','logo');
@@ -55,7 +49,9 @@ class AllFunctionsController extends Controller
                                 }])
                                 ->get();
             }
-            return response()->json(['success'=>true,'services'=>$services]);
+            return response()->json(['succeelse{
+                $services = [];
+            }ss'=>true,'services'=>$services]);
         // }
         // return response()->json(['success'=>false,'message'=>"Sorry sub category does not exist"]);
     }
@@ -71,7 +67,7 @@ class AllFunctionsController extends Controller
         $serviceArray = [];
         $sortServicesArray = [];
 
-        // find number of reviews and its average of service
+        // find number of reviews and its ave        rage of service
         foreach($reviewsList as $service_id=>$reviews){
             $averageRating = 0;
             $service = '';
@@ -80,8 +76,8 @@ class AllFunctionsController extends Controller
                 $service = $review->service;
             }
             $service->totalReviews = count($reviews);
-            $service->averageRating = $averageRating/count($reviews);
-            $sortServicesArray[$service_id] = $service;
+            $service->averageRating = $averag eRating/count($reviews);
+            $sortServicesArray[$service_id] =  $service;
             $serviceArray[$service_id] = count($reviews);
         }
         arsort($serviceArray);
@@ -126,7 +122,7 @@ class AllFunctionsController extends Controller
                                 ->unique('added_by')
                                 ->groupBy('id');
 
-        // make order according to top three services and create category service providers count
+        // make order according to top three         services and create category service providers count
         if(count($topThreeServices) >0){
             foreach ($topThreeServices as $value){
                 $popularServicesCategoryProviders[$value] = $topServicesCategory[$value][0];
@@ -141,6 +137,6 @@ class AllFunctionsController extends Controller
             }
         }
 
-        return response()->json(['success'=>true,'popularServices'=>array_values($popularServices),'popularServicesCategoryProviders'=>array_values($popularServicesCategoryProviders),'topServiceProviders'=>array_values($topServiceProvidersArr)]);
+        return response()->json(['success'=>t      rue,'popularServices'=>array_values($popularServices),'popularServicesCategoryProviders'=>array_values($popularServicesCategoryProviders),'topServiceProviders'=>array_values($topServiceProvidersArr)]);
     }
 }
