@@ -45,7 +45,7 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     // stripe payment gateway
     Route::post('stripe-payment','StripeController@store')->name("stripe-payment");
     Route::post('stripe-subscription-cancel/{id}','StripeController@stripeSubscriptionCancel')->name("stripe-subscription-cancel");
-    Route::get('stripeWebhook','StripeController@stripeWebhook')->name("stripeWebhook");
+    Route::post('stripeWebhook','StripeController@stripeWebhook')->name("stripeWebhook");
 
 
     Route::get('get-watch-list', 'WatchListController@getWatchList')->name('get-watch-list');
