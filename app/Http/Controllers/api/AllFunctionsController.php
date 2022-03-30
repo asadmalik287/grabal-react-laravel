@@ -143,7 +143,6 @@ class AllFunctionsController extends Controller
                 $topServiceProvidersArr[$value] = $serviceProvider;
             }
         }
-        return $topServiceProvidersArr;
 
         return response()->json(['success'=>true,'popularServices'=>array_values($popularServices),'popularServicesCategoryProviders'=>array_values($popularServicesCategoryProviders),'topServiceProviders'=>array_values($topServiceProvidersArr)]);
     }
