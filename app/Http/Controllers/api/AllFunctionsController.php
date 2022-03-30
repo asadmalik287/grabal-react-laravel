@@ -22,7 +22,7 @@ class AllFunctionsController extends Controller
                 unset($data[$key]);
             }elseif(($value == null) && in_array($key,$require)){
                 unset($data[$key]);
-            }
+            }    
         }
         return $data;
     }
@@ -38,7 +38,6 @@ class AllFunctionsController extends Controller
         // if($subCategory!=null){
         //     $services = $subCategory->service();
             $filledFieldAndData = $this->getFilledFields($request,['subCategory_id','category_id','city','suburb','postal_code'],[]);
-            return $filledFieldAndData;
             $services = [];
             if(count($filledFieldAndData) > 0){
                 foreach($filledFieldAndData as $key=>$value){
