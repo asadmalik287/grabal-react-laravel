@@ -31,11 +31,12 @@ class AllFunctionsController extends Controller
         // if($validator->fails()){
         //     return response()->json(['success'=>false,"errors"=>$validator->errors()]);
         // }
-        
+
         // $subCategory = SubCategories::find($request->sub_category_id);
         // if($subCategory!=null){
         //     $services = $subCategory->service();
             $filledFieldAndData = $this->getFilledFields($request,['subCategory_id','category_id','city','suburb','postal_code'],[]);
+            return $filledFieldAndData;
             if(count($filledFieldAndData) > 0){
                 foreach($filledFieldAndData as $key=>$value){
                     if($key === array_key_first($filledFieldAndData)){
@@ -69,7 +70,7 @@ class AllFunctionsController extends Controller
                     ->groupBy("service_id");
         $serviceArray = [];
         $sortServicesArray = [];
-        
+
         // find number of reviews and its average of service
         foreach($reviewsList as $service_id=>$reviews){
             $averageRating = 0;
@@ -78,8 +79,8 @@ class AllFunctionsController extends Controller
                 $averageRating+= $review->rating;
                 $service = $review->service;
             }
-            $service->totalReviews = count($reviews); 
-            $service->averageRating = $averageRating/count($reviews); 
+            $service->totalReviews = count($reviews);
+            $service->averageRating = $averageRating/count($reviews);
             $sortServicesArray[$service_id] = $service;
             $serviceArray[$service_id] = count($reviews);
         }
@@ -124,7 +125,7 @@ class AllFunctionsController extends Controller
                                 ->get()
                                 ->unique('added_by')
                                 ->groupBy('id');
-        
+
         // make order according to top three services and create category service providers count
         if(count($topThreeServices) >0){
             foreach ($topThreeServices as $value){
@@ -139,7 +140,7 @@ class AllFunctionsController extends Controller
                 $topServiceProvidersArr[$value] = $topServiceProviders[$value][0];
             }
         }
-      
+
         return response()->json(['success'=>true,'popularServices'=>array_values($popularServices),'popularServicesCategoryProviders'=>array_values($popularServicesCategoryProviders),'topServiceProviders'=>array_values($topServiceProvidersArr)]);
     }
 }

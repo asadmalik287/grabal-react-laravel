@@ -3,7 +3,7 @@
         <div class="nano-content">
             <ul>
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="{{url('admin/home')}}">
                         <img src="{{ asset('assets/admin/images/logo.png')}}" alt="" width="120" />
                     </a>
                 </div>
