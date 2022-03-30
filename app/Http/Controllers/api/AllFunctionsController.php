@@ -36,7 +36,8 @@ class AllFunctionsController extends Controller
         // if($subCategory!=null){
         //     $services = $subCategory->service();
             $filledFieldAndData = $this->getFilledFields($request,['subCategory_id','category_id','city','suburb','postal_code'],[]);
-            return $filledFieldAndData;
+            // return $filledFieldAndData;
+            $services = [];
             if(count($filledFieldAndData) > 0){
                 foreach($filledFieldAndData as $key=>$value){
                     if($key === array_key_first($filledFieldAndData)){
@@ -52,8 +53,6 @@ class AllFunctionsController extends Controller
                                     $subCategory->select('id','name');
                                 }])
                                 ->get();
-            }else{
-                $services = [];
             }
             return response()->json(['success'=>true,'services'=>$services]);
         // }
