@@ -137,9 +137,13 @@ class AllFunctionsController extends Controller
         $topServiceProvidersIdsArr = array_values(array_intersect($topTenServices,array_keys($topServiceProviders->toArray())));
         if(count($topServiceProvidersIdsArr) >0){
             foreach ($topServiceProvidersIdsArr as $value){
-                $topServiceProvidersArr[$value] = $topServiceProviders[$value][0];
+                $serviceProvider = $topServiceProviders[$value][0];
+                $serviceProvider['totalReviews'] = $popularServices[$value]['totalReviews'];
+                $serviceProvider['averageRating'] = $popularServices[$value]['averageRating'];
+                $topServiceProvidersArr[$value] = $serviceProvider;
             }
         }
+        return $topServiceProvidersArr;
 
         return response()->json(['success'=>true,'popularServices'=>array_values($popularServices),'popularServicesCategoryProviders'=>array_values($popularServicesCategoryProviders),'topServiceProviders'=>array_values($topServiceProvidersArr)]);
     }
