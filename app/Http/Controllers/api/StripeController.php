@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Storage;
 class StripeController extends Controller
 {
     private $stripe;
-
     public function __construct()
     {
         $stripe_configuration = Config::get('stripe');
@@ -123,7 +122,44 @@ class StripeController extends Controller
         return response()->json(['success'=>false, "message"=>"Sorry! Something went wrong."]);
     }
 
-    // stripe web hook for renewl of subscription
+    // cancel stripe subscription
+    public function stripeSubscriptionCancel($id){
+        $errorCheck = false;
+        $errorArray = [];
+        try {
+            $subscription = $this->stripe->subscriptions->cancel($id);
+            $subscriptionUpdate = Subscription::where("stripe_subscription_id",$subscription->id)->update(['stripe_subscription_status'=>$subscription->status]);
+            if($subscriptionUpdate){
+                return response()->json(['success'=>true, "message"=>"Thanks! Your subscription has been canceled successfully"]);
+            }
+        } catch (\Stripe\Error\ApiConnection $e) {
+            $errorArray['type'] = [$e->getError()->type];
+            $errorArray['message'] = [$e->getError()->message];
+            $errorCheck = true;
+        } catch (\Stripe\Exception\CardException $e) {
+            $errorArray['type'] = [$e->getError()->type];
+            $errorArray['message'] = [$e->getError()->message];
+            $errorCheck = true;
+        } catch (\Stripe\Exception\InvalidRequestException $e) {
+            $errorArray['type'] = [$e->getError()->type];
+            $errorArray['message'] = [$e->getError()->message];
+            $errorCheck = true;
+        } catch(\Stripe\Exception\ApiConnectionException $e){
+            $errorArray['type'] = [$e->getError()->type];
+            $errorArray['message'] = [$e->getError()->message];
+            $errorCheck = true;
+        }catch (Exception $e) {
+            $errorArray['type'] = [$e->getError()->type];
+            $errorArray['message'] = [$e->getError()->message];
+            $errorCheck = true;
+        }
+
+        if($errorCheck){
+            return response()->json(['success'=>false,"errors"=>$errorArray]);
+        }
+    }
+
+    // stripe web hook for renewal of subscription
     public function stripeWebhook()
     {
         header('Access-Control-Allow-Origin: *');
