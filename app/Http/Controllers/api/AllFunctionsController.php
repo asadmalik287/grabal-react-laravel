@@ -50,7 +50,7 @@ class AllFunctionsController extends Controller
                         $services->where($key,$value);
                     }
                 }
-                $services = $services->select(['id','title','description','main_service_image','created_at','added_by','subCategory_id'])
+                $services = $services->select(['id','title','description','main_service_image','created_at','added_by','subCategory_id','category_id'])
                                 ->with(['haveProvider' => function ($user) {
                                     $user->select('id','role_id','logo');
                                 },'subcat'=>function ($subCategory) {
@@ -150,7 +150,7 @@ class AllFunctionsController extends Controller
         return response()->json(['success'=>true,'popularServices'=>array_values($popularServices),'popularServicesCategoryProviders'=>array_values($popularServicesCategoryProviders),'topServiceProviders'=>array_values($topServiceProvidersArr)]);
     }
 
-    // send enquiry email to service provider 
+    // send enquiry email to service provider
     public function sendEnquiryEmailToServiceProvider(Request $request){
         $validator = Validator::make($request->all(),['provider_id'=>'required','message'=>'required']);
         if($validator->fails()){
