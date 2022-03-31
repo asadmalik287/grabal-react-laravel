@@ -48,7 +48,6 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::post('stripe-subscription-cancel/{id}','StripeController@stripeSubscriptionCancel')->name("stripe-subscription-cancel");
     Route::post('stripeWebhook','StripeController@stripeWebhook')->name("stripeWebhook");
 
-
     Route::get('get-watch-list', 'WatchListController@getWatchList')->name('get-watch-list');
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('test', 'AuthController@test')->name('test');

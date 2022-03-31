@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -101,21 +102,22 @@ class HomeController extends Controller
         // make order according to top services and create list of service providers
         $topServiceProvidersIdsArr = array_values(array_intersect($topTenServices,array_keys($topServiceProviders->toArray())));
         if(count($topServiceProvidersIdsArr) >0){
-        foreach ($topServiceProvidersIdsArr as $value){
-            $serviceProvider = $topServiceProviders[$value][0];
-            $serviceProvider['totalReviews'] = $popularServices[$value]['totalReviews'];
-            $serviceProvider['averageRating'] = $popularServices[$value]['averageRating'];
-            $topServiceProvidersArr[$value] = $serviceProvider;
+            foreach ($topServiceProvidersIdsArr as $value){
+                $serviceProvider = $topServiceProviders[$value][0];
+                $serviceProvider['totalReviews'] = $popularServices[$value]['totalReviews'];
+                $serviceProvider['averageRating'] = $popularServices[$value]['averageRating'];
+                $topServiceProvidersArr[$value] = $serviceProvider;
+            }
         }
-    }
-    $popularServices = array_values($popularServices);
-    $popularServicesCategoryProviders = array_values($popularServicesCategoryProviders);
-    $topServiceProviders = array_values($topServiceProvidersIdsArr);
+
+        $popularServices = array_values($popularServices);
+        $popularServicesCategoryProviders = array_values($popularServicesCategoryProviders);
+        $topServiceProviders = array_values($topServiceProvidersIdsArr);
 
 
-    $allProvidersCount = Service::get()->unique('added_by')->count();
-    // $allServices = Service::where('status','active')->get()->count();
-    $allServices = Service::count();
-    return view('admin.home', compact( 'popularServices','popularServicesCategoryProviders','topServiceProviders', 'allProvidersCount', 'allServices' ) );
+        $allProvidersCount = Service::get()->unique('added_by')->count();
+        // $allServices = Service::where('status','active')->get()->count();
+        $allServices = Service::count();
+        return view('admin.home', compact( 'popularServices','popularServicesCategoryProviders','topServiceProviders', 'allProvidersCount', 'allServices' ) );
     }
 }

@@ -29,6 +29,6 @@ class SendEnquiryEmailToServiceProvider extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.sendEnquiryEmailToServiceProvider')->with('data',$this->data);
+        return $this->markdown('emails.sendEnquiryEmailToServiceProvider')    ->with('data',$this->data);
     }
 }
