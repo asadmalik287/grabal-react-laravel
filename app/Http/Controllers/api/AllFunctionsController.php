@@ -8,6 +8,9 @@ use App\Models\SubCategories;
 use App\Models\Review;
 use App\Models\Service;
 use Validator;
+use Mail;
+use App\Mail\SendEnquiryEmailToServiceProvider;
+use App\Models\User;
 
 class AllFunctionsController extends Controller
 {
@@ -146,4 +149,26 @@ class AllFunctionsController extends Controller
 
         return response()->json(['success'=>true,'popularServices'=>array_values($popularServices),'popularServicesCategoryProviders'=>array_values($popularServicesCategoryProviders),'topServiceProviders'=>array_values($topServiceProvidersArr)]);
     }
+
+    // send enquiry email to service provider 
+    public function sendEnquiryEmailToServiceProvider(Request $request){
+        $validator = Validator::make($request->all(),['provider_id'=>'required','message'=>'required']);
+        if($validator->fails()){
+            return response()->json(['success'=>false,"errors"=>$validator->errors()]);
+        }
+        $provider = User::findOrFail($request->provider_id);
+        if($provider==null){
+            return response()->json(['success'=>false,"message"=>"Sorry service provider does not exist"]);
+        }
+
+        $data =[
+            "user"=>$provider,
+            "message"=>$request->message
+        ];
+
+        Mail::to($provider->email)->send(new SendEnquiryEmailToServiceProvider($data));
+        return response()->json(['success'=>true,'message'=>"Enquiry Email has been sent to service provider successfully"]);
+
+    }
+
 }
