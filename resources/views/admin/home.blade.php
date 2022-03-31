@@ -94,44 +94,34 @@
                     <h6 class="bg-primary-50 px-3 py-2 text-dark rounded-4">Top Service Providers (out of {{$allProvidersCount}} Service Providers)</h6>
                     <div class="table-responsive mt-3 d-flex justify-content-between">
                         <table class="text-center w-75" border="1">
-                            <tr>
-                                <th><a href="#">Echo Cleaner Ltd.</a></th>
-                                <td><a href="#">24 Services</a></td>
-                                <td class="text-center p-2"><a href="#">120 Jobs</a></td>
-                            </tr>
-                            <tr>
-                                <th><a href="#">Rapid Cleaners</a></th>
-                                <td><a href="#">21 Services</a></td>
-                                <td class="text-center p-2"><a href="#">111 Jobs</a></td>
-                            </tr>
-                            <tr>
-                                <th><a href="#">Value Cleaning Ltd.</a></th>
-                                <td><a href="#">19 Services</a></td>
-                                <td class="text-center p-2"><a href="#">98 Jobs</a></td>
-                            </tr>
+                            @if(count($topServiceProviders) > 0)
+                                @foreach($topServiceProviders as $provider)
+                                    <tr>
+                                        <th><a href="#">{{ $provider["have_provider"]["business_name"] ?? 'N/A'}}</a></th>
+                                        <td><a href="#">{{$provider["have_provider"]["services_count"]}} Services</a></td>
+                                        <td class="text-center p-2"><a href="#"></a></td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         </table>
 
                         <table class="text-center" style="width: 23%" border="3">
-                            <tr>
-                                <th><a href="#">25 Five Stars</a></th>
-                            </tr>
-                            <tr>
-                                <th><a href="#">24 Five Stars</a></th>
-                            </tr>
-                            <tr>
-                                <th><a href="#">18 Five Stars</a></th>
-                            </tr>
+                            @if(count($topServiceProviders) > 0)
+                                @foreach($topServiceProviders as $provider)
+                                    <tr> <th><a href="#">{{$provider["reviews_count"]}} Five Stars</a></th> </tr>
+                                @endforeach
+                            @endif
                         </table>
                     </div>
 
-                    <h6 class="bg-primary-50 px-3 py-2 text-dark rounded-4 mt-4">Top 10 Services (out of  {{$allServices}} Services)</h6>
+                    <h6 class="bg-primary-50 px-3 py-2 text-dark rounded-4 mt-4">Top {{count($popularServicesCategoryProviders)}} Services (out of  {{$allServices}} Services)</h6>
                     <div class="table-responsive mt-3">
                         <table class="text-center w-100" border="1">
-                            @foreach ($popularServices as $singleService)
+                            @foreach ($popularServicesCategoryProviders as $singleService)
                                 <tr>
-                                    <th><a href="#" style="text-transform: capitalize">{{$singleService->title}}</a></th>
-                                    <td><a href="#">24 Service Providers</a></td>
-                                    <td class="text-center p-2"><a href="#">897 inquiries</a></td>
+                                    <th><a href="#" style="text-transform: capitalize">{{$singleService->subcat->name}}</a></th>
+                                    <td><a href="#">{{$singleService->subcat->service_providers_count}} Service Providers</a></td>
+                                    <td class="text-center p-2"><a href="#"></a></td>
                                 </tr>
                             @endforeach
 

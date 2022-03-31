@@ -42,4 +42,9 @@ class Service extends Model
         return $this->hasMany(Review::class,'service_id');
     }
 
+    public function providers()
+    {
+        return $this->belongsTo($this, 'added_by');
+    }
+
 }

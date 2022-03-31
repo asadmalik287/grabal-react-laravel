@@ -10,7 +10,7 @@ class ServiceProvider extends Model
 {
     use HasFactory;
     protected $table = 'users';
-    public function haveService()
+    public function services()
     {
         return $this->hasMany(Service::class,'added_by');
     }

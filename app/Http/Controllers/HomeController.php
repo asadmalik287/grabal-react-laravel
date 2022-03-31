@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Review;
 use App\Models\Service;
+use App\Models\SubCategories;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -39,16 +40,16 @@ class HomeController extends Controller
 
         // find number of reviews and its average of service
         foreach($reviewsList as $service_id=>$reviews){
-        $averageRating = 0;
-        $service = '';
-        foreach($reviews as $id=>$review){
-            $averageRating+= $review->rating;
-            $service = $review->service;
-        }
-        $service->totalReviews = count($reviews);
-        $service->averageRating = $averageRating/count($reviews);
-        $sortServicesArray[$service_id] = $service;
-        $serviceArray[$service_id] = count($reviews);
+            $averageRating = 0;
+            $service = '';
+            foreach($reviews as $id=>$review){
+                $averageRating+= $review->rating;
+                $service = $review->service;
+            }
+            $service->totalReviews = count($reviews);
+            $service->averageRating = $averageRating/count($reviews);
+            $sortServicesArray[$service_id] = $service;
+            $serviceArray[$service_id] = count($reviews);
         }
         arsort($serviceArray);
 
@@ -61,6 +62,7 @@ class HomeController extends Controller
 
         // get top three services category and their service providers
         $topServicesCategory =  Service::select(['id','title','subCategory_id','added_by'])->whereIn('id',$topThreeServices)
+                            ->withCount('providers')
                             ->with(['subcat'=>function($subCategory){
                                 $subCategory->select(['id','name'])
                                 ->where('status','active')
@@ -68,35 +70,37 @@ class HomeController extends Controller
                             }])
                             ->get()
                             ->groupBy('id');
-
         // make order according to services reviews
         if(count($topTenServices) >0){
-        foreach ($topTenServices as $value){
-            $popularServices[$value] = $sortServicesArray[$value];
-        }
+            foreach ($topTenServices as $value){
+                $popularServices[$value] = $sortServicesArray[$value];
+            }
         }
 
         // make order according to top ten services and service providers count
         if(count($topThreeServices) >0){
-        foreach ($topThreeServices as $value){
-            $popularServicesCategoryProviders[$value] = $topServicesCategory[$value][0];
-        }
+            foreach ($topThreeServices as $value){
+                $popularServicesCategoryProviders[$value] = $topServicesCategory[$value][0];
+            }
         }
 
         // get top service providers
         $topServiceProviders =  Service::select(['id','added_by'])->whereIn('id',$topTenServices)
                             ->with(['haveProvider'=>function($provider){
-                                $provider->select(['id','name','business_name','f_name','l_name','logo','created_at']);
+                                $provider->select(['id','name','business_name','f_name','l_name','logo','created_at'])
+                                ->withCount('services');
+                            }])
+                            ->withCount(['reviews'=>function($reviews){
+                                $reviews->where('rating',5);
                             }])
                             ->get()
                             ->unique('added_by')
                             ->groupBy('id');
-
         // make order according to top three services and create category service providers count
         if(count($topThreeServices) >0){
-        foreach ($topThreeServices as $value){
-            $popularServicesCategoryProviders[$value] = $topServicesCategory[$value][0];
-        }
+            foreach ($topThreeServices as $value){
+                $popularServicesCategoryProviders[$value] = $topServicesCategory[$value][0];
+            }
         }
 
         // make order according to top services and create list of service providers
@@ -106,18 +110,19 @@ class HomeController extends Controller
                 $serviceProvider = $topServiceProviders[$value][0];
                 $serviceProvider['totalReviews'] = $popularServices[$value]['totalReviews'];
                 $serviceProvider['averageRating'] = $popularServices[$value]['averageRating'];
-                $topServiceProvidersArr[$value] = $serviceProvider;
+                $topServiceProvidersArr[$value] = json_decode($serviceProvider,true);
             }
         }
 
         $popularServices = array_values($popularServices);
         $popularServicesCategoryProviders = array_values($popularServicesCategoryProviders);
-        $topServiceProviders = array_values($topServiceProvidersIdsArr);
-
+        $topServiceProviders = array_values($topServiceProvidersArr);
+        // return $topServiceProviders[0];
 
         $allProvidersCount = Service::get()->unique('added_by')->count();
-        // $allServices = Service::where('status','active')->get()->count();
-        $allServices = Service::count();
+        // // $allServices = Service::where('status','active')->get()->count();
+        // return $popularServicesCategoryProviders;
+        $allServices = SubCategories::count();
         return view('admin.home', compact( 'popularServices','popularServicesCategoryProviders','topServiceProviders', 'allProvidersCount', 'allServices' ) );
     }
 }
