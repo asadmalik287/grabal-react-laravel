@@ -27,6 +27,7 @@
 </div>
 
 
+
 <div class="row">
     <div class="col-lg-3">
         <div class="card">
@@ -89,7 +90,8 @@
             {{-- 1st Tab start --}}
             <div class="tab-pane active" id="home4" role="tabpanel">
                 <div>
-                    <h6 class="bg-primary-50 px-3 py-2 text-dark rounded-4">Top 10 Service Providers (out of 117 Service Providers)</h6>
+                    {{-- <h6 class="bg-primary-50 px-3 py-2 text-dark rounded-4">Top 10 Service Providers (out of {{$allProvidersCount}} Service Providers)</h6> --}}
+                    <h6 class="bg-primary-50 px-3 py-2 text-dark rounded-4">Top Service Providers (out of {{$allProvidersCount}} Service Providers)</h6>
                     <div class="table-responsive mt-3 d-flex justify-content-between">
                         <table class="text-center w-75" border="1">
                             <tr>
@@ -122,24 +124,16 @@
                         </table>
                     </div>
 
-                    <h6 class="bg-primary-50 px-3 py-2 text-dark rounded-4 mt-4">Top 10 Services (out of 297 Services)</h6>
+                    <h6 class="bg-primary-50 px-3 py-2 text-dark rounded-4 mt-4">Top 10 Services (out of  {{$allServices}} Services)</h6>
                     <div class="table-responsive mt-3">
                         <table class="text-center w-100" border="1">
-                            <tr>
-                                <th><a href="#">Carpet Cleaning</a></th>
-                                <td><a href="#">24 Service Providers</a></td>
-                                <td class="text-center p-2"><a href="#">897 inquiries</a></td>
-                            </tr>
-                            <tr>
-                                <th><a href="#">Mattress Cleaning</a></th>
-                                <td><a href="#">53 Service Providers</a></td>
-                                <td class="text-center p-2"><a href="#">767 inquiries</a></td>
-                            </tr>
-                            <tr>
-                                <th><a href="#">Pest Control</a></th>
-                                <td><a href="#">28 Service Providers</a></td>
-                                <td class="text-center p-2"><a href="#">354 inquiries</a></td>
-                            </tr>
+                            @foreach ($popularServices as $singleService)
+                                <tr>
+                                    <th><a href="#" style="text-transform: capitalize">{{$singleService->title}}</a></th>
+                                    <td><a href="#">24 Service Providers</a></td>
+                                    <td class="text-center p-2"><a href="#">897 inquiries</a></td>
+                                </tr>
+                            @endforeach
 
                         </table>
                     </div>

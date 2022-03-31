@@ -32,13 +32,13 @@
                                             {{ old('remember') ? 'checked' : '' }}>
                                         <label for="remember" class="form-check-label"> Remember Me</label>
 
-                                        @if (Route::has('password.request'))
+                                        {{-- @if (Route::has('password.request'))
                                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                                 <label class="pull-right">
                                                     Forgotten Password?
                                                 </label>
                                             </a>
-                                        @endif
+                                        @endif --}}
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Sign in</button>
 

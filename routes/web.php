@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\AdminServiceController;
 use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\SubCategoriesController;
 use App\Http\Controllers\api\ServiceController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Models\SubCategories;
 use Illuminate\Support\Facades\Route;
@@ -31,7 +32,7 @@ Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 
 Route::group(['prefix' => 'admin','middleware' => 'auth', 'namespace' => 'App\Http\Controllers\admin'], function () {
-    Route::get('/', [AdminController::class, 'index'])->name('admin');
+    Route::get('/',  [HomeController::class, 'index'])->name('admin');
     Route::get('/logout', [AdminController::class, 'logout'])->name('adminLogout');
     Route::get('/serviceProviders', [AdminController::class, 'manageServiceProvider'])->name('admin.serviceProviders');
 
