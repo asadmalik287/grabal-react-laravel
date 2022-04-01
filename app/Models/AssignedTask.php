@@ -11,5 +11,7 @@ class AssignedTask extends Model
     protected $fillable = [
         'user_id',
         'service_id',
+        'provider_id',
+        'message',
     ];
 }

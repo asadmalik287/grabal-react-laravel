@@ -161,7 +161,6 @@ class AllFunctionsController extends Controller
         if($provider==null){
             return response()->json(['success'=>false,"message"=>"Sorry service provider does not exist"]);
         }
-        return $request->provider_id;
         $assigned_tasks=[
             "user_id"=> $request->user_id,
             "service_id"=> $request->service_id,
