@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class AssignedTask extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'service_id',
+    ];
 }
