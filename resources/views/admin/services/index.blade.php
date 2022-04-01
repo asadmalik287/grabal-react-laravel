@@ -97,11 +97,13 @@
                                     <thead>
                                         <tr>
                                             <th>Sr</th>
+                                            <th>Image</th>
                                             <th>Title</th>
                                             <th>Category</th>
                                             <th>Sub-category</th>
                                             <th>Business Name</th>
                                             <th>Description</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -109,10 +111,12 @@
                                         @forelse ($allServices as $key => $allService)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
+                                                <td class="wsnw">
+                                                    <img src="{{ $allService->main_service_image }}" alt="{{ $allService->title }}" width="150" height="80">
+                                                </td>
                                                 <td class="wsnw">{{ $allService->title }}</td>
                                                 <td class="wsnw">{{ $allService->hasCategory->name }}</td>
-                                                <td class="wsnw">{{ $allService->subcat->name }}
-                                                </td>
+                                                <td class="wsnw">{{ $allService->subcat->name }}</td>
                                                 <td class="wsnw"> <a class="sellerLink"
                                                         href="{{ url('admin/serviceProviders') }}?id={{ $allService->haveProvider['id'] }}">
                                                         <u> {{ $allService->haveProvider->business_name }} </u>
@@ -121,6 +125,7 @@
                                                     <div class="serviceDescription">{{ $allService->description }}
                                                     </div>
                                                 </td>
+                                                <td class="wsnw {{ ($allService->status == 'approved' ? 'text-success' : '')}}" style="text-transform: capitalize">{{ $allService->status}}</td>
                                                 <td>
                                                     <button class="btn btn-sm btn-info" data-toggle="modal"
                                                         onclick="updateService(this,'view', '{{ route('admin.services.update') }}', '{{ $allService->id }}', 'GET')"
