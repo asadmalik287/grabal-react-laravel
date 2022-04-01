@@ -161,12 +161,7 @@ class AllFunctionsController extends Controller
         if($provider==null){
             return response()->json(['success'=>false,"message"=>"Sorry service provider does not exist"]);
         }
-
-        $data =[
-            "user"=>$provider,
-            "message"=>$request->message
-        ];
-
+        return $request->provider_id;
         $assigned_tasks=[
             "user_id"=> $request->user_id,
             "service_id"=> $request->service_id,
@@ -175,6 +170,12 @@ class AllFunctionsController extends Controller
         ];
 
         AssignedTask::create($assigned_tasks);
+
+        $data =[
+            "user"=>$provider,
+            "message"=>$request->message
+        ];
+
         Mail::to($provider->email)->send(new SendEnquiryEmailToServiceProvider($data));
         return response()->json(['success'=>true,'message'=>"Enquiry Email has been sent to service provider successfully"]);
 
