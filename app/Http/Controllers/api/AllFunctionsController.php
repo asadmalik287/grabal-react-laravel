@@ -167,6 +167,7 @@ class AllFunctionsController extends Controller
             "message"=>$request->message
         ];
 
+        return $request->message;
         $assigned_tasks=[
             "user_id"=> $request->user_id,
             "service_id"=> $request->service_id,
