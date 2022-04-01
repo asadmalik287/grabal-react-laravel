@@ -53,35 +53,22 @@
         <div class="row">
             <div class="col-lg-2"> Business address:</div>
             <div class="col-lg-10">
-                {{ $service->business_streetNo }}- {{ $service->business_street }} -
-                {{ $service->business_unit }}
+                {{ $service->service }}
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-2"> Vetting Docs:</div>
+            <div class="col-lg-2"> Service Image</div>
             <div class="col-lg-10">
                 <div class="d-flex">
-                    <img src="{{ asset('assets/admin/images/2.png') }}" class="mr-2" alt="">
-                    <img src="{{ asset('assets/admin/images/2.png') }}" class="mr-2" alt="">
-                    <img src="{{ asset('assets/admin/images/2.png') }}" class="mr-2" alt="">
-                    <img src="{{ asset('assets/admin/images/2.png') }}" class="mr-2" alt="">
+                    <img src="{{$service->main_service_image}}" class="mr-2" alt="" width="200" height="120">
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-2"> Vaccinations:</div>
+            <div class="col-lg-2"> Multiple Images:</div>
             <div class="col-lg-10">
-                <div class="d-flex">
-                    <img src="{{ asset('assets/admin/images/2.png') }}" class="mr-2" alt="">
-                    <img src="{{ asset('assets/admin/images/2.png') }}" class="mr-2" alt="">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-2"> Certifications:</div>
-            <div class="col-lg-10">
-                <div class="d-flex">
-                    <img src="{{ asset('assets/admin/images/2.png') }}" class="mr-2" alt="">
+                <div class="d-flex flex-wrap">
+                    <img src="{{$service->main_service_image}}" class="mr-2" alt="" width="200" height="120">
                 </div>
             </div>
         </div>

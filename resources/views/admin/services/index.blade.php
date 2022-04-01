@@ -125,15 +125,17 @@
                                                     <div class="serviceDescription">{{ $allService->description }}
                                                     </div>
                                                 </td>
-                                                <td class="wsnw {{ ($allService->status == 'approved' ? 'text-success' : '')}}" style="text-transform: capitalize">{{ $allService->status}}</td>
+                                                <td class="wsnw {{ $allService->status == 'approved' ? 'text-success' : ($allService->status == 'pending' ? 'text-primary' : 'text-danger') }}" style="text-transform: capitalize">{{ $allService->status}}</td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-info" data-toggle="modal"
-                                                        onclick="updateService(this,'view', '{{ route('admin.services.update') }}', '{{ $allService->id }}', 'GET')"
-                                                        data-target="#viewServices">View</button>
-                                                    <button class="btn btn-sm btn-success" type="button"
-                                                        onclick="updateService(this,'approve', '{{ route('admin.services.update') }}', '{{ $allService->id }}', 'POST')">Approve</button>
-                                                    <button class="btn btn-sm btn-danger"
-                                                        onclick="updateService(this,'reject', '{{ route('admin.services.update') }}', '{{ $allService->id }}', 'POST')">Reject</button>
+                                                    <div class="d-flex flex-nowrap">
+                                                        <button class="btn btn-sm btn-info" data-toggle="modal"
+                                                            onclick="updateService(this,'view', '{{ route('admin.services.update') }}', '{{ $allService->id }}', 'GET')"
+                                                            data-target="#viewServices">View</button>
+                                                        <button class="btn btn-sm btn-success mx-2" type="button"
+                                                            onclick="updateService(this,'approve', '{{ route('admin.services.update') }}', '{{ $allService->id }}', 'POST')">Approve</button>
+                                                        <button class="btn btn-sm btn-danger"
+                                                            onclick="updateService(this,'reject', '{{ route('admin.services.update') }}', '{{ $allService->id }}', 'POST')">Reject</button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @empty
@@ -155,6 +157,7 @@
                                     <thead>
                                         <tr>
                                             <th>Sr</th>
+                                            <th>Image</th>
                                             <th>Title</th>
                                             <th>Category</th>
                                             <th>Sub-category</th>
@@ -167,6 +170,9 @@
                                         @forelse ($pendingServices as $key => $pendingService)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
+                                                <td class="wsnw">
+                                                    <img src="{{ $pendingService->main_service_image }}" alt="{{ $pendingService->title }}" width="150" height="80">
+                                                </td>
                                                 <td class="wsnw">{{ $pendingService->title }}</td>
                                                 <td class="wsnw">{{ $pendingService->hasCategory->name }}</td>
                                                 <td class="wsnw">{{ $pendingService->subcat->name }}
@@ -180,13 +186,15 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-info" data-toggle="modal"
-                                                        onclick="updateService(this,'view', '{{ route('admin.services.update') }}', '{{ $pendingService->id }}', 'GET')"
-                                                        data-target="#viewServices">View</button>
-                                                    <button class="btn btn-sm btn-success" type="button"
-                                                        onclick="updateService(this,'approve', '{{ route('admin.services.update') }}', '{{ $pendingService->id }}', 'POST')">Approve</button>
-                                                    <button class="btn btn-sm btn-danger"
-                                                        onclick="updateService(this,'reject', '{{ route('admin.services.update') }}', '{{ $pendingService->id }}', 'POST')">Reject</button>
+                                                    <div class="d-flex flex-nowrap">
+                                                        <button class="btn btn-sm btn-info" data-toggle="modal"
+                                                            onclick="updateService(this,'view', '{{ route('admin.services.update') }}', '{{ $pendingService->id }}', 'GET')"
+                                                            data-target="#viewServices">View</button>
+                                                        <button class="btn btn-sm btn-success mx-2" type="button"
+                                                            onclick="updateService(this,'approve', '{{ route('admin.services.update') }}', '{{ $pendingService->id }}', 'POST')">Approve</button>
+                                                        <button class="btn btn-sm btn-danger"
+                                                            onclick="updateService(this,'reject', '{{ route('admin.services.update') }}', '{{ $pendingService->id }}', 'POST')">Reject</button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @empty
@@ -208,6 +216,7 @@
                                     <thead>
                                         <tr>
                                             <th>Sr</th>
+                                            <th>Image</th>
                                             <th>Title</th>
                                             <th>Category</th>
                                             <th>Sub-category</th>
@@ -221,6 +230,9 @@
                                         @forelse ($approvedServices as $key => $approvedService)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
+                                                <td class="wsnw">
+                                                    <img src="{{ $approvedService->main_service_image }}" alt="{{ $approvedService->title }}" width="150" height="80">
+                                                </td>
                                                 <td class="wsnw">{{ $approvedService->title }}</td>
                                                 <td class="wsnw">{{ $approvedService->hasCategory->name }}</td>
                                                 <td class="wsnw">{{ $approvedService->subcat->name }}
@@ -236,11 +248,13 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-info" data-toggle="modal"
-                                                        onclick="updateService(this,'view' ,'{{ route('admin.services.update') }}', '{{ $approvedService->id }}', 'POST')"
-                                                        data-target="#viewServices">View</button>
-                                                    <button class="btn btn-sm btn-danger" type="button"
-                                                        onclick="updateService(this,'reject' ,'{{ route('admin.services.update') }}', '{{ $approvedService->id }}', 'POST')">Disapprove</button>
+                                                    <div class="d-flex flex-nowrap">
+                                                        <button class="btn btn-sm btn-info" data-toggle="modal"
+                                                            onclick="updateService(this,'view' ,'{{ route('admin.services.update') }}', '{{ $approvedService->id }}', 'POST')"
+                                                            data-target="#viewServices">View</button>
+                                                        <button class="btn btn-sm btn-danger ml-2" type="button"
+                                                            onclick="updateService(this,'reject' ,'{{ route('admin.services.update') }}', '{{ $approvedService->id }}', 'POST')">Disapprove</button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @empty
@@ -260,6 +274,7 @@
                                     <thead>
                                         <tr>
                                             <th>Sr</th>
+                                            <th>Image</th>
                                             <th>Title</th>
                                             <th>Category</th>
                                             <th>Sub-category</th>
@@ -272,6 +287,9 @@
                                         @forelse ($rejectedServices as $key => $rejectedService)
                                             <tr>
                                                 <td>{{ $key + 1 }}</td>
+                                                <td class="wsnw">
+                                                    <img src="{{ $rejectedService->main_service_image }}" alt="{{ $rejectedService->title }}" width="150" height="80">
+                                                </td>
                                                 <td class="wsnw">{{ $rejectedService->title }}</td>
                                                 <td class="wsnw">{{ $rejectedService->hasCategory->name }}</td>
                                                 <td class="wsnw">{{ $rejectedService->subcat->name }}
@@ -288,13 +306,15 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-sm btn-info" data-toggle="modal"
-                                                        onclick="updateService(this,'view', '{{ route('admin.services.update') }}', '{{ $rejectedService->id }}', 'POST')"
-                                                        data-target="#viewServices">View</button>
-                                                    <button class="btn btn-sm btn-success" type="button"
-                                                        onclick="updateService(this,'approve', '{{ route('admin.services.update') }}', '{{ $rejectedService->id }}', 'POST')">Approve</button>
-                                                    <button class="btn btn-sm btn-danger"
-                                                        onclick="updateService(this,'delete', '{{ route('admin.services.update') }}', '{{ $rejectedService->id }}', 'POST')">Delete</button>
+                                                    <div class="d-flex flex-nowrap">
+                                                        <button class="btn btn-sm btn-info" data-toggle="modal"
+                                                            onclick="updateService(this,'view', '{{ route('admin.services.update') }}', '{{ $rejectedService->id }}', 'POST')"
+                                                            data-target="#viewServices">View</button>
+                                                        <button class="btn btn-sm btn-success mx-2" type="button"
+                                                            onclick="updateService(this,'approve', '{{ route('admin.services.update') }}', '{{ $rejectedService->id }}', 'POST')">Approve</button>
+                                                        <button class="btn btn-sm btn-danger"
+                                                            onclick="updateService(this,'delete', '{{ route('admin.services.update') }}', '{{ $rejectedService->id }}', 'POST')">Delete</button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @empty
