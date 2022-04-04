@@ -310,11 +310,10 @@ class ServiceController extends Controller
                 ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
                     'services.id as Service_id')->where('services.id', $_GET['id'])->first();
             $images = Service::with('hasAttachment')->where('services.id', $_GET['id'])->get();
+            $watchlist = 0;
             if (isset($_GET['user_id'])) {
                 if (WatchList::where(['service_id' => $services->Service_id, 'user_id' => $request->user_id])->exists()) {
                     $watchlist = 1;
-                } else {
-                    $watchlist = 0;
                 }
             }
             return response()->json(['services' => $services, 'images' => $images, 'added_to_watchlist' => $watchlist]);
