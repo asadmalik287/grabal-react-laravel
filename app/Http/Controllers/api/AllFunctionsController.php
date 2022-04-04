@@ -12,6 +12,7 @@ use Mail;
 use App\Mail\SendEnquiryEmailToServiceProvider;
 use App\Models\AssignedTask;
 use App\Models\User;
+use App\Models\WatchList;
 
 class AllFunctionsController extends Controller
 {
@@ -41,7 +42,7 @@ class AllFunctionsController extends Controller
         // $subCategory = SubCategories::find($request->sub_category_id);
         // if($subCategory!=null){
         //     $services = $subCategory->service();
-            $filledFieldAndData = $this->getFilledFields($request,['subCategory_id','category_id','city','suburb','postal_code'],[]);
+            $filledFieldAndData = $this->getFilledFields($request,['subCategory_id','category_id','city','suburb','postal_code'],["user_id"]);
             $services = [];
             if(count($filledFieldAndData) > 0){
                 foreach($filledFieldAndData as $key=>$value){
@@ -59,6 +60,20 @@ class AllFunctionsController extends Controller
                                 }])
                                 ->with("averageReviews")
                                 ->get();
+                $newServicesArr = []; 
+                if(count($services)>0){
+                    foreach($services as $service){
+                        $watchList = 0;
+                        if($request->has("user_id") && $request->filled('user_id')){
+                            if (WatchList::where(['service_id' => $service->id, 'user_id' => $request->user_id])->exists()) {
+                                $watchList = 1;
+                            }
+                        }
+                        $service['watchList'] = $watchList;
+                        $newServicesArr[] = $service;
+                    }             
+                }  
+                $services = $newServicesArr;
             }
             return response()->json(['success'=>true,'services'=>$services]);
         // }
