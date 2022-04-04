@@ -64,7 +64,7 @@ class AllFunctionsController extends Controller
                 if(count($services)>0){
                     foreach($services as $service){
                         $watchList = 0;
-                        if($request->has("user_id") && $request->filled('user_id')){
+                        if(isset($request->user_id)){
                             if (WatchList::where(['service_id' => $service->id, 'user_id' => $request->user_id])->exists()) {
                                 $watchList = 1;
                             }
