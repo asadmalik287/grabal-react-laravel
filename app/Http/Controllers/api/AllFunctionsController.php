@@ -60,7 +60,7 @@ class AllFunctionsController extends Controller
                                 }])
                                 ->with("averageReviews")
                                 ->get();
-                $newServicesArr = []; 
+                $newServicesArr = [];
                 if(count($services)>0){
                     foreach($services as $service){
                         $watchList = 0;
@@ -71,8 +71,8 @@ class AllFunctionsController extends Controller
                         }
                         $service['watchList'] = $watchList;
                         $newServicesArr[] = $service;
-                    }             
-                }  
+                    }
+                }
                 $services = $newServicesArr;
             }
             return response()->json(['success'=>true,'services'=>$services]);
@@ -147,7 +147,7 @@ class AllFunctionsController extends Controller
         // get top service providers
         $topServiceProviders =  Service::select(['id','added_by'])->whereIn('id',$topTenServices)
                                 ->with(['haveProvider'=>function($provider){
-                                    $provider->select(['id','name','business_name','f_name','l_name','logo','created_at']);
+                                    $provider->select(['id','name','business_name','f_name','l_name','logo','created_at', 'message']);
                                 }])
                                 ->get()
                                 ->unique('added_by')
