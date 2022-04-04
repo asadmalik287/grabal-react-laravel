@@ -42,6 +42,13 @@ class Service extends Model
         return $this->hasMany(Review::class,'service_id');
     }
 
+    public function averageReviews()
+    {
+        return $this->hasMany(Review::class,'service_id')
+            ->selectRaw('service_id,AVG(reviews.rating) AS average_rating')
+            ->groupBy('service_id');
+    }
+
     public function providers()
     {
         return $this->belongsTo($this, 'added_by');

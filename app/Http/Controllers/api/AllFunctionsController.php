@@ -57,6 +57,7 @@ class AllFunctionsController extends Controller
                                 },'subcat'=>function ($subCategory) {
                                     $subCategory->select('id','name');
                                 }])
+                                ->with("averageReviews")
                                 ->get();
             }
             return response()->json(['success'=>true,'services'=>$services]);
