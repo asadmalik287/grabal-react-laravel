@@ -14,7 +14,7 @@ class UploadAdsController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.upload_ads.index');
     }
 
     /**
