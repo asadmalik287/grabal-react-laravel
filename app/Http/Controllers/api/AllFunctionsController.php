@@ -81,7 +81,7 @@ class AllFunctionsController extends Controller
     }
 
     // get popular services and its category
-    public function getPopularServicesAndCategories(){
+    public function getPopularServicesAndCategories(Request $request){
         $reviewsList =  Review::with(["service"=>function($service){
                         $service->select(['id','title','description','main_service_image','created_at','added_by'])->with(['haveProvider'=>function($user){
                             $user->select(['id','name','f_name','l_name','role_id','logo']);
@@ -122,11 +122,18 @@ class AllFunctionsController extends Controller
                                 }])
                                 ->get()
                                 ->groupBy('id');
-
         // make order according to services reviews
         if(count($topTenServices) >0){
             foreach ($topTenServices as $value){
-                $popularServices[$value] = $sortServicesArray[$value];
+                $watchList = 0;
+                $service = $sortServicesArray[$value];
+                if(isset($request->user_id)){
+                    if (WatchList::where(['service_id' => $value, 'user_id' => $request->user_id])->exists()) {
+                        $watchList = 1;
+                    }
+                }
+                $service['watchList'] = $watchList;
+                $popularServices[$value] = $service;
             }
         }
 
