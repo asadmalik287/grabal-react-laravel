@@ -10,6 +10,7 @@ use App\Models\Service;
 use Validator;
 use Mail;
 use App\Mail\SendEnquiryEmailToServiceProvider;
+use App\Models\AssignedTask;
 use App\Models\User;
 
 class AllFunctionsController extends Controller
@@ -160,6 +161,14 @@ class AllFunctionsController extends Controller
         if($provider==null){
             return response()->json(['success'=>false,"message"=>"Sorry service provider does not exist"]);
         }
+        $assigned_tasks=[
+            "user_id"=> $request->user_id,
+            "service_id"=> $request->service_id,
+            "provider_id"=> $request->provider_id,
+            "message"=> $request->message
+        ];
+
+        AssignedTask::create($assigned_tasks);
 
         $data =[
             "user"=>$provider,
