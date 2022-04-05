@@ -357,7 +357,7 @@ class ServiceController extends Controller
             $subscription = Subscription::where('stripe_subscription_status', 'active')->where('user_id', $_GET['id'])->get();
             $subscriptionStatus = false;
             if(count($subscription) > 0){
-                $subscriptionStatus = true
+                $subscriptionStatus = true;
             }
             return response()->json(['seller' => $seller, 'subscription'=>$subscriptionStatus]);
         }
