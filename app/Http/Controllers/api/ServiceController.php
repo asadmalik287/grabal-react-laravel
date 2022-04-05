@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\ServiceAttachment;
+use App\Models\Subscription;
 use App\Models\WatchList;
 use App\Models\User;
 use DB;
@@ -353,6 +354,8 @@ class ServiceController extends Controller
     {
         if (isset($_GET['id'])) {
             $seller = User::where('id', $_GET['id'])->first();
+            $subscription = Subscription::where('id', $_GET['id'], 'status', 'active')->first();
+            return $subscription;
             return response()->json(['seller' => $seller]);
         }
     }
