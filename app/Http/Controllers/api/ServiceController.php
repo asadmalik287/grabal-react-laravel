@@ -353,7 +353,7 @@ class ServiceController extends Controller
     public function sellerDetail(Request $request)
     {
         if (isset($_GET['id'])) {
-            $seller = User::where('id', $_GET['id'])->first();
+            $seller = User::where('id', $_GET['id'])->with('subscriptions')->first();
             $subscription = Subscription::where('stripe_subscription_status', 'active')->where('user_id', $_GET['id'])->get();
             $subscriptionStatus = false;
             if(count($subscription) > 0){

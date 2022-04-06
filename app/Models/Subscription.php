@@ -9,4 +9,9 @@ class Subscription extends Model
 {
     use HasFactory;
     protected $fillable = ['user_id','stripe_id','stripe_subscription_id','stripe_price_id','stripe_subscription_status','trial_ends_at','quantity'];
+
+    public function haveProvider()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
