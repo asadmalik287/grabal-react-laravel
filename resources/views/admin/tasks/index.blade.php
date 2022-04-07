@@ -65,23 +65,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($serviceProviders as $key => $serviceProvider)
-                                            <tr>
-                                                <td>{{ $key + 1 }}</td>
-                                                <td>{{ $serviceProvider->business_name }}</td>
-                                                <td>{{ $serviceProvider->email }}</td>
-                                                <td>{{ $serviceProvider->phone_number }}</td>
-                                                <td>{{ $serviceProvider->contact_person }}</td>
-                                                <td>{{ $serviceProvider->message }}</td>
-                                                <td>{{ $serviceProvider->status }}</td>
-                                                <td>
-                                                    <a
-                                                        href="{{ url('admin/services') }}?id={{ $serviceProvider->id }}">
-                                                        <button class="btn btn-info btn-sm">View Services</button>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+
                                     </tbody>
                                 </table>
                             </div>
@@ -106,24 +90,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($serviceProviders as $key => $serviceProvider)
-                                            @if ($serviceProvider->status == 'pending')
-                                                <tr>
-                                                    <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $serviceProvider->business_name }}</td>
-                                                    <td>{{ $serviceProvider->email }}</td>
-                                                    <td>{{ $serviceProvider->phone_number }}</td>
-                                                    <td>{{ $serviceProvider->contact_person }}</td>
-                                                    <td>{{ $serviceProvider->message }}</td>
-                                                    <td>
-                                                        <a
-                                                            href="{{ url('admin/services') }}?id={{ $serviceProvider->id }}">
-                                                            <button class="btn btn-info btn-sm">View Services</button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
+                                        
                                     </tbody>
                                 </table>
                             </div>
