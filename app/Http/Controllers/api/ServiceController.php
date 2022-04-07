@@ -44,7 +44,7 @@ class ServiceController extends Controller
             'main_service_image' => 'required',
             'city' => 'required',
             'suburb' => 'required',
-            'postal_code' => 'required',
+            // 'postal_code' => 'required',
             'service_type' => 'required',
         ]);
 
@@ -74,7 +74,7 @@ class ServiceController extends Controller
         $service->phone_number = $request->phone_number;
         $service->city = $request->city;
         $service->suburb = $request->suburb;
-        $service->postal_code = $request->postal_code;
+        // $service->postal_code = $request->postal_code;
 
         $path = 'assets/admin/images';
 
@@ -179,7 +179,7 @@ class ServiceController extends Controller
             'main_service_image' => 'required',
             'city' => 'required',
             'suburb' => 'required',
-            'postal_code' => 'required',
+            // 'postal_code' => 'required',
             'service_type' => 'required',
         ]);
 
@@ -209,7 +209,7 @@ class ServiceController extends Controller
         $service->phone_number = $request->phone_number;
         $service->city = $request->city;
         $service->suburb = $request->suburb;
-        $service->postal_code = $request->postal_code;
+        // $service->postal_code = $request->postal_code;
 
         $path = 'assets/admin/images';
 

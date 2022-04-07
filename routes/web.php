@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\AdminServiceController;
 use App\Http\Controllers\admin\CategoriesController;
 use App\Http\Controllers\admin\SubCategoriesController;
 use App\Http\Controllers\api\ServiceController;
+use App\Http\Controllers\AssignedTaskController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UploadAdsController;
 use App\Http\Controllers\UserController;
@@ -45,6 +46,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('sub-categories', SubCategoriesController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('upload_ads', UploadAdsController::class);
+    Route::resource('assign_task', AssignedTaskController::class);
     Route::get('/services', [App\Http\Controllers\admin\AdminServiceController::class, 'index'])->name('admin.services');
     Route::match(['get', 'post'],'/update-service', [App\Http\Controllers\admin\AdminServiceController::class, 'changeServiceStatus'])->name('admin.services.update');
 });
