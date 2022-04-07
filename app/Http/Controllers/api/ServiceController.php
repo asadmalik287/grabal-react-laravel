@@ -45,6 +45,7 @@ class ServiceController extends Controller
             'city' => 'required',
             'suburb' => 'required',
             'postal_code' => 'required',
+            'service_type' => 'required',
         ]);
 
         // if validator fails
@@ -55,6 +56,7 @@ class ServiceController extends Controller
         $service = new Service();
         $service->category_id = $request->category_id;
         $service->subCategory_id = $request->subCategory_id;
+        $service->service_type = $request->service_type;
         $service->title = $request->title;
         $service->description = $request->description;
         $service->business_name = $request->business_name;
@@ -178,6 +180,7 @@ class ServiceController extends Controller
             'city' => 'required',
             'suburb' => 'required',
             'postal_code' => 'required',
+            'service_type' => 'required',
         ]);
 
         // if validator fails
@@ -188,6 +191,7 @@ class ServiceController extends Controller
         $service = Service::find($id);
         $service->category_id = $request->category_id;
         $service->subCategory_id = $request->subCategory_id;
+        $service->service_type = $request->service_type;
         $service->title = $request->title;
         $service->description = $request->description;
         $service->business_name = $request->business_name;
