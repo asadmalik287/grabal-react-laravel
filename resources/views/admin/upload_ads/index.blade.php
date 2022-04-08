@@ -51,7 +51,7 @@
 
                     {{-- all tab start --}}
                     <div id="all" class="tab-pane active">
-
+                        
                     </div>
                     {{-- all tab end --}}
 
