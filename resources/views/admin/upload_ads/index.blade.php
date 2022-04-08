@@ -51,8 +51,11 @@
 
                     {{-- all tab start --}}
                     <div id="home" class="tab-pane active">
-                        
+
+                        @include('admin.upload_ads.add_image')
+
                     </div>
+
                     {{-- all tab end --}}
 
                     {{-- Pending tab start --}}
