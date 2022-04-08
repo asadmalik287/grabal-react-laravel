@@ -130,6 +130,7 @@ class StripeController extends Controller
             $subscription = $this->stripe->subscriptions->cancel($id);
             $subscriptionUpdate = Subscription::where("stripe_subscription_id",$subscription->id)->update(['stripe_subscription_status'=>$subscription->status]);
             if($subscriptionUpdate){
+                Subscription::where("stripe_subscription_id", $subscription->id)->delete();
                 return response()->json(['success'=>true, "message"=>"Thanks! Your subscription has been canceled successfully"]);
             }
         } catch (\Stripe\Error\ApiConnection $e) {
@@ -171,7 +172,7 @@ class StripeController extends Controller
             if($payload['data']['object']['billing_reason']=="subscription_cycle"){
                 $subId = $payload['data']['object']['subscription'];
                 $subscription = Subscription::where("stripe_subscription_id",$subId)->update(['stripe_subscription_status'=>'active']);
-            }        
+            }
         }
     }
 }
