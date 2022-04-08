@@ -130,9 +130,10 @@ class StripeController extends Controller
         $errorArray = [];
         try {
             $subscription = $this->stripe->subscriptions->cancel($id);
-            $subscriptionUpdate = Subscription::where("stripe_subscription_id", $subscription->id)->update(['stripe_subscription_status' => $subscription->status]);
-            if ($subscriptionUpdate) {
-                return response()->json(['success' => true, "message" => "Thanks! Your subscription has been canceled successfully"]);
+            $subscriptionUpdate = Subscription::where("stripe_subscription_id",$subscription->id)->update(['stripe_subscription_status'=>$subscription->status]);
+            if($subscriptionUpdate){
+                Subscription::where("stripe_subscription_id", $subscription->id)->delete();
+                return response()->json(['success'=>true, "message"=>"Thanks! Your subscription has been canceled successfully"]);
             }
         } catch (\Stripe\Error\ApiConnection$e) {
             $errorArray['type'] = [$e->getError()->type];
@@ -172,7 +173,11 @@ class StripeController extends Controller
             // for subscription update
             if ($payload['data']['object']['billing_reason'] == "subscription_cycle") {
                 $subId = $payload['data']['object']['subscription'];
+<<<<<<< HEAD
                 $subscription = Subscription::where("stripe_subscription_id", $subId)->update(['stripe_subscription_status' => 'active']);
+=======
+                $subscription = Subscription::where("stripe_subscription_id",$subId)->update(['stripe_subscription_status'=>'active']);
+>>>>>>> 3c7b4e40b9b7c545c5ec4ada38c7faa4f6253e1b
             }
         }
     }

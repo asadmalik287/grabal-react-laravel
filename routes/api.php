@@ -42,10 +42,10 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::post('getSubCategoryServices','AllFunctionsController@getSubCategoryServices')->name('getSubCategoryServices');
     Route::get('getPopularServicesAndCategories','AllFunctionsController@getPopularServicesAndCategories')->name('getPopularServicesAndCategories');
     Route::post('sendEnquiryEmailToServiceProvider','AllFunctionsController@sendEnquiryEmailToServiceProvider')->name('sendEnquiryEmailToServiceProvider');
-    
+
     // stripe payment gateway
     Route::post('stripe-payment','StripeController@store')->name("stripe-payment");
-    Route::post('stripe-subscription-cancel/{id}','StripeController@stripeSubscriptionCancel')->name("stripe-subscription-cancel");
+    Route::get('stripe-subscription-cancel/{id}','StripeController@stripeSubscriptionCancel')->name("stripe-subscription-cancel");
     Route::post('stripeWebhook','StripeController@stripeWebhook')->name("stripeWebhook");
 
     Route::get('get-watch-list', 'WatchListController@getWatchList')->name('get-watch-list');
