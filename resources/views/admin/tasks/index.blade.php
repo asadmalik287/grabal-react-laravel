@@ -38,7 +38,7 @@
         </li>
         <li class=" nav-item">
             <a href="#approved" class="nav-link border approved" data-toggle="tab" aria-expanded="false">
-                Approved
+                Completed
             </a>
         </li>
         <li class="nav-item">
@@ -64,21 +64,48 @@
                                             <th>Message</th>
                                             <th>Customer</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($detail as $key=>$value)
+                                            <tr onclick="openModal(this)">
+                                                <td>{{ $value->provider }}</td>
+                                                <td class="w-50 message"> {{ $value->message }}</td>
+                                                <td class="username">
+                                                    {{ App\Models\User::where('id', $value->User_id)->first()->name }}
+                                                </td>
+                                                <td>
+                                                    <span
+                                                        class="small text-white {{ ($value->status == 'completed' ? 'bg-success' : $value->status == 'pending') ? 'bg-primary' : 'bg-danger' }} px-2 py-1 rounded">{{ $value->status }}</span>
+                                                </td>
+                                                <td> <i class="ti ti-eye border rounded" style="color:rgb(0, 0, 0)"
+                                                        class="cp" data-toggle="modal"
+                                                        data-target="#enquiryModal"></i> </td>
+                                                {{-- <td>
+                                                    @if ($value->status == 'pending')
+                                                        <i class="ti ti-check border rounded mr-1"
+                                                            style="color:rgb(23, 241, 121)"
+                                                            onclick="changeStatus('{{ route('changeTaskStatus') }}','accept' , '{{ $value->task_id }}' )"></i>
+                                                        <i class="ti ti-close border rounded mr-1"
+                                                            style="color:rgb(218, 0, 18)"
+                                                            onclick="changeStatus('{{ route('changeTaskStatus') }}','reject' , '{{ $value->task_id }}' )"></i>
+                                                    @endif
+                                                  
+                                                    {{-- <button class="btn btn-sm bg-success"
+                                                   >Mark
+                                                    as Complete</button> --}}
 
-                                        <tr class="cp" data-toggle="modal" data-target="#enquiryModal">
-                                            <td>Test</td>
-                                            <td class="w-50">Lorem ipsum dolor sit amet consectetur adipisicing
-                                                elit. Necessitatibus sequi quo voluptatem. Incidunt, odit qui. Beatae
-                                                voluptatum aliquam assumenda animi accusamus modi delectus ipsa, maiores
-                                                unde aperiam mollitia? Tenetur, distinctio.</td>
-                                            <td>Test</td>
-                                            <td>
-                                                <span class="small text-white bg-success px-2 py-1 rounded">Active</span>
-                                            </td>
-                                        </tr>
+                                                {{-- <button class="btn btn-sm bg-danger"
+                                                    onclick="changeStatus('{{ route('changeTaskStatus') }}','reject', '{{ $value->task_id }}' )">Decline
+                                                    Offer</button> --}}
+                                                {{-- <button  class="small text-white bg-success px-2 py-1 rounded">Complete</button> --}}
+                                                {{-- </td> --}}
+                                            </tr>
+                                        @empty
+                                            <p>No data Found</p>
+                                        @endforelse
+
 
                                     </tbody>
                                 </table>
@@ -98,21 +125,54 @@
                                             <th>Message</th>
                                             <th>Customer</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($detail as $key=>$value)
+                                            @if ($value->status == 'pending')
+                                                <tr onclick="openModal(this)">
+                                                    <td>{{ $value->provider }}</td>
+                                                    <td class="w-50 message"> {{ $value->message }}</td>
+                                                    <td class="username">
+                                                        {{ App\Models\User::where('id', $value->User_id)->first()->name }}
+                                                    </td>
+                                                    <td>
+                                                        <span
+                                                            class="small text-white {{ ($value->status == 'completed' ? 'bg-success' : $value->status == 'pending') ? 'bg-primary' : 'bg-danger' }} px-2 py-1 rounded">{{ $value->status }}</span>
 
-                                        <tr class="cp" data-toggle="modal" data-target="#enquiryModal">
-                                            <td>Test</td>
-                                            <td class="w-50">Lorem ipsum dolor sit amet consectetur adipisicing
-                                                elit. Necessitatibus sequi quo voluptatem. Incidunt, odit qui. Beatae
-                                                voluptatum aliquam assumenda animi accusamus modi delectus ipsa, maiores
-                                                unde aperiam mollitia? Tenetur, distinctio.</td>
-                                            <td>Test</td>
-                                            <td>
-                                                <span class="small text-white bg-primary px-2 py-1 rounded">Pending</span>
-                                            </td>
-                                        </tr>
+                                                    </td>
+                                                    <td> <i class="ti ti-eye border rounded" style="color:rgb(0, 0, 0)"
+                                                        class="cp" data-toggle="modal"
+                                                        data-target="#enquiryModal"></i> </td>
+                                                    {{-- <td>
+                                                        @if ($value->status == 'pending')
+                                                            <i class="ti ti-check border rounded mr-1"
+                                                                style="color:rgb(23, 241, 121)"
+                                                                onclick="changeStatus('{{ route('changeTaskStatus') }}','accept' , '{{ $value->task_id }}' )"></i>
+                                                            <i class="ti ti-close border rounded mr-1"
+                                                                style="color:rgb(218, 0, 18)"
+                                                                onclick="changeStatus('{{ route('changeTaskStatus') }}','reject' , '{{ $value->task_id }}' )"></i>
+                                                        @endif
+                                                        <i class="ti ti-eye border rounded" style="color:rgb(0, 0, 0)"
+                                                            class="cp" data-toggle="modal"
+                                                            data-target="#enquiryModal"></i> --}}
+                                                    {{-- <button class="btn btn-sm bg-success"
+                                                       >Mark
+                                                        as Complete</button> --}}
+
+                                                    {{-- <button class="btn btn-sm bg-danger"
+                                                        onclick="changeStatus('{{ route('changeTaskStatus') }}','reject', '{{ $value->task_id }}' )">Decline
+                                                        Offer</button> --}}
+                                                    {{-- <button  class="small text-white bg-success px-2 py-1 rounded">Complete</button> --}}
+                                                    {{-- </td> --}}
+                                                </tr>
+                                            @endif
+
+                                        @empty
+                                            <p>No Pending Job</p>
+                                        @endforelse
+
 
                                     </tbody>
                                 </table>
@@ -132,21 +192,53 @@
                                             <th>Message</th>
                                             <th>Customer</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($detail as $key=>$value)
+                                            @if ($value->status == 'completed')
+                                                <tr onclick="openModal(this)">
+                                                    <td>{{ $value->provider }}</td>
+                                                    <td class="w-50 message"> {{ $value->message }}</td>
+                                                    <td class="username">
+                                                        {{ App\Models\User::where('id', $value->User_id)->first()->name }}
+                                                    </td>
+                                                    <td>
+                                                        <span
+                                                            class="small text-white bg-success px-2 py-1 rounded">{{ $value->status }}</span>
+                                                    </td>
+                                                    <td> <i class="ti ti-eye border rounded" style="color:rgb(0, 0, 0)"
+                                                        class="cp" data-toggle="modal"
+                                                        data-target="#enquiryModal"></i> </td>
+                                                    {{-- <td>
+                                                        @if ($value->status == 'pending')
+                                                            <i class="ti ti-check border rounded mr-1"
+                                                                style="color:rgb(23, 241, 121)"
+                                                                onclick="changeStatus('{{ route('changeTaskStatus') }}','accept' , '{{ $value->task_id }}' )"></i>
+                                                            <i class="ti ti-close border rounded mr-1"
+                                                                style="color:rgb(218, 0, 18)"
+                                                                onclick="changeStatus('{{ route('changeTaskStatus') }}','reject' , '{{ $value->task_id }}' )"></i>
+                                                        @endif
+                                                        <i class="ti ti-eye border rounded" style="color:rgb(0, 0, 0)"
+                                                            class="cp" data-toggle="modal"
+                                                            data-target="#enquiryModal"></i> --}}
+                                                    {{-- <button class="btn btn-sm bg-success"
+                                                       >Mark
+                                                        as Complete</button> --}}
 
-                                        <tr class="cp" data-toggle="modal" data-target="#enquiryModal">
-                                            <td>Test</td>
-                                            <td class="w-50">Lorem ipsum dolor sit amet consectetur adipisicing
-                                                elit. Necessitatibus sequi quo voluptatem. Incidunt, odit qui. Beatae
-                                                voluptatum aliquam assumenda animi accusamus modi delectus ipsa, maiores
-                                                unde aperiam mollitia? Tenetur, distinctio.</td>
-                                            <td>Test</td>
-                                            <td>
-                                                <span class="small text-white bg-success px-2 py-1 rounded">Active</span>
-                                            </td>
-                                        </tr>
+                                                    {{-- <button class="btn btn-sm bg-danger"
+                                                        onclick="changeStatus('{{ route('changeTaskStatus') }}','reject', '{{ $value->task_id }}' )">Decline
+                                                        Offer</button> --}}
+                                                    {{-- <button  class="small text-white bg-success px-2 py-1 rounded">Complete</button> --}}
+                                                    {{-- </td> --}}
+                                                </tr>
+                                            @endif
+
+                                        @empty
+                                            <p>No Pending Job</p>
+                                        @endforelse
+
 
                                     </tbody>
                                 </table>
@@ -166,21 +258,54 @@
                                             <th>Message</th>
                                             <th>Customer</th>
                                             <th>Status</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @forelse ($detail as $key=>$value)
+                                            @if ($value->status == 'rejected')
+                                                <tr onclick="openModal(this)">
+                                                    <td>{{ $value->provider }}</td>
+                                                    <td class="w-50 message"> {{ $value->message }}</td>
+                                                    <td class="username">
+                                                        {{ App\Models\User::where('id', $value->User_id)->first()->name }}
+                                                    </td>
+                                                    <td>
+                                                        <span
+                                                            class="small text-white {{ $value->status == 'completed' ? 'bg-success' : 'bg-danger' }} px-2 py-1 rounded">{{ $value->status }}</span>
 
-                                        <tr class="cp" data-toggle="modal" data-target="#enquiryModal">
-                                            <td>Test</td>
-                                            <td class="w-50">Lorem ipsum dolor sit amet consectetur adipisicing
-                                                elit. Necessitatibus sequi quo voluptatem. Incidunt, odit qui. Beatae
-                                                voluptatum aliquam assumenda animi accusamus modi delectus ipsa, maiores
-                                                unde aperiam mollitia? Tenetur, distinctio.</td>
-                                            <td>Test</td>
-                                            <td>
-                                                <span class="small text-white bg-danger px-2 py-1 rounded">Rejected</span>
-                                            </td>
-                                        </tr>
+                                                    </td>
+                                                    <td>
+                                                        <td> <i class="ti ti-eye border rounded" style="color:rgb(0, 0, 0)"
+                                                            class="cp" data-toggle="modal"
+                                                            data-target="#enquiryModal"></i> </td>
+                                                        {{-- @if ($value->status == 'pending')
+                                                            <i class="ti ti-check border rounded mr-1"
+                                                                style="color:rgb(23, 241, 121)"
+                                                                onclick="changeStatus('{{ route('changeTaskStatus') }}','accept' , '{{ $value->task_id }}' )"></i>
+                                                            <i class="ti ti-close border rounded mr-1"
+                                                                style="color:rgb(218, 0, 18)"
+                                                                onclick="changeStatus('{{ route('changeTaskStatus') }}','reject' , '{{ $value->task_id }}' )"></i>
+                                                        @endif
+                                                        <i class="ti ti-eye border rounded" style="color:rgb(0, 0, 0)"
+                                                            class="cp" data-toggle="modal"
+                                                            data-target="#enquiryModal"></i> --}} --}}
+                                                        {{-- <button class="btn btn-sm bg-success"
+                                                       >Mark
+                                                        as Complete</button> --}}
+
+                                                        {{-- <button class="btn btn-sm bg-danger"
+                                                        onclick="changeStatus('{{ route('changeTaskStatus') }}','reject', '{{ $value->task_id }}' )">Decline
+                                                        Offer</button> --}}
+                                                        {{-- <button  class="small text-white bg-success px-2 py-1 rounded">Complete</button> --}}
+                                                    </td>
+                                                </tr>
+                                            @endif
+
+                                        @empty
+                                            <p>No Pending Job</p>
+                                        @endforelse
+
 
                                     </tbody>
                                 </table>
@@ -204,7 +329,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="enquiryModalLabel">Enquiry Provider</h5>
+                    <h5 class="modal-title" id="enquiryModalLabel">Enquiry Detail</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -216,15 +341,15 @@
                             <h6 class="mt-3">Message</h5>
                         </div>
                         <div class="col-8">
-                            <p>Test</p>
-                            <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur maiores debitis provident quidem animi autem repellendus excepturi earum iste necessitatibus optio veritatis quos sequi, dolores doloremque illum voluptatibus ducimus porro.</p>
+                            <p id="customerName"></p>
+                            <p class="mt-3" id="customerMessage"></p>
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
+                {{-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary">Mark as</button>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -255,5 +380,65 @@
             $('#bootstrap-data-table-export2_wrapper').addClass('justify-content-between')
             $('#bootstrap-data-table-export3_wrapper').addClass('justify-content-between')
         })
+
+        function openModal(elem) {
+            console.log(elem)
+            message = $(elem).find('.message').text()
+            name = $(elem).find('.username').text()
+            console.log('name is ' + name + 'message is ' + message)
+            $('#customerMessage').text(message)
+            $('#customerName').text(name)
+
+        }
+
+        function changeStatus(route, action, id) {
+            $('#enquiryModal').modal('hide')
+            swal({
+                    title: 'Do you want to ' + action + ' this offer?',
+                    text: "Changes will be saved immediately!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        changeStatusAjax(route, action, id)
+                    } else {
+                        swal("Change is reverted!");
+                        return false;
+                    }
+                });
+        }
+
+        function changeStatusAjax(route, action, id) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: route,
+                type: 'post',
+                data: {
+                    id: id,
+                    action: action,
+                },
+                success: function(data) {
+                    if (data.success == true) {
+                        swal("success", data.message, "success").then((value) => {
+                            window.location.reload();
+                        });
+                    } else if (data.success == false) {
+                        swal({
+                            icon: "error",
+                            text: "Action Failed due to some Error!",
+                            type: "error",
+                        });
+                    } else {
+                        return false;
+                    }
+                },
+            });
+        }
     </script>
 @endsection

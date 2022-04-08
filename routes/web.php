@@ -47,6 +47,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('services', ServiceController::class);
     Route::resource('upload_ads', UploadAdsController::class);
     Route::resource('assign_task', AssignedTaskController::class);
+    
+    Route::post('changeTaskStatus', [App\Http\Controllers\AssignedTaskController::class, 'changeStatus'])->name('changeTaskStatus');
     Route::get('/services', [App\Http\Controllers\admin\AdminServiceController::class, 'index'])->name('admin.services');
     Route::match(['get', 'post'],'/update-service', [App\Http\Controllers\admin\AdminServiceController::class, 'changeServiceStatus'])->name('admin.services.update');
 });

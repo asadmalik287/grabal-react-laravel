@@ -35,7 +35,11 @@ class UploadAdsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->all();
+        $upload  = new UploadAds();
+        $upload-> title = $request->title;
+        $upload->page = $request->page;
+        
     }
 
     /**

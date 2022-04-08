@@ -50,19 +50,19 @@
                 <div class="tab-content br-n pn">
 
                     {{-- all tab start --}}
-                    <div id="all" class="tab-pane active">
+                    <div id="home" class="tab-pane active">
 
                     </div>
                     {{-- all tab end --}}
 
                     {{-- Pending tab start --}}
-                    <div id="pending" class="tab-pane">
+                    <div id="sidebar" class="tab-pane">
 
                     </div>
                     {{-- Pending tab end --}}
 
                     {{-- Approved tab start --}}
-                    <div id="approved" class="tab-pane">
+                    <div id="serviceDetail" class="tab-pane">
 
                     </div>
                     {{-- Approved tab end --}}
