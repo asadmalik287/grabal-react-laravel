@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Config;
-use Validator;
-use App\Models\User;
 use App\Models\Subscription;
+use App\Models\User;
+use Config;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Validator;
 
 class StripeController extends Controller
 {
@@ -20,7 +20,8 @@ class StripeController extends Controller
 
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         // $webhook = $this->stripe->webhookEndpoints->create([
         //     'url' => 'https://ewdtech.com/ewdtech/test/grobal_react/api/stripeWebhook',
         //     'enabled_events' => [
@@ -29,14 +30,14 @@ class StripeController extends Controller
         // ]);
         // return $webhook;
         // return $request->all();
-        $validations = Validator::make($request->all(),[
-            'user_id'=>"required",
-            'amount'=>'required',
-            'stripeToken'=>'required',
+        $validations = Validator::make($request->all(), [
+            'user_id' => "required",
+            'amount' => 'required',
+            'stripeToken' => 'required',
         ]);
 
-        if($validations->fails()){
-            return response()->json(['success'=>false,"errors"=>$validations->errors()]);
+        if ($validations->fails()) {
+            return response()->json(['success' => false, "errors" => $validations->errors()]);
         }
 
         $errorCheck = false;
@@ -44,20 +45,20 @@ class StripeController extends Controller
         try {
 
             $user = User::find($request->user_id);
-            if($user!=null){
-                if($user->stripe_id==''){
+            if ($user != null) {
+                if ($user->stripe_id == '') {
                     $user->stripe_id = $this->stripe->customers->create([
-                        'name'=>$user->name,
+                        'name' => $user->name,
                         'email' => $user->email,
                         'source' => $request->stripeToken,
                     ])->id;
                     $user->save();
                 }
 
-                if($user->stripe_id!='' && Subscription::where('user_id',$user->id)->where('stripe_subscription_status','active')->first()!=null){
+                if ($user->stripe_id != '' && Subscription::where('user_id', $user->id)->where('stripe_subscription_status', 'active')->first() != null) {
                     $errorArray['type'] = ["duplication"];
                     $errorArray['message'] = ["You have already subscribed"];
-                    return response()->json(['success'=>false,"errors"=>$errorArray]);
+                    return response()->json(['success' => false, "errors" => $errorArray]);
                 }
 
                 $product = $this->stripe->products->create([
@@ -67,7 +68,7 @@ class StripeController extends Controller
 
                 // return $product;
                 $price = $this->stripe->prices->create([
-                    'unit_amount' => $request->amount*100,
+                    'unit_amount' => $request->amount * 100,
                     'currency' => 'nzd',
                     'recurring' => ['interval' => 'day'],
                     'product' => $product->id,
@@ -85,45 +86,46 @@ class StripeController extends Controller
                     'items' => [['price' => $price->id]],
                 ]);
 
-                $subscription = Subscription::create(['user_id'=>$user->id,'stripe_id'=>$user->stripe_id,'stripe_subscription_id'=>$subscription->id,'stripe_price_id'=>$price->id,'stripe_subscription_status'=>$subscription->status,'trial_ends_at'=>$subscription->trial_end,'quantity'=>1]);
-                if($subscription!=null){
-                    return response()->json(['success'=>true, "message"=>"Thanks! You have subscribed successfully"]);
+                $subscription = Subscription::create(['user_id' => $user->id, 'stripe_id' => $user->stripe_id, 'stripe_subscription_id' => $subscription->id, 'stripe_price_id' => $price->id, 'stripe_subscription_status' => $subscription->status, 'trial_ends_at' => $subscription->trial_end, 'quantity' => 1]);
+                if ($subscription != null) {
+                    return response()->json(['success' => true, "message" => "Thanks! You have subscribed successfully"]);
                 }
-            }else{
-                return response()->json(['success'=>false, "message"=>"User doesn't exist"]);
+            } else {
+                return response()->json(['success' => false, "message" => "User doesn't exist"]);
             }
 
-        } catch (\Stripe\Error\ApiConnection $e) {
+        } catch (\Stripe\Error\ApiConnection$e) {
             $errorArray['type'] = [$e->getError()->type];
             $errorArray['message'] = [$e->getError()->message];
             $errorCheck = true;
-        } catch (\Stripe\Exception\CardException $e) {
+        } catch (\Stripe\Exception\CardException$e) {
             $errorArray['type'] = [$e->getError()->type];
             $errorArray['message'] = [$e->getError()->message];
             $errorCheck = true;
-        } catch (\Stripe\Exception\InvalidRequestException $e) {
+        } catch (\Stripe\Exception\InvalidRequestException$e) {
             $errorArray['type'] = [$e->getError()->type];
             $errorArray['message'] = [$e->getError()->message];
             $errorCheck = true;
-        } catch(\Stripe\Exception\ApiConnectionException $e){
+        } catch (\Stripe\Exception\ApiConnectionException$e) {
             $errorArray['type'] = [$e->getError()->type];
             $errorArray['message'] = [$e->getError()->message];
             $errorCheck = true;
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             $errorArray['type'] = [$e->getError()->type];
             $errorArray['message'] = [$e->getError()->message];
             $errorCheck = true;
         }
 
-        if($errorCheck){
-            return response()->json(['success'=>false,"errors"=>$errorArray]);
+        if ($errorCheck) {
+            return response()->json(['success' => false, "errors" => $errorArray]);
         }
 
-        return response()->json(['success'=>false, "message"=>"Sorry! Something went wrong."]);
+        return response()->json(['success' => false, "message" => "Sorry! Something went wrong."]);
     }
 
     // cancel stripe subscription
-    public function stripeSubscriptionCancel($id){
+    public function stripeSubscriptionCancel($id)
+    {
         $errorCheck = false;
         $errorArray = [];
         try {
@@ -133,30 +135,30 @@ class StripeController extends Controller
                 Subscription::where("stripe_subscription_id", $subscription->id)->delete();
                 return response()->json(['success'=>true, "message"=>"Thanks! Your subscription has been canceled successfully"]);
             }
-        } catch (\Stripe\Error\ApiConnection $e) {
+        } catch (\Stripe\Error\ApiConnection$e) {
             $errorArray['type'] = [$e->getError()->type];
             $errorArray['message'] = [$e->getError()->message];
             $errorCheck = true;
-        } catch (\Stripe\Exception\CardException $e) {
+        } catch (\Stripe\Exception\CardException$e) {
             $errorArray['type'] = [$e->getError()->type];
             $errorArray['message'] = [$e->getError()->message];
             $errorCheck = true;
-        } catch (\Stripe\Exception\InvalidRequestException $e) {
+        } catch (\Stripe\Exception\InvalidRequestException$e) {
             $errorArray['type'] = [$e->getError()->type];
             $errorArray['message'] = [$e->getError()->message];
             $errorCheck = true;
-        } catch(\Stripe\Exception\ApiConnectionException $e){
+        } catch (\Stripe\Exception\ApiConnectionException$e) {
             $errorArray['type'] = [$e->getError()->type];
             $errorArray['message'] = [$e->getError()->message];
             $errorCheck = true;
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             $errorArray['type'] = [$e->getError()->type];
             $errorArray['message'] = [$e->getError()->message];
             $errorCheck = true;
         }
 
-        if($errorCheck){
-            return response()->json(['success'=>false,"errors"=>$errorArray]);
+        if ($errorCheck) {
+            return response()->json(['success' => false, "errors" => $errorArray]);
         }
     }
 
@@ -165,13 +167,17 @@ class StripeController extends Controller
     {
         header('Access-Control-Allow-Origin: *');
         $payload_d = @file_get_contents('php://input');
-        Storage::put('files.txt',$payload_d);
+        Storage::put('files.txt', $payload_d);
         $payload = json_decode($payload_d, true);
-        if(isset($payload['type']) && $payload['type']=="invoice.payment_succeeded"){
+        if (isset($payload['type']) && $payload['type'] == "invoice.payment_succeeded") {
             // for subscription update
-            if($payload['data']['object']['billing_reason']=="subscription_cycle"){
+            if ($payload['data']['object']['billing_reason'] == "subscription_cycle") {
                 $subId = $payload['data']['object']['subscription'];
+<<<<<<< HEAD
+                $subscription = Subscription::where("stripe_subscription_id", $subId)->update(['stripe_subscription_status' => 'active']);
+=======
                 $subscription = Subscription::where("stripe_subscription_id",$subId)->update(['stripe_subscription_status'=>'active']);
+>>>>>>> 3c7b4e40b9b7c545c5ec4ada38c7faa4f6253e1b
             }
         }
     }
