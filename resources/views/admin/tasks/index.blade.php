@@ -23,23 +23,29 @@
         <!-- /# column -->
     </div>
 
-    <div>
-        <h3 class="text-center mb-3">
-            {{ $seller == false ? 'All Service Providers' : $serviceProviders[0]['business_name'] }}
-        </h3>
-    </div>
 
 
     <ul class="nav nav-pills m-t-30 m-b-30 justify-content-end">
-        <li class="nav-item"> <a href="#all" class="nav-link active border all" data-toggle="tab"
-                aria-expanded="false">All
-                Tasks</a> </li>
-        <li class="nav-item"> <a href="#pending" class="nav-link border pending" data-toggle="tab"
-                aria-expanded="false">Pending</a> </li>
-        <li class=" nav-item"> <a href="#approved" class="nav-link border approved" data-toggle="tab"
-                aria-expanded="false">Approved</a> </li>
-        <li class="nav-item"> <a href="#rejected" class="nav-link border rejected" data-toggle="tab"
-                aria-expanded="true">Rejected</a> </li>
+        <li class="nav-item">
+            <a href="#all" class="nav-link active border all" data-toggle="tab" aria-expanded="false">
+                All Tasks
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#pending" class="nav-link border pending" data-toggle="tab" aria-expanded="false">
+                Pending
+            </a>
+        </li>
+        <li class=" nav-item">
+            <a href="#approved" class="nav-link border approved" data-toggle="tab" aria-expanded="false">
+                Approved
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="#rejected" class="nav-link border rejected" data-toggle="tab" aria-expanded="true">
+                Rejected
+            </a>
+        </li>
     </ul>
 
     <div class="row">
@@ -54,17 +60,25 @@
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Sr</th>
-                                            <th>Business Name</th>
-                                            <th>Email</th>
-                                            <th>Phone Number</th>
-                                            <th>Contact Person</th>
+                                            <th>Provider</th>
                                             <th>Message</th>
-                                            <th>Crrent Status</th>
-                                            <th>Action</th>
+                                            <th>Customer</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+
+                                        <tr class="cp" data-toggle="modal" data-target="#enquiryModal">
+                                            <td>Test</td>
+                                            <td class="w-50">Lorem ipsum dolor sit amet consectetur adipisicing
+                                                elit. Necessitatibus sequi quo voluptatem. Incidunt, odit qui. Beatae
+                                                voluptatum aliquam assumenda animi accusamus modi delectus ipsa, maiores
+                                                unde aperiam mollitia? Tenetur, distinctio.</td>
+                                            <td>Test</td>
+                                            <td>
+                                                <span class="small text-white bg-success px-2 py-1 rounded">Active</span>
+                                            </td>
+                                        </tr>
 
                                     </tbody>
                                 </table>
@@ -80,17 +94,26 @@
                                 <table id="bootstrap-data-table-export1" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Sr</th>
-                                            <th>Business Name</th>
-                                            <th>Email</th>
-                                            <th>Phone Number</th>
-                                            <th>Contact Person</th>
+                                            <th>Provider</th>
                                             <th>Message</th>
-                                            <th>Action</th>
+                                            <th>Customer</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        
+
+                                        <tr class="cp" data-toggle="modal" data-target="#enquiryModal">
+                                            <td>Test</td>
+                                            <td class="w-50">Lorem ipsum dolor sit amet consectetur adipisicing
+                                                elit. Necessitatibus sequi quo voluptatem. Incidunt, odit qui. Beatae
+                                                voluptatum aliquam assumenda animi accusamus modi delectus ipsa, maiores
+                                                unde aperiam mollitia? Tenetur, distinctio.</td>
+                                            <td>Test</td>
+                                            <td>
+                                                <span class="small text-white bg-primary px-2 py-1 rounded">Pending</span>
+                                            </td>
+                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -105,34 +128,26 @@
                                 <table id="bootstrap-data-table-export2" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Sr</th>
-                                            <th>Business Name</th>
-                                            <th>Email</th>
-                                            <th>Phone Number</th>
-                                            <th>Contact Person</th>
+                                            <th>Provider</th>
                                             <th>Message</th>
-                                            <th>Action</th>
+                                            <th>Customer</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($serviceProviders as $key => $serviceProvider)
-                                            @if ($serviceProvider->status == 'approved')
-                                                <tr>
-                                                    <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $serviceProvider->business_name }}</td>
-                                                    <td>{{ $serviceProvider->email }}</td>
-                                                    <td>{{ $serviceProvider->phone_number }}</td>
-                                                    <td>{{ $serviceProvider->contact_person }}</td>
-                                                    <td>{{ $serviceProvider->message }}</td>
-                                                    <td>
-                                                        <a
-                                                            href="{{ url('admin/services') }}?id={{ $serviceProvider->id }}">
-                                                            <button class="btn btn-info btn-sm">View Services</button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
+
+                                        <tr class="cp" data-toggle="modal" data-target="#enquiryModal">
+                                            <td>Test</td>
+                                            <td class="w-50">Lorem ipsum dolor sit amet consectetur adipisicing
+                                                elit. Necessitatibus sequi quo voluptatem. Incidunt, odit qui. Beatae
+                                                voluptatum aliquam assumenda animi accusamus modi delectus ipsa, maiores
+                                                unde aperiam mollitia? Tenetur, distinctio.</td>
+                                            <td>Test</td>
+                                            <td>
+                                                <span class="small text-white bg-success px-2 py-1 rounded">Active</span>
+                                            </td>
+                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -147,34 +162,26 @@
                                 <table id="bootstrap-data-table-export3" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Sr</th>
-                                            <th>Business Name</th>
-                                            <th>Email</th>
-                                            <th>Phone Number</th>
-                                            <th>Contact Person</th>
+                                            <th>Provider</th>
                                             <th>Message</th>
-                                            <th>Action</th>
+                                            <th>Customer</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($serviceProviders as $key => $serviceProvider)
-                                            @if ($serviceProvider->status == 'rejected')
-                                                <tr>
-                                                    <td>{{ $key + 1 }}</td>
-                                                    <td>{{ $serviceProvider->business_name }}</td>
-                                                    <td>{{ $serviceProvider->email }}</td>
-                                                    <td>{{ $serviceProvider->phone_number }}</td>
-                                                    <td>{{ $serviceProvider->contact_person }}</td>
-                                                    <td>{{ $serviceProvider->message }}</td>
-                                                    <td>
-                                                        <a
-                                                            href="{{ url('admin/services') }}?id={{ $serviceProvider->id }}">
-                                                            <button class="btn btn-info btn-sm">View Services</button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
+
+                                        <tr class="cp" data-toggle="modal" data-target="#enquiryModal">
+                                            <td>Test</td>
+                                            <td class="w-50">Lorem ipsum dolor sit amet consectetur adipisicing
+                                                elit. Necessitatibus sequi quo voluptatem. Incidunt, odit qui. Beatae
+                                                voluptatum aliquam assumenda animi accusamus modi delectus ipsa, maiores
+                                                unde aperiam mollitia? Tenetur, distinctio.</td>
+                                            <td>Test</td>
+                                            <td>
+                                                <span class="small text-white bg-danger px-2 py-1 rounded">Rejected</span>
+                                            </td>
+                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -186,6 +193,39 @@
                 <!-- /# card -->
             </div>
             <!-- /# column -->
+        </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="enquiryModal" tabindex="-1" role="dialog" aria-labelledby="enquiryModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="enquiryModalLabel">Enquiry Provider</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-4">
+                            <h6>Customer</h6>
+                            <h6 class="mt-3">Message</h5>
+                        </div>
+                        <div class="col-8">
+                            <p>Test</p>
+                            <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur maiores debitis provident quidem animi autem repellendus excepturi earum iste necessitatibus optio veritatis quos sequi, dolores doloremque illum voluptatibus ducimus porro.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Mark as</button>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -19,12 +19,12 @@
                             <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right" id="Dropdown">
                                 <div class="dropdown-content-body">
                                     <ul>
-                                        <li>
+                                        {{-- <li>
                                             <a href="#">
                                                 <i class="ti-lock"></i>
                                                 <span>Lock Screen</span>
                                             </a>
-                                        </li>
+                                        </li> --}}
                                         <li>
                                             <a href="{{ url('admin/logout') }}">
                                                 <i class="ti-power-off"></i>
