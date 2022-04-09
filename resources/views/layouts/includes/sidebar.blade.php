@@ -3,41 +3,51 @@
         <div class="nano-content">
             <ul>
                 <div class="logo">
-                    <a href="{{url('admin/home')}}">
-                        <img src="{{ asset('assets/admin/images/logo.png')}}" alt="" width="120" />
+                    <a href="{{ url('admin/home') }}">
+                        <img src="{{ asset('assets/admin/images/logo.png') }}" alt="" width="120" />
                     </a>
                 </div>
                 <li class="label">Main</li>
                 <li class="@if (Request::is('admin/home')) active @endif">
-                    <a href="{{url('admin/home')}}"><i class="ti-dashboard"></i> Dashboard </a>
+                    <a href="{{ url('admin/home') }}"><i class="ti-dashboard"></i> Dashboard </a>
                 </li>
 
 
                 <li>
-                    <a class="sidebar-sub-toggle"><i class="ti-vector"></i> Manage Categories<span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                    <a class="sidebar-sub-toggle"><i class="ti-vector"></i> Manage Categories<span
+                            class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
-                        <li class="@if (Request::is('admin/categories')) active @endif"><a href="{{url('admin/categories')}}"> Categories</a></li>
-                        <li class="@if (Request::is('admin/sub-categories')) active @endif"><a href="{{url('admin/sub-categories')}}"> Sub Categories</a></li>
+                        <li class="@if (Request::is('admin/categories')) active @endif"><a
+                                href="{{ url('admin/categories') }}"> Categories</a></li>
+                        <li class="@if (Request::is('admin/sub-categories')) active @endif"><a
+                                href="{{ url('admin/sub-categories') }}"> Sub Categories</a></li>
                     </ul>
                 </li>
 
                 <li class="@if (Request::is('admin/services')) active @endif">
-                    <a href="{{url('admin/services')}}"><i class="ti-home"></i>Services </a>
+                    <a href="{{ url('admin/services') }}"><i class="ti-home"></i>Services </a>
                 </li>
 
                 <li class="@if (Request::is('admin/serviceProviders')) active @endif">
-                    <a href="{{url('admin/serviceProviders')}}"><i class="ti-home"></i>Service Providers</a>
+                    <a href="{{ url('admin/serviceProviders') }}"><i class="ti-home"></i>Service Providers</a>
                 </li>
 
                 <li class="@if (Request::is('admin/assign_task')) active @endif">
-                    <a href="{{url('admin/assign_task')}}"><i class="ti-medall-alt"></i>Assign Tasks</a>
+                    <a href="{{ url('admin/assign_task') }}"><i class="ti-medall-alt"></i>Assign Tasks</a>
                 </li>
 
-                <li class="@if (Request::is('admin/upload_ads')) active @endif">
-                    <a href="{{url('admin/upload_ads')}}"><i class="ti-upload"></i>Upload Ads</a>
+               
+
+                <li>
+                    <a class="sidebar-sub-toggle"><i class="ti-vector"></i> Manage Ads<span
+                            class="sidebar-collapse-icon ti-angle-down"></span></a>
+                    <ul>
+                        <li class="@if (Request::is('admin/ads')) active @endif"><a
+                                href="{{ url('admin/ads') }}"> Banners</a></li>
+                        <li class="@if (Request::is('admin/add_banner')) active @endif"><a
+                                href="{{ url('admin/add_banner') }}"> Add New Banner</a></li>
+                    </ul>
                 </li>
-
-
                 {{-- <li>
                     <a class="sidebar-sub-toggle"><i class="ti-map"></i> Maps <span class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
