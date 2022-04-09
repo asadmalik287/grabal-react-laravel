@@ -45,6 +45,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('categories', CategoriesController::class);
     Route::resource('sub-categories', SubCategoriesController::class);
     Route::resource('services', ServiceController::class);
+    Route::post('/store_banner', [App\Http\Controllers\UploadAdsController::class, 'store'])->name('store_banner');
+
     Route::resource('upload_ads', UploadAdsController::class);
     Route::resource('assign_task', AssignedTaskController::class);
     

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UploadAds;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\validator;
 
 class UploadAdsController extends Controller
 {
@@ -35,11 +36,33 @@ class UploadAdsController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
-        $upload  = new UploadAds();
-        $upload-> title = $request->title;
-        $upload->page = $request->page;
-        
+        // return $request->all();
+        $arrayCheck = [
+            'title' => ['required'],
+            "page" => "required",
+            "image" => "required",
+
+        ];
+        $validator = Validator::make($request->all(), $arrayCheck);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        } else {
+            // $request->page == 'home' ? $count = UploadAds::where('page', $request->page)->count() : $request->page == 'home' ? $count = UploadAds::where('page', $request->page)->count() : '' : '' ;
+            $path = 'assets/admin/banners';
+            $upload = new UploadAds();
+            $upload->title = $request->title;
+            $upload->page = $request->page;
+            if ($request->hasFile('file')) {
+                $file1 = $request->file("image");
+                $image_changed_name1 = time() . '.' . $file1->getClientOriginalExtension();
+                $file1->move(public_path($path), $image_changed_name1);
+                $img_url1 = url($path) . "/" . $image_changed_name1;
+                $upload->attachment_link = $img_url1;
+            }
+            $upload->save();
+            return redirect()->back()->with('message', 'Banner has been added sucessfully');
+
+        }
     }
 
     /**
