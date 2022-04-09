@@ -15,9 +15,9 @@ class CreateUploadAdsTable extends Migration
     {
         Schema::create('upload_ads', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->default('null');
             $table->enum('page', ['home','sidebar ','serviceDetail'])->default('null');
-            $table->string('attachment_link');
+            $table->string('attachment_link')->default('null');
             $table->timestamps();
         });
     }
