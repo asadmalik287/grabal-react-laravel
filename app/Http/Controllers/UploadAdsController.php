@@ -6,6 +6,7 @@ use App\Models\UploadAds;
 use Illuminate\Http\Request;
 use Validator;
 use Storage;
+use DB;
 
 class UploadAdsController extends Controller
 {
