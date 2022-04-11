@@ -177,7 +177,9 @@ class StripeController extends Controller
                 $subscription = Subscription::where("stripe_subscription_id", $subId)->update(['stripe_subscription_status' => 'active']);
             }
         }else{
-            $subscription = Subscription::where("stripe_subscription_id", $subId)->update(['stripe_subscription_status' => 'inactive']); 
+            if(isset($subId)){
+                $subscription = Subscription::where("stripe_subscription_id", $subId)->update(['stripe_subscription_status' => 'inactive']); 
+            }
         }
     }
 }
