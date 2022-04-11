@@ -169,12 +169,15 @@ class StripeController extends Controller
         $payload_d = @file_get_contents('php://input');
         Storage::put('files.txt', $payload_d);
         $payload = json_decode($payload_d, true);
+        $subId = $payload['data']['object']['subscription'];
         if (isset($payload['type']) && $payload['type'] == "invoice.payment_succeeded") {
             // for subscription update
             if ($payload['data']['object']['billing_reason'] == "subscription_cycle") {
-                $subId = $payload['data']['object']['subscription'];
+                // $subId = $payload['data']['object']['subscription'];
                 $subscription = Subscription::where("stripe_subscription_id", $subId)->update(['stripe_subscription_status' => 'active']);
             }
+        }else{
+            $subscription = Subscription::where("stripe_subscription_id", $subId)->update(['stripe_subscription_status' => 'inactive']); 
         }
     }
 }
