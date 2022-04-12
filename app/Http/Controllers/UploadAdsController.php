@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\UploadAds;
 use DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\validator;
+use Validator;
 use Storage;
+use DB;
 
 class UploadAdsController extends Controller
 {
