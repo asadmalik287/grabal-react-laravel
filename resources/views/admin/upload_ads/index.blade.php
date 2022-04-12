@@ -80,7 +80,7 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $value->title }}</td>
                                                 <td>
-                                                    <img height="100" width="100"
+                                                    <img height="100" width="300"
                                                         src="{{ $value->attachment_link}}" alt="">
                                                 </td>
                                                 <td>
@@ -129,7 +129,7 @@
                                                 <td>{{ $keys + 1 }}</td>
                                                 <td>{{ $value1->title }}</td>
                                                 <td>
-                                                    <img height="100" width="100"
+                                                    <img height="300" width="200"
                                                         src="{{ $value1->attachment_link}}" alt="">
                                                 </td>
                                                 <td>
@@ -175,7 +175,7 @@
                                                 <td>{{ $keyss + 1 }}</td>
                                                 <td>{{ $value2->title }}</td>
                                                 <td>
-                                                    <img height="100" width="100"
+                                                    <img height="300" width="150"
                                                         src="{{ $value2->attachment_link}}" alt="">
                                                 </td>
                                                 <td>
