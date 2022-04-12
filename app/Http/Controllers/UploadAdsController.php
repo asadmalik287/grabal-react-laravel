@@ -7,7 +7,6 @@ use DB;
 use Illuminate\Http\Request;
 use Validator;
 use Storage;
-use DB;
 
 class UploadAdsController extends Controller
 {
@@ -60,13 +59,13 @@ class UploadAdsController extends Controller
 
             if ($request->page == 'home') {
 
-                if (DB::table('upload_ads')->where('page', $request->page)->count() > 0) {
+                if (DB::table('upload_ads')->where('page', $request->page)->count() >= 2) {
 
                     return redirect()->route('ads.index')->with('error', 'Please delete prevoius Banner');
                 }
             } else if ($request->page == 'serviceDetail') {
 
-                if (DB::table('upload_ads')->where('page', $request->page)->count() > 1) {
+                if (DB::table('upload_ads')->where('page', $request->page)->count() > 0) {
                     return redirect()->route('ads.index')->with('error', 'Please delete prevoius Banner');
                 }
             } else if ($request->page == 'sidebar') {
