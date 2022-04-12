@@ -43,6 +43,8 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::get('getPopularServicesAndCategories', 'AllFunctionsController@getPopularServicesAndCategories')->name('getPopularServicesAndCategories');
     Route::post('sendEnquiryEmailToServiceProvider', 'AllFunctionsController@sendEnquiryEmailToServiceProvider')->name('sendEnquiryEmailToServiceProvider');
 
+    Route::get('get-type-services', 'ServiceController@getTypServices')->name('get-type-services');
+
     //ads routes
     Route::get('getAd', 'AllFunctionsController@getAd')->name('getAd');
 
@@ -53,7 +55,7 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
 
     Route::get('get-watch-list', 'WatchListController@getWatchList')->name('get-watch-list');
     // Route::group(['middleware' => 'auth:api'], function () {
-        Route::get('test', 'AuthController@test')->name('test');
+    Route::get('test', 'AuthController@test')->name('test');
 
     // });
 });

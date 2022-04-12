@@ -235,6 +235,7 @@
             $uploadCrop.croppie('result', {
                 type: 'base64',
                 format: 'jpeg',
+                backgroundColor:'white',
                 // size: {
                 //     width: 150,
                 //     height: 200

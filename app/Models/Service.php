@@ -59,4 +59,19 @@ class Service extends Model
         return $this->belongsTo($this, 'added_by');
     }
 
+    public function setSlugAttribute($title)
+    {
+        $this->attributes['slug'] = $this->uniqueSlug($title);
+    }
+
+    private function uniqueSlug($title)
+    {
+        $slug = str_replace(' ', '-', strtolower($title)); // Replaces all spaces with hyphens.
+        $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $slug); // Removes special chars.
+        $slug = preg_replace('/-+/', '-', $slug); // Replaces multiple hyphens with single one.
+        $count = Service::where('slug', 'LIKE', "{$slug}%")->count();
+        $newCount = $count > 0 ? ++$count : '';
+        return $newCount > 0 ? "$slug-$newCount" : $slug;
+    }
+
 }

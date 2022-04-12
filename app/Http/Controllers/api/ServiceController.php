@@ -58,6 +58,7 @@ class ServiceController extends Controller
         $service->subCategory_id = $request->subCategory_id;
         $service->service_type = $request->service_type;
         $service->title = $request->title;
+        $service->slug = $request->title;
         $service->description = $request->description;
         $service->business_name = $request->business_name;
         // $service->business_streetNo = $request->business_streetNo;
@@ -74,6 +75,7 @@ class ServiceController extends Controller
         $service->phone_number = $request->phone_number;
         $service->city = $request->city;
         $service->suburb = $request->suburb;
+
         // $service->postal_code = $request->postal_code;
 
         $path = 'assets/admin/images';
@@ -193,6 +195,7 @@ class ServiceController extends Controller
         $service->subCategory_id = $request->subCategory_id;
         $service->service_type = $request->service_type;
         $service->title = $request->title;
+        $service->slug = $request->title;
         $service->description = $request->description;
         $service->business_name = $request->business_name;
         // $service->business_streetNo = $request->business_streetNo;
@@ -305,7 +308,6 @@ class ServiceController extends Controller
                 $value->watchlist = 1;
             } else {
                 $value->watchlist = 0;
-
             }
         }
         return response()->json(['services' => $services]);
@@ -320,8 +322,8 @@ class ServiceController extends Controller
                 ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
                 ->join('users', 'services.added_by', 'users.id')
                 ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
-                    'services.id as Service_id')->where('services.id', $_GET['id'])->first();
-            $images = Service::with('hasAttachment')->where('services.id', $_GET['id'])->get();
+                    'services.id as Service_id')->where('services.slug', $_GET['id'])->first();
+            $images = Service::with('hasAttachment')->where('services.slug', $_GET['id'])->get();
             $watchlist = 0;
             if (isset($_GET['user_id'])) {
                 if (WatchList::where(['service_id' => $services->Service_id, 'user_id' => $request->user_id])->exists()) {
@@ -357,10 +359,28 @@ class ServiceController extends Controller
     public function getAllServiceProviders()
     {
         $seller = User::where('role_id', '2')->get();
+        foreach ($seller as $key => $value) {
+            $rating = DB::table('services')
+                ->join('reviews', 'services.id', 'reviews.service_id')
+                ->selectRaw('SUM(reviews.rating)/COUNT(reviews.id) AS rating', )
+                ->selectRaw('COUNT(reviews.id) AS total_reviews')
+                ->where('services.added_by', $value->id)
+                ->first();
+            $value->rating = $rating->rating;
+            $value->total_reviews = $rating->total_reviews;
+        }
         return response()->json(['seller' => $seller]);
         // close
     }
 
+    // get services of type
+    public function getTypServices(Request $request)
+    {
+        if (isset($_GET['type'])) {
+            return $_GET['type'];
+        }
+    }
+    // close
     // get all services
     public function sellerDetail(Request $request)
     {
@@ -371,6 +391,14 @@ class ServiceController extends Controller
             if (count($subscription) > 0) {
                 $subscriptionStatus = true;
             }
+            $rating = DB::table('services')
+                ->join('reviews', 'services.id', 'reviews.service_id')
+                ->selectRaw('SUM(reviews.rating)/COUNT(reviews.id) AS rating', )
+                ->selectRaw('COUNT(reviews.id) AS total_reviews')
+                ->where('services.added_by', $seller->id)
+                ->first();
+            $seller['rating'] = $rating->rating;
+            $seller['total_reviews'] = $rating->total_reviews;
             return response()->json(['seller' => $seller, 'subscription' => $subscriptionStatus]);
         }
     }
