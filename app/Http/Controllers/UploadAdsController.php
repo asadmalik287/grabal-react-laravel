@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\UploadAds;
 use DB;
 use Illuminate\Http\Request;
-use Validator;
 use Storage;
+use Validator;
 
 class UploadAdsController extends Controller
 {
@@ -92,6 +92,7 @@ class UploadAdsController extends Controller
             $data = substr($image, strpos($image, ',') + 1);
             $data = base64_decode($data);
             Storage::disk('ads')->put($imageName, $data);
+            $upload->attachment_link = url('storage/ads/' . $imageName);
             // \File::put(storage_path(). '/' . $imageName, $data );
             $upload->save();
             return redirect()->route('ads.index')->with('success', 'Ad Image has been added sucessfully');
