@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Service;
 use App\Models\ServiceAttachment;
 use App\Models\Subscription;
-use App\Models\WatchList;
 use App\Models\User;
+use App\Models\WatchList;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -300,6 +300,14 @@ class ServiceController extends Controller
             ->join('users', 'services.added_by', 'users.id')
             ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller', 'users.role_id', 'users.logo', 'categories.name as Category', 'services.*',
                 'services.id as Service_id')->get();
+        foreach ($services as $key => $value) {
+            if (WatchList::where('service_id', $value->id)->exists()) {
+                $value->watchlist = 1;
+            } else {
+                $value->watchlist = 0;
+
+            }
+        }
         return response()->json(['services' => $services]);
     }
     // close
@@ -331,15 +339,15 @@ class ServiceController extends Controller
         //     ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
         //         'services.id as Service_id')->where('services.added_by', $_GET['id'])->get();
 
-        $sellerServices = Service::select(['id','title','description','main_service_image','created_at','added_by','subCategory_id','category_id'])
-        ->with(['haveProvider' => function ($user) {
-            $user->select('id','role_id','logo');
-        },'subcat'=>function ($subCategory) {
-            $subCategory->select('id','name');
-        }])
-        ->with("averageReviews")
-        ->where('services.added_by', $_GET['id'])
-        ->get();
+        $sellerServices = Service::select(['id', 'title', 'description', 'main_service_image', 'created_at', 'added_by', 'subCategory_id', 'category_id'])
+            ->with(['haveProvider' => function ($user) {
+                $user->select('id', 'role_id', 'logo');
+            }, 'subcat' => function ($subCategory) {
+                $subCategory->select('id', 'name');
+            }])
+            ->with("averageReviews")
+            ->where('services.added_by', $_GET['id'])
+            ->get();
 
         return response()->json(['sellerServices' => $sellerServices]);
 
@@ -360,10 +368,10 @@ class ServiceController extends Controller
             $seller = User::where('id', $_GET['id'])->with('subscriptions')->first();
             $subscription = Subscription::where('stripe_subscription_status', 'active')->where('user_id', $_GET['id'])->get();
             $subscriptionStatus = false;
-            if(count($subscription) > 0){
+            if (count($subscription) > 0) {
                 $subscriptionStatus = true;
             }
-            return response()->json(['seller' => $seller, 'subscription'=>$subscriptionStatus]);
+            return response()->json(['seller' => $seller, 'subscription' => $subscriptionStatus]);
         }
     }
 
