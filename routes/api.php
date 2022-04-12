@@ -52,8 +52,8 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::post('stripeWebhook', 'StripeController@stripeWebhook')->name("stripeWebhook");
 
     Route::get('get-watch-list', 'WatchListController@getWatchList')->name('get-watch-list');
-    Route::group(['middleware' => 'auth:api'], function () {
+    // Route::group(['middleware' => 'auth:api'], function () {
         Route::get('test', 'AuthController@test')->name('test');
 
-    });
+    // });
 });
