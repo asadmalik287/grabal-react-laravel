@@ -53,68 +53,87 @@
         <!-- /# column -->
     </div>
     <div>
-        @if (Session::has('message'))
-            <p class="alert {{ Session::get('alert-class', 'alert-success') }}">{{ Session::get('message') }}</p>
-        @endif
     </div>
     <div class="row">
 
         <div class="col-lg-12 pt-0">
-            <div class="card mt-0">
+            <div class="row mt-0">
                 <div class="col-lg-6 pt-0">
-                    <form action="{{ url('admin/store_banner') }}" method=post>
-                        @csrf
-                        <div class="form-group row align-items-center">
-                            <label class="col-lg-2 col-form-label" for="val-select2">Title <span
-                                    class="text-danger">*</span></label>
-                            <div class="col-lg-10">
-                                <input type="text" class="form-control" name="title" placeholder="Enter title.." />
-                                @error('title')
+                    @if ($detail != null)
+                        <form action="{{ route('ads.update', $detail->id) }}" method="POST" enctype='multipart/form-data'>
+                            @csrf
+                            @method('PUT')
+                        @else
+                            <form action="{{ url('admin/store_banner') }}" method=post>
+                                @csrf
+                    @endif
+                    <div class="form-group row align-items-center">
+                        <label class="col-lg-2 col-form-label" for="val-select2">Title <span
+                                class="text-danger">*</span></label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" name="title" placeholder="Enter title.."
+                                value="{{ $detail != null ? $detail->title : '' }}" />
+                            {{-- @error('title')
                                     <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+                                @enderror --}}
                         </div>
-                        <div class="form-group row align-items-center">
-                            <label class="col-lg-2 col-form-label" for="val-select2">Page <span
-                                    class="text-danger">*</span></label>
-                            <div class="col-lg-10">
-                                <select class="js-select2 form-control" id="val-select2" name="page" style="width: 100%;">
-                                    <option selected disabled>Select Ads location</option>
-                                    <option data-width='1523' data-height='369' value="home">Home</option>
-                                    <option data-width='233' data-height='650' value="sidebar">Sidebar</option>
-                                    <option data-width='362' data-height='394' value="serviceDetail">Service Detail</option>
-                                </select>
-                                @error('page')
+                    </div>
+                    <div class="form-group row align-items-center">
+                        <label class="col-lg-2 col-form-label" for="val-select2">Page <span
+                                class="text-danger">*</span></label>
+                        <div class="col-lg-10">
+                            <select class="js-select2 form-control" id="val-select2" name="page" style="width: 100%;">
+                                <option selected disabled>Select Ads location</option>
+                                <option data-width='1523' data-height='369' value="home"
+                                    {{ $detail != null ? ($detail->page == 'home' ? 'selected' : '') : '' }}>Home
+                                </option>
+                                <option data-width='233' data-height='650' value="sidebar"
+                                    {{ $detail != null ? ($detail->page == 'sidebar' ? 'selected' : '') : '' }}>
+                                    Sidebar</option>
+                                <option data-width='362' data-height='394' value="serviceDetail"
+                                    {{ $detail != null ? ($detail->page == 'serviceDetail' ? 'selected' : '') : '' }}>
+                                    Service Detail</option>
+                            </select>
+                            {{-- @error('page')
                                     <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+                                @enderror --}}
                         </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-10">
-                                <div class="form-group row align-items-center">
-                                    <label class="cabinet center-block">
-                                        <figure class="position-relative">
-                                            <img src="{{ asset('/assets/admin/banners/ad.jpg') }}"
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-10">
+                            <div class="form-group row align-items-center">
+                                <span id="dimension" style="color:red">
+                                </span>
+                                <label class="cabinet center-block">
+                                    <figure class="position-relative">
+                                        @if ($detail != null)
+                                            <img src="{{ asset('storage/' . $detail->attachment_link) }}"
                                                 class="gambar img-responsive img-thumbnail" id="item-img-output" />
-                                            {{-- <figcaption class="position-absolute" style="top: 150px"><i class="fa fa-camera"></i></figcaption> --}}
-                                        </figure>
-                                        <input type="file" class="item-img file center-block" id="file_photo" disabled
-                                            name="file_photo" />
-                                    </label>
-                                    @error('image')
+                                            <span style="color:rgb(124, 121, 121)"> Please Click on Image to change
+                                                Attachment</span>
+                                        @else
+                                            <img src=" {{ asset('/assets/admin/banners/ad.jpg') }}"
+                                                class="gambar img-responsive img-thumbnail" id="item-img-output" />
+                                        @endif
+                                        {{-- <figcaption class="position-absolute" style="top: 150px"><i class="fa fa-camera"></i></figcaption> --}}
+                                    </figure>
+                                    <input type="file" class="item-img file center-block" id="attachment"
+                                        {{ $detail == null ? 'disabled' : '' }} name="attachment" />
+                                </label>
+                                {{-- @error('image')
                                         <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
+                                    @enderror --}}
                             </div>
+
                         </div>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-success px-3">Save Ad</button>
+                    </div>
                 </div>
 
-                <div class="text-right">
-                    <button type="submit" class="btn btn-success px-3">Upload New Ad</button>
-                </div>
                 <input type="hidden" name="hiddenInput" id="hiddenInput">
                 </form>
             </div>
@@ -156,6 +175,13 @@
             tempFilename,
             rawImg,
             imageId;
+        $(document).ready(function() {
+            detail = <?php echo json_encode($detail); ?>;
+            if (detail) {
+                $('#val-select2').change()
+                $('#val-select2').attr('readonly',true)
+            }
+        })
 
         function readFile(input) {
             if (input.files && input.files[0]) {
@@ -174,9 +200,11 @@
         var globalWidth = 0;
         var globalHeight = 0;
         $('#val-select2').on('change', function() {
-            $('#file_photo').prop('disabled', false)
+            $('#attachment').prop('disabled', false)
             var globalWidth = $(this).find(':selected').attr('data-width')
             var globalHeight = $(this).find(':selected').attr('data-height')
+            $('#dimension').html('Note: <span style="color:red">*</span> Image Dimension should be ' + globalWidth +
+                ' by ' + globalHeight + ' ')
             $('.cr-viewport').css('width', globalWidth)
             $('.cr-viewport').css('height', globalHeight)
         });

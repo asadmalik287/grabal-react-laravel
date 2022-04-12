@@ -69,19 +69,30 @@
                                         </tr>
                                     </thead>
                                     @php
-                                        $data = DB::table('upload_ads')->get();
+                                        $data = DB::table('upload_ads')
+                                            ->where('page', 'home')
+                                            ->get();
                                     @endphp
 
                                     <tbody>
                                         @foreach ($data as $key => $value)
                                             <tr>
-                                                <td>{{ $key++ }}</td>
+                                                <td>{{ $key + 1 }}</td>
                                                 <td>{{ $value->title }}</td>
                                                 <td>
-                                                    <img height="100" width="100" src="{{ storage_path('/app/uploads/' . $value->attachment_link) }}"
-                                                        alt="">
+                                                    <img height="100" width="100"
+                                                        src="{{ $value->attachment_link}}" alt="">
                                                 </td>
-                                                <td></td>
+                                                <td>
+                                                    {{-- <div class="d-flex flex-nowrap"> --}}
+                                                    <a type="button" class="btn btn-sm btn-info"
+                                                        href="{{ url('admin/add_banner') }}?id={{ $value->id }}">Change
+                                                        Ad image</a>
+
+                                                    <button class="btn btn-sm btn-danger"
+                                                        onclick="changeStatus(this,'delete', '{{ route('ads.destroy', $value->id) }}', '{{ $value->id }}', 'DELETE')">Delete</button>
+                                                    {{-- </div> --}}
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -95,13 +106,94 @@
 
                     {{-- Pending tab start --}}
                     <div id="sidebar" class="tab-pane">
+                        <div class="bootstrap-data-table-panel">
+                            <div class="table-responsive">
+                                <table id="bootstrap-data-table-export1" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr</th>
+                                            <th>Title</th>
+                                            <th>Image</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    @php
+                                        $data = DB::table('upload_ads')
+                                            ->where('page', 'sidebar')
+                                            ->get();
+                                    @endphp
 
+                                    <tbody>
+                                        @foreach ($data as $keys => $value1)
+                                            <tr>
+                                                <td>{{ $keys + 1 }}</td>
+                                                <td>{{ $value1->title }}</td>
+                                                <td>
+                                                    <img height="100" width="100"
+                                                        src="{{ $value1->attachment_link}}" alt="">
+                                                </td>
+                                                <td>
+                                                    {{-- <div class="d-flex flex-nowrap"> --}}
+                                                    <a type="button" class="btn btn-sm btn-info"
+                                                        href="{{ url('admin/add_banner') }}?id={{ $value1->id }}">Change
+                                                        Ad image</a>
+                                                    <button class="btn btn-sm btn-danger"
+                                                        onclick="changeStatus(this,'delete', '{{ route('ads.destroy', $value1->id) }}', '{{ $value1->id }}', 'DELETE')">Delete</button>
+                                                    {{-- </div> --}}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     {{-- Pending tab end --}}
 
                     {{-- Approved tab start --}}
                     <div id="serviceDetail" class="tab-pane">
+                        <div class="bootstrap-data-table-panel">
+                            <div class="table-responsive">
+                                <table id="bootstrap-data-table-export2" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr</th>
+                                            <th>Title</th>
+                                            <th>Image</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    @php
+                                        $data = DB::table('upload_ads')
+                                            ->where('page', 'serviceDetail')
+                                            ->get();
+                                    @endphp
 
+                                    <tbody>
+                                        @foreach ($data as $keyss => $value2)
+                                            <tr>
+                                                <td>{{ $keyss + 1 }}</td>
+                                                <td>{{ $value2->title }}</td>
+                                                <td>
+                                                    <img height="100" width="100"
+                                                        src="{{ $value2->attachment_link}}" alt="">
+                                                </td>
+                                                <td>
+                                                    {{-- <div class="d-flex flex-nowrap"> --}}
+                                                    <a type="button" class="btn btn-sm btn-info"
+                                                        href="{{ url('admin/add_banner') }}?id={{ $value2->id }}">Change
+                                                        Ad image</a>
+
+                                                    <button class="btn btn-sm btn-danger"
+                                                        onclick="changeStatus(this,'delete', '{{ route('ads.destroy', $value2->id) }}', '{{ $value2->id }}', 'DELETE')">Delete</button>
+                                                    {{-- </div> --}}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     {{-- Approved tab end --}}
 
@@ -132,6 +224,63 @@
     <script>
         $(document).ready(function() {
             $('#bootstrap-data-table-export_wrapper').addClass('justify-content-between')
+            $('#bootstrap-data-table-export1_wrapper').addClass('justify-content-between')
+            $('#bootstrap-data-table-export2_wrapper').addClass('justify-content-between')
         });
+
+        function changeStatus(elem, action, targetUrl, id, method) {
+            $('#viewServiceModal_div').html('');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            if (action == 'view') {
+                serviceCommonAjax(targetUrl, method, id, action)
+            } else {
+                swal({
+                        title: 'Do you want to ' + action + ' this Ad?',
+                        text: "Changes will be saved immediately!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            serviceCommonAjax(targetUrl, method, id, action)
+                        } else {
+                            swal("Change is reverted!");
+                            return false;
+                        }
+                    });
+            }
+
+        }
+
+        function serviceCommonAjax(targetUrl, method, id, action) {
+            $.ajax({
+                url: targetUrl,
+                type: method,
+                data: {
+                    id: id,
+                    action: action
+                },
+                success: function(data) {
+                    if (data.success == true) {
+                        swal("success", data.message, "success").then((value) => {
+                            window.location.reload();
+                        });
+                    } else if (data.success == false) {
+                        swal({
+                            icon: "error",
+                            text: "Action Failed due to some Error!",
+                            type: "error",
+                        });
+                    } else {
+                        return false;
+                    }
+                },
+            });
+        }
     </script>
 @endsection

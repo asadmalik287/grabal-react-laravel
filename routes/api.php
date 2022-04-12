@@ -39,14 +39,17 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::get('remove-watch-list', 'WatchListController@removeFromWatchList')->name('remove-watch-list');
     Route::post('add-review', 'ReviewController@addReview')->name('add-review');
     Route::get('get-reviews', 'ReviewController@getAllReviews')->name('get-reviews');
-    Route::post('getSubCategoryServices','AllFunctionsController@getSubCategoryServices')->name('getSubCategoryServices');
-    Route::get('getPopularServicesAndCategories','AllFunctionsController@getPopularServicesAndCategories')->name('getPopularServicesAndCategories');
-    Route::post('sendEnquiryEmailToServiceProvider','AllFunctionsController@sendEnquiryEmailToServiceProvider')->name('sendEnquiryEmailToServiceProvider');
+    Route::post('getSubCategoryServices', 'AllFunctionsController@getSubCategoryServices')->name('getSubCategoryServices');
+    Route::get('getPopularServicesAndCategories', 'AllFunctionsController@getPopularServicesAndCategories')->name('getPopularServicesAndCategories');
+    Route::post('sendEnquiryEmailToServiceProvider', 'AllFunctionsController@sendEnquiryEmailToServiceProvider')->name('sendEnquiryEmailToServiceProvider');
+
+    //ads routes
+    Route::get('getAd', 'AllFunctionsController@getAd')->name('getAd');
 
     // stripe payment gateway
-    Route::post('stripe-payment','StripeController@store')->name("stripe-payment");
-    Route::get('stripe-subscription-cancel/{id}','StripeController@stripeSubscriptionCancel')->name("stripe-subscription-cancel");
-    Route::post('stripeWebhook','StripeController@stripeWebhook')->name("stripeWebhook");
+    Route::post('stripe-payment', 'StripeController@store')->name("stripe-payment");
+    Route::get('stripe-subscription-cancel/{id}', 'StripeController@stripeSubscriptionCancel')->name("stripe-subscription-cancel");
+    Route::post('stripeWebhook', 'StripeController@stripeWebhook')->name("stripeWebhook");
 
     Route::get('get-watch-list', 'WatchListController@getWatchList')->name('get-watch-list');
     Route::group(['middleware' => 'auth:api'], function () {
