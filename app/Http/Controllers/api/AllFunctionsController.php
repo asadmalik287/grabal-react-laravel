@@ -85,7 +85,7 @@ class AllFunctionsController extends Controller
     public function getPopularServicesAndCategories(Request $request)
     {
         $reviewsList = Review::with(["service" => function ($service) {
-            $service->select(['id', 'title', 'description', 'main_service_image', 'created_at', 'added_by'])->with(['haveProvider' => function ($user) {
+            $service->select(['id', 'title', 'description','slug', 'main_service_image', 'created_at', 'added_by'])->with(['haveProvider' => function ($user) {
                 $user->select(['id', 'name', 'f_name', 'l_name', 'role_id', 'logo']);
             }]);},
         ])->get()
