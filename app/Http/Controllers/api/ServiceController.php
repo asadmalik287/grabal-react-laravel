@@ -341,7 +341,7 @@ class ServiceController extends Controller
         //     ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
         //         'services.id as Service_id')->where('services.added_by', $_GET['id'])->get();
 
-        $sellerServices = Service::select(['id', 'title', 'description', 'main_service_image', 'created_at', 'added_by', 'subCategory_id', 'category_id'])
+        $sellerServices = Service::select(['id', 'title', 'description', 'slug','main_service_image', 'created_at', 'added_by', 'subCategory_id', 'category_id'])
             ->with(['haveProvider' => function ($user) {
                 $user->select('id', 'role_id', 'logo');
             }, 'subcat' => function ($subCategory) {
