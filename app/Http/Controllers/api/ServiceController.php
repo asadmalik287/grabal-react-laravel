@@ -341,7 +341,7 @@ class ServiceController extends Controller
         //     ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
         //         'services.id as Service_id')->where('services.added_by', $_GET['id'])->get();
 
-        $sellerServices = Service::select(['id', 'title', 'description', 'slug','main_service_image', 'created_at', 'added_by', 'subCategory_id', 'category_id'])
+        $sellerServices = Service::select(['id', 'title', 'description', 'slug', 'main_service_image', 'created_at', 'added_by', 'subCategory_id', 'category_id'])
             ->with(['haveProvider' => function ($user) {
                 $user->select('id', 'role_id', 'logo');
             }, 'subcat' => function ($subCategory) {
@@ -377,7 +377,20 @@ class ServiceController extends Controller
     public function getTypServices(Request $request)
     {
         if (isset($_GET['type'])) {
-            return $_GET['type'];
+            $services = Service::join('categories', 'services.category_id', 'categories.id')
+                ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
+                ->join('users', 'services.added_by', 'users.id')
+                ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller', 'users.role_id', 'users.logo', 'categories.name as Category', 'services.*',
+                    'services.id as Service_id')
+                ->where('services.service_type', $_GET['type'])->get();
+            foreach ($services as $key => $value) {
+                if (WatchList::where('service_id', $value->id)->exists()) {
+                    $value->watchlist = 1;
+                } else {
+                    $value->watchlist = 0;
+                }
+            }
+            return response()->json(['services' => $services]);
         }
     }
     // close
@@ -430,7 +443,7 @@ class ServiceController extends Controller
                 ->join('users', 'services.added_by', 'users.id')
                 ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.logo',
                     'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
-                    'services.id as Service_id')->where('services.subCategory_id', $_GET['id'])->get();
+                    'services.id as Service_id')->where('sub_categories.slug', $_GET['id'])->get();
             // $images = Service::with('hasAttachment')->where('services.subCategory_id', $_GET['id'])->get();
             $totalServices = count($services);
             return response()->json(['services' => $services

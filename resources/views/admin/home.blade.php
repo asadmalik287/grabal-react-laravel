@@ -99,7 +99,7 @@
                                     <tr>
                                         <th><a href="#">{{ $provider["have_provider"]["business_name"] ?? 'N/A'}}</a></th>
                                         <td><a href="#">{{$provider["have_provider"]["services_count"]}} Services</a></td>
-                                        <td class="text-center p-2"><a href="#"></a></td>
+                                        <td class="text-center p-2">{{$provider["assigned_task_count"]}}<a href="#"></a></td>
                                     </tr>
                                 @endforeach
                             @endif
@@ -121,7 +121,7 @@
                                 <tr>
                                     <th><a href="#" style="text-transform: capitalize">{{$singleService->subcat->name}}</a></th>
                                     <td><a href="#">{{$singleService->subcat->service_providers_count}} Service Providers</a></td>
-                                    <td class="text-center p-2"><a href="#"></a></td>
+                                    <td class="text-center p-2"><a href="#">{{$singleService["assigned_task_count"]}}</a></td>
                                 </tr>
                             @endforeach
 
