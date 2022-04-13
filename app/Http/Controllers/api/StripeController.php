@@ -86,7 +86,7 @@ class StripeController extends Controller
                     'items' => [['price' => $price->id]],
                 ]);
 
-                $subscription = Subscription::create(['user_id' => $user->id, 'stripe_id' => $user->stripe_id, 'stripe_subscription_id' => $subscription->id, 'stripe_price_id' => $price->id, 'stripe_subscription_status' => $subscription->status, 'ends_at' => $subscription->current_period_end, 'quantity' => 1]);
+                $subscription = Subscription::create(['user_id' => $user->id, 'stripe_id' => $user->stripe_id, 'stripe_subscription_id' => $subscription->id, 'stripe_price_id' => $price->id, 'stripe_subscription_status' => $subscription->status, 'ends_at' => date('Y-m-d H:i:s', strtotime($subscription->current_period_end)), 'quantity' => 1]);
                 if ($subscription != null) {
                     return response()->json(['success' => true, "message" => "Thanks! You have subscribed successfully"]);
                 }
@@ -178,7 +178,7 @@ class StripeController extends Controller
             }
         }else{
             if(isset($subId)){
-                $subscription = Subscription::where("stripe_subscription_id", $subId)->update(['stripe_subscription_status' => 'inactive']); 
+                $subscription = Subscription::where("stripe_subscription_id", $subId)->update(['stripe_subscription_status' => 'inactive']);
             }
         }
     }
