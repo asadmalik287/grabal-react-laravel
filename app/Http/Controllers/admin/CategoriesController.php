@@ -50,6 +50,7 @@ class CategoriesController extends Controller
 
         $category = new Categories();
         $category->name = $request->name;
+        $category->slug = $request->name;
         $category->status = $request->status;
         $category->save();
         return response()->json(['success' => true, 'message' => 'Category has been added successfully']);
@@ -98,6 +99,7 @@ class CategoriesController extends Controller
 
         $category = Categories::find($id);
         $category->name = $request->name;
+        $category->slug = $request->name;
         $category->status = $request->status;
         if ($category->save()) {
             return response()->json(['success' => true, 'message' => 'Category has been updated successfully']);
@@ -125,7 +127,7 @@ class CategoriesController extends Controller
     {
         $category = Categories::all();
         return Datatables::of($category)
-        ->addIndexColumn()
+            ->addIndexColumn()
             ->addColumn('title', function ($category) {
                 return $category->name;
             })

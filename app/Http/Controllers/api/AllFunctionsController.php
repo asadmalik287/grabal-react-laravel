@@ -118,12 +118,13 @@ class AllFunctionsController extends Controller
         // get top three services category and their service providers
         $topServicesCategory = Service::select(['id', 'title', 'subCategory_id', 'added_by'])->whereIn('id', $topThreeServices)
             ->with(['subcat' => function ($subCategory) {
-                $subCategory->select(['id', 'name'])
+                $subCategory->select(['id', 'name','slug'])
                     ->where('status', 'active')
                     ->withCount('serviceProviders');
             }])
             ->get()
             ->groupBy('id');
+            return $topServicesCategory;
         // make order according to services reviews
         if (count($topTenServices) > 0) {
             foreach ($topTenServices as $value) {

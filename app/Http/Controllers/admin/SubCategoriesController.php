@@ -43,6 +43,7 @@ class SubCategoriesController extends Controller
         $sub_category = new SubCategories();
         $sub_category->category_id = $request->category_id;
         $sub_category->name = $request->name;
+        $sub_category->slug = $request->name;
         $sub_category->status = $request->status;
         $sub_category->save();
         return response()->json(['success' => true, 'message' =>'Subcategory has been added successfully']);
@@ -72,6 +73,7 @@ class SubCategoriesController extends Controller
         $sub_category = SubCategories::find($id);
         $sub_category->category_id = $request->category_id;
         $sub_category->name = $request->name;
+        $sub_category->slug = $request->name;
         $sub_category->status = $request->status;
         if($sub_category->save()){
             return response()->json(['success' => true, 'message' =>'Sub Category has been updated successfully']);
