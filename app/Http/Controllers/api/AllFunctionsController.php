@@ -108,7 +108,7 @@ class AllFunctionsController extends Controller
         $services = Service::join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
             ->where('sub_categories.slug', $request->slug);
 
-        $services = $services->select(['services.id', 'services.title', 'services.description', 'services.main_service_image', 'services.created_at', 'services.added_by', 'services.subCategory_id', 'services.category_id'])
+        $services = $services->select(['services.id','services.slug', 'services.title', 'services.description', 'services.main_service_image', 'services.created_at', 'services.added_by', 'services.subCategory_id', 'services.category_id'])
             ->with(['haveProvider' => function ($user) {
                 $user->select('id', 'role_id', 'logo');
             }, 'subcat' => function ($subCategory) {
