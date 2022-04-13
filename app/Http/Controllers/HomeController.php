@@ -90,18 +90,17 @@ class HomeController extends Controller
         $topServiceProviders = Service::select(['id', 'added_by'])->whereIn('id', $topTenServices)
             ->with(['haveProvider' => function ($provider) {
                 $provider->select(['id', 'name', 'business_name', 'f_name', 'l_name', 'logo', 'created_at'])
-                    ->withCount('services');
+                    ->withCount('services')
+                    ->withCount('hasTask');
             }])
             ->withCount(['reviews' => function ($reviews) {
                 $reviews->where('rating', 5);
             }])
-            ->withCount(['assignedTask' => function ($task) {
-                return $task;
-            }])
+
             ->get()
             ->unique('added_by')
             ->groupBy('id');
-        return $topServiceProviders;
+        // return $topServiceProviders;
         // make order according to top three services and create category service providers count
         if (count($topThreeServices) > 0) {
             foreach ($topThreeServices as $value) {

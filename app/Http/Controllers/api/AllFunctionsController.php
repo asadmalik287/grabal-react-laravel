@@ -44,6 +44,7 @@ class AllFunctionsController extends Controller
         // if($subCategory!=null){
         //     $services = $subCategory->service();
         $filledFieldAndData = $this->getFilledFields($request, ['subCategory_id', 'category_id', 'city', 'suburb', 'postal_code'], ["user_id"]);
+        return $filledFieldAndData;
         $services = [];
         if (count($filledFieldAndData) > 0) {
             foreach ($filledFieldAndData as $key => $value) {
@@ -81,11 +82,65 @@ class AllFunctionsController extends Controller
         // return response()->json(['success'=>false,'message'=>"Sorry sub category does not exist"]);
     }
 
+    // get sub cat service
+    public function getSubCategoryService(Request $request)
+    {
+        // $validator = Validator::make($request->all(),['sub_category_id'=>"required"]);
+        // if($validator->fails()){
+        //     return response()->json(['success'=>false,"errors"=>$validator->errors()]);
+        // }
+
+        // $subCategory = SubCategories::find($request->sub_category_id);
+        // if($subCategory!=null){
+        //     $services = $subCategory->service();
+        $filledFieldAndData = [];
+        $filled['id'] = $request->subCategory_id;
+        $services = [];
+        // if (count($filledFieldAndData) > 0) {
+        // foreach ($filledFieldAndData as $key => $value) {
+        //     if ($key == array_key_first($filledFieldAndData)) {
+        //         $services = Service::join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
+        //             ->where(categories, $value);
+        //     } else {
+        //         $services->where($key, $value);
+        //     }
+        // }
+        $services = Service::join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
+            ->where('sub_categories.slug', $request->subCategory_id);
+
+        $services = $services->select(['services.id', 'services.title', 'services.description', 'services.main_service_image', 'services.created_at', 'services.added_by', 'services.subCategory_id', 'services.category_id'])
+            ->with(['haveProvider' => function ($user) {
+                $user->select('id', 'role_id', 'logo');
+            }, 'subcat' => function ($subCategory) {
+                $subCategory->select('id', 'name');
+            }])
+            ->with("averageReviews")
+            ->get();
+        $newServicesArr = [];
+        if (count($services) > 0) {
+            foreach ($services as $service) {
+                $watchList = 0;
+                if (isset($request->user_id)) {
+                    if (WatchList::where(['service_id' => $service->id, 'user_id' => $request->user_id])->exists()) {
+                        $watchList = 1;
+                    }
+                }
+                $service['watchList'] = $watchList;
+                $newServicesArr[] = $service;
+            }
+        }
+        $services = $newServicesArr;
+        // }
+        return response()->json(['success' => true, 'services' => $services]);
+        // }
+        // return response()->json(['success'=>false,'message'=>"Sorry sub category does not exist"]);
+    }
+    // close
     // get popular services and its category
     public function getPopularServicesAndCategories(Request $request)
     {
         $reviewsList = Review::with(["service" => function ($service) {
-            $service->select(['id', 'title', 'description','slug', 'main_service_image', 'created_at', 'added_by'])->with(['haveProvider' => function ($user) {
+            $service->select(['id', 'title', 'description', 'slug', 'main_service_image', 'created_at', 'added_by'])->with(['haveProvider' => function ($user) {
                 $user->select(['id', 'name', 'f_name', 'l_name', 'role_id', 'logo']);
             }]);},
         ])->get()
@@ -118,13 +173,13 @@ class AllFunctionsController extends Controller
         // get top three services category and their service providers
         $topServicesCategory = Service::select(['id', 'title', 'subCategory_id', 'added_by'])->whereIn('id', $topThreeServices)
             ->with(['subcat' => function ($subCategory) {
-                $subCategory->select(['id', 'name','slug'])
+                $subCategory->select(['id', 'name', 'slug'])
                     ->where('status', 'active')
                     ->withCount('serviceProviders');
             }])
             ->get()
             ->groupBy('id');
-            // return $topServicesCategory;
+        // return $topServicesCategory;
         // make order according to services reviews
         if (count($topTenServices) > 0) {
             foreach ($topTenServices as $value) {

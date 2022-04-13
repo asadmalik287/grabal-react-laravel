@@ -377,7 +377,7 @@ class ServiceController extends Controller
     public function getTypServices(Request $request)
     {
         if (isset($_GET['type'])) {
-            $services = Service::join('categories', 'services.category_id', 'categories.id')
+            $services = DB::table('services')->join('categories', 'services.category_id', 'categories.id')
                 ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
                 ->join('users', 'services.added_by', 'users.id')
                 ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller', 'users.role_id', 'users.logo', 'categories.name as Category', 'services.*',
@@ -389,7 +389,16 @@ class ServiceController extends Controller
                 } else {
                     $value->watchlist = 0;
                 }
+                $rating = DB::table('services')->join('reviews', 'services.id', 'reviews.service_id')
+                    ->selectRaw('SUM(reviews.rating)/COUNT(reviews.id) AS ratingssss', )
+                    ->selectRaw('COUNT(reviews.id) AS total_reviews')
+                    ->where('services.id', $value->Service_id)->first();
+                $value->rating = $rating->ratingssss;
+                $value->watchlist = $rating->total_reviews;
+                return $value;
             }
+            // return count($services);
+
             return response()->json(['services' => $services]);
         }
     }

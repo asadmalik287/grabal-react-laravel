@@ -76,4 +76,5 @@ class User extends Authenticatable
     {
         return $this->hasOne(Subscription::class,'user_id');
     }
+
 }
