@@ -70,7 +70,7 @@ class StripeController extends Controller
                 $price = $this->stripe->prices->create([
                     'unit_amount' => $request->amount * 100,
                     'currency' => 'nzd',
-                    'recurring' => ['interval' => 'day'],
+                    'recurring' => ['interval' => 'month'],
                     'product' => $product->id,
                 ]);
 
