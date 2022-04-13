@@ -124,7 +124,7 @@ class AllFunctionsController extends Controller
             }])
             ->get()
             ->groupBy('id');
-            return $topServicesCategory;
+            // return $topServicesCategory;
         // make order according to services reviews
         if (count($topTenServices) > 0) {
             foreach ($topTenServices as $value) {
