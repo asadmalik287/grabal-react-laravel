@@ -44,7 +44,6 @@ class AllFunctionsController extends Controller
         // if($subCategory!=null){
         //     $services = $subCategory->service();
         $filledFieldAndData = $this->getFilledFields($request, ['subCategory_id', 'category_id', 'city', 'suburb', 'postal_code'], ["user_id"]);
-        return $filledFieldAndData;
         $services = [];
         if (count($filledFieldAndData) > 0) {
             foreach ($filledFieldAndData as $key => $value) {
