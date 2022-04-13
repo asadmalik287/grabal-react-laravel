@@ -94,7 +94,7 @@ class AllFunctionsController extends Controller
         // if($subCategory!=null){
         //     $services = $subCategory->service();
         $filledFieldAndData = [];
-        $filled['id'] = $request->subCategory_id;
+        $filled['id'] = $request->slug;
         $services = [];
         // if (count($filledFieldAndData) > 0) {
         // foreach ($filledFieldAndData as $key => $value) {
@@ -106,7 +106,7 @@ class AllFunctionsController extends Controller
         //     }
         // }
         $services = Service::join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
-            ->where('sub_categories.slug', $request->subCategory_id);
+            ->where('sub_categories.slug', $request->slug);
 
         $services = $services->select(['services.id', 'services.title', 'services.description', 'services.main_service_image', 'services.created_at', 'services.added_by', 'services.subCategory_id', 'services.category_id'])
             ->with(['haveProvider' => function ($user) {
