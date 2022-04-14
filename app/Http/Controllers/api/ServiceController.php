@@ -395,7 +395,6 @@ class ServiceController extends Controller
                     ->where('services.id', $value->Service_id)->first();
                 $value->rating = $rating->ratingssss;
                 $value->watchlist = $rating->total_reviews;
-                return $value;
             }
             // return count($services);
 
