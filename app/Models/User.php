@@ -77,4 +77,19 @@ class User extends Authenticatable
         return $this->hasOne(Subscription::class,'user_id');
     }
 
+    public function setSlugAttribute($name)
+    {
+        $this->attributes['slug'] = $this->uniqueSlug($name);
+    }
+
+    private function uniqueSlug($name)
+    {
+        $slug = str_replace(' ', '-', strtolower($name)); // Replaces all spaces with hyphens.
+        $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $slug); // Removes special chars.
+        $slug = preg_replace('/-+/', '-', $slug); // Replaces multiple hyphens with single one.
+        $count = SubCategories::where('slug', 'LIKE', "{$slug}%")->count();
+        $newCount = $count > 0 ? ++$count : '';
+        return $newCount > 0 ? "$slug-$newCount" : $slug;
+    }
+
 }
