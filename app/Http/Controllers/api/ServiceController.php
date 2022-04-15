@@ -382,13 +382,13 @@ class ServiceController extends Controller
     // get services of type
     public function getTypServices(Request $request)
     {
-        if (isset($_GET['type'])) {
+        // if (isset($_GET['type'])) {
             $services = DB::table('services')->join('categories', 'services.category_id', 'categories.id')
                 ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
                 ->join('users', 'services.added_by', 'users.id')
                 ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller', 'users.role_id', 'users.logo', 'categories.name as Category', 'services.*',
                     'services.id as Service_id')
-                ->where('services.service_type', $_GET['type'])->get();
+                ->where('services.service_type', $request->type)->get();
             foreach ($services as $key => $value) {
                 if (WatchList::where(['service_id' => $value->id, 'user_id' => $request->user_id])->exists()) {
                     $value->watchlist = 1;
@@ -405,7 +405,7 @@ class ServiceController extends Controller
             // return count($services);
 
             return response()->json(['services' => $services]);
-        }
+        // }
     }
     // close
     // get all services
