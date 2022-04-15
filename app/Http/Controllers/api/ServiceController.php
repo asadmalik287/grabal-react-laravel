@@ -313,7 +313,7 @@ class ServiceController extends Controller
                 ->selectRaw('SUM(reviews.rating)/COUNT(reviews.id) AS ratingssss', )
                 ->selectRaw('COUNT(reviews.id) AS total_reviews')
                 ->where('services.id', $value->Service_id)->first();
-            $value->rating = $rating->ratingssss;
+            $value->rating = round($rating->ratingssss,1);
             $value->total_reviews = $rating->total_reviews;
         }
         return response()->json(['services' => $services]);
@@ -399,7 +399,7 @@ class ServiceController extends Controller
                     ->selectRaw('SUM(reviews.rating)/COUNT(reviews.id) AS ratingssss', )
                     ->selectRaw('COUNT(reviews.id) AS total_reviews')
                     ->where('services.id', $value->Service_id)->first();
-                $value->rating = $rating->ratingssss;
+                $value->rating = round($rating->ratingssss,1);
                 $value->total_reviews = $rating->total_reviews;
             }
             // return count($services);
