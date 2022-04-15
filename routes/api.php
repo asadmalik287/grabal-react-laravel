@@ -41,7 +41,7 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::get('get-reviews', 'ReviewController@getAllReviews')->name('get-reviews');
     Route::post('getSubCategoryServices', 'AllFunctionsController@getSubCategoryServices')->name('getSubCategoryServices');
     Route::post('get-subCategory-service', 'AllFunctionsController@getSubCategoryService')->name('getSubCategoryService');
-    Route::get('getPopularServicesAndCategories', 'AllFunctionsController@getPopularServicesAndCategories')->name('getPopularServicesAndCategories');
+    Route::post('getPopularServicesAndCategories', 'AllFunctionsController@getPopularServicesAndCategories')->name('getPopularServicesAndCategories');
     Route::post('sendEnquiryEmailToServiceProvider', 'AllFunctionsController@sendEnquiryEmailToServiceProvider')->name('sendEnquiryEmailToServiceProvider');
 
     Route::post('get-type-services', 'ServiceController@getTypServices')->name('get-type-services');
