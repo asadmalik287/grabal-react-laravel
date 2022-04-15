@@ -140,7 +140,7 @@ class AllFunctionsController extends Controller
     {
         $reviewsList = Review::with(["service" => function ($service) {
             $service->select(['id', 'title', 'description', 'slug', 'main_service_image', 'created_at', 'added_by'])->with(['haveProvider' => function ($user) {
-                $user->select(['id', 'name', 'f_name', 'l_name', 'role_id', 'logo']);
+                $user->select(['id', 'name', 'f_name', 'l_name', 'role_id', 'logo','slug']);
             }]);},
         ])->get()
             ->groupBy("service_id");
@@ -204,7 +204,7 @@ class AllFunctionsController extends Controller
         // get top service providers
         $topServiceProviders = Service::select(['id', 'added_by'])->whereIn('id', $topTenServices)
             ->with(['haveProvider' => function ($provider) {
-                $provider->select(['id', 'name', 'business_name', 'f_name', 'l_name', 'logo', 'created_at', 'message']);
+                $provider->select(['id', 'name', 'business_name', 'f_name','slug', 'l_name', 'logo', 'created_at', 'message']);
             }])
             ->get()
             ->unique('added_by')
