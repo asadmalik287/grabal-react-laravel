@@ -16,7 +16,6 @@ class UserController extends Controller
         $user->email = $req->email;
         $user->password = Hash::make($req->password);
         $user->confirm_password = Hash::make($req->confirm_password);
-        $user->username = $req->username;
         $user->country = $req->country;
         $user->f_name = $req->f_name;
         $user->l_name = $req->l_name;

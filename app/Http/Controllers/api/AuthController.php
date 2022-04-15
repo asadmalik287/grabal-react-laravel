@@ -61,6 +61,8 @@ class AuthController extends Controller
         $userName = strtok($request['email'], '@');
         $request['password'] = $passwordHashed;
         $request['name'] = $userName;
+        $request['slug'] = $userName;
+        // return $request['slug'];
         // if ($request['role_id'] == 2) {
 
         //     $request['is_verified'] = 0;

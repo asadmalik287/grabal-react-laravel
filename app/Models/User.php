@@ -32,6 +32,7 @@ class User extends Authenticatable
         'password',
         'confirm_password',
         'dob',
+        'slug',
         'name',
         'country',
         'gender',
@@ -87,7 +88,7 @@ class User extends Authenticatable
         $slug = str_replace(' ', '-', strtolower($name)); // Replaces all spaces with hyphens.
         $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $slug); // Removes special chars.
         $slug = preg_replace('/-+/', '-', $slug); // Replaces multiple hyphens with single one.
-        $count = SubCategories::where('slug', 'LIKE', "{$slug}%")->count();
+        $count = User::where('slug', 'LIKE', "{$slug}%")->count();
         $newCount = $count > 0 ? ++$count : '';
         return $newCount > 0 ? "$slug-$newCount" : $slug;
     }
