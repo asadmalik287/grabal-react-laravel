@@ -406,7 +406,7 @@ class ServiceController extends Controller
     public function sellerDetail(Request $request)
     {
         if (isset($_GET['id'])) {
-            $seller = User::where('id', $_GET['id'])->with('subscriptions')->first();
+            $seller = User::where('slug', $_GET['id'])->with('subscriptions')->first();
             $subscription = Subscription::where('stripe_subscription_status', 'active')->where('user_id', $_GET['id'])->get();
             $subscriptionStatus = false;
             if (count($subscription) > 0) {
@@ -418,7 +418,7 @@ class ServiceController extends Controller
                 ->selectRaw('COUNT(reviews.id) AS total_reviews')
                 ->where('services.added_by', $seller->id)
                 ->first();
-            $seller['rating'] = $rating->rating;
+            $seller['rating'] = round($rating->rating,1);
             $seller['total_reviews'] = $rating->total_reviews;
             return response()->json(['seller' => $seller, 'subscription' => $subscriptionStatus]);
         }
