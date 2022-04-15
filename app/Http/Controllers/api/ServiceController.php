@@ -327,7 +327,7 @@ class ServiceController extends Controller
             $services = Service::join('categories', 'services.category_id', 'categories.id')
                 ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
                 ->join('users', 'services.added_by', 'users.id')
-                ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.slug', 'users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
+                ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.slug as seller_slug', 'users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
                     'services.id as Service_id')->where('services.slug', $_GET['id'])->first();
             $images = Service::with('hasAttachment')->where('services.slug', $_GET['id'])->get();
             $watchlist = 0;
