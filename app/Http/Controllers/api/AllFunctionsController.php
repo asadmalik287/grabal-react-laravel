@@ -125,6 +125,7 @@ class AllFunctionsController extends Controller
                 }
                 }
                 $service['watchList'] = $watchList;
+                $service['user_id'] = $request->user_id;
                 $newServicesArr[] = $service;
             }
         }
