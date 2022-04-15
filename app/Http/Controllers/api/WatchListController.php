@@ -60,14 +60,13 @@ class WatchListController extends Controller
         if (WatchList::where(['user_id' => $request->user_id, 'service_id' => $request->service_id])->exists()) {
             WatchList::where(['user_id' => $request->user_id, 'service_id' => $request->service_id])->delete();
             $status = 1;
-            $arr=[];
+            $arr = [];
             $message = 'Services has been removed from Watch List!';
             return (new ResponseController)->sendResponse($status, $message, $arr);
         } else {
             $error = 'Error Occured!';
             return (new ResponseController)->sendError(0, $error);
-        } 
-        
+        }
 
     }
     // close

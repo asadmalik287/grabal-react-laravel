@@ -309,6 +309,12 @@ class ServiceController extends Controller
             } else {
                 $value->watchlist = 0;
             }
+            $rating = DB::table('services')->join('reviews', 'services.id', 'reviews.service_id')
+                ->selectRaw('SUM(reviews.rating)/COUNT(reviews.id) AS ratingssss', )
+                ->selectRaw('COUNT(reviews.id) AS total_reviews')
+                ->where('services.id', $value->Service_id)->first();
+            $value->rating = $rating->ratingssss;
+            $value->watchlist = $rating->total_reviews;
         }
         return response()->json(['services' => $services]);
     }
@@ -418,7 +424,7 @@ class ServiceController extends Controller
                 ->selectRaw('COUNT(reviews.id) AS total_reviews')
                 ->where('services.added_by', $seller->id)
                 ->first();
-            $seller['rating'] = round($rating->rating,1);
+            $seller['rating'] = round($rating->rating, 1);
             $seller['total_reviews'] = $rating->total_reviews;
             return response()->json(['seller' => $seller, 'subscription' => $subscriptionStatus]);
         }
