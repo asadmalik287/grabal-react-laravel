@@ -314,7 +314,7 @@ class ServiceController extends Controller
                 ->selectRaw('COUNT(reviews.id) AS total_reviews')
                 ->where('services.id', $value->Service_id)->first();
             $value->rating = $rating->ratingssss;
-            $value->watchlist = $rating->total_reviews;
+            $value->total_reviews = $rating->total_reviews;
         }
         return response()->json(['services' => $services]);
     }
@@ -400,7 +400,7 @@ class ServiceController extends Controller
                     ->selectRaw('COUNT(reviews.id) AS total_reviews')
                     ->where('services.id', $value->Service_id)->first();
                 $value->rating = $rating->ratingssss;
-                $value->watchlist = $rating->total_reviews;
+                $value->total_reviews = $rating->total_reviews;
             }
             // return count($services);
 
