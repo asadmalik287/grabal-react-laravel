@@ -313,7 +313,7 @@ class ServiceController extends Controller
                 ->selectRaw('SUM(reviews.rating)/COUNT(reviews.id) AS ratingssss', )
                 ->selectRaw('COUNT(reviews.id) AS total_reviews')
                 ->where('services.id', $value->Service_id)->first();
-            $value->rating = round($rating->ratingssss,1);
+            $value->rating = round($rating->ratingssss, 1);
             $value->total_reviews = $rating->total_reviews;
         }
         return response()->json(['services' => $services]);
@@ -390,7 +390,7 @@ class ServiceController extends Controller
                     'services.id as Service_id')
                 ->where('services.service_type', $_GET['type'])->get();
             foreach ($services as $key => $value) {
-                if (WatchList::where('service_id', $value->id)->exists()) {
+                if (WatchList::where(['service_id' => $value->id, 'user_id' => $request->user_id])->exists()) {
                     $value->watchlist = 1;
                 } else {
                     $value->watchlist = 0;
@@ -399,7 +399,7 @@ class ServiceController extends Controller
                     ->selectRaw('SUM(reviews.rating)/COUNT(reviews.id) AS ratingssss', )
                     ->selectRaw('COUNT(reviews.id) AS total_reviews')
                     ->where('services.id', $value->Service_id)->first();
-                $value->rating = round($rating->ratingssss,1);
+                $value->rating = round($rating->ratingssss, 1);
                 $value->total_reviews = $rating->total_reviews;
             }
             // return count($services);

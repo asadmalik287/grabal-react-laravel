@@ -44,7 +44,7 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::get('getPopularServicesAndCategories', 'AllFunctionsController@getPopularServicesAndCategories')->name('getPopularServicesAndCategories');
     Route::post('sendEnquiryEmailToServiceProvider', 'AllFunctionsController@sendEnquiryEmailToServiceProvider')->name('sendEnquiryEmailToServiceProvider');
 
-    Route::get('get-type-services', 'ServiceController@getTypServices')->name('get-type-services');
+    Route::post('get-type-services', 'ServiceController@getTypServices')->name('get-type-services');
 
     //ads routes
     Route::get('getAd', 'AllFunctionsController@getAd')->name('getAd');
