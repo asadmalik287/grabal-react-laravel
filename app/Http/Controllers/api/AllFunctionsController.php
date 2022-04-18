@@ -235,7 +235,6 @@ class AllFunctionsController extends Controller
     // send enquiry email to service provider
     public function sendEnquiryEmailToServiceProvider(Request $request)
     {
-        return $request->type;
         if($request->type === 'message'){
             $validator = Validator::make($request->all(), ['provider_id' => 'required', 'message' => 'required']);
         }else{
