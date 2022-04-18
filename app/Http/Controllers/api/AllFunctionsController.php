@@ -53,7 +53,7 @@ class AllFunctionsController extends Controller
                     $services->where($key, $value);
                 }
             }
-            $services = $services->select(['id', 'title', 'description', 'main_service_image', 'created_at', 'added_by', 'subCategory_id', 'category_id'])
+            $services = $services->select(['id', 'title','slug', 'description', 'main_service_image', 'created_at', 'added_by', 'subCategory_id', 'category_id'])
                 ->with(['haveProvider' => function ($user) {
                     $user->select('id', 'role_id', 'logo');
                 }, 'subcat' => function ($subCategory) {
