@@ -7,6 +7,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{ asset('assets/admin/images/logo.png') }}" />
 
     <title>Grobal - @yield('title') </title>
 

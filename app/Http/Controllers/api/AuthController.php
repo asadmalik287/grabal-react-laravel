@@ -284,7 +284,7 @@ class AuthController extends Controller
             'message' => $request['message'],
             'role_id' => $request['role_id'],
             'password' => $passwordHashed,
-            'logo' => $logo
+            'logo' => $request['logo']
         ]);
         $role = Role::where('id', $request['role_id'])->first();
         $user->assignRole($role);
