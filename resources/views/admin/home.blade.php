@@ -77,12 +77,11 @@
                     <span class="hidden-xs-down">Service Providers</span>
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                  <a class="nav-link" data-toggle="tab" href="#profile4" role="tab">
-                     {{-- <span class="hidden-sm-up"><i class="ti-user"></i></span> --}}
                       <span class="hidden-xs-down">App Data</span>
                  </a>
-            </li>
+            </li> --}}
         </ul>
         <!-- Tab panes -->
         <div class="tab-content pb-5 pt-0">
