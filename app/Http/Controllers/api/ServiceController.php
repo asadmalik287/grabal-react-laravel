@@ -75,8 +75,6 @@ class ServiceController extends Controller
         $service->city = $request->city;
         $service->suburb = $request->suburb;
 
-
-        return $request->service_type;
         foreach(is_array($request->service_type) ? $request->service_type : [] as $singleServiceType){
             $service->service_type = $singleServiceType;
         }
