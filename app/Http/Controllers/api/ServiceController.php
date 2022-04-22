@@ -45,7 +45,7 @@ class ServiceController extends Controller
             'city' => 'required',
             'suburb' => 'required',
             // 'postal_code' => 'required',
-            'service_type[]' => 'required',
+            'service_type' => 'required',
         ]);
 
         // if validator fails
