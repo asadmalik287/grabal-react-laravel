@@ -45,7 +45,7 @@ class ServiceController extends Controller
             'city' => 'required',
             'suburb' => 'required',
             // 'postal_code' => 'required',
-            'service_type' => 'required',
+            'service_type[]' => 'required',
         ]);
 
         // if validator fails
@@ -75,6 +75,8 @@ class ServiceController extends Controller
         $service->phone_number = $request->phone_number;
         $service->city = $request->city;
         $service->suburb = $request->suburb;
+
+        return $request->service_type;
 
         // $service->postal_code = $request->postal_code;
 
