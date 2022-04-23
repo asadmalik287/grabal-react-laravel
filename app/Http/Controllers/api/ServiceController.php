@@ -60,7 +60,6 @@ class ServiceController extends Controller
         $service->slug = $request->title;
         $service->description = $request->description;
         $service->business_name = $request->business_name;
-        $service->business_name = $request->service_type;
         // $service->business_streetNo = $request->business_streetNo;
         // $service->business_unit = $request->business_unit;
         // $service->business_street = $request->business_street;
@@ -76,10 +75,10 @@ class ServiceController extends Controller
         $service->city = $request->city;
         $service->suburb = $request->suburb;
 
-        // return $request->service_type;
-        // foreach(is_array($request->service_type) ? $request->service_type : [] as $singleServiceType){
-        //     $service->service_type = $singleServiceType;
-        // }
+        return $request->service_type;
+        foreach(is_array($request->service_type) ? $request->service_type : [] as $singleServiceType){
+            $service->service_type = $singleServiceType;
+        }
 
 
         // $service->postal_code = $request->postal_code;
