@@ -34,7 +34,7 @@ class AuthController extends Controller
             'l_name' => 'required|string',
             'phone_number' => 'required',
             'email' => 'required|unique:users',
-            'country' => 'required',
+            // 'country' => 'required',
             'role_id' => 'required',
             // 'phone_number' => ['required', new PhoneNumber],
 
