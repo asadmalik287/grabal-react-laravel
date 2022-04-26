@@ -228,6 +228,7 @@ class AuthController extends Controller
         $passwordHashed = Hash::make($password);
         $userName = strtok($request['email'], '@');
         $request['is_verified'] = 1;
+        $request['slug'] = $userName;
 
         // $request['is_active'] = 1;
         // $request['country_code'] = substr($request['phone'], 0, 3);
@@ -284,7 +285,9 @@ class AuthController extends Controller
             'message' => $request['message'],
             'role_id' => $request['role_id'],
             'password' => $passwordHashed,
-            'logo' => $request['logo']
+            // 'logo' => $request['logo'],
+            'logo' => $logo,
+            'slug' => $request['slug'],
         ]);
         $role = Role::where('id', $request['role_id'])->first();
         $user->assignRole($role);
