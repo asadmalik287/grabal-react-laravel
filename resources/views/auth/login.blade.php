@@ -12,7 +12,7 @@
                                     <img src="{{asset('assets/admin/images/logo.png')}}" alt="logo">
                                 </a>
                             </div>
-                            <div class="login-form shadow">
+                            <div class="login-form shadow" style="border-radius: 15px">
                                 <h4>Administrator Login</h4>
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf

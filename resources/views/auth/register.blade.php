@@ -13,7 +13,7 @@
                                 <img src="{{asset('assets/admin/images/logo.png')}}" alt="logo">
                             </a>
                         </div>
-                        <div class="login-form">
+                        <div class="login-form" style="border-radius: 15px">
                             <h4>Register to Administration</h4>
 
                             <form method="POST" action="{{ route('register') }}">
