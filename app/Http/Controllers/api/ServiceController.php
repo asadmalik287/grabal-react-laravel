@@ -384,7 +384,6 @@ class ServiceController extends Controller
     // get services of type
     public function getTypServices(Request $request)
     {
-        return $request->type;
         // if (isset($_GET['type'])) {
             $services = DB::table('services')->join('categories', 'services.category_id', 'categories.id')
                 ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
