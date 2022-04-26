@@ -31,37 +31,43 @@
 <div class="row">
     <div class="col-lg-3">
         <div class="card">
-            <div class="stat-widget-one">
-                <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+            <a href="{{ url('admin/serviceProviders') }}">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+                    </div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">Total Users</div>
+                        <div class="stat-digit">{{\App\Models\User::where('role_id', 2)->count()}}</div>
+                    </div>
                 </div>
-                <div class="stat-content dib">
-                    <div class="stat-text">Total Users</div>
-                    <div class="stat-digit">{{\App\Models\User::where('role_id', 2)->count()}}</div>
-                </div>
-            </div>
+            </a>
         </div>
     </div>
     <div class="col-lg-3">
         <div class="card">
-            <div class="stat-widget-one">
-                <div class="stat-icon dib"><i class="ti-id-badge color-success border-success"></i>
+            <a href="{{ url('admin/serviceProviders') }}">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-id-badge color-success border-success"></i>
+                    </div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">Active Users</div>
+                        <div class="stat-digit">{{\App\Models\User::where(['role_id'=> 2,'is_verified'=> 1])->count()}}</div>
+                    </div>
                 </div>
-                <div class="stat-content dib">
-                    <div class="stat-text">Active Users</div>
-                    <div class="stat-digit">{{\App\Models\User::where(['role_id'=> 2,'is_verified'=> 1])->count()}}</div>
-                </div>
-            </div>
+            </a>
         </div>
     </div>
     <div class="col-lg-3">
         <div class="card">
-            <div class="stat-widget-one">
-                <div class="stat-icon dib"><i class="ti-alert color-danger border-danger"></i></div>
-                <div class="stat-content dib">
-                    <div class="stat-text">Unverified</div>
-                    <div class="stat-digit">{{\App\Models\User::where(['role_id'=> 2,'is_verified'=> 0])->count()}}</div>
+            <a href="{{ url('admin/serviceProviders') }}">
+                <div class="stat-widget-one">
+                    <div class="stat-icon dib"><i class="ti-alert color-danger border-danger"></i></div>
+                    <div class="stat-content dib">
+                        <div class="stat-text">Unverified</div>
+                        <div class="stat-digit">{{\App\Models\User::where(['role_id'=> 2,'is_verified'=> 0])->count()}}</div>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     </div>
 </div>
