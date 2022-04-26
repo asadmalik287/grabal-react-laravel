@@ -32,11 +32,11 @@
                     <a href="{{ url('admin/serviceProviders') }}"><i class="ti-home"></i>Service Providers</a>
                 </li>
 
-                <li class="@if (Request::is('admin/assign_task')) active @endif">
+                {{-- <li class="@if (Request::is('admin/assign_task')) active @endif">
                     <a href="{{ url('admin/assign_task') }}"><i class="ti-medall-alt"></i>Assign Tasks</a>
-                </li>
+                </li> --}}
 
-               
+
 
                 <li>
                     <a class="sidebar-sub-toggle"><i class="ti-vector"></i> Manage Ads<span
