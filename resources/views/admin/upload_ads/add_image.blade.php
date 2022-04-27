@@ -109,13 +109,12 @@
                                 <label class="cabinet center-block">
                                     <figure class="position-relative">
                                         @if ($detail != null)
-                                            <img src="{{ asset('storage/' . $detail->attachment_link) }}"
-                                                class="gambar img-responsive img-thumbnail" id="item-img-output" />
-                                            <span style="color:rgb(124, 121, 121)"> Please Click on Image to change
-                                                Attachment</span>
+                                            <img src="{{ $detail->attachment_link}}" class="gambar img-responsive img-thumbnail" id="item-img-output" />
+                                            <span style="color:rgb(124, 121, 121)">
+                                                 Please Click on Image to change Attachment
+                                            </span>
                                         @else
-                                            <img src=" {{ asset('/assets/admin/banners/ad.jpg') }}"
-                                                class="gambar img-responsive img-thumbnail" id="item-img-output" />
+                                            <img src=" {{ asset('/assets/admin/banners/ad.jpg') }}" class="gambar img-responsive img-thumbnail" id="item-img-output" />
                                         @endif
                                         {{-- <figcaption class="position-absolute" style="top: 150px"><i class="fa fa-camera"></i></figcaption> --}}
                                     </figure>

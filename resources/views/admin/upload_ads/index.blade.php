@@ -86,8 +86,7 @@
                                                 <td>
                                                     {{-- <div class="d-flex flex-nowrap"> --}}
                                                     <a type="button" class="btn btn-sm btn-info"
-                                                        href="{{ url('admin/add_banner') }}?id={{ $value->id }}">Change
-                                                        Ad image</a>
+                                                        href="{{ url('admin/add_banner') }}?id={{ $value->id }}">Update</a>
 
                                                     <button class="btn btn-sm btn-danger"
                                                         onclick="changeStatus(this,'delete', '{{ route('ads.destroy', $value->id) }}', '{{ $value->id }}', 'DELETE')">Delete</button>
@@ -135,8 +134,7 @@
                                                 <td>
                                                     {{-- <div class="d-flex flex-nowrap"> --}}
                                                     <a type="button" class="btn btn-sm btn-info"
-                                                        href="{{ url('admin/add_banner') }}?id={{ $value1->id }}">Change
-                                                        Ad image</a>
+                                                        href="{{ url('admin/add_banner') }}?id={{ $value1->id }}">Update</a>
                                                     <button class="btn btn-sm btn-danger"
                                                         onclick="changeStatus(this,'delete', '{{ route('ads.destroy', $value1->id) }}', '{{ $value1->id }}', 'DELETE')">Delete</button>
                                                     {{-- </div> --}}
@@ -181,8 +179,7 @@
                                                 <td>
                                                     {{-- <div class="d-flex flex-nowrap"> --}}
                                                     <a type="button" class="btn btn-sm btn-info"
-                                                        href="{{ url('admin/add_banner') }}?id={{ $value2->id }}">Change
-                                                        Ad image</a>
+                                                        href="{{ url('admin/add_banner') }}?id={{ $value2->id }}">Update</a>
 
                                                     <button class="btn btn-sm btn-danger"
                                                         onclick="changeStatus(this,'delete', '{{ route('ads.destroy', $value2->id) }}', '{{ $value2->id }}', 'DELETE')">Delete</button>
