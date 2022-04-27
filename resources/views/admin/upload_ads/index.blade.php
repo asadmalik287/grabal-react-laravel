@@ -128,7 +128,7 @@
                                                 <td>{{ $keys + 1 }}</td>
                                                 <td>{{ $value1->title }}</td>
                                                 <td>
-                                                    <img height="300" width="200"
+                                                    <img height="300" width="150"
                                                         src="{{ $value1->attachment_link}}" alt="">
                                                 </td>
                                                 <td>
