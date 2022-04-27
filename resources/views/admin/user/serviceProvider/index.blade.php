@@ -15,7 +15,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('admin/home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Sellers</li>
+                        <li class="breadcrumb-item active">Service Providers</li>
                         @if ($seller == true)
                             <li class="breadcrumb-item active">{{ $serviceProviders[0]['business_name'] }}</li>
                         @endif

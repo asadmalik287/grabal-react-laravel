@@ -34,6 +34,7 @@ class AdminServiceController extends Controller
         ];
         return view('admin.services.index', $data);
     }
+
     public function changeServiceStatus(Request $request)
     {
         if ($request->action == 'approve') {
@@ -66,7 +67,10 @@ class AdminServiceController extends Controller
             }
         }
         if ($request->action == 'view') {
-            $service = Service::where('id', $request->id)->first();
+            // $service = Service::join('service_attachment','services.id',  'service_attachment.service_id')->select('services.id as service_id', 'services.*', 'service_attachment.attachment_name')->where('services.id', $request->id)->first();
+            // $service = Service::with('hasAttachment')->where('services.id', $request->id)->first();
+            $service = Service::where('services.id', $request->id)->first();
+            
             if ($service) {
                 return response()->view('admin.services.viewServiceModal', compact('service'));
             } else {

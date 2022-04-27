@@ -98,25 +98,33 @@
                     {{-- <h6 class="bg-primary-50 px-3 py-2 text-dark rounded-4">Top 10 Service Providers (out of {{$allProvidersCount}} Service Providers)</h6> --}}
                     <h6 class="bg-primary-50 px-3 py-2 text-dark rounded-4">Top Service Providers (out of {{$allProvidersCount}} Service Providers)</h6>
                     <div class="table-responsive mt-3 d-flex justify-content-between">
-                        <table class="text-center w-75" border="1">
+                        <table class="text-center w-100" border="1">
                             @if(count($topServiceProviders) > 0)
                                 @foreach($topServiceProviders as $provider)
                                     <tr>
-                                        <th><a href="#">{{ $provider["have_provider"]["business_name"] ?? 'N/A'}}</a></th>
-                                        <td><a href="#">{{$provider["have_provider"]["services_count"]}} Services</a></td>
-                                        <td class="text-center p-2">{{$provider["have_provider"]['has_task_count']}}<a href="#"></a></td>
+                                        <th>{{ $provider["have_provider"]["business_name"] ?? 'N/A'}}</th>
+                                        <td>{{$provider["have_provider"]["services_count"]}} Services</td>
+                                        <td class="text-center p-2">{{$provider["have_provider"]['has_task_count']}} Jobs</td>
+                                        <th>
+                                            <i class="fa fa-star" style="color: #ffa41c"></i>
+                                            <i class="fa fa-star" style="color: #ffa41c"></i>
+                                            <i class="fa fa-star" style="color: #ffa41c"></i>
+                                            <i class="fa fa-star" style="color: #ffa41c"></i>
+                                            <i class="fa fa-star" style="color: #ffa41c"></i>
+                                            ({{$provider["reviews_count"]}})
+                                        </th>
                                     </tr>
                                 @endforeach
                             @endif
                         </table>
 
-                        <table class="text-center" style="width: 23%" border="3">
+                        {{-- <table class="text-center" style="width: 23%" border="3">
                             @if(count($topServiceProviders) > 0)
                                 @foreach($topServiceProviders as $provider)
                                     <tr> <th><a href="#">{{$provider["reviews_count"]}} Five Stars</a></th> </tr>
                                 @endforeach
                             @endif
-                        </table>
+                        </table> --}}
                     </div>
 
                     <h6 class="bg-primary-50 px-3 py-2 text-dark rounded-4 mt-4">Top {{count($popularServicesCategoryProviders)}} Services (out of  {{$allServices}} Services)</h6>
@@ -124,9 +132,9 @@
                         <table class="text-center w-100" border="1">
                             @foreach ($popularServicesCategoryProviders as $singleService)
                                 <tr>
-                                    <th><a href="#" style="text-transform: capitalize">{{$singleService->subcat->name}}</a></th>
-                                    <td><a href="#">{{$singleService->subcat->service_providers_count}} Service Providers</a></td>
-                                    <td class="text-center p-2"><a href="#">{{$singleService["assigned_task_count"]}}</a></td>
+                                    <th  style="text-transform: capitalize">{{$singleService->subcat->name}}</th>
+                                    <td>{{$singleService->subcat->service_providers_count}} Service Providers</td>
+                                    <td class="text-center p-2">{{$singleService["assigned_task_count"]}} Inquiries</td>
                                 </tr>
                             @endforeach
 

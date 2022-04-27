@@ -66,8 +66,8 @@
                             <thead>
                                 <tr>
                                     <th>Sr</th>
-                                    <th>Category </th>
                                     <th>Sub Category </th>
+                                    <th>Category </th>
                                     <th>Status</th>
                                     <th style="width:20%;">Action</th>
                                 </tr>
@@ -76,8 +76,8 @@
                                 @foreach ($subCategories as $key => $subCategory)
                                     <tr>
                                         <td>{{ ++$key }}</td>
-                                        <td>{{ $subCategory->get_category->name }}</td>
                                         <td class="">{{ ucfirst($subCategory->name) }}</td>
+                                        <td>{{ $subCategory->get_category->name }}</td>
                                         <td class="">{{ ucfirst($subCategory->status) }}</td>
                                         <td>
                                             <button class="btn btn-info btn-sm" data-toggle="modal" data-toggle="modal"

@@ -45,7 +45,7 @@
                         <li class="@if (Request::is('admin/ads')) active @endif"><a
                                 href="{{ url('admin/ads') }}"> Banners</a></li>
                         <li class="@if (Request::is('admin/add_banner')) active @endif"><a
-                                href="{{ url('admin/add_banner') }}"> Add New Banner</a></li>
+                                href="{{ url('admin/add_banner') }}"> Setup a New Banner</a></li>
                     </ul>
                 </li>
                 {{-- <li>

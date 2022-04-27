@@ -68,7 +68,11 @@
             <div class="col-lg-2"> Multiple Images:</div>
             <div class="col-lg-10">
                 <div class="d-flex flex-wrap">
-                    <img src="{{$service->main_service_image}}" class="mr-2" alt="" width="200" height="120">
+                    {{-- @dd($service->hasAttachment) --}}
+                    @foreach ($service->hasAttachment as $key)
+                        <img src="{{$key->attachment_name}}" class="mr-2 mt-2" alt="" width="200" height="120">
+                    @endforeach
+
                 </div>
             </div>
         </div>
