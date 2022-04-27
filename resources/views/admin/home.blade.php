@@ -2,6 +2,20 @@
 @extends('layouts.app')
 @section('title','Dashboard')
 
+@section('style')
+    <link href="{{ asset('assets/admin/css/lib/data-table/buttons.bootstrap.min.css') }}" rel="stylesheet" />
+    <style>
+        .table thead,
+        .table tr {
+            text-align: center;
+        }
+        th{
+            font-weight: bolder !important;
+        }
+
+    </style>
+@endsection
+
 @section('content')
 
 <div class="row">
@@ -97,49 +111,64 @@
                 <div>
                     {{-- <h6 class="bg-primary-50 px-3 py-2 text-dark rounded-4">Top 10 Service Providers (out of {{$allProvidersCount}} Service Providers)</h6> --}}
                     <h6 class="bg-primary-50 px-3 py-2 text-dark rounded-4">Top Service Providers (out of {{$allProvidersCount}} Service Providers)</h6>
-                    <div class="table-responsive mt-3 d-flex justify-content-between">
-                        <table class="text-center w-100" border="1">
-                            @if(count($topServiceProviders) > 0)
-                                @foreach($topServiceProviders as $provider)
-                                    <tr>
-                                        <th>{{ $provider["have_provider"]["business_name"] ?? 'N/A'}}</th>
-                                        <td>{{$provider["have_provider"]["services_count"]}} Services</td>
-                                        <td class="text-center p-2">{{$provider["have_provider"]['has_task_count']}} Jobs</td>
-                                        <th>
-                                            <i class="fa fa-star" style="color: #ffa41c"></i>
-                                            <i class="fa fa-star" style="color: #ffa41c"></i>
-                                            <i class="fa fa-star" style="color: #ffa41c"></i>
-                                            <i class="fa fa-star" style="color: #ffa41c"></i>
-                                            <i class="fa fa-star" style="color: #ffa41c"></i>
-                                            ({{$provider["reviews_count"]}})
-                                        </th>
-                                    </tr>
-                                @endforeach
-                            @endif
-                        </table>
 
-                        {{-- <table class="text-center" style="width: 23%" border="3">
-                            @if(count($topServiceProviders) > 0)
-                                @foreach($topServiceProviders as $provider)
-                                    <tr> <th><a href="#">{{$provider["reviews_count"]}} Five Stars</a></th> </tr>
-                                @endforeach
-                            @endif
-                        </table> --}}
-                    </div>
+                    {{-- <div class="table-responsive mt-3 d-flex justify-content-between">
+                        <table class="text-center w-100" border="1"> --}}
+                        <div class="bootstrap-data-table-panel">
+                            <div class="table-responsive">
+
+                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                    <tr>
+                                        <th>Business Name</th>
+                                        <th>No. of Services</th>
+                                        <th>No. of Jobs</th>
+                                        <th>No. of Rating (Five stars)</th>
+                                    </tr>
+                                    @if(count($topServiceProviders) > 0)
+                                        @foreach($topServiceProviders as $provider)
+                                            <tr>
+                                                <td>{{ $provider["have_provider"]["business_name"] ?? 'N/A'}}</td>
+                                                <td>{{$provider["have_provider"]["services_count"]}} Services</td>
+                                                <td class="text-center p-2">{{$provider["have_provider"]['has_task_count']}} Jobs</td>
+                                                <td>
+                                                    <i class="fa fa-star" style="color: #ffa41c"></i>
+                                                    <i class="fa fa-star" style="color: #ffa41c"></i>
+                                                    <i class="fa fa-star" style="color: #ffa41c"></i>
+                                                    <i class="fa fa-star" style="color: #ffa41c"></i>
+                                                    <i class="fa fa-star" style="color: #ffa41c"></i>
+                                                    ({{$provider["reviews_count"]}})
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
+                                </table>
+
+                            </div>
+                        </div>
 
                     <h6 class="bg-primary-50 px-3 py-2 text-dark rounded-4 mt-4">Top {{count($popularServicesCategoryProviders)}} Services (out of  {{$allServices}} Services)</h6>
-                    <div class="table-responsive mt-3">
-                        <table class="text-center w-100" border="1">
-                            @foreach ($popularServicesCategoryProviders as $singleService)
-                                <tr>
-                                    <th  style="text-transform: capitalize">{{$singleService->subcat->name}}</th>
-                                    <td>{{$singleService->subcat->service_providers_count}} Service Providers</td>
-                                    <td class="text-center p-2">{{$singleService["assigned_task_count"]}} Inquiries</td>
-                                </tr>
-                            @endforeach
+                    {{-- <div class="table-responsive mt-3">
+                        <table class="text-center w-100" border="1"> --}}
+                        <div class="bootstrap-data-table-panel">
+                            <div class="table-responsive">
 
-                        </table>
-                    </div>
+                                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                    <tr>
+                                        <th>Sub Category</th>
+                                        <th>No. of Service Providers</th>
+                                        <th>No. of Inquiries</th>
+                                    </tr>
+                                    @foreach ($popularServicesCategoryProviders as $singleService)
+                                        <tr>
+                                            <td  style="text-transform: capitalize">{{$singleService->subcat->name}}</td>
+                                            <td>{{$singleService->subcat->service_providers_count}} Service Providers</td>
+                                            <td class="text-center p-2">{{$singleService["assigned_task_count"]}} Inquiries</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+
+                            </div>
+                        </div>
                 </div>
             </div>
             {{-- 1st Tab end --}}
@@ -186,4 +215,23 @@
     <div class="border-top pt-5 px-3"> <h5 class="fade">Super Admin - Dashboard</h5></div>
 </div>
 
+@endsection
+
+@section('script')
+    <script src="{{ asset('assets/admin/js/lib/form-validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/lib/form-validation/jquery.validate-init.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/lib/data-table/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/lib/data-table/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/lib/data-table/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/lib/data-table/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/lib/data-table/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/lib/data-table/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/lib/data-table/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/lib/data-table/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/lib/data-table/datatables-init.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#bootstrap-data-table-export_wrapper').addClass('justify-content-between')
+        })
+    </script>
 @endsection
