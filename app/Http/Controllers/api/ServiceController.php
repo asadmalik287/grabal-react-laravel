@@ -195,7 +195,7 @@ class ServiceController extends Controller
         $service = Service::find($id);
         $service->category_id = $request->category_id;
         $service->subCategory_id = $request->subCategory_id;
-        $service->service_type = $request->service_type;
+        $service->service_type = json_encode($request->service_type);
         $service->title = $request->title;
         $service->slug = $request->title;
         $service->description = $request->description;
