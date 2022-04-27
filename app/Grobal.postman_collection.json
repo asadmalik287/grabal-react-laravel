@@ -431,7 +431,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "{{website_url}}/service-detail?id=48&user_id=5",
+							"raw": "{{website_url}}/service-detail?id=vacuum-carpet-cleaner&user_id=68",
 							"host": [
 								"{{website_url}}"
 							],
@@ -441,11 +441,11 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "48"
+									"value": "vacuum-carpet-cleaner"
 								},
 								{
 									"key": "user_id",
-									"value": "5"
+									"value": "68"
 								}
 							]
 						}
@@ -481,7 +481,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "{{website_url}}/sub-cat-services?id=43",
+							"raw": "{{website_url}}/sub-cat-services?id=pest-control-services",
 							"host": [
 								"{{website_url}}"
 							],
@@ -491,7 +491,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "43"
+									"value": "pest-control-services"
 								}
 							]
 						}
@@ -500,9 +500,6 @@
 				},
 				{
 					"name": "Get Service From type",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -514,7 +511,7 @@
 								}
 							]
 						},
-						"method": "GET",
+						"method": "POST",
 						"header": [
 							{
 								"key": "",
@@ -524,21 +521,26 @@
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": []
+							"formdata": [
+								{
+									"key": "type",
+									"value": "residential",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "5",
+									"type": "text"
+								}
+							]
 						},
 						"url": {
-							"raw": "{{website_url}}/get-type-services?idtype43",
+							"raw": "{{website_url}}/get-type-services",
 							"host": [
 								"{{website_url}}"
 							],
 							"path": [
 								"get-type-services"
-							],
-							"query": [
-								{
-									"key": "idtype43",
-									"value": null
-								}
 							]
 						}
 					},
@@ -585,42 +587,16 @@
 					"response": []
 				},
 				{
-					"name": "getLivePopularServicesAndCategories",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "https://ewdtech.com/ewdtech/test/grobal_react/api/getPopularServicesAndCategories",
-							"protocol": "https",
-							"host": [
-								"ewdtech",
-								"com"
-							],
-							"path": [
-								"ewdtech",
-								"test",
-								"grobal_react",
-								"api",
-								"getPopularServicesAndCategories"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "getPopularServicesAndCategories",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost/grabal-react-laravel/api/getPopularServicesAndCategories",
-							"protocol": "http",
+							"raw": "{{website_url}}/getPopularServicesAndCategories",
 							"host": [
-								"localhost"
+								"{{website_url}}"
 							],
 							"path": [
-								"grabal-react-laravel",
-								"api",
 								"getPopularServicesAndCategories"
 							]
 						}
@@ -628,23 +604,94 @@
 					"response": []
 				},
 				{
-					"name": "getLiveSubCategoryServices",
+					"name": "getSubCategoryService",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "slug",
+									"value": "carpet-cleaning",
+									"type": "text"
+								}
+							]
+						},
 						"url": {
-							"raw": ""
+							"raw": "{{website_url}}/get-subCategory-service",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"get-subCategory-service"
+							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "getSubCategoryServices",
+					"name": "Search",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "5",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "slug",
+									"value": "carpet-cleaning",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "subCategory_id",
+									"value": "43",
+									"type": "text"
+								},
+								{
+									"key": "city",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "suburb",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "postal_code",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
 						"url": {
-							"raw": ""
+							"raw": "{{website_url}}/getSubCategoryServices",
+							"host": [
+								"{{website_url}}"
+							],
+							"path": [
+								"getSubCategoryServices"
+							]
 						}
 					},
 					"response": []
@@ -949,7 +996,7 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "{{website_url}}/seller-detail?id=5",
+							"raw": "{{website_url}}/seller-detail?id=test",
 							"host": [
 								"{{website_url}}"
 							],
@@ -959,7 +1006,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "5"
+									"value": "test"
 								}
 							]
 						}
