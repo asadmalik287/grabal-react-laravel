@@ -391,6 +391,8 @@ class ServiceController extends Controller
                 ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller', 'users.role_id', 'users.logo', 'categories.name as Category', 'services.*',
                     'services.id as Service_id')
                 ->where('services.service_type', 'like', $request->type)->get();
+
+            return $services;
             foreach ($services as $key => $value) {
                 if (WatchList::where(['service_id' => $value->id, 'user_id' => $request->user_id])->exists()) {
                     $value->watchlist = 1;
