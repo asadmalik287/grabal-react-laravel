@@ -84,7 +84,7 @@
                         <div class="col-lg-10">
                             <select class="js-select2 form-control" id="val-select2" name="page" style="width: 100%;">
                                 <option selected disabled>Select Ads location</option>
-                                <option data-width='1523' data-height='369' value="home"
+                                <option data-width='1523' data-height='250' value="home"
                                     {{ $detail != null ? ($detail->page == 'home' ? 'selected' : '') : '' }}>Home
                                 </option>
                                 <option data-width='233' data-height='650' value="sidebar"
