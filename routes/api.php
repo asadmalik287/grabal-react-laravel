@@ -23,6 +23,7 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::post('serviceProviderRegister', 'AuthController@serviceProviderRegister')->name('serviceProviderRegister');
     Route::post('login', 'AuthController@login')->name('login');
     Route::post('update-email', 'AuthController@updateEmail')->name('updateEmail');
+    Route::post('change-password', 'AuthController@updatePassword')->name('updatePassword');
 
     //service routes
     Route::get('all-services', 'ServiceController@allServices')->name('allServices');

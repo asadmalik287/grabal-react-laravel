@@ -321,12 +321,12 @@ class AuthController extends Controller
 
     }
 
-    // update email function starts
+    // update email api function starts
     public function updateEmail(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'current_email' => 'required',
-            'new_email' => 'required|unique:users,email',
+            'current_email' => 'required|email',
+            'new_email' => 'required|unique:users,email|different:current_email|email',
             'password' => 'required',
         ]);
 
@@ -361,6 +361,50 @@ class AuthController extends Controller
 
         }
     }
+    // close
 
+    // update user password api function starts
+    public function updatePassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|different:current_password',
+        ]);
+
+        // if validator fails
+        if ($validator->fails()) {
+            return (new ResponseController)->sendError(0, $validator->errors());
+        } else {
+            // check user authentication and change email
+            try {
+                $user = User::where('id', $request->user_id)->first();
+                if ($user) {
+                    if (!Auth::attempt(['email' => $user->email, 'password' => $request->current_password])) {
+                        $error = "You have entered wrong old password!";
+                        return (new ResponseController)->sendError(0, $error);
+                    } else {
+                        $password = Hash::make($request->new_password);
+                        $userUpdate = User::where('id', $request->user_id)->update([
+                            'password' => $password,
+                        ]);
+
+                        $status = 1;
+                        $message = "Password updated successfully";
+                        // Session::put('user', $user);
+                        $result = 'Success';
+                        return (new ResponseController)->sendResponse($status, $message, $result);
+                    }
+                } else {
+                    $error = "Error Ocured!";
+                    return (new ResponseController)->sendError(0, $error);
+                }
+
+            } catch (\Exception$e) {
+                $error = $e->getMessage();
+                return (new ResponseController)->sendError(0, $error);
+            }
+
+        }
+    }
     // close
 }
