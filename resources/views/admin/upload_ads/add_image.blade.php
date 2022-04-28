@@ -90,7 +90,7 @@
                                 <option data-width='233' data-height='650' value="sidebar"
                                     {{ $detail != null ? ($detail->page == 'sidebar' ? 'selected' : '') : '' }}>
                                     Sidebar</option>
-                                <option data-width='362' data-height='394' value="serviceDetail"
+                                <option data-width='233' data-height='650' value="serviceDetail"
                                     {{ $detail != null ? ($detail->page == 'serviceDetail' ? 'selected' : '') : '' }}>
                                     Service Detail</option>
                             </select>
