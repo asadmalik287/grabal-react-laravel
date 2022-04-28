@@ -341,12 +341,13 @@ class AuthController extends Controller
                     return (new ResponseController)->sendError(0, $error);
                 } else {
                     $userName = strtok($request->new_email, '@');
-                    $user = User::where('id', $request->user_id)->update([
+                    $userUpdate = User::where('id', $request->user_id)->update([
                         'email' => $request->new_email,
                         'slug' => $userName,
                         'name' => $userName,
                     ]);
-                    if ($user) {
+                    if ($userUpdate) {
+                        $user = User::where('id', $request->user_id)->first();
                         $status = 1;
                         $message = "Email updated successfully";
                         Session::put('user', $user);
@@ -393,9 +394,8 @@ class AuthController extends Controller
 
                         $status = 1;
                         $message = "Password updated successfully";
-                        // Session::put('user', $user);
-                        $result = 'Success';
-                        return (new ResponseController)->sendResponse($status, $message, $result);
+                        Session::put('user', $user);
+                        return (new ResponseController)->sendResponse($status, $message, Session::get('user'));
                     }
                 } else {
                     $error = "Error Ocured!";
