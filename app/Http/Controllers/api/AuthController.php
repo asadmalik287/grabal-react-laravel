@@ -340,8 +340,11 @@ class AuthController extends Controller
                     $error = "You have entered wrong password!";
                     return (new ResponseController)->sendError(0, $error);
                 } else {
+                    $userName = strtok($request->new_email, '@');
                     $user = User::where('id', $request->user_id)->update([
                         'email' => $request->new_email,
+                        'slug' => $userName,
+                        'name' => $userName,
                     ]);
                     if ($user) {
                         $status = 1;
