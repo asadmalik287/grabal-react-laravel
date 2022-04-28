@@ -390,7 +390,7 @@ class ServiceController extends Controller
                 ->join('users', 'services.added_by', 'users.id')
                 ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller', 'users.role_id', 'users.logo', 'categories.name as Category', 'services.*',
                     'services.id as Service_id')
-                ->where('services.service_type', 'like', $request->type)->get();
+                ->where('services.service_type', 'like', '%'.$request->type.'%')->get();
 
             return $request->type;
             foreach ($services as $key => $value) {
