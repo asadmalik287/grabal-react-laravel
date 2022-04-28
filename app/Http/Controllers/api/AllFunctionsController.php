@@ -169,7 +169,6 @@ class AllFunctionsController extends Controller
         $topServiceProvidersArr = array();
         $topTenServices = array_slice(array_keys($serviceArray), 0, 10);
         $topThreeServices = array_slice(array_keys($serviceArray), 0, $request->limit);
-
         // get top three services category and their service providers
         $topServicesCategory = Service::select(['id', 'title', 'subCategory_id', 'added_by'])->whereIn('id', $topThreeServices)
             ->with(['subcat' => function ($subCategory) {
@@ -228,7 +227,6 @@ class AllFunctionsController extends Controller
                 $topServiceProvidersArr[$value] = $serviceProvider;
             }
         }
-
         return response()->json(['success' => true, 'popularServices' => array_values($popularServices), 'popularServicesCategoryProviders' => array_values($popularServicesCategoryProviders), 'topServiceProviders' => array_values($topServiceProvidersArr)]);
     }
 

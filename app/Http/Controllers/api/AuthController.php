@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AuthenticationMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,6 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Session;
 use Spatie\Permission\Models\Role;
-use App\Mail\AuthenticationMail;
 
 class AuthController extends Controller
 {
@@ -92,7 +92,7 @@ class AuthController extends Controller
 
         $user = User::create($request->except(["confirm_password"]));
         if ($user) {
-            Mail::to($user->email)->send(new AuthenticationMail( ['userName' => $userName, 'password' => $password]));
+            Mail::to($user->email)->send(new AuthenticationMail(['userName' => $userName, 'password' => $password]));
             // Mail::send('mails.credentials', ['userName' => $userName, 'password' => $password], function ($message) use ($user) {
             //     $message->to($user->email);
             //     $message->subject('Customer Login Details');
@@ -320,4 +320,47 @@ class AuthController extends Controller
         }
 
     }
+
+    // update email function starts
+    public function updateEmail(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'current_email' => 'required',
+            'new_email' => 'required|unique:users,email',
+            'password' => 'required',
+        ]);
+
+        // if validator fails
+        if ($validator->fails()) {
+            return (new ResponseController)->sendError(0, $validator->errors());
+        } else {
+            // check user authentication and change email
+            try {
+                if (!Auth::attempt(['email' => $request->current_email, 'password' => $request->password])) {
+                    $error = "You have entered wrong password!";
+                    return (new ResponseController)->sendError(0, $error);
+                } else {
+                    $user = User::where('id', $request->user_id)->update([
+                        'email' => $request->new_email,
+                    ]);
+                    if ($user) {
+                        $status = 1;
+                        $message = "Email updated successfully";
+                        Session::put('user', $user);
+                        return (new ResponseController)->sendResponse($status, $message, Session::get('user'));
+                    } else {
+                        $error = "Error Ocured!";
+                        return (new ResponseController)->sendError(0, $error);
+                    }
+
+                }
+            } catch (\Exception$e) {
+                $error = $e->getMessage();
+                return (new ResponseController)->sendError(0, $error);
+            }
+
+        }
+    }
+
+    // close
 }

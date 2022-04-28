@@ -22,12 +22,15 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::post('register', 'AuthController@register')->name('register');
     Route::post('serviceProviderRegister', 'AuthController@serviceProviderRegister')->name('serviceProviderRegister');
     Route::post('login', 'AuthController@login')->name('login');
+    Route::post('update-email', 'AuthController@updateEmail')->name('updateEmail');
+
+    //service routes
     Route::get('all-services', 'ServiceController@allServices')->name('allServices');
     Route::get('service-detail', 'ServiceController@serviceDetail')->name('serviceDetail');
     Route::get('seller-detail', 'ServiceController@sellerDetail')->name('sellerDetail');
     Route::get('seller-services', 'ServiceController@sellerServices')->name('serviceDetail');
-    Route::get('AllServiceProviders', 'ServiceController@getAllServiceProviders')->name('api.AllServiceProviders');
     Route::post('save-service-image', 'ServiceController@saveServiceImage')->name('api.saveServiceImage');
+    Route::get('AllServiceProviders', 'ServiceController@getAllServiceProviders')->name('api.AllServiceProviders');
     // service routes
     Route::post('add-service', 'ServiceController@storeService')->name('storeService');
     Route::post('update-service/{id}', 'ServiceController@updateService')->name('updateService');
