@@ -392,7 +392,7 @@ class ServiceController extends Controller
                     'services.id as Service_id')
                 ->where('services.service_type', 'like', $request->type)->get();
 
-            return $services;
+            return $request->type;
             foreach ($services as $key => $value) {
                 if (WatchList::where(['service_id' => $value->id, 'user_id' => $request->user_id])->exists()) {
                     $value->watchlist = 1;
