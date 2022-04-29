@@ -316,8 +316,10 @@ class ServiceController extends Controller
                 ->where('services.id', $value->Service_id)->first();
             $value->rating = round($rating->ratingssss, 1);
             $value->total_reviews = $rating->total_reviews;
-            $attachment = DB::table('service_attachment')->join('service_attachment','services.id',  'service_attachment.service_id')->where('service_attachment.service_id', $value->id)->get();
-            return $attachment;
+            $attachment = DB::table('Services')->join('service_attachment','services.id',  'service_attachment.service_id')
+            ->select('service_attachment.attachment_name')
+            ->where('services.id', $value->id)->get();
+             $value->attachments = $attachment  ;
         }
         return response()->json(['services' => $services]);
     }
