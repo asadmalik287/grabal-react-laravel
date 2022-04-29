@@ -504,9 +504,9 @@ class ServiceController extends Controller
     public function getServiceNamesOfTypes(Request $request)
     {
         try {
-            $residential = Service::where('service_type', 'like', '%residential%')->select('title', 'slug')->take(2)->get();
-            $commercial = Service::where('service_type', 'like', '%commercial%')->select('title', 'slug')->take(2)->get();
-            $trade = Service::where('service_type', 'like', '%trade%')->select('title', 'slug')->take(2)->get();
+            $residential = Service::where('service_type', 'like', '%residential%')->select('title', 'slug')->take(12)->get();
+            $commercial = Service::where('service_type', 'like', '%commercial%')->select('title', 'slug')->take(12)->get();
+            $trade = Service::where('service_type', 'like', '%trade%')->select('title', 'slug')->take(12)->get();
             return response()->json([
                 'residential' => $residential,
                 'commercial' => $commercial,
