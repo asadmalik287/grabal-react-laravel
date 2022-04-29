@@ -302,8 +302,13 @@ class ServiceController extends Controller
         $services = Service::join('categories', 'services.category_id', 'categories.id')
             ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
             ->join('users', 'services.added_by', 'users.id')
+            ->join('service_attachment','services.id',  'service_attachment.service_id')
             ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller', 'users.role_id', 'users.logo', 'categories.name as Category', 'services.*',
-                'services.id as Service_id')->get();
+                'services.id as Service_id', 'services.id as service_id_attachment', 'service_attachment.attachment_name')->get();
+            // ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
+            // ->join('users', 'services.added_by', 'users.id')
+            // ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller', 'users.role_id', 'users.logo', 'categories.name as Category', 'services.*',
+            //     'services.id as Service_id')->get();
         foreach ($services as $key => $value) {
             if (WatchList::where('service_id', $value->id)->exists()) {
                 $value->watchlist = 1;
