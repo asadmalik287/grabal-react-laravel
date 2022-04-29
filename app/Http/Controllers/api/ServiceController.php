@@ -77,7 +77,6 @@ class ServiceController extends Controller
 
         $service->service_type = json_encode($request->service_type);
 
-
         // $service->postal_code = $request->postal_code;
 
         $path = 'assets/admin/images';
@@ -385,29 +384,29 @@ class ServiceController extends Controller
     public function getTypServices(Request $request)
     {
         // if (isset($_GET['type'])) {
-            $services = DB::table('services')->join('categories', 'services.category_id', 'categories.id')
-                ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
-                ->join('users', 'services.added_by', 'users.id')
-                ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller', 'users.role_id', 'users.logo', 'categories.name as Category', 'services.*',
-                    'services.id as Service_id')
-                ->where('services.service_type', 'like', '%'.$request->type.'%')->get();
+        $services = DB::table('services')->join('categories', 'services.category_id', 'categories.id')
+            ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
+            ->join('users', 'services.added_by', 'users.id')
+            ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller', 'users.role_id', 'users.logo', 'categories.name as Category', 'services.*',
+                'services.id as Service_id')
+            ->where('services.service_type', 'like', '%' . $request->type . '%')->get();
 
-            foreach ($services as $key => $value) {
-                if (WatchList::where(['service_id' => $value->id, 'user_id' => $request->user_id])->exists()) {
-                    $value->watchlist = 1;
-                } else {
-                    $value->watchlist = 0;
-                }
-                $rating = DB::table('services')->join('reviews', 'services.id', 'reviews.service_id')
-                    ->selectRaw('SUM(reviews.rating)/COUNT(reviews.id) AS ratingssss', )
-                    ->selectRaw('COUNT(reviews.id) AS total_reviews')
-                    ->where('services.id', $value->Service_id)->first();
-                $value->rating = round($rating->ratingssss, 1);
-                $value->total_reviews = $rating->total_reviews;
+        foreach ($services as $key => $value) {
+            if (WatchList::where(['service_id' => $value->id, 'user_id' => $request->user_id])->exists()) {
+                $value->watchlist = 1;
+            } else {
+                $value->watchlist = 0;
             }
-            // return count($services);
+            $rating = DB::table('services')->join('reviews', 'services.id', 'reviews.service_id')
+                ->selectRaw('SUM(reviews.rating)/COUNT(reviews.id) AS ratingssss', )
+                ->selectRaw('COUNT(reviews.id) AS total_reviews')
+                ->where('services.id', $value->Service_id)->first();
+            $value->rating = round($rating->ratingssss, 1);
+            $value->total_reviews = $rating->total_reviews;
+        }
+        // return count($services);
 
-            return response()->json(['services' => $services]);
+        return response()->json(['services' => $services]);
         // }
     }
     // close
@@ -498,6 +497,26 @@ class ServiceController extends Controller
         ON sub_categories.id = services.subCategory_id
         GROUP BY services.subCategory_id , sub_categories.name, sub_categories.id limit 3');
         return response()->json(['catCount' => $catCount]);
+    }
+    // close
+
+    // get services names of types
+    public function getServiceNamesOfTypes(Request $request)
+    {
+        try {
+            $residential = Service::where('service_type', 'like', '%residential%')->select('title', 'slug')->get();
+            $commercial = Service::where('service_type', 'like', '%commercial%')->select('title', 'slug')->get();
+            $trade = Service::where('service_type', 'like', '%trade%')->select('title', 'slug')->get();
+            return response()->json([
+                'residential' => $residential,
+                'commercial' => $commercial,
+                'trade' => $trade,
+            ]);
+        } catch (\Exception$e) {
+            $error = $e->getMessage();
+            return (new ResponseController)->sendError(0, $error);
+        }
+
     }
     // close
 }

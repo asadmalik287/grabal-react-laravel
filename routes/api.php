@@ -31,6 +31,7 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::get('seller-detail', 'ServiceController@sellerDetail')->name('sellerDetail');
     Route::get('seller-services', 'ServiceController@sellerServices')->name('serviceDetail');
     Route::post('save-service-image', 'ServiceController@saveServiceImage')->name('api.saveServiceImage');
+    Route::get('get-service-names-ofType', 'ServiceController@getServiceNamesOfTypes')->name('api.getServiceNamesOfTypes');
     Route::get('AllServiceProviders', 'ServiceController@getAllServiceProviders')->name('api.AllServiceProviders');
     // service routes
     Route::post('add-service', 'ServiceController@storeService')->name('storeService');
