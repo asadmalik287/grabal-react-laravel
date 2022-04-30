@@ -36,6 +36,7 @@ class User extends Authenticatable
         'name',
         'country',
         'gender',
+        'logo',
         'town',
         'is_verified',
         'business_name',

@@ -276,7 +276,6 @@ class AuthController extends Controller
             $logo = $img_url1;
         }
 
-
         // create new user and save db
         $user = User::create([
             'business_name' => $request['business_name'],
@@ -295,7 +294,6 @@ class AuthController extends Controller
             'is_verified' => $request['is_verified'],
         ]);
 
-        return $user;
 
         $role = Role::where('id', $request['role_id'])->first();
         $user->assignRole($role);
