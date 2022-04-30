@@ -276,7 +276,6 @@ class AuthController extends Controller
             $logo = $img_url1;
         }
 
-        return gettype($logo);
 
         // create new user and save db
         $user = User::create([
@@ -296,6 +295,8 @@ class AuthController extends Controller
             'slug' => $request['slug'],
             'is_verified' => $request['is_verified'],
         ]);
+
+        return $logo;
 
         return $user;
 
