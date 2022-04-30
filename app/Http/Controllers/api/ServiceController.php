@@ -179,7 +179,7 @@ class ServiceController extends Controller
             'contact_name' => 'required',
             'phone_number' => 'required',
             'about' => 'required',
-            'main_service_image' => 'required',
+            // 'main_service_image' => 'required',
             'city' => 'required',
             'suburb' => 'required',
             // 'postal_code' => 'required',
