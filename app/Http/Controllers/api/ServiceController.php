@@ -269,17 +269,19 @@ class ServiceController extends Controller
         // }
         $service->save();
 
+        $i = 0;
         foreach ($request->service_image ?? [] as $file) {
 
             // return (new ResponseController)->sendResponse(1, 'test', $file);
-            $image_changed_name = time() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path($path), $image_changed_name);
-            $img_url = url($path) . "/" . $image_changed_name;
+            $image_changed_name[$i] = time(). '_' .$i . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path($path), $image_changed_name[$i]);
+            $img_url[$i] = url($path) . "/" . $image_changed_name[$i];
             $attachment = new ServiceAttachment;
-            $attachment->attachment_name = $img_url;
+            $attachment->attachment_name = $img_url[$i];
             // $attachment->service_id = Service::orderBy('id', 'desc')->first() != null ? Service::orderBy('id', 'desc')->first()->id + 1 : 0;
             $attachment->service_id = $service->id;
             $attachment->save();
+            $i++;
         }
 
         $message = 'Service has been updated successfully';
