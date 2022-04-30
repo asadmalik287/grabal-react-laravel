@@ -194,6 +194,7 @@ class ServiceController extends Controller
             return (new ResponseController)->sendError(0, $validator->errors());
         }
 
+        return $id;
         $service = Service::find($id);
         $service->category_id = $request->category_id;
         $service->subCategory_id = $request->subCategory_id;
