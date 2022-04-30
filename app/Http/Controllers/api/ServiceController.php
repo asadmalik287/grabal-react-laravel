@@ -155,7 +155,7 @@ class ServiceController extends Controller
     // update service
     public function updateService(Request $request, $id)
     {
-        return $request->all();
+        // return $request->all();
 
         $validator = Validator::make($request->all(), [
             // 'business_streetNo' => 'required|string',
