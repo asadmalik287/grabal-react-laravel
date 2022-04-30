@@ -265,7 +265,7 @@ class AuthController extends Controller
         // }
         $path = 'assets/admin/images/logo';
 
-        if ($request->has('logo')) {
+        if ($request->hasFile('logo')) {
             $file1 = $request->file("logo");
             $image_changed_name1 = time() . '.' . $file1->getClientOriginalExtension();
             $file1->move(public_path($path), $image_changed_name1);
