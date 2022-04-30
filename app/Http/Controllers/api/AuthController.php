@@ -264,8 +264,8 @@ class AuthController extends Controller
         //     $file->move($save_path, $name);
         // }
         $path = 'assets/admin/images/logo';
-        
-        return $request->hasFile('logo');
+
+
 
         if ($request->hasFile('logo')) {
             $file1 = $request->file("logo");
@@ -274,6 +274,9 @@ class AuthController extends Controller
             $img_url1 = url($path) . "/" . $image_changed_name1;
             $logo = $img_url1;
         }
+
+        return $logo;
+
         // create new user and save db
         $user = User::create([
             'business_name' => $request['business_name'],
