@@ -195,7 +195,8 @@ class ServiceController extends Controller
         }
 
         return $id;
-        $service = Service::find($id);
+        // $service = Service::find($id);
+        $service = Service::where('slug' , $id)->firstOrFail();
         $service->category_id = $request->category_id;
         $service->subCategory_id = $request->subCategory_id;
         $service->service_type = json_encode($request->service_type);
