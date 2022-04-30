@@ -264,6 +264,8 @@ class AuthController extends Controller
         //     $file->move($save_path, $name);
         // }
         $path = 'assets/admin/images/logo';
+        
+        return $request->hasFile('logo');
 
         if ($request->hasFile('logo')) {
             $file1 = $request->file("logo");
