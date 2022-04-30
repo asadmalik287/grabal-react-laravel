@@ -290,13 +290,10 @@ class AuthController extends Controller
             'message' => $request['message'],
             'role_id' => $request['role_id'],
             'password' => $passwordHashed,
-            // 'logo' => $request['logo'],
             'logo' => $logo,
             'slug' => $request['slug'],
             'is_verified' => $request['is_verified'],
         ]);
-
-        return $logo;
 
         return $user;
 
