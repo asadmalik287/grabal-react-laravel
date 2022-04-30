@@ -291,6 +291,7 @@ class AuthController extends Controller
             // 'logo' => $request['logo'],
             'logo' => $logo,
             'slug' => $request['slug'],
+            'is_verified' => $request['is_verified'],
         ]);
         $role = Role::where('id', $request['role_id'])->first();
         $user->assignRole($role);
