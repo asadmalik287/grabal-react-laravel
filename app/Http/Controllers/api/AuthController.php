@@ -276,7 +276,7 @@ class AuthController extends Controller
             $logo = $img_url1;
         }
 
-        return $logo;
+        return gettype($logo);
 
         // create new user and save db
         $user = User::create([
