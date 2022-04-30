@@ -135,7 +135,7 @@ class ServiceController extends Controller
         foreach ($request->service_image ?? [] as $file) {
 
             // return (new ResponseController)->sendResponse(1, 'test', $file);
-            $image_changed_name[$i] = time() . '.' . $file->getClientOriginalExtension();
+            $image_changed_name[$i] = time(). '_' .$i . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($path), $image_changed_name[$i]);
             $img_url[$i] = url($path) . "/" . $image_changed_name[$i];
             $attachment = new ServiceAttachment;
