@@ -217,6 +217,7 @@ class AuthController extends Controller
             // 'certifications_doc' => 'required',
             'message' => 'required',
             'role_id' => 'required',
+            'logo' => 'required',
         ]);
 
         // if validator fails
@@ -295,7 +296,7 @@ class AuthController extends Controller
         ]);
 
         return $user;
-        
+
         $role = Role::where('id', $request['role_id'])->first();
         $user->assignRole($role);
 
