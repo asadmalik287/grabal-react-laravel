@@ -194,7 +194,6 @@ class ServiceController extends Controller
             return (new ResponseController)->sendError(0, $validator->errors());
         }
 
-        return $id;
         // $service = Service::find($id);
         $service = Service::where('slug' , $id)->firstOrFail();
         $service->category_id = $request->category_id;
