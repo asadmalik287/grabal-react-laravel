@@ -59,6 +59,11 @@ class AuthController extends Controller
         $password = substr(str_shuffle('012#$%^&345&^^%%#s35+DE+_)gsdgsgsd$&*#@_36363#$5&^^%%#s35+DE+_)gsd%^4667%$@$89$%$$sgsd$&*#@_36363#ABCDE+_)gsdgsgsdd@$%^&($&#+_(@gFGHIJK+))(*^&LMNOPsdgsgw45_)(*&^^$&$*%(%)_%_+#+#3trfesfgs___+)()gsdg_)(*&^%$sQRSTUVWXYZ'), 1, 8);
         $passwordHashed = Hash::make($password);
         $userName = strtok($request['email'], '@');
+        $check = User::where('name', $userName)->exists();
+        if ($check == true) {
+            $count = User::where('name','Like','%' .  $userName  . '%')->count();
+            $userName = $userName . $count + 1;
+        }
         $request['password'] = $passwordHashed;
         $request['name'] = $userName;
         $request['slug'] = $userName;
@@ -228,7 +233,6 @@ class AuthController extends Controller
         $password = substr(str_shuffle('012#$%^&345&^^%%#s35+DE+_)gsdgsgsd$&*#@_36363#$5&^^%%#s35+DE+_)gsd%^4667%$@$89$%$$sgsd$&*#@_36363#ABCDE+_)gsdgsgsdd@$%^&($&#+_(@gFGHIJK+))(*^&LMNOPsdgsgw45_)(*&^^$&$*%(%)_%_+#+#3trfesfgs___+)()gsdg_)(*&^%$sQRSTUVWXYZ'), 1, 8);
         $passwordHashed = Hash::make($password);
         $userName = strtok($request['email'], '@');
-        $request['is_verified'] = 1;
         $request['slug'] = $userName;
 
         // $request['is_active'] = 1;
@@ -266,7 +270,6 @@ class AuthController extends Controller
         // }
         $path = 'assets/admin/images/logo';
 
-
         $logo = '';
         if ($request->hasFile('logo')) {
             $file1 = $request->file("logo");
@@ -293,7 +296,6 @@ class AuthController extends Controller
             'slug' => $request['slug'],
             'is_verified' => $request['is_verified'],
         ]);
-
 
         $role = Role::where('id', $request['role_id'])->first();
         $user->assignRole($role);
