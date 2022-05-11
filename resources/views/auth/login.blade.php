@@ -8,12 +8,19 @@
                     <div class="col-lg-4 col-10">
                         <div class="login-content">
                             <div class="login-logo">
-                                <a href="{{route('admin')}}">
-                                    <img src="{{asset('assets/admin/images/logo.png')}}" alt="logo">
+                                <a href="{{ route('admin') }}">
+                                    <img src="{{ asset('assets/admin/images/logo.png') }}" alt="logo">
                                 </a>
                             </div>
                             <div class="login-form shadow" style="border-radius: 15px">
                                 <h4>Administrator Login</h4>
+                                @if ($message = Session::get('error'))
+                                <div class="alert alert-danger alert-block">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <strong>{{ $message }}</strong>
+                                </div>
+                            @endif
+
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <div class="form-group">

@@ -228,7 +228,6 @@ class AllFunctionsController extends Controller
             array_push($topsellerID, $id->added_by);
         }
         $topSeller = User::whereIn('id', $topsellerID)->get();
-        // return $topSeller;
         foreach ($topSeller as $value) {
             $rating = DB::table('services')
                 ->join('reviews', 'services.id', 'reviews.service_id')
@@ -239,6 +238,8 @@ class AllFunctionsController extends Controller
                 $value['rating'] = round($rating->rating, 1);
                 $value['total_reviews'] = $rating->total_reviews;
         }
+         $topSeller = collect($topSeller)->sortByDesc('total_reviews');
+         $topSeller =   $topSeller->values()->all();
         // if (count($topServiceProvidersIdsArr) > 0) {
         //     foreach ($topServiceProvidersIdsArr as $value) {
         //         $serviceProvider = $topServiceProviders[$value][0];
