@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\WatchList;
 use Illuminate\Http\Request;
 use Mail;
+use DB;
 use Validator;
 
 class AllFunctionsController extends Controller
@@ -53,7 +54,7 @@ class AllFunctionsController extends Controller
                     $services->where($key, $value);
                 }
             }
-            $services = $services->select(['id', 'title','slug', 'description', 'main_service_image', 'created_at', 'added_by', 'subCategory_id', 'category_id'])
+            $services = $services->select(['id', 'title', 'slug', 'description', 'main_service_image', 'created_at', 'added_by', 'subCategory_id', 'category_id'])
                 ->with(['haveProvider' => function ($user) {
                     $user->select('id', 'role_id', 'logo');
                 }, 'subcat' => function ($subCategory) {
@@ -107,11 +108,11 @@ class AllFunctionsController extends Controller
         $services = Service::join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
             ->where('sub_categories.slug', $request->slug);
 
-        $services = $services->select(['services.id','services.slug', 'services.title', 'services.description', 'services.main_service_image', 'services.created_at', 'services.added_by', 'services.subCategory_id', 'services.category_id'])
+        $services = $services->select(['services.id', 'services.slug', 'services.title', 'services.description', 'services.main_service_image', 'services.created_at', 'services.added_by', 'services.subCategory_id', 'services.category_id'])
             ->with(['haveProvider' => function ($user) {
-                $user->select('id', 'role_id', 'logo','slug');
+                $user->select('id', 'role_id', 'logo', 'slug');
             }, 'subcat' => function ($subCategory) {
-                $subCategory->select('id', 'name','slug');
+                $subCategory->select('id', 'name', 'slug');
             }])
             ->with("averageReviews")
             ->get();
@@ -122,7 +123,7 @@ class AllFunctionsController extends Controller
                 if (isset($request->user_id)) {
                     if (WatchList::where(['service_id' => $service->id, 'user_id' => $request->user_id])->exists()) {
                         $watchList = 1;
-                }
+                    }
                 }
                 $service['watchList'] = $watchList;
                 $service['user_id'] = $request->user_id;
@@ -142,7 +143,7 @@ class AllFunctionsController extends Controller
 
         $reviewsList = Review::with(["service" => function ($service) {
             $service->select(['id', 'title', 'description', 'slug', 'main_service_image', 'created_at', 'added_by'])->with(['haveProvider' => function ($user) {
-                $user->select(['id', 'name', 'f_name', 'l_name', 'role_id', 'logo','slug']);
+                $user->select(['id', 'name', 'f_name', 'l_name', 'role_id', 'logo', 'slug']);
             }]);},
         ])->get()
             ->groupBy("service_id");
@@ -172,7 +173,7 @@ class AllFunctionsController extends Controller
         $topThreeServices = array_slice(array_keys($serviceArray), 0, $request->limit);
         // $topThreeServices = array_slice(array_keys($serviceArray), 0, 3);
         // get top three services category and their service providers
-        $topServicesCategory = Service::select(['id', 'title','slug', 'subCategory_id', 'added_by'])->whereIn('id', $topThreeServices)
+        $topServicesCategory = Service::select(['id', 'title', 'slug', 'subCategory_id', 'added_by'])->whereIn('id', $topThreeServices)
             ->with(['subcat' => function ($subCategory) {
                 $subCategory->select(['id', 'name', 'slug'])
                     ->where('status', 'active')
@@ -195,7 +196,6 @@ class AllFunctionsController extends Controller
                 $popularServices[$value] = $service;
             }
         }
-
         // make order according to top ten services and service providers count
         if (count($topThreeServices) > 0) {
             foreach ($topThreeServices as $value) {
@@ -206,7 +206,7 @@ class AllFunctionsController extends Controller
         // get top service providers
         $topServiceProviders = Service::select(['id', 'added_by'])->whereIn('id', $topTenServices)
             ->with(['haveProvider' => function ($provider) {
-                $provider->select(['id', 'name', 'business_name', 'f_name','slug', 'l_name', 'logo', 'created_at', 'message']);
+                $provider->select(['id', 'name', 'business_name', 'f_name', 'slug', 'l_name', 'logo', 'created_at', 'message']);
             }])
             ->get()
             ->unique('added_by')
@@ -221,23 +221,41 @@ class AllFunctionsController extends Controller
 
         // make order according to top services and create list of service providers
         $topServiceProvidersIdsArr = array_values(array_intersect($topTenServices, array_keys($topServiceProviders->toArray())));
-        if (count($topServiceProvidersIdsArr) > 0) {
-            foreach ($topServiceProvidersIdsArr as $value) {
-                $serviceProvider = $topServiceProviders[$value][0];
-                $serviceProvider['totalReviews'] = $popularServices[$value]['totalReviews'];
-                $serviceProvider['averageRating'] = $popularServices[$value]['averageRating'];
-                $topServiceProvidersArr[$value] = $serviceProvider;
-            }
+        // return $topServiceProvidersIdsArr;
+        $topsellerID = [];
+        foreach ($topServiceProvidersIdsArr as $value) {
+            $id = Service::where('id', $value)->first();
+            array_push($topsellerID, $id->added_by);
         }
-        return response()->json(['success' => true, 'popularServices' => array_values($popularServices), 'popularServicesCategoryProviders' => array_values($popularServicesCategoryProviders), 'topServiceProviders' => array_values($topServiceProvidersArr)]);
+        $topSeller = User::whereIn('id', $topsellerID)->get();
+        // return $topSeller;
+        foreach ($topSeller as $value) {
+            $rating = DB::table('services')
+                ->join('reviews', 'services.id', 'reviews.service_id')
+                ->selectRaw('SUM(reviews.rating)/COUNT(reviews.id) AS rating', )
+                ->selectRaw('COUNT(reviews.id) AS total_reviews')
+                ->where('services.added_by', $value->id)
+                ->first();
+                $value['rating'] = round($rating->rating, 1);
+                $value['total_reviews'] = $rating->total_reviews;
+        }
+        // if (count($topServiceProvidersIdsArr) > 0) {
+        //     foreach ($topServiceProvidersIdsArr as $value) {
+        //         $serviceProvider = $topServiceProviders[$value][0];
+        //         $serviceProvider['totalReviews'] = $popularServices[$value]['totalReviews'];
+        //         $serviceProvider['averageRating'] = $popularServices[$value]['averageRating'];
+        //         $topServiceProvidersArr[$value] = $serviceProvider;
+        //     }
+        // }
+        return response()->json(['success' => true, 'popularServices' => array_values($popularServices), 'popularServicesCategoryProviders' => array_values($popularServicesCategoryProviders), 'topServiceProviders' => $topSeller]);
     }
 
     // send enquiry email to service provider
     public function sendEnquiryEmailToServiceProvider(Request $request)
     {
-        if($request->type === 'message'){
+        if ($request->type === 'message') {
             $validator = Validator::make($request->all(), ['provider_id' => 'required', 'message' => 'required']);
-        }else{
+        } else {
             $validator = Validator::make($request->all(), ['provider_id' => 'required']);
         }
 
