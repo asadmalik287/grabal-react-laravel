@@ -9,6 +9,7 @@ use App\Models\Subscription;
 use App\Models\User;
 use App\Models\WatchList;
 use DB;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -23,6 +24,7 @@ class ServiceController extends Controller
     // store services
     public function storeService(Request $request)
     {
+ 
         // return $request->all();
         // dd($request->all());
 
@@ -78,7 +80,10 @@ class ServiceController extends Controller
         $service->service_type = json_encode($request->service_type);
 
         // $service->postal_code = $request->postal_code;
-
+        $checkExistApproved = Service::where(['added_by'=> $request->added_by_id,'status' => 'approved'])->exists();
+        if ($checkExistApproved == true) {
+            $service->status = 'approved';
+        }
         $path = 'assets/admin/images';
 
         // if ($request->hasFile('service_image[]')) {
@@ -516,7 +521,7 @@ class ServiceController extends Controller
     //get count name and id of servies
     public function getCatServices_cout()
     {
-        $catCount = DB::select('SELECT sub_categories.id,sub_categories.name , 
+        $catCount = DB::select('SELECT sub_categories.id,sub_categories.name ,
         count(services.subCategory_id) as total_services FROM sub_categories
         LEFT JOIN services
         ON sub_categories.id = services.subCategory_id
