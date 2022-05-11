@@ -10,9 +10,9 @@ use App\Models\Service;
 use App\Models\UploadAds;
 use App\Models\User;
 use App\Models\WatchList;
+use DB;
 use Illuminate\Http\Request;
 use Mail;
-use DB;
 use Validator;
 
 class AllFunctionsController extends Controller
@@ -179,6 +179,7 @@ class AllFunctionsController extends Controller
                     ->where('status', 'active')
                     ->withCount('serviceProviders');
             }])
+        // ->where('services.status', 'approved')
             ->get()
             ->groupBy('id');
         // return $topServicesCategory;
@@ -204,11 +205,13 @@ class AllFunctionsController extends Controller
         }
 
         // get top service providers
-        $topServiceProviders = Service::select(['id', 'added_by'])->whereIn('id', $topTenServices)
+        $topServiceProviders = Service::where('services.status', 'approved')
+        ->select(['id', 'added_by'])->whereIn('id', $topTenServices)
             ->with(['haveProvider' => function ($provider) {
                 $provider->select(['id', 'name', 'business_name', 'f_name', 'slug', 'l_name', 'logo', 'created_at', 'message']);
             }])
             ->get()
+
             ->unique('added_by')
             ->groupBy('id');
 
@@ -235,11 +238,11 @@ class AllFunctionsController extends Controller
                 ->selectRaw('COUNT(reviews.id) AS total_reviews')
                 ->where('services.added_by', $value->id)
                 ->first();
-                $value['rating'] = round($rating->rating, 1);
-                $value['total_reviews'] = $rating->total_reviews;
+            $value['rating'] = round($rating->rating, 1);
+            $value['total_reviews'] = $rating->total_reviews;
         }
-         $topSeller = collect($topSeller)->sortByDesc('total_reviews');
-         $topSeller =   $topSeller->values()->all();
+        $topSeller = collect($topSeller)->sortByDesc('total_reviews');
+        $topSeller = $topSeller->values()->all();
         // if (count($topServiceProvidersIdsArr) > 0) {
         //     foreach ($topServiceProvidersIdsArr as $value) {
         //         $serviceProvider = $topServiceProviders[$value][0];

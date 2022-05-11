@@ -135,7 +135,7 @@ class ServiceController extends Controller
         foreach ($request->service_image ?? [] as $file) {
 
             // return (new ResponseController)->sendResponse(1, 'test', $file);
-            $image_changed_name[$i] = time(). '_' .$i . '.' . $file->getClientOriginalExtension();
+            $image_changed_name[$i] = time() . '_' . $i . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($path), $image_changed_name[$i]);
             $img_url[$i] = url($path) . "/" . $image_changed_name[$i];
             $attachment = new ServiceAttachment;
@@ -195,7 +195,7 @@ class ServiceController extends Controller
         }
 
         // $service = Service::find($id);
-        $service = Service::where('slug' , $id)->firstOrFail();
+        $service = Service::where('slug', $id)->firstOrFail();
         $service->category_id = $request->category_id;
         $service->subCategory_id = $request->subCategory_id;
         $service->service_type = json_encode($request->service_type);
@@ -276,7 +276,7 @@ class ServiceController extends Controller
         foreach ($request->service_image ?? [] as $file) {
 
             // return (new ResponseController)->sendResponse(1, 'test', $file);
-            $image_changed_name[$i] = time(). '_' .$i . '.' . $file->getClientOriginalExtension();
+            $image_changed_name[$i] = time() . '_' . $i . '.' . $file->getClientOriginalExtension();
             $file->move(public_path($path), $image_changed_name[$i]);
             $img_url[$i] = url($path) . "/" . $image_changed_name[$i];
             $attachment = new ServiceAttachment;
@@ -309,7 +309,9 @@ class ServiceController extends Controller
             ->join('sub_categories', 'services.subCategory_id', 'sub_categories.id')
             ->join('users', 'services.added_by', 'users.id')
             ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller', 'users.role_id', 'users.logo', 'categories.name as Category', 'services.*',
-                'services.id as Service_id')->get();
+                'services.id as Service_id')
+            ->where('services.status', 'approved')
+            ->get();
         foreach ($services as $key => $value) {
             if (WatchList::where('service_id', $value->id)->exists()) {
                 $value->watchlist = 1;
@@ -362,7 +364,7 @@ class ServiceController extends Controller
         //     ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
         //         'services.id as Service_id')->where('services.added_by', $_GET['id'])->get();
 
-        $sellerServices = Service::select(['id', 'title', 'description', 'slug', 'main_service_image', 'created_at', 'added_by', 'subCategory_id', 'category_id'])
+        $sellerServices = Service::where('services.status', 'approved')->select(['id', 'title', 'description', 'slug', 'main_service_image', 'created_at', 'added_by', 'subCategory_id', 'category_id'])
             ->with(['haveProvider' => function ($user) {
                 $user->select('id', 'role_id', 'logo');
             }, 'subcat' => function ($subCategory) {
@@ -386,6 +388,7 @@ class ServiceController extends Controller
                 ->selectRaw('SUM(reviews.rating)/COUNT(reviews.id) AS rating', )
                 ->selectRaw('COUNT(reviews.id) AS total_reviews')
                 ->where('services.added_by', $value->id)
+                ->where('services.status', 'approved')
                 ->first();
             $value->rating = $rating->rating;
             $value->total_reviews = $rating->total_reviews;
@@ -403,7 +406,8 @@ class ServiceController extends Controller
             ->join('users', 'services.added_by', 'users.id')
             ->select('users.business_name', 'sub_categories.name as SubCategory', 'users.name as Seller', 'users.role_id', 'users.logo', 'categories.name as Category', 'services.*',
                 'services.id as Service_id')
-            ->where('services.service_type', 'like', '%' . $request->type . '%')->get();
+            ->where('services.service_type', 'like', '%' . $request->type . '%')
+            ->where('services.status', 'approved')->get();
 
         foreach ($services as $key => $value) {
             if (WatchList::where(['service_id' => $value->id, 'user_id' => $request->user_id])->exists()) {
@@ -414,7 +418,9 @@ class ServiceController extends Controller
             $rating = DB::table('services')->join('reviews', 'services.id', 'reviews.service_id')
                 ->selectRaw('SUM(reviews.rating)/COUNT(reviews.id) AS ratingssss', )
                 ->selectRaw('COUNT(reviews.id) AS total_reviews')
-                ->where('services.id', $value->Service_id)->first();
+                ->where('services.id', $value->Service_id)
+                ->where('services.status', 'approved')
+                ->first();
             $value->rating = round($rating->ratingssss, 1);
             $value->total_reviews = $rating->total_reviews;
         }
@@ -439,6 +445,7 @@ class ServiceController extends Controller
                 ->selectRaw('SUM(reviews.rating)/COUNT(reviews.id) AS rating', )
                 ->selectRaw('COUNT(reviews.id) AS total_reviews')
                 ->where('services.added_by', $seller->id)
+                ->where('services.status', 'approved')
                 ->first();
             $seller['rating'] = round($rating->rating, 1);
             $seller['total_reviews'] = $rating->total_reviews;
@@ -473,7 +480,10 @@ class ServiceController extends Controller
                 ->join('users', 'services.added_by', 'users.id')
                 ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.logo',
                     'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
-                    'services.id as Service_id')->where('sub_categories.slug', $_GET['id'])->get();
+                    'services.id as Service_id')
+                ->where('sub_categories.slug', $_GET['id'])
+                ->where('services.status', 'approved')
+                ->get();
             // $images = Service::with('hasAttachment')->where('services.subCategory_id', $_GET['id'])->get();
             $totalServices = count($services);
             return response()->json(['services' => $services
@@ -506,7 +516,8 @@ class ServiceController extends Controller
     //get count name and id of servies
     public function getCatServices_cout()
     {
-        $catCount = DB::select('SELECT sub_categories.id,sub_categories.name , count(services.subCategory_id) as total_services FROM sub_categories
+        $catCount = DB::select('SELECT sub_categories.id,sub_categories.name , 
+        count(services.subCategory_id) as total_services FROM sub_categories
         LEFT JOIN services
         ON sub_categories.id = services.subCategory_id
         GROUP BY services.subCategory_id , sub_categories.name, sub_categories.id limit 3');
@@ -518,9 +529,10 @@ class ServiceController extends Controller
     public function getServiceNamesOfTypes(Request $request)
     {
         try {
-            $residential = Service::where('service_type', 'like', '%residential%')->select('title', 'slug')->take(12)->get();
-            $commercial = Service::where('service_type', 'like', '%commercial%')->select('title', 'slug')->take(12)->get();
-            $trade = Service::where('service_type', 'like', '%trade%')->select('title', 'slug')->take(12)->get();
+
+            $residential = Service::where('service_type', 'like', '%residential%')->where('services.status', 'approved')->select('title', 'slug')->take(12)->get();
+            $commercial = Service::where('service_type', 'like', '%commercial%')->where('services.status', 'approved')->select('title', 'slug')->take(12)->get();
+            $trade = Service::where('service_type', 'like', '%trade%')->where('services.status', 'approved')->select('title', 'slug')->take(12)->get();
             return response()->json([
                 'residential' => $residential,
                 'commercial' => $commercial,
