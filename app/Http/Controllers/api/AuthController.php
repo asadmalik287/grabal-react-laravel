@@ -61,7 +61,7 @@ class AuthController extends Controller
         $userName = strtok($request['email'], '@');
         $check = User::where('name', $userName)->exists();
         if ($check == true) {
-            $count = User::where('name','Like','%' .  $userName  . '%')->count();
+            $count = User::where('name', 'Like', '%' . $userName . '%')->count();
             $userName = $userName . $count + 1;
         }
         $request['password'] = $passwordHashed;
@@ -410,6 +410,54 @@ class AuthController extends Controller
                     return (new ResponseController)->sendError(0, $error);
                 }
 
+            } catch (\Exception$e) {
+                $error = $e->getMessage();
+                return (new ResponseController)->sendError(0, $error);
+            }
+
+        }
+    }
+    // close
+
+    // update user password api function starts
+    public function updateLogo(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'logo' => 'required',
+        ]);
+
+        // if validator fails
+        if ($validator->fails()) {
+            return (new ResponseController)->sendError(0, $validator->errors());
+        } else {
+            // update user logo if user exists
+            try {
+                $user = User::where('id', $request->user_id)->first();
+                if ($user) {
+                    $path = 'assets/admin/images/logo';
+                    $logo = '';
+                    if ($request->hasFile('logo')) {
+                        $file1 = $request->file("logo");
+                        $image_changed_name1 = time() . '.' . $file1->getClientOriginalExtension();
+                        $file1->move(public_path($path), $image_changed_name1);
+                        $img_url1 = url($path) . "/" . $image_changed_name1;
+                        $logo = $img_url1;
+                    }
+                    $prevLogo = substr($user->logo, strrpos($user->logo, '/') + 1);
+                    $pathToDelete = public_path($path) . '/' . $prevLogo;
+                    \Storage::delete($pathToDelete);
+                    $userUpdate = User::where('id', $request->user_id)->update([
+                        'logo' => $logo,
+                    ]);
+
+                    $status = 1;
+                    $message = "Logo updated successfully";
+                    Session::put('user', $user);
+                    return (new ResponseController)->sendResponse($status, $message, Session::get('user'));
+                } else {
+                    $error = "Error Ocured!";
+                    return (new ResponseController)->sendError(0, $error);
+                }
             } catch (\Exception$e) {
                 $error = $e->getMessage();
                 return (new ResponseController)->sendError(0, $error);
