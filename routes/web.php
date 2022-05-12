@@ -35,9 +35,9 @@ Route::get('/clear-all', function () {
 });
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 // Route::get('/', function () {
 //     return redirect('https://ewdtech.com/ewdtech/test/grobal');
 // });
@@ -51,8 +51,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'namespace' => 'App\H
     Route::get('/serviceProviders', [AdminController::class, 'manageServiceProvider'])->name('admin.serviceProviders');
 
 });
-Route::group(['prefix' => 'admin'], function () {
-    Auth::routes();
+Auth::routes();
+Route::group(['prefix' => 'admin' , 'middleware' => 'auth'], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('categories', CategoriesController::class);
     Route::resource('sub-categories', SubCategoriesController::class);
