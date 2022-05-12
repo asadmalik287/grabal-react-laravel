@@ -33,7 +33,7 @@
     </div>
 
 
-    <ul class="nav nav-pills m-t-30 m-b-30 justify-content-end">
+    <ul class="nav nav-pills m-t-30 m-b-30 justify-content-end d-none">
         <li class="nav-item"> <a href="#all" class="nav-link active border all" data-toggle="tab"
                 aria-expanded="false">All
                 Service Providers</a> </li>
@@ -45,7 +45,7 @@
                 aria-expanded="true">Rejected</a> </li>
     </ul>
 
-    <div class="row p-0">
+    <div class="row p-0 d-none">
         <div class="col-lg-12 pb-0">
             {{-- <div class="card mb-0"> --}}
             <table id="" class="table table-striped table-bordered">
@@ -73,8 +73,44 @@
             <div class="card mt-0">
                 <div class="tab-content br-n pn">
 
+                    <div class="bootstrap-data-table-panel">
+                        <div class="table-responsive">
+                            <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Sr</th>
+                                        <th>Business Name</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th>Contact Person</th>
+                                        <th>Message</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($serviceProviders as $key => $serviceProvider)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $serviceProvider->business_name }}</td>
+                                            <td>{{ $serviceProvider->email }}</td>
+                                            <td>{{ $serviceProvider->phone_number }}</td>
+                                            <td>{{ $serviceProvider->contact_person }}</td>
+                                            <td>{{ $serviceProvider->message }}</td>
+                                            <td>
+                                                <a
+                                                    href="{{ url('admin/services') }}?id={{ $serviceProvider->id }}">
+                                                    <button class="btn btn-info btn-sm">View Services</button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     {{-- all tab start --}}
-                    <div id="all" class="tab-pane active">
+                    <div id="all" class="tab-pane active d-none" >
                         <div class="bootstrap-data-table-panel">
                             <div class="table-responsive">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -116,7 +152,7 @@
                     {{-- all tab end --}}
 
                     {{-- Pending tab start --}}
-                    <div id="pending" class="tab-pane">
+                    <div id="pending" class="tab-pane d-none">
                         <div class="bootstrap-data-table-panel">
                             <div class="table-responsive">
                                 <table id="bootstrap-data-table-export1" class="table table-striped table-bordered">
@@ -158,7 +194,7 @@
                     {{-- Pending tab end --}}
 
                     {{-- Approved tab start --}}
-                    <div id="approved" class="tab-pane">
+                    <div id="approved" class="tab-pane d-none">
                         <div class="bootstrap-data-table-panel">
                             <div class="table-responsive">
                                 <table id="bootstrap-data-table-export2" class="table table-striped table-bordered">
@@ -200,7 +236,7 @@
                     {{-- Approved tab end --}}
 
                     {{-- Rejected tab start --}}
-                    <div id="rejected" class="tab-pane">
+                    <div id="rejected" class="tab-pane d-none">
                         <div class="bootstrap-data-table-panel">
                             <div class="table-responsive">
                                 <table id="bootstrap-data-table-export3" class="table table-striped table-bordered">
