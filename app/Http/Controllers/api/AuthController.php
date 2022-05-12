@@ -435,6 +435,9 @@ class AuthController extends Controller
                 $user = User::where('id', $request->user_id)->first();
                 if ($user) {
                     $path = 'assets/admin/images/logo';
+                    $prevLogo = substr($user->logo, strrpos($user->logo, '/') + 1);
+                    $pathToDelete = public_path($path) . '/' . $prevLogo;
+                    \Storage::delete($pathToDelete);
                     $logo = '';
                     if ($request->hasFile('logo')) {
                         $file1 = $request->file("logo");
@@ -443,17 +446,14 @@ class AuthController extends Controller
                         $img_url1 = url($path) . "/" . $image_changed_name1;
                         $logo = $img_url1;
                     }
-                    $prevLogo = substr($user->logo, strrpos($user->logo, '/') + 1);
-                    $pathToDelete = public_path($path) . '/' . $prevLogo;
-                    \Storage::delete($pathToDelete);
                     $userUpdate = User::where('id', $request->user_id)->update([
                         'logo' => $logo,
                     ]);
 
                     $status = 1;
                     $message = "Logo updated successfully";
-                    Session::put('user', $user);
-                    return (new ResponseController)->sendResponse($status, $message, Session::get('user'));
+                    $user = User::where('id', $request->user_id)->first();
+                    return (new ResponseController)->sendResponse($status, $message, $user);
                 } else {
                     $error = "Error Ocured!";
                     return (new ResponseController)->sendError(0, $error);
