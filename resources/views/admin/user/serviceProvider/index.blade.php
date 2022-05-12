@@ -79,6 +79,7 @@
                                 <thead>
                                     <tr>
                                         <th>Sr</th>
+                                        <th>Logo</th>
                                         <th>Business Name</th>
                                         <th>Email</th>
                                         <th>Phone Number</th>
@@ -91,6 +92,13 @@
                                     @foreach ($serviceProviders as $key => $serviceProvider)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
+                                            <td>
+                                                @if (isset($serviceProvider->logo))
+                                                    <img src={{ $serviceProvider->logo }} alt={{ $serviceProvider->business_name }} width="160" height="60">
+                                                @else
+                                                    
+                                                @endif
+                                            </td>
                                             <td>{{ $serviceProvider->business_name }}</td>
                                             <td>{{ $serviceProvider->email }}</td>
                                             <td>{{ $serviceProvider->phone_number }}</td>
