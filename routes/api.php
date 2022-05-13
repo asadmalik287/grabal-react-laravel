@@ -36,6 +36,7 @@ Route::group(['namespace' => 'App\Http\Controllers\api'], function () {
     Route::get('AllServiceProviders', 'ServiceController@getAllServiceProviders')->name('api.AllServiceProviders');
     // service routes
     Route::post('add-service', 'ServiceController@storeService')->name('storeService');
+    Route::post('delete-image', 'ServiceController@deleteServiceImage')->name('deleteServiceImage');
     Route::post('update-service/{id}', 'ServiceController@updateService')->name('updateService');
     Route::get('category-list', 'ServiceController@categoriesList')->name('category-list');
     Route::get('sub-cat-services', 'ServiceController@getServiceFromSubCategory')->name('sub-cat-services');

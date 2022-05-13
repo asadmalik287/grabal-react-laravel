@@ -24,7 +24,7 @@ class ServiceController extends Controller
     // store services
     public function storeService(Request $request)
     {
- 
+
         // return $request->all();
         // dd($request->all());
 
@@ -246,6 +246,7 @@ class ServiceController extends Controller
         // }
 
         if ($request->hasFile('main_service_image')) {
+
             $file1 = $request->file("main_service_image");
             $image_changed_name1 = time() . '.' . $file1->getClientOriginalExtension();
             $file1->move(public_path($path), $image_changed_name1);
@@ -550,4 +551,15 @@ class ServiceController extends Controller
 
     }
     // close
+
+    // delete image for url showing
+
+      public function deleteServiceImage(Request $request)
+      {
+          $image = ServiceAttachment::where('attachment_name', $request->url)->firstOrFail();
+          return $image;
+        //   $image->delete();
+          return response()->json(['success' => true, 'message' => 'Image has been Delete!']);
+      }
+      // close
 }
