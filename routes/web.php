@@ -41,6 +41,10 @@ Route::get('/clear-all', function () {
 // Route::get('/', function () {
 //     return redirect('https://ewdtech.com/ewdtech/test/grobal');
 // });
+Route::group(['middleware' => 'auth', 'namespace' => 'App\Http\Controllers\admin'], function () {
+
+Route::get('/', [HomeController::class, 'index'])->name('admin');
+});
 
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
