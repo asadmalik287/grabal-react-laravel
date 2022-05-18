@@ -51,16 +51,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-2"> Business address:</div>
-            <div class="col-lg-10">
-                {{ $service->service }}
-            </div>
-        </div>
-        <div class="row">
             <div class="col-lg-2"> Service Image</div>
             <div class="col-lg-10">
                 <div class="d-flex">
-                    <img src="{{$service->main_service_image}}" class="mr-2" alt="" width="200" height="120">
+                    <img src="{{$service->main_service_image}}" class="mr-2" alt="" height="120">
                 </div>
             </div>
         </div>
@@ -70,7 +64,7 @@
                 <div class="d-flex flex-wrap">
                     {{-- @dd($service->hasAttachment) --}}
                     @foreach ($service->hasAttachment as $key)
-                        <img src="{{$key->attachment_name}}" class="mr-2 mt-2" alt="" width="200" height="120">
+                        <img src="{{$key->attachment_name}}" class="mr-2 mt-2" alt="" height="120">
                     @endforeach
 
                 </div>
