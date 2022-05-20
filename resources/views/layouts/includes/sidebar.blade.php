@@ -25,11 +25,17 @@
                 </li>
 
                 <li class="@if (Request::is('admin/services')) active @endif">
-                    <a href="{{ url('admin/services') }}"><i class="ti-home"></i>Services </a>
+                    <a href="{{ url('admin/services') }}">
+                        <img src="{{asset('assets/backend/image/service.png')}}" alt="" style="margin-right: 12px;">
+                        Services
+                    </a>
                 </li>
 
                 <li class="@if (Request::is('admin/serviceProviders')) active @endif">
-                    <a href="{{ url('admin/serviceProviders') }}"><i class="ti-home"></i>Service Providers</a>
+                    <a href="{{ url('admin/serviceProviders') }}">
+                        <img src="{{asset('assets/backend/image/serviceProvider.png')}}" alt="" style="margin-right: 12px;">
+                        Service Providers
+                    </a>
                 </li>
 
                 {{-- <li class="@if (Request::is('admin/assign_task')) active @endif">
@@ -39,8 +45,9 @@
 
 
                 <li>
-                    <a class="sidebar-sub-toggle"><i class="ti-vector"></i> Manage Ads<span
-                            class="sidebar-collapse-icon ti-angle-down"></span></a>
+                    <a class="sidebar-sub-toggle">
+                        <img src="{{asset('assets/backend/image/ads.png')}}" alt="" style="margin-right: 12px;">
+                        Manage Ads<span class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
                         <li class="@if (Request::is('admin/ads')) active @endif"><a
                                 href="{{ url('admin/ads') }}"> Banners</a></li>

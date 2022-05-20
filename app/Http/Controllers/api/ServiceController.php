@@ -32,7 +32,7 @@ class ServiceController extends Controller
             // 'business_streetNo' => 'required|string',
             // 'business_unit' => 'required|string',
             // 'business_street' => 'required',
-            'address' => 'required',
+            // 'address' => 'required',
             'aboutService' => 'required',
             'aboutService1' => 'required',
             'category_id' => 'required|string',
@@ -65,8 +65,8 @@ class ServiceController extends Controller
         // $service->business_streetNo = $request->business_streetNo;
         // $service->business_unit = $request->business_unit;
         // $service->business_street = $request->business_street;
-        $service->address = $request->address;
-        $service->address1 = $request->address1;
+        // $service->address = $request->address;
+        // $service->address1 = $request->address1;
         $service->aboutService = $request->aboutService;
         $service->aboutService1 = $request->aboutService1;
         $service->aboutService2 = $request->aboutService2;
@@ -176,7 +176,7 @@ class ServiceController extends Controller
             // 'about' => 'required',
             // 'main_service_image' => 'required',
 
-            'address' => 'required',
+            // 'address' => 'required',
             'aboutService' => 'required',
             'aboutService1' => 'required',
             'category_id' => 'required|string',
@@ -211,8 +211,8 @@ class ServiceController extends Controller
         // $service->business_streetNo = $request->business_streetNo;
         // $service->business_unit = $request->business_unit;
         // $service->business_street = $request->business_street;
-        $service->address = $request->address;
-        $service->address1 = $request->address1;
+        // $service->address = $request->address;
+        // $service->address1 = $request->address1;
         $service->aboutService = $request->aboutService;
         $service->aboutService1 = $request->aboutService1;
         $service->aboutService2 = $request->aboutService2;
@@ -370,7 +370,7 @@ class ServiceController extends Controller
         //     ->select('users.business_name', 'users.name as Seller', 'users.role_id', 'users.logo', 'sub_categories.name as SubCategory', 'categories.name as Category', 'services.*',
         //         'services.id as Service_id')->where('services.added_by', $_GET['id'])->get();
 
-        $sellerServices = Service::where('services.status', 'approved')->select(['id', 'title', 'description', 'slug', 'main_service_image', 'created_at', 'added_by', 'subCategory_id', 'category_id'])
+        $sellerServices = Service::where('services.status', 'approved')->select(['id', 'title', 'description', 'slug', 'main_service_image', 'created_at', 'added_by', 'subCategory_id', 'category_id', 'status'])
             ->with(['haveProvider' => function ($user) {
                 $user->select('id', 'role_id', 'logo');
             }, 'subcat' => function ($subCategory) {
@@ -557,8 +557,7 @@ class ServiceController extends Controller
       public function deleteServiceImage(Request $request)
       {
           $image = ServiceAttachment::where('attachment_name', $request->url)->firstOrFail();
-          return $image;
-        //   $image->delete();
+          $image->delete();
           return response()->json(['success' => true, 'message' => 'Image has been Delete!']);
       }
       // close
