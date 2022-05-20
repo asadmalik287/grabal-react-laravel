@@ -1747,7 +1747,7 @@
                                         </tbody>
                                     </table>
 
-                                    <table class="row">
+                                    <table class="row" style="text-align: start;">
                                         <tbody>
                                             <tr>
                                                 <!-- main Email content -->
