@@ -1,3 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+    <body>
+        <table class="body">
+            <tr>
+                <td class="center" align="center" valign="top">
+                    <center data-parsed="">
+                        <table class="container text-center">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <!-- This container adds the gap at the top of the email -->
+                                        <table class="row grey">
+                                            <tbody>
+                                                <tr>
+                                                    <th class="small-12 large-12 columns first last">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    &#xA0;
+                                                                </th>
+                                                                <th class="expander"></th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="container text-center">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <!-- Main email content -->
+                                        <!-- This container is the main email content -->
+                                        <table class="row">
+                                            <tbody>
+                                                <tr>
+                                                    <!-- Logo -->
+                                                    <th class="small-12 large-12 columns first last">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <center data-parsed="">
+                                                                        <a href="http://www.sendwithus.com" align="center" class="text-center">
+                                                                            <img src="https://grobal.netlify.app/static/media/Logo.fe603d743e3ea8419ada.png" class="swu-logo" />
+                                                                        </a>
+                                                                    </center>
+                                                                </th>
+                                                                <th class="expander"></th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="row masthead">
+                                            <tbody>
+                                                <tr>
+                                                    <!-- Masthead -->
+                                                    <th class="small-12 large-12 columns first last">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <h1 class="text-center">Enquiry Mail</h1>
+                                                                </th>
+                                                                <th class="expander"></th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="row">
+                                            <tbody>
+                                                <tr>
+                                                    <!--This row adds the gap between masthead and digest content -->
+                                                    <th class="small-12 large-12 columns first last">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    &#xA0;
+                                                                </th>
+                                                                <th class="expander"></th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="row">
+                                            <tbody>
+                                                <tr>
+                                                    <!-- Main Email content -->
+                                                    <th class="small-12 large-12 columns first last">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <h5>How would you rate us?</h5>
+                                                                    <p>
+                                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                                                    </p>
+                                                                    <hr />
+                                                                </th>
+                                                                <th class="expander"></th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="row">
+                                            <tbody>
+                                                <tr>
+                                                    <!-- Survey Sections -->
+
+                                                    <th class="show-for-large small-1 large-1 columns first">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <br />
+                                                                    &#xA0;
+                                                                </th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                    <th class="small-1 large-1 columns">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <br />
+                                                                    <a href="#">
+                                                                        <h3 class="text-center" valign="middle">1</h3>
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                    <th class="small-1 large-1 columns">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <br />
+                                                                    <a href="#">
+                                                                        <h3 class="text-center" valign="middle">2</h3>
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                    <th class="small-1 large-1 columns">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <br />
+                                                                    <a href="#">
+                                                                        <h3 class="text-center" valign="middle">3</h3>
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                    <th class="small-1 large-1 columns">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <br />
+                                                                    <a href="#">
+                                                                        <h3 class="text-center" valign="middle">4</h3>
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                    <th class="small-1 large-1 columns">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <br />
+                                                                    <a href="#">
+                                                                        <h3 class="text-center" valign="middle">5</h3>
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                    <th class="small-1 large-1 columns">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <br />
+                                                                    <a href="#">
+                                                                        <h3 class="text-center" valign="middle">6</h3>
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                    <th class="small-1 large-1 columns">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <br />
+                                                                    <a href="#">
+                                                                        <h3 class="text-center" valign="middle">7</h3>
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                    <th class="small-1 large-1 columns">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <br />
+                                                                    <a href="#">
+                                                                        <h3 class="text-center" valign="middle">8</h3>
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                    <th class="small-1 large-1 columns">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <br />
+                                                                    <a href="#">
+                                                                        <h3 class="text-center" valign="middle">9</h3>
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                    <th class="small-1 large-1 columns">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <br />
+                                                                    <a href="#">
+                                                                        <h3 class="text-center" valign="middle">10</h3>
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                    <th class="small-1 large-1 columns last">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <br />
+                                                                    &#xA0;
+                                                                </th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="row">
+                                            <tbody>
+                                                <tr>
+                                                    <th class="small-12 large-12 columns first last">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <hr />
+                                                                    <h5>Thank you!</h5>
+                                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                                                                </th>
+                                                                <th class="expander"></th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="row">
+                                            <tbody>
+                                                <tr>
+                                                    <!--This row adds a spacer -->
+                                                    <th class="small-12 large-12 columns first last">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    &#xA0;
+                                                                </th>
+                                                                <th class="expander"></th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="row">
+                                            <tbody>
+                                                <tr>
+                                                    <!--This row adds the gap between masthead and digest content -->
+                                                    <th class="small-12 large-12 columns first last">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    &#xA0;
+                                                                </th>
+                                                                <th class="expander"></th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- / End main email content -->
+
+                        <table class="container text-center">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <table class="row grey">
+                                            <tbody>
+                                                <tr>
+                                                    <th class="small-12 large-12 columns first last">
+                                                        <table>
+                                                            <tr>
+                                                                <th>
+                                                                    <p class="text-center footercopy">&#xA9; Copyright 2016 Grobal. All Rights Reserved.</p>
+                                                                </th>
+                                                                <th class="expander"></th>
+                                                            </tr>
+                                                        </table>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
+
+
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
     <head>
@@ -1652,7 +2009,7 @@
                                                         <table style="margin: auto;">
                                                             <tr>
                                                                 <th>
-                                                                    <h1 class="text-center" style="color:#fff; text-align: center; font-size:50px;">Welcome!</h1>
+                                                                    <h1 class="text-center" style="color:#fff; text-align: center; font-size:30px;">You've received Enquiry Mail</h1>
                                                                 </th>
                                                                 <th class="expander"></th>
                                                             </tr>
@@ -1687,38 +2044,14 @@
                                                         <table style="text-align: justify;">
                                                             <tr>
                                                                 <th>
-                                                                    <b><h5 style="font-size:20px; margin: 0px;">Hi {{ $userName }},</h5></b>
+                                                                    <b><h5 style="font-size:20px; margin: 0px;">Hi {{ $data['provider']->name }},</h5></b>
                                                                     <p style="font-weight: 300;">
-                                                                        Thank you for creating your account. <br/>
-                                                                        We look forward to reading your posts and hope you will enjoy the space that we created for our customers.
+                                                                        {{$msg}}
                                                                     </p>
 
-                                                                    <div><h6 style="font-size:16px; margin: 0px;">Username: <span>{{ $userName }}</span> </h6></div>
-                                                                    <div><h6 style="font-size:16px; margin: 0px;">Password: {{ $password }}</h6></div>
+                                                                    <div><h6 style="font-size:16px; margin: 0px;"></span> </h6></div>
+                                                                    <div><h6 style="font-size:16px; margin: 0px;"></h6></div>
                                                                     <br />
-                                                                    <div class="button" style="text-align: center;">
-                                                                        <a
-                                                                            href="https://grobal.netlify.app/"
-                                                                            style="
-                                                                                background-color: #ffc30d;
-                                                                                border: 0px solid #ffc30d;
-                                                                                border-radius: 3px;
-                                                                                color: #ffffff;
-                                                                                display: inline-block;
-                                                                                font-family: sans-serif;
-                                                                                font-size: 16px;
-                                                                                font-weight: bold;
-                                                                                line-height: 35px;
-                                                                                text-align: center;
-                                                                                text-decoration: none;
-                                                                                width: 150px;
-                                                                                -webkit-text-size-adjust: none;
-                                                                                mso-hide: all;
-                                                                            "
-                                                                        >
-                                                                            Back to website
-                                                                        </a>
-                                                                    </div>
                                                                 </th>
                                                                 <th class="expander"></th>
                                                             </tr>
@@ -1781,6 +2114,7 @@
         </table>
     </body>
 </html>
+
 
 
 
