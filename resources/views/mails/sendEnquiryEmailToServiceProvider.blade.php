@@ -1674,9 +1674,9 @@
 </head>
 
 <body>
-    <table class="body" style="background-color: rgb(231, 231, 231);">
+    <table class="body" style="background-color: rgb(249 248 248); margin:auto;">
         <tr>
-            <td class="center" align="center" valign="top" style="padding: 0px 40px;">
+            <td class="center" align="center" valign="top" style="padding: 0px 40px; max-width:1000px">
                 <center data-parsed="">
                     <table class="container text-center">
                         <tbody>
