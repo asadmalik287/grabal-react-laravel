@@ -1709,7 +1709,7 @@
                             <tr>
                                 <td>
                                     <!-- This container is the main email content -->
-                                    <table class="row" style="text-align: center;">
+                                    <table class="row" style="margin: auto;">
                                         <tbody>
                                             <tr>
                                                 <!-- Logo -->
