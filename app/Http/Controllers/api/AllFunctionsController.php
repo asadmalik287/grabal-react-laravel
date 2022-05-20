@@ -206,7 +206,7 @@ class AllFunctionsController extends Controller
 
         // get top service providers
         $topServiceProviders = Service::where('services.status', 'approved')
-        ->select(['id', 'added_by'])->whereIn('id', $topTenServices)
+            ->select(['id', 'added_by'])->whereIn('id', $topTenServices)
             ->with(['haveProvider' => function ($provider) {
                 $provider->select(['id', 'name', 'business_name', 'f_name', 'slug', 'l_name', 'logo', 'created_at', 'message']);
             }])
@@ -283,8 +283,21 @@ class AllFunctionsController extends Controller
             "user" => $provider,
             "message" => $request->message,
         ];
+        $provider = User::where('id', $request->provider_id)->first();
+        $user = User::where('id', $request->user_id)->first();
+        $msg = $request->message;
+        $data = [
+            'provider' => $provider,
+            'user' => $user,
+            'msg' => $msg,
 
-        Mail::to($provider->email)->send(new SendEnquiryEmailToServiceProvider($data));
+        ];
+        // Mail::to($provider->email)->send(new SendEnquiryEmailToServiceProvider($data));
+
+        Mail::send('mails.sendEnquiryEmailToServiceProvider', ['data' => $data], function ($message) use ($data) {
+            $message->to($data['provider']->email);
+            $message->subject('NEW QUERY ON GROBAL');
+        });
         return response()->json(['success' => true, 'message' => "Enquiry Email has been sent to service provider successfully"]);
 
     }
