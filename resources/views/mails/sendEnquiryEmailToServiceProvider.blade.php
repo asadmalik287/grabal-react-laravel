@@ -1718,8 +1718,8 @@
                                                         <tr>
                                                             <th>
                                                                 <center data-parsed="">
-                                                                    <a href="http://www.sendwithus.com" align="center" style="text-align: center;">
-                                                                        <img src="https://grobal.netlify.app/static/media/Logo.fe603d743e3ea8419ada.png" class="swu-logo" width="140" />
+                                                                    <a href="https://grobal.netlify.app" align="center" style="text-align: center;">
+                                                                        <img src="https://grobal.netlify.app/static/media/Logo.fe603d743e3ea8419ada.png" class="swu-logo" style="margin:auto;" width="120" />
                                                                     </a>
                                                                 </center>
                                                             </th>
@@ -1757,7 +1757,7 @@
                                                         <tr>
                                                             <th>
                                                                 <b>
-                                                                    <h5 style="font-size:50px; ">
+                                                                    <h5 style="font-size:25px; ">
                                                                         You've recieved enquiry from {{ $data['user']->name }}
                                                                     </h5>
                                                                 </b>
@@ -1765,14 +1765,16 @@
                                                                 <hr/>
 
                                                                 <b>
-                                                                    <h5 style="font-size:20px; margin: 0px;">
+                                                                    <h5 style="font-size:20px; margin: 10px;">
                                                                         Hi {{ $data['provider']->name }},
                                                                     </h5>
                                                                 </b>
 
                                                                 <div style="font-weight: 300;">
 
-                                                                    {{ $data['user']->name }} left you a message <br />
+                                                                    {{ $data['user']->name }} left you a message
+                                                                    <br />
+                                                                    <br />
 
                                                                     <blockquote>
                                                                         <q>{{ $data['msg'] }}</q>
