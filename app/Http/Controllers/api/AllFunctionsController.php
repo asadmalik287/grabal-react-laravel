@@ -286,7 +286,7 @@ class AllFunctionsController extends Controller
         $provider = User::where('id', $request->provider_id)->first();
         $user = User::where('id', $request->user_id)->first();
         $msg = $request->message;
-        $data = [
+        $datas = [
             'provider' => $provider,
             'user' => $user,
             'msg' => $msg,
@@ -294,8 +294,8 @@ class AllFunctionsController extends Controller
         ];
         // Mail::to($provider->email)->send(new SendEnquiryEmailToServiceProvider($data));
 
-        Mail::send('mails.sendEnquiryEmailToServiceProvider', ['data' => $data], function ($message) use ($data) {
-            $message->to($data['provider']->email);
+        Mail::send('mails.sendEnquiryEmailToServiceProvider', ['datas' => $datas], function ($message) use ($datas) {
+            $message->to($datas['provider']->email);
             $message->subject('NEW QUERY ON GROBAL');
         });
         return response()->json(['success' => true, 'message' => "Enquiry Email has been sent to service provider successfully"]);
