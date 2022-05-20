@@ -279,23 +279,20 @@ class AllFunctionsController extends Controller
 
         AssignedTask::create($assigned_tasks);
 
-        $data = [
-            "user" => $provider,
-            "message" => $request->message,
-        ];
         $provider = User::where('id', $request->provider_id)->first();
         $user = User::where('id', $request->user_id)->first();
         $msg = $request->message;
-        $datas = [
+
+        $data = [
             'provider' => $provider,
             'user' => $user,
             'msg' => $msg,
-
         ];
+
         // Mail::to($provider->email)->send(new SendEnquiryEmailToServiceProvider($data));
 
-        Mail::send('mails.sendEnquiryEmailToServiceProvider', ['datas' => $datas], function ($message) use ($datas) {
-            $message->to($datas['provider']->email);
+        Mail::send('mails.sendEnquiryEmailToServiceProvider', ['data' => $data], function ($message) use ($data) {
+            $message->to($data['provider']->email);
             $message->subject('NEW QUERY ON GROBAL');
         });
         return response()->json(['success' => true, 'message' => "Enquiry Email has been sent to service provider successfully"]);
