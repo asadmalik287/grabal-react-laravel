@@ -1676,7 +1676,7 @@
 <body>
     <table class="body" style="background-color: rgb(231, 231, 231);">
         <tr>
-            <td class="center" align="center" valign="top">
+            <td class="center" align="center" valign="top" style="padding: 0px 40px;">
                 <center data-parsed="">
                     <table class="container text-center">
                         <tbody>
@@ -1704,7 +1704,7 @@
                         </tbody>
                     </table>
 
-                    <table class="container text-center" style="background-color: #fff; padding:10px">
+                    <table class="container " style="background-color: #fff; padding:10px">
                         <tbody>
                             <tr>
                                 <td>
@@ -1720,24 +1720,6 @@
                                                                 <a href="https://grobal.netlify.app" align="center" style="text-align: center;">
                                                                     <img src="https://grobal.netlify.app/static/media/Logo.fe603d743e3ea8419ada.png" class="swu-logo" style="margin:auto;" width="120" />
                                                                 </a>
-                                                            </th>
-                                                            <th class="expander"></th>
-                                                        </tr>
-                                                    </table>
-                                                </th>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                    <table class="row">
-                                        <tbody>
-                                            <tr>
-                                                <!--This container adds the gap between masthead and digest content -->
-                                                <th class="small-12 large-12 columns first last">
-                                                    <table>
-                                                        <tr>
-                                                            <th>
-                                                                &#xA0;
                                                             </th>
                                                             <th class="expander"></th>
                                                         </tr>
@@ -1763,13 +1745,13 @@
 
                                                                 <hr/>
 
-                                                                <b>
+                                                                <b style="text-align:start;">
                                                                     <h5 style="font-size:20px; margin: 10px 0px; ">
                                                                         Hi {{ $data['provider']->name }},
                                                                     </h5>
                                                                 </b>
 
-                                                                <div style="font-weight: 300;">
+                                                                <div style="font-weight: 300;text-align: start;">
 
                                                                     {{ $data['user']->name }} left you a message
                                                                     <br />
@@ -1786,23 +1768,27 @@
 
                                                                 </div>
 
-                                                                <hr>
-                                                                <div>
-                                                                    <h6 style="font-size:18px; margin: 10px 0px;">
-                                                                        Contact information
-                                                                    </h6>
+                                                                <div style="text-align: start;">
+                                                                    <hr>
+                                                                    <div >
+                                                                        <h6 style="font-size:18px; margin: 10px 0px;">
+                                                                            Contact information
+                                                                        </h6>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div style="padding-left:10px;">
+                                                                        <p class="margin:0px; font-weight: 300;">
+                                                                            Name: {{ $data['user']->name }}
+                                                                        </p>
+                                                                        <p class="margin:0px; font-weight: 300;">
+                                                                            Email: {{ $data['user']->email }}
+                                                                        </p>
+                                                                        <p class="margin:0px; font-weight: 300;">
+                                                                            Phone Number: {{ $data['user']->phone_number }}
+                                                                        </p>
+                                                                    </div>
+                                                                    <hr>
                                                                 </div>
-                                                                <hr>
-                                                                <p class="margin:0px; font-weight: 300;">
-                                                                    Name: {{ $data['user']->name }}
-                                                                </p>
-                                                                <p class="margin:0px; font-weight: 300;">
-                                                                    Email: {{ $data['user']->email }}
-                                                                </p>
-                                                                <p class="margin:0px; font-weight: 300;">
-                                                                    Phone Number: {{ $data['user']->phone_number }}
-                                                                </p>
-                                                                <hr>
                                                             </th>
                                                             <th class="expander"></th>
                                                         </tr>
