@@ -1674,7 +1674,7 @@
 </head>
 
 <body>
-    <table class="body" style="background-color: rgb(158, 158, 158);">
+    <table class="body" style="background-color: rgb(224, 223, 223);">
         <tr>
             <td class="center" align="center" valign="top">
                 <center data-parsed="">
@@ -1704,12 +1704,12 @@
                         </tbody>
                     </table>
 
-                    <table class="container text-center" style="background-color: #fff; padding:15px">
+                    <table class="container text-center" style="background-color: #fff; padding:15px 15px;">
                         <tbody>
                             <tr>
                                 <td>
                                     <!-- This container is the main email content -->
-                                    <table class="row">
+                                    <table class="row" style="text-align: center;">
                                         <tbody>
                                             <tr>
                                                 <!-- Logo -->
@@ -1730,6 +1730,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
+
                                     <table class="row">
                                         <tbody>
                                             <tr>
@@ -1753,11 +1754,11 @@
                                             <tr>
                                                 <!-- main Email content -->
                                                 <th class="small-12 large-12 columns first last">
-                                                    <table style="text-align: justify;">
+                                                    <table>
                                                         <tr>
                                                             <th>
-                                                                <b>
-                                                                    <h5 style="font-size:25px; ">
+                                                                <b class="text-align:center; width:100%;">
+                                                                    <h5 style="font-size:25px; text-align:center; margin:10px 0px;">
                                                                         You've recieved enquiry from {{ $data['user']->name }}
                                                                     </h5>
                                                                 </b>
@@ -1765,7 +1766,7 @@
                                                                 <hr/>
 
                                                                 <b>
-                                                                    <h5 style="font-size:20px; margin: 10px;">
+                                                                    <h5 style="font-size:20px; margin: 10px 0px; ">
                                                                         Hi {{ $data['provider']->name }},
                                                                     </h5>
                                                                 </b>
