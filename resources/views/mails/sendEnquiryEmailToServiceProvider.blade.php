@@ -1674,7 +1674,7 @@
 </head>
 
 <body>
-    <table class="body">
+    <table class="body" style="background-color: rgb(158, 158, 158);">
         <tr>
             <td class="center" align="center" valign="top">
                 <center data-parsed="">
@@ -1704,7 +1704,7 @@
                         </tbody>
                     </table>
 
-                    <table class="container text-center">
+                    <table class="container text-center" style="background-color: #fff; padding:15px">
                         <tbody>
                             <tr>
                                 <td>
@@ -1718,10 +1718,8 @@
                                                         <tr>
                                                             <th>
                                                                 <center data-parsed="">
-                                                                    <a href="http://www.sendwithus.com" align="center"
-                                                                        class="text-center">
-                                                                        <img src="https://grobal.netlify.app/static/media/Logo.fe603d743e3ea8419ada.png"
-                                                                            class="swu-logo" width="170" />
+                                                                    <a href="http://www.sendwithus.com" align="center" style="text-align: center;">
+                                                                        <img src="https://grobal.netlify.app/static/media/Logo.fe603d743e3ea8419ada.png" class="swu-logo" width="140" />
                                                                     </a>
                                                                 </center>
                                                             </th>
@@ -1732,26 +1730,6 @@
                                             </tr>
                                         </tbody>
                                     </table>
-                                    <table class="row masthead" style="background: #ffc30d; width:100%">
-                                        <tbody>
-                                            <tr>
-                                                <!-- Masthead -->
-                                                <th class="small-12 large-12 columns first last">
-                                                    <table style="margin: auto;">
-                                                        <tr>
-                                                            <th>
-                                                                <h1 class="text-center"
-                                                                    style="color:#fff; text-align: center; font-size:30px;">
-                                                                    Enquiry Mail</h1>
-                                                            </th>
-                                                            <th class="expander"></th>
-                                                        </tr>
-                                                    </table>
-                                                </th>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
                                     <table class="row">
                                         <tbody>
                                             <tr>
@@ -1769,6 +1747,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
+
                                     <table class="row">
                                         <tbody>
                                             <tr>
@@ -1778,31 +1757,47 @@
                                                         <tr>
                                                             <th>
                                                                 <b>
-                                                                    <h5 style="font-size:20px; margin: 0px;">Hi
-                                                                        {{ $data['provider']->name }},</h5>
+                                                                    <h5 style="font-size:50px; ">
+                                                                        You've recieved enquiry from {{ $data['user']->name }}
+                                                                    </h5>
+                                                                </b>
+
+                                                                <hr/>
+
+                                                                <b>
+                                                                    <h5 style="font-size:20px; margin: 0px;">
+                                                                        Hi {{ $data['provider']->name }},
+                                                                    </h5>
                                                                 </b>
 
                                                                 <div style="font-weight: 300;">
-                                                                    You've recieved enquiry from
-                                                                    {{ $data['user']->name }} <br />
+
+                                                                    {{ $data['user']->name }} left you a message <br />
 
                                                                     <blockquote>
                                                                         <q>{{ $data['msg'] }}</q>
                                                                     </blockquote>
                                                                     <br />
+
                                                                 </div>
 
+                                                                <hr>
                                                                 <div>
-                                                                    <h6
-                                                                        style="font-size:16px; margin: 0px; border:1px solid #000; padding:20px 0px">
-                                                                        Enquiry by </span> </h6>
+                                                                    <h6 style="font-size:18px; margin: 10px 0px;">
+                                                                        Contact information
+                                                                    </h6>
                                                                 </div>
-                                                                <p class="margin:0px; font-weight: 300;">Name:
-                                                                    {{ $data['user']->name }}</p>
-                                                                <p class="margin:0px; font-weight: 300;">Email:
-                                                                    {{ $data['user']->email }}</p>
-                                                                <p class="margin:0px; font-weight: 300;">Phone Number:
-                                                                    {{ $data['user']->phone_number }}</p>
+                                                                <hr>
+                                                                <p class="margin:0px; font-weight: 300;">
+                                                                    Name: {{ $data['user']->name }}
+                                                                </p>
+                                                                <p class="margin:0px; font-weight: 300;">
+                                                                    Email: {{ $data['user']->email }}
+                                                                </p>
+                                                                <p class="margin:0px; font-weight: 300;">
+                                                                    Phone Number: {{ $data['user']->phone_number }}
+                                                                </p>
+                                                                <hr>
                                                             </th>
                                                             <th class="expander"></th>
                                                         </tr>
@@ -1811,6 +1806,7 @@
                                             </tr>
                                         </tbody>
                                     </table>
+
                                     <table class="row">
                                         <tbody>
                                             <tr>
