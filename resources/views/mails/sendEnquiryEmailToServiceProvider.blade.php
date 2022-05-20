@@ -1674,7 +1674,7 @@
 </head>
 
 <body>
-    <table class="body" style="background-color: rgb(224, 223, 223);">
+    <table class="body" style="background-color: rgb(231, 231, 231);">
         <tr>
             <td class="center" align="center" valign="top">
                 <center data-parsed="">
@@ -1704,7 +1704,7 @@
                         </tbody>
                     </table>
 
-                    <table class="container text-center" style="background-color: #fff; padding:15px 15px;">
+                    <table class="container text-center" style="background-color: #fff; padding:10px">
                         <tbody>
                             <tr>
                                 <td>
@@ -1716,12 +1716,10 @@
                                                 <th class="small-12 large-12 columns first last">
                                                     <table>
                                                         <tr>
-                                                            <th>
-                                                                <center data-parsed="">
-                                                                    <a href="https://grobal.netlify.app" align="center" style="text-align: center;">
-                                                                        <img src="https://grobal.netlify.app/static/media/Logo.fe603d743e3ea8419ada.png" class="swu-logo" style="margin:auto;" width="120" />
-                                                                    </a>
-                                                                </center>
+                                                            <th style="text-align: center;">
+                                                                <a href="https://grobal.netlify.app" align="center" style="text-align: center;">
+                                                                    <img src="https://grobal.netlify.app/static/media/Logo.fe603d743e3ea8419ada.png" class="swu-logo" style="margin:auto;" width="120" />
+                                                                </a>
                                                             </th>
                                                             <th class="expander"></th>
                                                         </tr>
@@ -1778,7 +1776,11 @@
                                                                     <br />
 
                                                                     <blockquote>
-                                                                        <q>{{ $data['msg'] }}</q>
+                                                                        <q>
+                                                                            <i>
+                                                                                {{ $data['msg'] }}
+                                                                            </i>
+                                                                        </q>
                                                                     </blockquote>
                                                                     <br />
 
